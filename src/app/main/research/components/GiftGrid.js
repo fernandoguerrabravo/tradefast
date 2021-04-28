@@ -23,6 +23,7 @@ export const GiftGrid = ({ category }) => {
    const { data, loading } = useFetchGifs(category)
    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
+    console.log(category)
     return (
         <>
             
@@ -30,11 +31,11 @@ export const GiftGrid = ({ category }) => {
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Image</TableCell>
+                            <TableCell>Search: {category} </TableCell>
                             <TableCell></TableCell>
-                            <TableCell>Asin</TableCell>
                             <TableCell>Price</TableCell>
                             <TableCell>Rating</TableCell>
+                            <TableCell>Link to Amazon</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

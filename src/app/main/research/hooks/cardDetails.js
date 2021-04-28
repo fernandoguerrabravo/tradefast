@@ -15,10 +15,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import BasicTable from './tableDetail';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345,
+    maxWidth: 400,
   },
   media: {
     height: 0,
@@ -40,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function RecipeReviewCard(event) {
+
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -47,6 +50,7 @@ export default function RecipeReviewCard(event) {
     setExpanded(!expanded);
   };
   console.log(event.event.imagen);
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -69,17 +73,12 @@ export default function RecipeReviewCard(event) {
         title=""
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-         Rank : {event.event.rank}
-        </Typography>
+       
+        
+        <BasicTable details={event}></BasicTable>
+       
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -93,8 +92,19 @@ export default function RecipeReviewCard(event) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
+        <Typography paragraph>Features:</Typography>
+          <ol>
+            <li> {event.event.feature_0}</li><br></br>
+            <li> {event.event.feature_1}</li><br></br>
+            <li> {event.event.feature_2}</li><br></br>
+            <li> {event.event.feature_3}</li><br></br>
+          </ol>
+          <br></br>
+          <br></br>
+          <hr></hr>
+          <br></br>
+          <br></br>
           <Typography paragraph>Product Description:</Typography>
-          
           <Typography paragraph>
           {event.event.description}
           </Typography>

@@ -68,7 +68,7 @@ export const SimplePopover = (codigo) => {
       loading: false,
       cod: detail?.product?.asin ?? '',
       imagen: detail?.product?.main_image ?? '',
-      seller: detail?.product?.product_information?.manufacturer ?? '',
+      seller: detail?.product?.product_information?.sold_by ?? '',
       description: detail?.product?.description ?? '',
 
     })

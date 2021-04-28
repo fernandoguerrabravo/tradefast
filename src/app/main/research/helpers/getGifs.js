@@ -31,6 +31,7 @@ export const getGifs = async (category) => {
             price: img?.price?.current_price,
             reviews: img?.reviews.rating,
             total_reviews: img?.reviews.total_reviews,
+            link : img?.url,
             
 
         }

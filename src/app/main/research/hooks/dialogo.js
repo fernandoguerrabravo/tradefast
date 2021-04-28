@@ -94,13 +94,31 @@ export default function CustomizedDialogs(codigo) {
         console.log(detail);
         setstate({
 
-            rank: detail?.product?.bestsellers_rank[0]?.rank ?? '',
+            rank_0: detail?.product?.bestsellers_rank[0]?.rank ?? '',
+            category_0: detail?.product?.bestsellers_rank[0]?.category ?? '',
+            rank_1: detail?.product?.bestsellers_rank[1]?.rank ?? '',
+            category_1: detail?.product?.bestsellers_rank[1]?.category ?? '',
+            rank_2: detail?.product?.bestsellers_rank[2]?.rank ?? '',
+            category_2: detail?.product?.bestsellers_rank[2]?.category ?? '',
             title: detail?.product?.title ?? '',
             loading: false,
             cod: detail?.product?.asin ?? '',
             imagen: detail?.product?.main_image ?? '',
-            seller: detail?.product?.product_information?.manufacturer ?? '',
             description: detail?.product?.description ?? '',
+            seller: detail?.product?.product_information?.sold_by ?? '',
+            dimensions: detail?.product?.product_information?.dimensions ?? '',
+            weight: detail?.product?.product_information?.weight ?? '',
+            available: detail?.product?.product_information?.available_from ?? '',
+            manufacturer: detail?.product?.product_information?.manufacturer ?? '',
+            model: detail?.product?.product_information?.model_number ?? '',  
+            quantity: detail?.product?.product_information?.qty_per_order ?? '',  
+            brand:    detail?.product?.product_information?.brand ?? '',
+            feature_0 : detail?.product?.feature_bullets[0] ?? '',
+            feature_1 : detail?.product?.feature_bullets[1] ?? '',
+            feature_2 : detail?.product?.feature_bullets[2] ?? '',
+            feature_3 : detail?.product?.feature_bullets[3] ?? '',
+            feature_4 : detail?.product?.feature_bullets[4] ?? ''
+
 
         })
 
@@ -126,7 +144,7 @@ export default function CustomizedDialogs(codigo) {
       </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Modal title
+                    Sold by: {state.seller}
         </DialogTitle>
                 <DialogContent dividers>
                 <RecipeReviewCard event={state} />
