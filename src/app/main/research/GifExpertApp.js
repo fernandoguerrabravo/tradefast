@@ -9,7 +9,8 @@ export const GifExpertApp = () => {
     return (
         <>
             <AddCategory setCategories={setCategories} />
-        
+            <br></br>
+            
                 {
                        categories.map(category => (
                         <GiftGrid

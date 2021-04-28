@@ -24,7 +24,7 @@ const navigationConfig = [
 				url: '/dashboard'
 			},
 			{
-				id: 'example-component',
+				id: 'customs-component',
 				title: 'example',
 				translate: 'CUSTOMS',
 				type: 'item',
@@ -40,7 +40,7 @@ const navigationConfig = [
 				url: '/example'
 			},
 			{
-				id: 'example-component',
+				id: 'research-component',
 				title: 'research',
 				translate: 'RESEARCHMARKET',
 				type: 'item',
@@ -48,7 +48,7 @@ const navigationConfig = [
 				url: '/research'
 			},
 			{
-				id: 'example-component',
+				id: 'hts-component',
 				title: 'example',
 				translate: 'CLASSIFICATIONS',
 				type: 'item',
@@ -56,7 +56,7 @@ const navigationConfig = [
 				url: '/hts'
 			},
 			{
-				id: 'example-component',
+				id: 'bonds-component',
 				title: 'example',
 				translate: 'BONDS',
 				type: 'item',
@@ -64,7 +64,7 @@ const navigationConfig = [
 				url: '/hts'
 			},
 			{
-				id: 'example-component',
+				id: 'insurance-component',
 				title: 'example',
 				translate: 'INSURANCE',
 				type: 'item',

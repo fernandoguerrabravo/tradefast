@@ -74,6 +74,7 @@
         "react-scripts": "4.0.3",
         "react-select": "3.1.1",
         "react-spring": "8.0.27",
+        "react-star-ratings": "^2.3.0",
         "react-swipeable": "6.0.1",
         "react-swipeable-views": "0.13.9",
         "react-swipeable-views-utils": "0.13.9",

@@ -18,23 +18,23 @@ const useStyles = makeStyles({
     },
 });
 
-
 export const GiftGrid = ({ category }) => {
-    const { data, loading } = useFetchGifs(category)
+
+   const { data, loading } = useFetchGifs(category)
+   //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
     return (
         <>
-            {loading && <p>Loading Results...</p>}
-
+            
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Image</TableCell>
-                            <TableCell align="center">ASIN</TableCell>
-                            <TableCell align="center">Description</TableCell>
-                            <TableCell align="center">Price (USD)</TableCell>
-                            <TableCell align="center">Score</TableCell>
+                            <TableCell></TableCell>
+                            <TableCell>Asin</TableCell>
+                            <TableCell>Price</TableCell>
+                            <TableCell>Rating</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
