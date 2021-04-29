@@ -3,10 +3,14 @@ const locale = {
 	EXAMPLE: 'Example',
 	DASHBOARD: 'Dashboard',
 	RESEARCHMARKET: 'Products Research',
-	CLASSIFICATIONS: 'HTS Classifications',
+	HTS: 'Classifications and Duties',
 	BONDS: 'Continuos Import Bond',
 	INSURANCE: 'Cargo Insurance',
-	CUSTOMS: 'Customs Clareance USA'
+	CUSTOMS: 'Customs Clareance USA',
+	DUTIES: 'Tax Calculator',
+	CLASSIFICATIONS: 'Classifications Tools',
+	HTSSPECIAL : 'Special Services'
+
 };
 
 export default locale;

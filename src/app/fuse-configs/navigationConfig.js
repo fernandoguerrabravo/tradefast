@@ -50,10 +50,37 @@ const navigationConfig = [
 			{
 				id: 'hts-component',
 				title: 'example',
-				translate: 'CLASSIFICATIONS',
-				type: 'item',
+				translate: 'HTS',
+				type: 'collapse',
 				icon: 'whatshot',
-				url: '/hts'
+				children: [
+				{
+					id: 'taxes-component',
+					title: 'taxes',
+					translate: 'DUTIES',
+					type: 'item',
+					icon: 'timeline',
+					url: '/htsTax'
+				},
+				{
+					id: 'hts-component',
+					title: 'classifications',
+					translate: 'CLASSIFICATIONS',
+					type: 'item',
+					icon: 'timeline',
+					url: '/research'
+				},
+				{
+					id: 'special-component',
+					title: 'htsspecial',
+					translate: 'HTSSPECIAL',
+					type: 'item',
+					icon: 'timeline',
+					url: '/research'
+				}
+
+				]
+
 			},
 			{
 				id: 'bonds-component',
