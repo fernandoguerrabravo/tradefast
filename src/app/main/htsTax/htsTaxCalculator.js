@@ -1,13 +1,13 @@
 import FusePageCarded from '@fuse/core/FusePageCarded';
 import { makeStyles } from '@material-ui/core/styles';
-import ResearchContent from './ResearchContent';
+import HtsTaxContent from './htsTaxContent';
+
 
 const useStyles = makeStyles({
 	layoutRoot: {}
 });
 
-
-const htsCalculator = () => {
+const htsTaxCalculator = () => {
 
 	const classes = useStyles();
 
@@ -18,21 +18,21 @@ const htsCalculator = () => {
 			}}
 			header={
 				<div className="p-24">
-					<h1>Amazon Products Research</h1>
+					<h1>Import Tax Calculator</h1>
 				</div>
 			}
 			contentToolbar={
 				<div className="p-24">
-					<h4>Find Products in Amazon Marketplace (US)</h4>
+					<h4>Find the Duties to Pay in US</h4>
 				</div>
 			}
 			content={
 				<div className="p-24">
-					<ResearchContent />
+					<HtsTaxContent />
 				</div>
 			}
 		/>
 	);
 }
 
-export default htsCalculator;
+export default htsTaxCalculator;

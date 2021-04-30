@@ -2,12 +2,11 @@ import { Redirect } from 'react-router-dom';
 import FuseUtils from '@fuse/utils';
 import DashboardConfig from 'app/main/dashboard/DashboardConfig';
 import ResearchConfig from 'app/main/research/ResearchConfig';
-import htsTaxConfig from 'app/main/research/ResearchConfig';
-
+import htsTaxConfig from 'app/main/htsTax/htsTaxConfig';
 
 
 const routeConfigs = [
-	
+
 	DashboardConfig,
 	ResearchConfig,
 	htsTaxConfig
