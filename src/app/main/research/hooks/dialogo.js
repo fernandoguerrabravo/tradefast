@@ -77,7 +77,7 @@ export default function CustomizedDialogs(codigo) {
 
         var myHeaders = new Headers();
         myHeaders.append("x-rapidapi-host", "amazon-product-reviews-keywords.p.rapidapi.com");
-        myHeaders.append("x-rapidapi-key", "d8b96c6b55mshf883ce53b80b403p113b42jsne6116c86b747");
+        myHeaders.append("x-rapidapi-key", "cbb302deccmsh69f9792bef12280p17c8a1jsn5d4e9d17ba41");
         myHeaders.append("useQueryString", true);
 
         var requestOptions = {
@@ -139,7 +139,7 @@ export default function CustomizedDialogs(codigo) {
         <div>
       {state.loading ? <CircularProgress color="primary" size = {40} /> : 
       <>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                 Details
       </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
