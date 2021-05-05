@@ -1,158 +1,113 @@
-import React from 'react';
-import {
-    fade,
-    ThemeProvider,
-    withStyles,
-    makeStyles,
-    createMuiTheme,
-  } from '@material-ui/core/styles';
-  import InputBase from '@material-ui/core/InputBase';
-  import InputLabel from '@material-ui/core/InputLabel';
-  import TextField from '@material-ui/core/TextField';
-  import FormControl from '@material-ui/core/FormControl';
-  import { green } from '@material-ui/core/colors';
 
-  
-  const CssTextField = withStyles({
-    root: {
-      '& label.Mui-focused': {
-        color: 'green',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: 'green',
-      },
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'red',
-        },
-        '&:hover fieldset': {
-          borderColor: 'yellow',
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: 'green',
-        },
-      },
-    },
-  })(TextField);
-  
-  const BootstrapInput = withStyles((theme) => ({
-    root: {
-      'label + &': {
-        marginTop: theme.spacing(3),
-      },
-    },
-    input: {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: theme.palette.common.white,
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      width: 'auto',
-      padding: '10px 12px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      // Use the system font instead of the default Roboto font.
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(','),
-      '&:focus': {
-        boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  }))(InputBase);
-  
-  const useStylesReddit = makeStyles((theme) => ({
-    root: {
-      border: '1px solid #e2e2e1',
-      overflow: 'hidden',
-      borderRadius: 4,
-      backgroundColor: '#fcfcfb',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      '&:hover': {
-        backgroundColor: '#fff',
-      },
-      '&$focused': {
-        backgroundColor: '#fff',
-        boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-    focused: {},
-  }));
-  
-  function RedditTextField(props) {
-    const classes = useStylesReddit();
-  
-    return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
-  }
-  
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    margin: {
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import { useState } from 'react';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import swal from 'sweetalert';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
       margin: theme.spacing(1),
+      width: '25ch',
     },
-  }));
-  
-  const ValidationTextField = withStyles({
-    root: {
-      '& input:valid + fieldset': {
-        borderColor: 'green',
-        borderWidth: 2,
-      },
-      '& input:invalid + fieldset': {
-        borderColor: 'red',
-        borderWidth: 2,
-      },
-      '& input:valid:focus + fieldset': {
-        borderLeftWidth: 6,
-        padding: '4px !important', // override inline-style
-      },
-    },
-  })(TextField);
-  
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-    },
-  });
-  
-  export default function CustomizedInputs() {
-    const classes = useStyles();
-  
-    return (
-      <form className={classes.root} noValidate>
-        <ThemeProvider theme={theme}>
-          <TextField
-            className={classes.margin}
-            label="HTS Number (6 Digits)"
-            variant="outlined"
-            id="mui-theme-provider-outlined-input"
-          />
+  },
 
-        </ThemeProvider>
-        <ThemeProvider theme={theme}>
-          <TextField
-            className={classes.margin}
-            label="HTS Number (6 Digits)"
-            variant="outlined"
-            id="mui-theme-provider-outlined-input"
-          />
+  formControl: {
+    margin: theme.spacing(3),
+    minWidth: 500,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 
-        </ThemeProvider>
+}));
+
+export default function SearchTax({ setencabezado }) {
+  
+  const classes = useStyles();
+
+  const [datos, setDatos] = useState({
+
+    country: '',
+    hts: '',
+    hidden: true,
+   
+});
+
+const handleInputChange = (event) => {
+  // console.log(event.target.name)
+  // console.log(event.target.value)
+  setDatos({
+
+      ...datos,
+      [event.target.name] : event.target.value
+  })
+  
+}
+  
+  console.log(datos);
+
+  const handleSubmit = (e) => {
+
+    e.preventDefault();
+    setencabezado({
+      ...datos,
+      destination: 'United States'
     
-      
-      </form>
-    );
-  }
+    })
+    setDatos({
+      country: '',
+      hts: '',
+      destination: 'United States'
+    });
+    
+}
+
+  return (
+
+    <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="country"
+          value = {datos.country}
+          onChange={handleInputChange}
+          label="Origin Country"
+          name='country'
+        >
+          <MenuItem value="">
+            <em></em>
+          </MenuItem>
+          <MenuItem value={1}>Brazil</MenuItem>
+          <MenuItem value={2}>Colombia</MenuItem>
+          <MenuItem value={3}>Mexico</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <TextField
+          id="hts"
+          name="hts"
+          label="HTS Code (6 Digits)"
+          variant="outlined"
+          color="secondary"
+          value= {datos.hts}
+          onChange={handleInputChange}
+        />
+      </FormControl>
+      <br></br>
+      <Button type="submit" variant="outlined" color="secondary">
+        Search
+      </Button>
+    </form>
+  );
+}
+
+
+
+
