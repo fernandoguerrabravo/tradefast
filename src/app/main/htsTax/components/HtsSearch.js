@@ -60,6 +60,7 @@ const handleInputChange = (event) => {
       destination: 'United States'
     
     })
+    
     setDatos({
       country: '',
       hts: '',
