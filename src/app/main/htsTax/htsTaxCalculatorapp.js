@@ -4,6 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SearchTax from './components/HtsSearch';
 import HtsHeader from './components/HtsHeader';
+import  {HtsGrid}   from './components/HtsGrid';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,13 +37,6 @@ export default function FullWidthGrid() {
 
   ]);
 
-  const [htscode, sethtscode] = useState([
-
-    {
-      htscodedatos: [],
-    }
-
-  ]);
 
   return (
 
@@ -55,7 +49,7 @@ export default function FullWidthGrid() {
           <Paper className={classes.paper}><HtsHeader event={encabezado}/></Paper>
         </Grid>
         <Grid item xs={8}>
-          <Paper className={classes.paper}></Paper>
+          <Paper className={classes.paper}><HtsGrid evento = {encabezado}/></Paper>
         </Grid>
       </Grid>
     </div>

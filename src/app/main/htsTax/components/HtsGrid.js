@@ -7,9 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { GifGridItem } from './GifGridItem';
-import { useFetchHts } from '../hooks/useFetchHts';
-
+import { UseFetchHts } from '../hooks/UseFetchHts';
+import { HtsResultList } from './HtsResultList';
 
 
 const useStyles = makeStyles({
@@ -18,12 +17,13 @@ const useStyles = makeStyles({
     },
 });
 
-export const HtsGrid = (htscode) => {
+export const HtsGrid = (evento) => {
 
-   const { data, loading } = useFetchGifs(htscode)
+  // const { data, loading } = useFetchHts(htscode)
    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
-    console.log(htscode)
+    console.log(evento.evento.hts)
+
     return (
         <>
             
@@ -35,20 +35,19 @@ export const HtsGrid = (htscode) => {
                             <TableCell>Link to Amazon</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-
-                        {
-                            data.map(img => (
-                                <GifGridItem
-                                    key={img.id}
-                                    {...img}
-                                />
-                            ))
-                        }
-                    </TableBody>
                 </Table>
             </TableContainer>
 
         </>
     )
 }
+
+/*
+{
+    data.map(img => (
+        <HtsResultList
+            key={img.htsno}
+            {...img}
+        />
+    ))
+} */
