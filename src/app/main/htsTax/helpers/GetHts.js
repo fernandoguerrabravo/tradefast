@@ -8,9 +8,10 @@ export const GetHts = async (htsnumber) => {
         cache: 'default'
     };
 
-    const url = `https://hts.usitc.gov/api/search?query=copper`;
-    const resp = await fetch(url, requestOptions);
+    const url = "https://hts.usitc.gov/api/search?query=copper";
+    const resp = await fetch(url);
     const data = await resp.json();
+    console.log("Datos de HTS");
     console.log(data.results)
   
     const hts = data.results.map(img => {

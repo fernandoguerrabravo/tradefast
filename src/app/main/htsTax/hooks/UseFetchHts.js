@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GetHts } from '../helpers/GetHts';
 
-export const useFetchGifs = (htscode) => {
+export const UseFetchHts = (htscode) => {
 
     const [state, setState] = useState({
 
@@ -13,7 +13,7 @@ export const useFetchGifs = (htscode) => {
 
         GetHts(htscode)
             .then(imgs => {
-                console.log(imgs);
+                //console.log(imgs);
                 setState({
                     data: imgs,
                     loading: false
@@ -23,7 +23,7 @@ export const useFetchGifs = (htscode) => {
 
 
     }, [htscode]);
-
+   
     return state;
 
 }

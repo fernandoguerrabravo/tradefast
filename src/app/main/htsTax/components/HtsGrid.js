@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { UseFetchHts } from '../hooks/UseFetchHts';
+import  {UseFetchHts}  from '../hooks/UseFetchHts';
 import { HtsResultList } from './HtsResultList';
 
 
@@ -17,12 +17,12 @@ const useStyles = makeStyles({
     },
 });
 
-export const HtsGrid = (evento) => {
+export const HtsGrid = ({evento}) => {
 
-  // const { data, loading } = useFetchHts(htscode)
+  const { data, loading } = UseFetchHts(evento)
    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
-    console.log(evento.evento.hts)
+    //console.log(data.htsno);
 
     return (
         <>
@@ -35,6 +35,17 @@ export const HtsGrid = (evento) => {
                             <TableCell>Link to Amazon</TableCell>
                         </TableRow>
                     </TableHead>
+                     <TableBody>
+
+                        {
+                            data.map(img => (
+                                <HtsResultList
+                                    key={img.hts}
+                                    {...img}
+                                />
+                            ))
+                        }
+                    </TableBody>
                 </Table>
             </TableContainer>
 

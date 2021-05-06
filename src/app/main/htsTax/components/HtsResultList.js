@@ -4,7 +4,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-export const HtsResultList = ({ htsno }) => {
+export const HtsResultList = ({ hts }) => {
 
  //<SimplePopover codigo = {id}/> 
   
@@ -12,7 +12,7 @@ export const HtsResultList = ({ htsno }) => {
 
     <TableRow>
       
-      <TableCell >{htsno}</TableCell>
+      <TableCell >{hts}</TableCell>
     
      
      </TableRow>

@@ -50,7 +50,7 @@ const handleInputChange = (event) => {
   
 }
   
-  console.log(datos);
+  //console.log(datos);
 
   const handleSubmit = (e) => {
 

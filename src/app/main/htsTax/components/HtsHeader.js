@@ -29,7 +29,7 @@ export default function HtsHeader(event) {
 
   
     const classes = useStyles();
-    console.log(event.event.country)
+   // console.log(event.event.country)
     return (
         <List className={classes.root}>
             <ListItem>
