@@ -17,35 +17,50 @@ const useStyles = makeStyles({
     },
 });
 
-export const HtsGrid = ({evento}) => {
+export const HtsGrid = ({encabezado}) => {
 
-  const { data, loading } = UseFetchHts(evento)
+  const { data, loading } = UseFetchHts(encabezado.hts)
    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
-    //console.log(data.htsno);
+    ///console.log(encabezado.hts)
+
 
     return (
         <>
-            
+        <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell></TableCell>
+                          
+                        </TableRow>
+                    </TableHead>
+                  
+                </Table>
+            </TableContainer>
+
+            <br></br>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Rating</TableCell>
-                            <TableCell>Link to Amazon</TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
-                     <TableBody>
+                    <TableBody>
 
                         {
                             data.map(img => (
                                 <HtsResultList
-                                    key={img.hts}
+                                    key={img.htsno}
                                     {...img}
                                 />
                             ))
                         }
                     </TableBody>
+                  
                 </Table>
             </TableContainer>
 
@@ -62,3 +77,15 @@ export const HtsGrid = ({evento}) => {
         />
     ))
 } */
+/*
+   <TableBody>
+
+                        {
+                            data.map(img => (
+                                <HtsResultList
+                                    key={img.hts}
+                                    {...img}
+                                />
+                            ))
+                        }
+                    </TableBody> */

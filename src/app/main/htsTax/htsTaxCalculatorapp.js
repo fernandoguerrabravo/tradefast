@@ -49,7 +49,7 @@ export default function FullWidthGrid() {
           <Paper className={classes.paper}><HtsHeader event={encabezado}/></Paper>
         </Grid>
         <Grid item xs={8}>
-          <Paper className={classes.paper}><HtsGrid evento = {encabezado}/></Paper>
+          <Paper className={classes.paper}>{encabezado.hidden && <HtsGrid encabezado = {encabezado}/>}</Paper>
         </Grid>
       </Grid>
     </div>

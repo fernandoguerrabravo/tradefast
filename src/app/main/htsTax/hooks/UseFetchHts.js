@@ -13,7 +13,7 @@ export const UseFetchHts = (htscode) => {
 
         GetHts(htscode)
             .then(imgs => {
-                //console.log(imgs);
+               // console.log(imgs);
                 setState({
                     data: imgs,
                     loading: false

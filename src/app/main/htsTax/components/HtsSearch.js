@@ -35,7 +35,7 @@ export default function SearchTax({ setencabezado }) {
 
     country: '',
     hts: '',
-    hidden: true,
+   
    
 });
 
@@ -57,14 +57,16 @@ const handleInputChange = (event) => {
     e.preventDefault();
     setencabezado({
       ...datos,
-      destination: 'United States'
+      destination: 'United States',
+      hidden: true,
     
     })
     
     setDatos({
       country: '',
       hts: '',
-      destination: 'United States'
+      destination: 'United States',
+     
     });
     
 }
@@ -97,6 +99,7 @@ const handleInputChange = (event) => {
           label="HTS Code (6 Digits)"
           variant="outlined"
           color="secondary"
+          type = "number"
           value= {datos.hts}
           onChange={handleInputChange}
         />
