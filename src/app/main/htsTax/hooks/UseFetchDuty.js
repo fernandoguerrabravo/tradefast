@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { GetHts } from '../helpers/GetHts';
+import { GetDuty } from '../helpers/GetDuty';
+
 
 export const UseFetchHts = (htscode) => {
 
@@ -12,7 +13,7 @@ export const UseFetchHts = (htscode) => {
 
     useEffect(() => {
 
-        GetHts(htscode)
+        GetDuty(htscode)
             .then(imgs => {
                    
                 const originalJson = imgs;
@@ -37,19 +38,3 @@ export const UseFetchHts = (htscode) => {
     return state;
 
 }
-
-/*const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
-
-const result = words.filter(word => word.length > 6);
-
-console.log(result);
-// expected output: Array ["exuberant", "destruction", "present"]
-
-/*const originalJson = [...]; // El JSON del ejemplo
-const newJson = [];
-for (const htsCode of originalJson) {
-  if (htsCode.HTS.length === 8) {
-    newJson.push(htsCode);
-  }
-}
-console.log(newJson);*/

@@ -13,6 +13,7 @@ import { green, red , blue} from '@material-ui/core/colors';
 import FlightTakeoff from '@material-ui/icons/FlightTakeoff';
 import FlightLand from '@material-ui/icons/FlightLand';
 import MenuBook from '@material-ui/icons/MenuBook';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,13 +25,16 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+export default function HtsHeader({event, codigos}) {
 
-export default function HtsHeader(event) {
-
-  
     const classes = useStyles();
    // console.log(event.event.country)
+   console.log("ESTA SI CTM QLOA DE MIERDA:");
+   console.log(codigos);
+   
     return (
+        <>
+       
         <List className={classes.root}>
             <ListItem>
                 <ListItemAvatar>
@@ -38,7 +42,7 @@ export default function HtsHeader(event) {
                         <FlightTakeoff />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Origin Country" secondary= {event.event.country} />
+                <ListItemText primary="Origin Country" secondary= {event.country} />
             </ListItem>
             <Divider variant="inset" component="li" />
             <ListItem>
@@ -47,7 +51,7 @@ export default function HtsHeader(event) {
                         <FlightLand />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Destination Country" secondary={event.event.destination} />
+                <ListItemText primary="Destination Country" secondary={event.destination} />
             </ListItem>
             <Divider variant="inset" component="li" />
             <ListItem>
@@ -56,8 +60,12 @@ export default function HtsHeader(event) {
                         <MenuBook />
                     </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="HTS Code" secondary={event.event.hts} />
+                <ListItemText primary="HTS Code" secondary={event.hts} />
             </ListItem>
         </List>
+       <br></br>
+        7878787878
+        </>
+
     );
 }
