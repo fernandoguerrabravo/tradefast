@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import  {UseFetchHts}  from '../hooks/UseFetchHts';
+import { UseFetchHts } from '../hooks/UseFetchHts';
 import { HtsResultList } from './HtsResultList';
 
 
@@ -17,36 +17,35 @@ const useStyles = makeStyles({
     },
 });
 
-export const HtsGrid = ({encabezado}) => {
+export const HtsGrid = ({ encabezado }) => {
 
-  const { data, loading } = UseFetchHts(encabezado.hts)
-   //{loading && <p>Loading Results...</p>}
+    const { data, loading } = UseFetchHts(encabezado.hts)
+    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
     ///console.log(encabezado.hts)
 
 
     return (
         <>
-        <TableContainer component={Paper}>
+          <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell></TableCell>
-                          
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
-                  
+
+
                 </Table>
             </TableContainer>
-
-            <br></br>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell></TableCell>
-                            <TableCell></TableCell>
-                            <TableCell></TableCell>
+
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -60,9 +59,12 @@ export const HtsGrid = ({encabezado}) => {
                             ))
                         }
                     </TableBody>
-                  
+
                 </Table>
             </TableContainer>
+
+           
+          
 
         </>
     )
@@ -89,3 +91,15 @@ export const HtsGrid = ({encabezado}) => {
                             ))
                         }
                     </TableBody> */
+
+/*              <TableBody>
+
+              {
+                  data.map(img => (
+                      <HtsResultList
+                          key={img.htsno}
+                          {...img}
+                      />
+                  ))
+              }
+          </TableBody> */
