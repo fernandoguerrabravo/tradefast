@@ -22,12 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function HtsHeader({event, codigos}) {
+export default function HtsHeader({event}) {
 
     const classes = useStyles();
    // console.log(event.event.country)
-   console.log("ESTA SI CTM QLOA DE MIERDA:");
-   console.log(codigos);
+   
    
     return (
         <>
@@ -60,8 +59,6 @@ export default function HtsHeader({event, codigos}) {
                 <ListItemText primary="HTS Code" secondary={event.hts} />
             </ListItem>
         </List>
-       <br></br>
-        
         </>
 
     );
