@@ -19,8 +19,5 @@ export const GetDuty = async (htsnumber, origincountry, destinationcountry) => {
     const dato = data.body;
     //console.log("DATO:");
     //console.log(dato);
-
-
     return dato;
-
 }

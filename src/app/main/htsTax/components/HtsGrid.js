@@ -13,11 +13,16 @@ import { UseFetchHtsCategory } from '../hooks/UseFetchHtsCategory';
 import { HtsGetListCategories } from './HtsGetListCategories';
 import Grid from '@material-ui/core/Grid';
 import HtsHeader from './HtsHeader';
+import { green, red , blue} from '@material-ui/core/colors';
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 650,
+        minWidth: 200,
     },
+    color: {
+        
+        color: blue[700]
+    }
 });
 
 export const HtsGrid = ({ encabezado }) => {
@@ -27,26 +32,22 @@ export const HtsGrid = ({ encabezado }) => {
     const { categorias } = UseFetchHtsCategory(encabezado.hts);
 
     //{loading && <p>Loading Results...</p>}
-    const classes = useStyles();
+    const classes = useStyles();                                                       
 
     return (
 
         //Aqui tengo las dos columnas que vamos a renderizar //
         // Primera Columna Resumen de la Solicitud y Muestra los TAXES
         <>
-            <Grid item xs={5}>
+            <Grid item xs={4}>
                 <Paper className={classes.paper}><HtsHeader event={encabezado} codigos={finales} /></Paper>
             </Grid>
-            <Grid item xs={7}>
-                <Paper className={classes.paper}></Paper>
-            </Grid>
-
-
+            <Grid item xs={4}>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell><h3>Product Category</h3></TableCell>
+                            <TableCell><h3 className= {classes.color}>Product Category</h3></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -54,14 +55,30 @@ export const HtsGrid = ({ encabezado }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <br></br>
+            </Grid>
+            <Grid item xs={4}>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell><h4>Suggested Classification</h4></TableCell>
+                            <TableCell><h3 className= {classes.color}>Product Category</h3></TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <HtsGetListCategories event={categorias} />
+                    </TableBody>
+                </Table>
+            </TableContainer>
+            </Grid>
+            <Grid item xs ={12}>
+            <Paper>
+            <TableContainer component={Paper}>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell><h4>Suggested HTS Code</h4></TableCell>
                             <TableCell></TableCell>
-                            <TableCell></TableCell>
+                          
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -78,7 +95,8 @@ export const HtsGrid = ({ encabezado }) => {
 
                 </Table>
             </TableContainer>
-
+            </Paper>
+            </Grid>
 
         </>
 
