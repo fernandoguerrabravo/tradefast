@@ -71,6 +71,7 @@ export const HtsGrid = ({ encabezado }) => {
                                 <TableRow>
                                     <TableCell><h4>Suggested HTS Code</h4></TableCell>
                                     <TableCell></TableCell>
+                                    <TableCell></TableCell>
 
                                 </TableRow>
                             </TableHead>

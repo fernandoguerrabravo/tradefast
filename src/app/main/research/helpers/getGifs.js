@@ -3,8 +3,8 @@
 export const getGifs = async (category) => {
 
     var myHeaders = new Headers();
-    myHeaders.append("x-rapidapi-host", "amazon-product-reviews-keywords.p.rapidapi.com");
-    myHeaders.append("x-rapidapi-key", "cbb302deccmsh69f9792bef12280p17c8a1jsn5d4e9d17ba41");
+    myHeaders.append("x-rapidapi-host", "amazon-data.p.rapidapi.com");
+    myHeaders.append("x-rapidapi-key", "639c8104e9msh4d6ed94de6b4760p1d0279jsnbff33f29daba");
     myHeaders.append("useQueryString", true);
 
     var requestOptions = {
@@ -15,22 +15,22 @@ export const getGifs = async (category) => {
         cache: 'default'
     };
 
-    const url = `https://amazon-product-reviews-keywords.p.rapidapi.com/product/search?keyword=${category}&country=US&category=aps`;
+    const url = `https://amazon-data.p.rapidapi.com/search.php?keyword=${category}&country=US&page=1`;
     const resp = await fetch(url, requestOptions);
     const data = await resp.json();
-    console.log(data.products);
+    console.log(data);
 
 
-    const gifs = data.products.map(img => {
+    const gifs = data.map(img => {
 
         return {
 
             id: img?.asin,
-            title: img?.title,
-            url: img?.thumbnail,
-            price: img?.price?.current_price,
-            reviews: img?.reviews.rating,
-            total_reviews: img?.reviews.total_reviews,
+            title: img?.asin_name,
+            url: img?.image_url,
+            price: img?.asin_price,
+            reviews: img?.rating,
+            total_reviews: img?.total_review,
             link : img?.url,
             
 

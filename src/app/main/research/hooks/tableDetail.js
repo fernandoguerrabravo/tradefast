@@ -13,10 +13,10 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BasicTable(event) {
+export default function BasicTable({detalle, detalle_2}) {
     
     console.log("DETALLES:");
-    console.log(event);
+    console.log(detalle_2);
    
     const classes = useStyles();
 
@@ -31,35 +31,33 @@ export default function BasicTable(event) {
         <TableBody>
             <TableRow>
               <TableCell>Rank:</TableCell>
-              <TableCell> # {event.details.event.rank_0} in {event.details.event.category_0}<br></br>
-              {event.details.event.rank_1 ? '#' : ""} {event.details.event.rank_1} {event.details.event.rank_1 ? "in " : ""} {event.details.event.category_1}<br></br>
-              {event.details.event.rank_2 ? '#' : ""} {event.details.event.rank_2} {event.details.event.rank_2 ? "in " : ""} {event.details.event.category_2}<br></br>
+              <TableCell>{detalle.rank}<br></br>
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Model:</TableCell>
-              <TableCell> {event.details.event.model}
+              <TableCell> {detalle.model}
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>Manufacturer:</TableCell>
-              <TableCell> {event.details.event.manufacturer}
+              <TableCell>Estimated Monthly Sales / Revenue:</TableCell>
+              <TableCell>  {detalle_2.estimada} Units //  USD {detalle_2.revenue}
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Brand:</TableCell>
-              <TableCell> {event.details.event.brand}
+              <TableCell> {detalle.brand}
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Weight/Dimensions</TableCell>
-              <TableCell> {event.details.event.weight}<b></b>
-                          {event.details.event.dimensions}
+              <TableCell>{detalle.dimensions}/{detalle.peso}<b></b>
+                          
               </TableCell>
             </TableRow>
             <TableRow>
               <TableCell>Avialable Since</TableCell>
-              <TableCell> {event.details.event.available}
+              <TableCell> {detalle.desde}
               </TableCell>
             </TableRow>
         </TableBody>

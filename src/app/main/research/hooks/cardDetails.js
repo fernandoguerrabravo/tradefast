@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard(event) {
+export default function RecipeReviewCard({event, event_2}) {
 
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -49,7 +49,7 @@ export default function RecipeReviewCard(event) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  console.log(event.event.imagen);
+  console.log(event.imagen);
 
   return (
     <Card className={classes.root}>
@@ -65,17 +65,17 @@ export default function RecipeReviewCard(event) {
           </IconButton>
         } */
         title= ""
-        subheader={event.event.title}
+        subheader={event.title}
       />
       <CardMedia
         className={classes.media}
-        image= {event.event.imagen}
+        image= {event.imagen}
         title=""
       />
       <CardContent>
        
         
-        <BasicTable details={event}></BasicTable>
+        <BasicTable detalle={event} detalle_2 = {event_2}></BasicTable>
        
       </CardContent>
       <CardActions disableSpacing>
@@ -94,10 +94,7 @@ export default function RecipeReviewCard(event) {
         <CardContent>
         <Typography paragraph>Features:</Typography>
           <ol>
-            <li> {event.event.feature_0}</li><br></br>
-            <li> {event.event.feature_1}</li><br></br>
-            <li> {event.event.feature_2}</li><br></br>
-            <li> {event.event.feature_3}</li><br></br>
+           
           </ol>
           <br></br>
           <br></br>
@@ -106,7 +103,7 @@ export default function RecipeReviewCard(event) {
           <br></br>
           <Typography paragraph>Product Description:</Typography>
           <Typography paragraph>
-          {event.event.description}
+          {event.description}
           </Typography>
           <Typography paragraph>
           

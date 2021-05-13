@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -56,14 +56,22 @@ export default function CustomizedDialogs(codigo) {
     //inicio los estados y contenidos de la información que se desplegara en el popover
 
     const [state, setstate] = useState({
-        
+
         rank: '',
         title: '',
         imagen: '',
         cod: codigo.codigo,
-        loading: false
+        loading: false,
+        dimensions: []
 
     });
+
+    const [state_2, setstate_2] = useState(
+       {
+        rank_0 : '',
+        category_0 : ''
+       }
+    );
 
     console.log(state.cod);
 
@@ -76,49 +84,69 @@ export default function CustomizedDialogs(codigo) {
         });
 
         var myHeaders = new Headers();
-        myHeaders.append("x-rapidapi-host", "amazon-product-reviews-keywords.p.rapidapi.com");
-        myHeaders.append("x-rapidapi-key", "cbb302deccmsh69f9792bef12280p17c8a1jsn5d4e9d17ba41");
+        myHeaders.append("x-rapidapi-host", "amazon-data.p.rapidapi.com");
+        myHeaders.append("x-rapidapi-key", "639c8104e9msh4d6ed94de6b4760p1d0279jsnbff33f29daba");
         myHeaders.append("useQueryString", true);
 
         var requestOptions = {
 
             method: 'GET',
             headers: myHeaders,
-            mode: 'cors',
-            cache: 'default'
+
         };
 
-        const url = `https://amazon-product-reviews-keywords.p.rapidapi.com/product/details?asin=${state.cod}&country=US`;
+        const url = `https://amazon-data.p.rapidapi.com/asin.php?asin=${codigo.codigo}&region=us`;
         const resp = await fetch(url, requestOptions);
         const detail = await resp.json();
+        console.log("detalle del qliao");
         console.log(detail);
         setstate({
 
-            rank_0: detail?.product?.bestsellers_rank[0]?.rank ?? '',
-            category_0: detail?.product?.bestsellers_rank[0]?.category ?? '',
-            rank_1: detail?.product?.bestsellers_rank[1]?.rank ?? '',
-            category_1: detail?.product?.bestsellers_rank[1]?.category ?? '',
-            rank_2: detail?.product?.bestsellers_rank[2]?.rank ?? '',
-            category_2: detail?.product?.bestsellers_rank[2]?.category ?? '',
-            title: detail?.product?.title ?? '',
+            title: detail?.asin_name ?? '',
+            imagen: detail?.asin_images[0] ?? '',
             loading: false,
-            cod: detail?.product?.asin ?? '',
-            imagen: detail?.product?.main_image ?? '',
-            description: detail?.product?.description ?? '',
-            seller: detail?.product?.product_information?.sold_by ?? '',
-            dimensions: detail?.product?.product_information?.dimensions ?? '',
-            weight: detail?.product?.product_information?.weight ?? '',
-            available: detail?.product?.product_information?.available_from ?? '',
-            manufacturer: detail?.product?.product_information?.manufacturer ?? '',
-            model: detail?.product?.product_information?.model_number ?? '',  
-            quantity: detail?.product?.product_information?.qty_per_order ?? '',  
-            brand:    detail?.product?.product_information?.brand ?? '',
-            feature_0 : detail?.product?.feature_bullets[0] ?? '',
-            feature_1 : detail?.product?.feature_bullets[1] ?? '',
-            feature_2 : detail?.product?.feature_bullets[2] ?? '',
-            feature_3 : detail?.product?.feature_bullets[3] ?? '',
-            feature_4 : detail?.product?.feature_bullets[4] ?? ''
+            cod: detail?.asin ?? '',
+            seller: detail?.merchant_name ?? '',
+            brand: detail?.brand_name ?? '',
+            dimensions: detail?.asin_informations['Package Dimensions'] ?? '',
+            model: detail?.asin_informations['Item model number'] ?? '',
+            rank : detail?.asin_informations['Best Sellers Rank']?? '',
+            peso : detail?.asin_informations['Item Weight']?? '',
+            desde : detail?.asin_informations['Date First Available']?? ''
+            
+            /* available: detail?.product?.product_information?.available_from ?? '',
+             manufacturer: detail?.product?.product_information?.manufacturer ?? '',
+            
+             quantity: detail?.product?.product_information?.qty_per_order ?? '',
+             feature_0: detail?.product?.feature_bullets[0] ?? '',
+             feature_1: detail?.product?.feature_bullets[1] ?? '',
+             feature_2: detail?.product?.feature_bullets[2] ?? '',
+             feature_3: detail?.product?.feature_bullets[3] ?? '',
+             feature_4: detail?.product?.feature_bullets[4] ?? '' */
 
+
+        })
+
+        var myHeaders_2 = new Headers();
+        myHeaders_2.append("x-rapidapi-key", "639c8104e9msh4d6ed94de6b4760p1d0279jsnbff33f29daba");
+        myHeaders_2.append("x-rapidapi-host", "egrow-amazon-live-data.p.rapidapi.com");
+        myHeaders_2.append("useQueryString", "true");
+
+        var requestOptions_2 = {
+            method: 'GET',
+            headers: myHeaders_2,
+            redirect: 'follow'
+        };
+
+        const url_2 = `https://egrow-amazon-live-data.p.rapidapi.com/products/${codigo.codigo}?marketplaceId=USA`;
+        const resp_2 = await fetch(url_2, requestOptions_2);
+        const detail_2 = await resp_2.json();
+        console.log("PERRO QLIAO")
+        console.log(detail_2);
+        setstate_2({
+            
+            estimada : detail_2?.sales_metrics?.estimated_monthly_sales ?? '',
+            revenue :  detail_2?.sales_metrics?.estimated_monthly_revenue ?? '',
 
         })
 
@@ -137,27 +165,27 @@ export default function CustomizedDialogs(codigo) {
 
     return (
         <div>
-      {state.loading ? <CircularProgress color="primary" size = {40} /> : 
-      <>
-       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-                Details
+            {state.loading ? <CircularProgress color="primary" size={40} /> :
+                <>
+                    <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                        Details
       </Button>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    Sold by: {state.seller}
-        </DialogTitle>
-                <DialogContent dividers>
-                <RecipeReviewCard event={state} />
-                </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                        Save changes
+                    <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                            Sold by: {state.seller}
+                        </DialogTitle>
+                        <DialogContent dividers>
+                            <RecipeReviewCard event={state} event_2 = {state_2}/>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button autoFocus onClick={handleClose} color="primary">
+                                Save changes
           </Button>
-                </DialogActions>
-            </Dialog>
-        </>
-} 
+                        </DialogActions>
+                    </Dialog>
+                </>
+            }
         </div>
-     
+
     );
 }
