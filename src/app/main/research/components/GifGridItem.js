@@ -8,7 +8,9 @@ import  {SimplePopover} from '../hooks/mensaje'
 import CustomizedDialogs from '../hooks/dialogo';
 
 
-export const GifGridItem = ({ id, title, url, price, reviews, total_reviews, link }) => {
+export const GifGridItem = ({ id, title, url, price, reviews, total_reviews}) => {
+
+const link = `https://www.amazon.com/dp/${id}`;
 
  //<SimplePopover codigo = {id}/> 
   return (
@@ -20,9 +22,8 @@ export const GifGridItem = ({ id, title, url, price, reviews, total_reviews, lin
       <TableCell className='text-center'> 
       <CustomizedDialogs codigo = {id} />
       </TableCell>
-      <TableCell >USD {price}</TableCell>
       <TableCell ><p>{total_reviews} Reviews</p>{star(reviews)}<p>{reviews} out of 5 stars</p></TableCell>
-      <TableCell ><a href={link} target="_blank">Product Asin: {id}</a></TableCell>
+      <TableCell ><a href= {link} target="_blank">Product Asin: {id}</a></TableCell>
      
     
      

@@ -33,7 +33,6 @@ export const GiftGrid = ({ category }) => {
                         <TableRow>
                             <TableCell>Search: {category} </TableCell>
                             <TableCell></TableCell>
-                            <TableCell>Price</TableCell>
                             <TableCell>Rating</TableCell>
                             <TableCell>Link to Amazon</TableCell>
                         </TableRow>

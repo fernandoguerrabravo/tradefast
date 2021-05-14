@@ -98,8 +98,7 @@ export default function CustomizedDialogs(codigo) {
         const url = `https://amazon-data.p.rapidapi.com/asin.php?asin=${codigo.codigo}&region=us`;
         const resp = await fetch(url, requestOptions);
         const detail = await resp.json();
-        console.log("detalle del qliao");
-        console.log(detail);
+      
         setstate({
 
             title: detail?.asin_name ?? '',
@@ -140,13 +139,14 @@ export default function CustomizedDialogs(codigo) {
 
         const url_2 = `https://egrow-amazon-live-data.p.rapidapi.com/products/${codigo.codigo}?marketplaceId=USA`;
         const resp_2 = await fetch(url_2, requestOptions_2);
-        const detail_2 = await resp_2.json();
-        console.log("PERRO QLIAO")
+       // const detail_2 = await resp_2.json();
+        
         console.log(detail_2);
         setstate_2({
             
             estimada : detail_2?.sales_metrics?.estimated_monthly_sales ?? '',
             revenue :  detail_2?.sales_metrics?.estimated_monthly_revenue ?? '',
+            precio : detail_2?.price ?? '', 
 
         })
 

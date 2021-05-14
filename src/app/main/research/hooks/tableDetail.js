@@ -13,53 +13,58 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BasicTable({detalle, detalle_2}) {
-    
-    console.log("DETALLES:");
-    console.log(detalle_2);
-   
-    const classes = useStyles();
+export default function BasicTable({ detalle, detalle_2 }) {
+
+  console.log("DETALLES:");
+  console.log(detalle_2);
+
+  const classes = useStyles();
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} size="small" aria-label="simple table">
         <TableHead>
           <TableRow>
-            
+
           </TableRow>
         </TableHead>
         <TableBody>
-            <TableRow>
-              <TableCell>Rank:</TableCell>
-              <TableCell>{detalle.rank}<br></br>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Model:</TableCell>
-              <TableCell> {detalle.model}
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Estimated Monthly Sales / Revenue:</TableCell>
-              <TableCell>  {detalle_2.estimada} Units //  USD {detalle_2.revenue}
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Brand:</TableCell>
-              <TableCell> {detalle.brand}
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Weight/Dimensions</TableCell>
-              <TableCell>{detalle.dimensions}/{detalle.peso}<b></b>
-                          
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Avialable Since</TableCell>
-              <TableCell> {detalle.desde}
-              </TableCell>
-            </TableRow>
+          <TableRow>
+            <TableCell><h4>Price:</h4></TableCell>
+            <TableCell><h4>USD$ {detalle_2.precio}</h4><br></br>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Rank:</TableCell>
+            <TableCell>{detalle.rank}<br></br>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Model:</TableCell>
+            <TableCell> {detalle.model}<br></br>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Estimated Monthly Sales / Revenue:</TableCell>
+            <TableCell>  {detalle_2.estimada} Units //  USD {detalle_2.revenue}<br></br>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Brand:</TableCell>
+            <TableCell> {detalle.brand}<br></br>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Weight/Dimensions</TableCell>
+            <TableCell>{detalle.dimensions}/{detalle.peso}<b></b>
+
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Avialable Since</TableCell>
+            <TableCell> {detalle.desde}
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </TableContainer>
