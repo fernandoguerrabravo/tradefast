@@ -31,13 +31,21 @@ const navigationConfig = [
 				icon: 'whatshot',
 				url: '/hts'
 			},
-			{
+		/*	{
 				id: 'example-component',
 				title: 'example',
 				translate: 'EXAMPLE',
 				type: 'item',
 				icon: 'whatshot',
 				url: '/example'
+			}, */
+			{
+				id: 'rate-component',
+				title: 'rate',
+				translate: 'RATE',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/rate'
 			},
 			{
 				id: 'research-component',

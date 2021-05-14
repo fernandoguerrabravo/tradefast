@@ -6,10 +6,11 @@ const locale = {
 	HTS: 'Classifications and Duties',
 	BONDS: 'Continuos Import Bond',
 	INSURANCE: 'Cargo Insurance',
-	CUSTOMS: 'Customs Clareance USA',
+	CUSTOMS: 'Global Customs Clareance',
 	DUTIES: 'Tax Calculator',
 	CLASSIFICATIONS: 'Classifications Tools',
-	HTSSPECIAL : 'Special Services'
+	HTSSPECIAL : 'Special Services',
+	RATE: 'Shipping Calculator'
 
 };
 
