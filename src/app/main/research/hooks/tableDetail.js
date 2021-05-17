@@ -15,8 +15,7 @@ const useStyles = makeStyles({
 
 export default function BasicTable({ detalle, detalle_2 }) {
 
-  console.log("DETALLES:");
-  console.log(detalle_2);
+  
 
   const classes = useStyles();
 

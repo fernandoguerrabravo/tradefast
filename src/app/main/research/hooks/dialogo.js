@@ -139,7 +139,7 @@ export default function CustomizedDialogs(codigo) {
 
         const url_2 = `https://egrow-amazon-live-data.p.rapidapi.com/products/${codigo.codigo}?marketplaceId=USA`;
         const resp_2 = await fetch(url_2, requestOptions_2);
-       // const detail_2 = await resp_2.json();
+       const detail_2 = await resp_2.json();
         
         console.log(detail_2);
         setstate_2({
