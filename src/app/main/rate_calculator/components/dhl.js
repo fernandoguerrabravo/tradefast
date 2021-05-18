@@ -37,11 +37,12 @@ export default function DHL() {
         </CardContent>
       </CardActionArea>
       <CardActions>
+       
         <Button size="medium" color="primary">
-          Select Quotation
+          Booking Now
         </Button>
         <Button size="medium" color="secondary">
-          Booking Now
+          Connect Your Own Acocunt
         </Button>
       </CardActions>
     </Card>

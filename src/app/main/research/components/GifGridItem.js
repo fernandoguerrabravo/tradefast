@@ -17,13 +17,13 @@ const link = `https://www.amazon.com/dp/${id}`;
 
     <TableRow>
       <TableCell>
-          <img width="80" height="80" src={url} alt={title} />
+      <br></br><img width="120" height="120" src={url} alt={title} /><br></br>
       </TableCell>
-      <TableCell className='text-center'> 
+      <TableCell> 
       <CustomizedDialogs codigo = {id} />
       </TableCell>
-      <TableCell ><p>{total_reviews} Reviews</p>{star(reviews)}<p>{reviews} out of 5 stars</p></TableCell>
-      <TableCell ><a href= {link} target="_blank">Product Asin: {id}</a></TableCell>
+      <TableCell><p>{total_reviews} Reviews</p>{star(reviews)}<p>{reviews} out of 5 stars</p></TableCell>
+      <TableCell><a href= {link} target="_blank">Product Asin: {id}</a></TableCell>
      
      </TableRow>
 

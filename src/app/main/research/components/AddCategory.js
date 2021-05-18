@@ -5,7 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import FuseMessage from '@fuse/core/FuseMessage';
 import swal from 'sweetalert';
-import  {SimplePopover} from '../hooks/mensaje'
+import { SimplePopover } from '../hooks/mensaje'
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,9 +31,16 @@ export const AddCategory = ({ setCategories }) => {
         setInputValue(e.target.value)
     }
 
+    function onKeyDown(keyEvent) {
+        if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
+          keyEvent.preventDefault();
+        }
+      }
+
     const handleSubmit = (e) => {
 
         e.preventDefault();
+       
         if (inputValue.trim().length > 3) {
             setCategories([inputValue]);
             setInputValue('');
@@ -41,15 +50,20 @@ export const AddCategory = ({ setCategories }) => {
     }
 
     return (
-       
 
-        <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-            
-            <TextField id="standard-basic" label="Input Keyword" value={inputValue} onChange={handleInputChange} />
-        
+
+        <form onKeyDown={onKeyDown} onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+            <FormControl>
+            <TextField id="outlined-basic" value={inputValue} label="Search Product" onChange={handleInputChange} variant="outlined" />
+            </FormControl>
+            <FormControl>
+            <Button type="submit" variant="contained" color="secondary">
+                   Search
+            </Button>
+            </FormControl>
         </form>
 
-     
+
 
     )
 }
