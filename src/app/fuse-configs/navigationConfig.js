@@ -56,6 +56,14 @@ const navigationConfig = [
 				url: '/research'
 			},
 			{
+				id: 'listresearch-component',
+				title: 'listresearch',
+				translate: 'LISTRESEARCH',
+				type: 'item',
+				icon: 'timeline',
+				url: '/listresearch'
+			},
+			{
 				id: 'hts-component',
 				title: 'example',
 				translate: 'HTS',

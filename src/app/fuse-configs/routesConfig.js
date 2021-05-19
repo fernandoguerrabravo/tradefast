@@ -4,6 +4,7 @@ import DashboardConfig from 'app/main/dashboard/DashboardConfig';
 import ResearchConfig from 'app/main/research/ResearchConfig';
 import htsTaxConfig from 'app/main/htsTax/htsTaxConfig';
 import RateConfig from 'app/main/rate_calculator/RateConfig';
+import ListResearchConfig from 'app/main/ListResearch/ListResearchConfig';
 
 
 const routeConfigs = [
@@ -11,7 +12,8 @@ const routeConfigs = [
 	DashboardConfig,
 	ResearchConfig,
 	htsTaxConfig,
-	RateConfig
+	RateConfig,
+	ListResearchConfig
 	
 
 ];

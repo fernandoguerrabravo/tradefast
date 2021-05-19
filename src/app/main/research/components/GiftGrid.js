@@ -12,6 +12,7 @@ import { GifGridItem } from './GifGridItem';
 import { useFetchGifs } from '../hooks/useFetchGifs';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     table: {
@@ -45,7 +46,7 @@ export const GiftGrid = ({ category }) => {
                     <Grid container
                         direction="row"
                         justify="center"
-                        alignItems="center" item xs={12}>Hola
+                        alignItems="center" item xs={12}><Button  variant="contained" color="primary">Save Your Search</Button>
                     </Grid>
                     <Grid item xs={12}>
                         <TableContainer component={Paper}>
