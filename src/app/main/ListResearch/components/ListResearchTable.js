@@ -20,15 +20,21 @@ export default function ListResearchApp() {
         
     ];
 
-    
+    const data =[];
 
     return (
 
 
 
-        <>
+        <> 
 
+          <MaterialTable
 
+             columns = {columnas}
+             data = {data}
+          >
+
+          </MaterialTable>
 
         </>
 
