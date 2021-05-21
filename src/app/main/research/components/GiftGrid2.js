@@ -59,7 +59,7 @@ export const GiftGrid2 = ({ category }) => {
     const classes = useStyles();
     //console.log(category)
     
-    
+  
 
     const columnas = [
 
