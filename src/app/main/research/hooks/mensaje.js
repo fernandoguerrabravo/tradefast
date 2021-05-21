@@ -33,7 +33,7 @@ export const SimplePopover = (codigo) => {
 
   });
 
-  console.log(state.cod);
+  //console.log(state.cod);
 
 
   //Funcion aque va a rescatar la informacion de la API 
@@ -60,7 +60,7 @@ export const SimplePopover = (codigo) => {
     const url = `https://amazon-product-reviews-keywords.p.rapidapi.com/product/details?asin=${state.cod}&country=US`;
     const resp = await fetch(url, requestOptions);
     const detail = await resp.json();
-    console.log(detail);
+    //console.log(detail);
     setstate({
 
       rank: detail?.product?.bestsellers_rank[0]?.rank ?? '',

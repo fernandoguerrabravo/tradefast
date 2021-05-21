@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AddCategory } from './components/AddCategory'
-import { GiftGrid } from './components/GiftGrid'
+import { GiftGrid2 } from './components/GiftGrid2'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -25,8 +25,7 @@ export const GifExpertApp = () => {
     const classes = useStyles();
 
     const [categories, setCategories] = useState([]);
-
-
+    
     return (
         <>
             <Grid container spacing={3}>
@@ -40,7 +39,7 @@ export const GifExpertApp = () => {
 
                 {
                     categories.map(category => (
-                        <GiftGrid
+                        <GiftGrid2 
                             key={category}
                             category={category}
                         />

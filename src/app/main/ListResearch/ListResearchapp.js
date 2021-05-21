@@ -45,7 +45,7 @@ export default function ListResearchApp() {
                     <Paper className={classes.paper}><ListResearchTools></ListResearchTools></Paper>
                 </Grid>
                 <Grid item xs={12}>
-                    <Paper className={classes.paper}><DataTable></DataTable></Paper>
+                    <DataTable></DataTable>
                 </Grid>
             </Grid>
         </div>

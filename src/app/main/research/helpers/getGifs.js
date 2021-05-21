@@ -1,3 +1,4 @@
+import { PostResearch } from "./PostResearch";
 
 
 export const getGifs = async (category) => {
@@ -18,8 +19,9 @@ export const getGifs = async (category) => {
     const url = `https://amazon-data.p.rapidapi.com/search.php?keyword=${category}&country=US&page=1`;
     const resp = await fetch(url, requestOptions);
     const data = await resp.json();
-    console.log(data);
-
+    
+    await PostResearch(data, category)
+    
 
     const gifs = data.map(img => {
 
@@ -37,9 +39,6 @@ export const getGifs = async (category) => {
         }
 
     })
-
-
-
 
     return gifs;
 

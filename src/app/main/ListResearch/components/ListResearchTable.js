@@ -29,7 +29,8 @@ export default function ListResearchApp() {
         <> 
 
           <MaterialTable
-
+          
+             title = ""
              columns = {columnas}
              data = {data}
           >
