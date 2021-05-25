@@ -21,7 +21,7 @@
         "apexcharts": "3.26.0",
         "auth0-lock": "11.28.1",
         "autosuggest-highlight": "3.1.1",
-        "axios": "0.21.1",
+        "axios": "^0.21.1",
         "axios-mock-adapter": "1.19.0",
         "chart.js": "2.9.4",
         "clsx": "1.1.1",
@@ -145,7 +145,8 @@
         "build-docs": "find ./src/app/main/documentation/material-ui-components \\( -name '*.ts' -o -name '*.tsx' \\) -type f -delete && babel-node --presets @babel/preset-env src/app/main/documentation/material-ui-components/build.js",
         "analyze": "craco build && source-map-explorer 'build/static/js/*.js' --html analyze-result.html",
         "pnpify-sdk": "yarn pnpify --sdk",
-        "lint": "eslint"
+        "lint": "eslint",
+        "start:ssl": "HTTPS=true SSL_CRT_FILE=./.cert/cert.pem SSL_KEY_FILE=./.cert/key.pem react-scripts start"
     },
     "browserslist": {
         "production": [

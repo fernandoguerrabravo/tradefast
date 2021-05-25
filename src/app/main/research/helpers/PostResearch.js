@@ -11,6 +11,7 @@ export const PostResearch = async (data, category) => {
     const fecha1 = fecha.toDateString()
     var raw = JSON.stringify(
         { 
+            "id_cliente" : "abcde",
             "keyword" : keyword,
             "resultado" : data,
             "fecha" : fecha1
@@ -18,9 +19,8 @@ export const PostResearch = async (data, category) => {
 
     );
    
-    
-    console.log("pico del pico")
-    console.log(raw);
+    //console.log("pico del pico")
+    //console.log(raw);
 
     var requestOptions = {
         method: 'POST',
@@ -29,7 +29,7 @@ export const PostResearch = async (data, category) => {
         mode : "no-cors"
     };
 
-    fetch("https://8gi89myam1.execute-api.us-east-1.amazonaws.com/dev/researchlist", requestOptions)
+    fetch("https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/listresearch", requestOptions)
         .then(response => response.text())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));

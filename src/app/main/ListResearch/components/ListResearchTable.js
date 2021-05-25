@@ -1,29 +1,31 @@
 import react from 'react';
 import MaterialTable from 'material-table';
+import { useGetResearch } from '../hooks/useGetResearch';
+
 
 export default function ListResearchApp() {
+
+    const idcliente = "abcde"
+    const { data, loading } = useGetResearch(idcliente)
+
 
     const columnas = [
 
         {
             title: 'KeyWord',
-            field: 'Keword'
+            field: 'Keyword'
         },
         {
             title: 'Date Creation',
-            field: 'date'
+            field: 'fecha'
         },
-        {
-            title: 'Details',
-            field: 'details'
-        },
+        
         
     ];
 
-    const data =[];
+    const dato =[];
 
     return (
-
 
 
         <> 
@@ -32,7 +34,7 @@ export default function ListResearchApp() {
           
              title = ""
              columns = {columnas}
-             data = {data}
+             data = {dato}
           >
 
           </MaterialTable>
