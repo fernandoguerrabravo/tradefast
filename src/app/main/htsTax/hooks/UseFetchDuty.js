@@ -14,8 +14,7 @@ export const UseFetchHts = (htscode) => {
     useEffect(() => {
 
         GetDuty(htscode)
-            .then(imgs => {
-                   
+            .then(imgs => {  
                 const originalJson = imgs;
                 const newJson = [];
                 for (const htsCode of originalJson) {

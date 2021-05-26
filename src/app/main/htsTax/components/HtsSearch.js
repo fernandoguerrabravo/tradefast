@@ -1,12 +1,13 @@
 
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import { useState } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import swal from 'sweetalert';
 
 const useStyles = makeStyles((theme) => ({
@@ -72,8 +73,10 @@ const handleInputChange = (event) => {
 }
 
   return (
-
+    
     <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+     
+    
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
         <Select
@@ -92,6 +95,7 @@ const handleInputChange = (event) => {
           <MenuItem value={3}>Mexico</MenuItem>
         </Select>
       </FormControl>
+     
       <FormControl variant="outlined" className={classes.formControl}>
         <TextField
           id="hts"
@@ -104,11 +108,13 @@ const handleInputChange = (event) => {
           onChange={handleInputChange}
         />
       </FormControl>
+    
       <br></br>
       <Button type="submit" variant="outlined" color="secondary">
         Search
       </Button>
-    </form>
+    </form> 
+   
   );
 }
 

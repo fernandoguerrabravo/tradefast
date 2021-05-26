@@ -1,40 +1,41 @@
 import { PostResearch } from "./PostResearch";
 
 
-export const getGifs = async (category) => {
+export const getGifs = async (category, idcliente) => {
 
-    var myHeaders = new Headers();
-    myHeaders.append("x-rapidapi-host", "amazon-data.p.rapidapi.com");
-    myHeaders.append("x-rapidapi-key", "639c8104e9msh4d6ed94de6b4760p1d0279jsnbff33f29daba");
-    myHeaders.append("useQueryString", true);
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "text/plain");
+
+    const raw = JSON.stringify({
+
+        "category": category,
+        "id_cliente": idcliente
+    });
 
     var requestOptions = {
-
-        method: 'GET',
+       
+        method: 'POST',
         headers: myHeaders,
-        mode: 'cors',
-        cache: 'default'
+        body: raw,
+       
     };
 
-    const url = `https://amazon-data.p.rapidapi.com/search.php?keyword=${category}&country=US&page=1`;
+    const url = "https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/postresearch";
     const resp = await fetch(url, requestOptions);
     const data = await resp.json();
-    
-    await PostResearch(data, category)
-    
-
-    const gifs = data.map(img => {
+    const detalle = data.products
+    const gifs = detalle.map(img => {
 
         return {
 
-            id: img?.asin,
-            title: img?.asin_name,
-            url: img?.image_url,
-            price: img?.asin_price,
-            reviews: img?.rating,
-            total_reviews: img?.total_review,
-            link : img?.url,
-            
+            id: img?.asin ?? '',
+            title: img?.title ?? '',
+            link: img?.url ?? '',
+            price: img?.price?.current_price ?? '',
+            reviews: img?.reviews?.rating ?? '',
+            total_reviews: img?.reviews?.total_review ?? '',
+            url: img?.thumbnail ?? ''
 
         }
 
@@ -44,3 +45,7 @@ export const getGifs = async (category) => {
 
 
 }
+
+
+
+

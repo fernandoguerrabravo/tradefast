@@ -13,7 +13,7 @@ export default function ListResearchApp() {
 
         {
             title: 'KeyWord',
-            field: 'Keyword'
+            field: 'keyword'
         },
         {
             title: 'Date Creation',
@@ -34,7 +34,7 @@ export default function ListResearchApp() {
           
              title = ""
              columns = {columnas}
-             data = {dato}
+             data = {data}
           >
 
           </MaterialTable>

@@ -12,7 +12,7 @@ import CustomizedDialogs from '../hooks/dialogo';
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 650,
+        minWidth: 750,
     },
     centrar: {
 
@@ -43,13 +43,13 @@ const reviews = (info) => {
 const link = (asin) => {
 
     const link = `https://www.amazon.com/dp/${asin}`;
-   return (
-   
-    <>
-       <a href={link} target="_blank">{asin}</a>
-    </>         
-    
-   )
+    return (
+
+        <>
+            <a href={link} target="_blank">{asin}</a>
+        </>
+
+    )
 }
 
 export const GiftGrid2 = ({ category }) => {
@@ -58,8 +58,6 @@ export const GiftGrid2 = ({ category }) => {
     //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
     //console.log(category)
-    
-  
 
     const columnas = [
 
@@ -83,6 +81,12 @@ export const GiftGrid2 = ({ category }) => {
             title: 'Description',
             field: 'title',
 
+
+        },
+        {
+            title: 'Price',
+            field: 'price',
+            render: rowData => <h4>USD$ {rowData.price}</h4>
 
         },
         {

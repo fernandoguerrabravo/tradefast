@@ -41,11 +41,13 @@ export default function FullWidthGrid() {
 
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+      <Grid item xs={12} sm={12}>
           <Paper className={classes.paper}><SearchTax setencabezado={setencabezado}/></Paper>
-        </Grid>
+      </Grid>
           {encabezado.hidden && <HtsGrid encabezado = {encabezado}/>}
-       </Grid>
+      </Grid>
+        
+     
     </div>
   );
   
