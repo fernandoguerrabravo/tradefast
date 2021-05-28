@@ -18,16 +18,18 @@ export const getGifs = async (category, idcliente) => {
         method: 'POST',
         headers: myHeaders,
         body: raw,
+        
+       
        
     };
 
     const url = "https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/postresearch";
     const resp = await fetch(url, requestOptions);
     const data = await resp.json();
-    const detalle = data.products
-    const gifs = detalle.map(img => {
+    //const detalle = data.products
+    //const gifs = detalle.map(img => {
 
-        return {
+     /*   return {
 
             id: img?.asin ?? '',
             title: img?.title ?? '',
@@ -39,10 +41,9 @@ export const getGifs = async (category, idcliente) => {
 
         }
 
-    })
+    }) */
 
-    return gifs;
-
+    return data;
 
 }
 

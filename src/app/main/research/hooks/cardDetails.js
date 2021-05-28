@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard({event, event_2}) {
+export default function RecipeReviewCard({event}) {
 
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -73,12 +73,11 @@ export default function RecipeReviewCard({event, event_2}) {
         title=""
       />
       <CardContent>
-       
-        
-        <BasicTable detalle={event} detalle_2 = {event_2}></BasicTable>
-       
+        <BasicTable detalle={event}></BasicTable>
       </CardContent>
+     
       <CardActions disableSpacing>
+      <Typography paragraph>Product Detail ...</Typography>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -92,28 +91,15 @@ export default function RecipeReviewCard({event, event_2}) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-        <Typography paragraph>Features:</Typography>
+       
           <ol>
-           
+          {event.nota2}
           </ol>
           <br></br>
           <br></br>
           <hr></hr>
           <br></br>
           <br></br>
-          <Typography paragraph>Product Description:</Typography>
-          <Typography paragraph>
-          {event.description}
-          </Typography>
-          <Typography paragraph>
-          
-          </Typography>
-          <Typography paragraph>
-           
-          </Typography>
-          <Typography>
-           
-          </Typography>
         </CardContent>
       </Collapse>
     </Card>

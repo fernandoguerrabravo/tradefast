@@ -83,12 +83,7 @@ export const GiftGrid2 = ({ category }) => {
 
 
         },
-        {
-            title: 'Price',
-            field: 'price',
-            render: rowData => <h4>USD$ {rowData.price}</h4>
-
-        },
+        
         {
             title: 'Details',
             field: 'id',

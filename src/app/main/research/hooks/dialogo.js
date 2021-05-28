@@ -66,12 +66,12 @@ export default function CustomizedDialogs(codigo) {
 
     });
 
-    const [state_2, setstate_2] = useState(
-       {
-        rank_0 : '',
-        category_0 : ''
-       }
-    );
+    /* const [state_2, setstate_2] = useState(
+        {
+         rank_0 : '',
+         category_0 : ''
+        }
+     ); */
 
     console.log(state.cod);
 
@@ -84,74 +84,30 @@ export default function CustomizedDialogs(codigo) {
         });
 
         var myHeaders = new Headers();
-        myHeaders.append("x-rapidapi-host", "amazon-data.p.rapidapi.com");
-        myHeaders.append("x-rapidapi-key", "639c8104e9msh4d6ed94de6b4760p1d0279jsnbff33f29daba");
-        myHeaders.append("useQueryString", true);
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+
+            "asin": codigo.codigo
+
+        });
 
         var requestOptions = {
 
-            method: 'GET',
+            method: 'POST',
             headers: myHeaders,
+            body: raw,
+           
 
         };
 
-        const url = `https://amazon-data.p.rapidapi.com/asin.php?asin=${codigo.codigo}&region=us`;
+        const url = `https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/getdetails`;
         const resp = await fetch(url, requestOptions);
         const detail = await resp.json();
-      
-        setstate({
+        setstate(detail)
+        console.log("perro:", detail)
 
-            title: detail?.asin_name ?? '',
-            imagen: detail?.asin_images[0] ?? '',
-            loading: false,
-            cod: detail?.asin ?? '',
-            seller: detail?.merchant_name ?? '',
-            brand: detail?.brand_name ?? '',
-            dimensions: detail?.asin_informations['Package Dimensions'] ?? '',
-            model: detail?.asin_informations['Item model number'] ?? '',
-            rank : detail?.asin_informations['Best Sellers Rank']?? '',
-            peso : detail?.asin_informations['Item Weight']?? '',
-            desde : detail?.asin_informations['Date First Available']?? ''
-            
-            /* available: detail?.product?.product_information?.available_from ?? '',
-             manufacturer: detail?.product?.product_information?.manufacturer ?? '',
-            
-             quantity: detail?.product?.product_information?.qty_per_order ?? '',
-             feature_0: detail?.product?.feature_bullets[0] ?? '',
-             feature_1: detail?.product?.feature_bullets[1] ?? '',
-             feature_2: detail?.product?.feature_bullets[2] ?? '',
-             feature_3: detail?.product?.feature_bullets[3] ?? '',
-             feature_4: detail?.product?.feature_bullets[4] ?? '' */
-
-
-        })
-
-        var myHeaders_2 = new Headers();
-        myHeaders_2.append("x-rapidapi-key", "639c8104e9msh4d6ed94de6b4760p1d0279jsnbff33f29daba");
-        myHeaders_2.append("x-rapidapi-host", "egrow-amazon-live-data.p.rapidapi.com");
-        myHeaders_2.append("useQueryString", "true");
-
-        var requestOptions_2 = {
-            method: 'GET',
-            headers: myHeaders_2,
-            redirect: 'follow'
-        };
-
-        const url_2 = `https://egrow-amazon-live-data.p.rapidapi.com/products/${codigo.codigo}?marketplaceId=USA`;
-        const resp_2 = await fetch(url_2, requestOptions_2);
-       const detail_2 = await resp_2.json();
-        
-        console.log(detail_2);
-        setstate_2({
-            
-            estimada : detail_2?.sales_metrics?.estimated_monthly_sales ?? '',
-            revenue :  detail_2?.sales_metrics?.estimated_monthly_revenue ?? '',
-            precio : detail_2?.price ?? '', 
-
-        })
-
-    }
-
+    };
 
     const [open, setOpen] = React.useState(false);
 
@@ -164,23 +120,24 @@ export default function CustomizedDialogs(codigo) {
     };
 
     return (
+
         <div>
             {state.loading ? <CircularProgress color="primary" size={40} /> :
                 <>
                     <Button variant="outlined" color="primary" onClick={handleClickOpen}>
                         Details
-      </Button>
+                    </Button>
                     <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
                             Sold by: {state.seller}
                         </DialogTitle>
                         <DialogContent dividers>
-                            <RecipeReviewCard event={state} event_2 = {state_2}/>
+                            <RecipeReviewCard event={state} />
                         </DialogContent>
                         <DialogActions>
                             <Button autoFocus onClick={handleClose} color="primary">
                                 Save changes
-          </Button>
+                        </Button>
                         </DialogActions>
                     </Dialog>
                 </>

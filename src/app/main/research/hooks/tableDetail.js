@@ -13,7 +13,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function BasicTable({ detalle, detalle_2 }) {
+export default function BasicTable({ detalle}) {
 
   
 
@@ -30,7 +30,7 @@ export default function BasicTable({ detalle, detalle_2 }) {
         <TableBody>
           <TableRow>
             <TableCell><h4>Price:</h4></TableCell>
-            <TableCell><h4>USD$ {detalle_2.precio}</h4><br></br>
+            <TableCell><h4>USD$ {detalle.precio}</h4><br></br>
             </TableCell>
           </TableRow>
           <TableRow>
@@ -43,11 +43,7 @@ export default function BasicTable({ detalle, detalle_2 }) {
             <TableCell> {detalle.model}<br></br>
             </TableCell>
           </TableRow>
-          <TableRow>
-            <TableCell>Estimated Monthly Sales / Revenue:</TableCell>
-            <TableCell>  {detalle_2.estimada} Units //  USD {detalle_2.revenue}<br></br>
-            </TableCell>
-          </TableRow>
+          
           <TableRow>
             <TableCell>Brand:</TableCell>
             <TableCell> {detalle.brand}<br></br>
