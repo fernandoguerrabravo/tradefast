@@ -13,7 +13,7 @@ export const useGetResearch = (idcliente) => {
 
         GetResearch(idcliente)
             .then(imgs => {
-                console.log("Respuesta de la puta", imgs);
+                //console.log("Respuesta de la puta", imgs);
                 setState({
                     data: imgs,
                     loading: false

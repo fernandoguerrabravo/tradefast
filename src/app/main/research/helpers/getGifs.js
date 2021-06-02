@@ -1,9 +1,9 @@
 import { PostResearch } from "./PostResearch";
 
 
-export const getGifs = async (category, idcliente) => {
+export const getGifs = async (category) => {
 
-
+    const idcliente = "abcdef";
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "text/plain");
 

@@ -98,7 +98,6 @@ export default function CustomizedDialogs(codigo) {
             headers: myHeaders,
             body: raw,
            
-
         };
 
         const url = `https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/getdetails`;
