@@ -23,7 +23,7 @@ export default function ListResearchApp() {
         {
             title: 'Date Creation',
             field: 'keyword',
-            render: rowData => <Button onClick={reporte()} variant="contained" color="secondary">Generate Report</Button>
+            render: rowData => <Button  variant="contained" color="secondary">Generate Report</Button>
         }
             
   

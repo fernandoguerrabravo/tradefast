@@ -16,13 +16,7 @@ const styles = StyleSheet.create({
 });
 
 
-const MyDoc = () => (
-  <Document>
-    <Page>
-      // My document data
-    </Page>
-  </Document>
-);
+
 
 const Reporte = () => (
   
