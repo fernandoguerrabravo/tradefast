@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import SearchTax from './components/HtsSearch';
-import  { HtsGrid }   from './components/HtsGrid';
-
+//import SearchTax from './components/HtsSearch';
+//import  { HtsGrid }   from './components/HtsGrid';
+import Htsbegin from './components/htsbegin';
+import { HtsGrid2 } from './components/HtsGrid2';
 
 const useStyles = makeStyles((theme) => ({
   
@@ -42,9 +43,9 @@ export default function FullWidthGrid() {
     <div className={classes.root}>
       <Grid container spacing={3}>
       <Grid item xs={12} sm={12}>
-          <Paper className={classes.paper}><SearchTax setencabezado={setencabezado}/></Paper>
+          <Paper className={classes.paper}><Htsbegin setencabezado={setencabezado}/></Paper>
       </Grid>
-          {encabezado.hidden && <HtsGrid encabezado = {encabezado}/>}
+          {encabezado.hidden && <HtsGrid2 encabezado = {encabezado}/>}
       </Grid>
         
      
