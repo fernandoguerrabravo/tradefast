@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import HtsHeader from './HtsHeader';
 import { green, red, blue } from '@material-ui/core/colors';
 import HtsGetListHts from './HtsGetListHts';
-import { UseFetchClas } from '../hooks/UseFetchClas';
+
 
 const useStyles = makeStyles({
     table: {
@@ -29,12 +29,8 @@ const useStyles = makeStyles({
 
 export const HtsGrid = ({ encabezado }) => {
 
-    // const { data, loading, finales } = UseFetchHts(encabezado.hts)
-    const { data, loading, finales } = UseFetchClas(encabezado.hts)
-
+    const { data, loading, finales } = UseFetchHts(encabezado.hts)
     const { categorias } = UseFetchHtsCategory(encabezado.hts);
-
-    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
 
     return (
@@ -46,7 +42,7 @@ export const HtsGrid = ({ encabezado }) => {
                 <Paper className={classes.paper}><HtsHeader event={encabezado} /></Paper>
             </Grid>
             <Grid item xs={4}>
-              { /* <TableContainer component={Paper}>
+                <TableContainer component={Paper}>
                     <Table className={classes.table} aria-label="simple table">
                         <TableHead>
                             <TableRow>
@@ -54,17 +50,18 @@ export const HtsGrid = ({ encabezado }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                         <HtsGetListCategories event={categorias} /> 
+                            <HtsGetListCategories event={categorias} />
                         </TableBody>
                     </Table>
-                </TableContainer>  */}
+                </TableContainer>
             </Grid>
             <Grid item xs={4}>
 
                 <Paper className={classes.paper}>
 
-                   { /* <HtsGetListHts eventos={finales} categorias={categorias} /> */}
-                   </Paper>
+                    <HtsGetListHts eventos={finales} categorias={categorias} encabezado = {encabezado} />
+
+                </Paper>
 
             </Grid>
             <Grid item xs={12}>

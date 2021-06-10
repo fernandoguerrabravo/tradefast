@@ -11,6 +11,7 @@ i18next.addResourceBundle('ar', 'ratepage', ar);
 
 
 const RateConfig = {
+	
 	settings: {
 		layout: {
 			config: {}

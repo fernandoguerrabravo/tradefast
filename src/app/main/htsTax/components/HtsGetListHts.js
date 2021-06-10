@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function HtsGetListHts({ eventos, categorias }) {
+export default function HtsGetListHts({ eventos, categorias, encabezado }) {
 
     const classes = useStyles();
     const [value, setValue] = useState('');
@@ -57,10 +57,9 @@ export default function HtsGetListHts({ eventos, categorias }) {
 
     };
 
-    
 
-    console.log("PICO PAL CONSOLE");
-    console.log(descripcion);
+    //console.log("data 10 digitos :", eventos);
+    
     return (
 
 
@@ -80,7 +79,7 @@ export default function HtsGetListHts({ eventos, categorias }) {
                 </RadioGroup>
                 <br></br>
                 <FormHelperText>{helperText}</FormHelperText> <br></br>
-                {value && <HtsDialogEnd evento1={value} evento2={categorias} evento3 = {descripcion.description}/>}
+                {value && <HtsDialogEnd evento1={value} evento2={categorias} evento3 = {descripcion.description} evento4 = {encabezado.general}/>}
             </FormControl>
 
         </form>

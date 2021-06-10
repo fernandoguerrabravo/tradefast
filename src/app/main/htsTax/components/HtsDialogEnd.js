@@ -61,11 +61,9 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-export default function HtsDialogEnd({ evento1, evento2, evento3 }) {
+export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 
-    console.log("quye pasa qlo");
-    console.log(evento1);
-    console.log(evento2);
+   
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const handleClickOpen = () => {
@@ -80,7 +78,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3 }) {
         <div>
             <Button type="submit" variant="outlined" color="primary" onClick={handleClickOpen}>
                 Save Selection
-      </Button>
+        </Button>
             <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle className={classes.color} id="customized-dialog-title" onClose={handleClose}>
                     HTS : {evento1}
@@ -99,7 +97,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3 }) {
                     </Typography>
                     <Typography gutterBottom>
                         <ListItem className={classes.color}>Import Taxes (Duties): </ListItem>
-                       
+                        <ListItem>{evento4}</ListItem>
                     </Typography>
                 </DialogContent>
                 <DialogActions>

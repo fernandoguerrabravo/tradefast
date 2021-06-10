@@ -75,8 +75,6 @@ const handleInputChange = (event) => {
   return (
     
     <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-     
-    
       <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
         <Select

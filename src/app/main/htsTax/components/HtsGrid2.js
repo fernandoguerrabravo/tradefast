@@ -6,10 +6,12 @@ import HtsHeader from './HtsHeader';
 import { green, red, blue } from '@material-ui/core/colors';
 import { UseFetchClas } from '../hooks/UseFetchClas';
 import MaterialTable from 'material-table';
+import { Button } from '@material-ui/core';
+import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 750,
+        minWidth: 750
     },
     centrar: {
 
@@ -20,14 +22,26 @@ const useStyles = makeStyles({
     }
 });
 
-export const HtsGrid2 = ({ encabezado }) => {
+export const HtsGrid2 = ({ encabezado, setencabezado }) => { // const { data, loading, finales } = UseFetchHts(encabezado.hts)
 
-    // const { data, loading, finales } = UseFetchHts(encabezado.hts)
+
     const { data, loading, finales } = UseFetchClas(encabezado.hts)
+    // const { categorias } = UseFetchHtsCategory(encabezado.hts);
+    // {loading && <p>Loading Results...</p>}
+    //console.log("datos iniciales", data);
 
-    //const { categorias } = UseFetchHtsCategory(encabezado.hts);
+    const detailhts = (e, f, g) => {
+        setencabezado({
+            ...encabezado,
+            hidden1: true,
+            hidden: false,
+            hts: e,
+            hts8: e,
+            general: f,
+            special: g
+        });
+    }
 
-    //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
 
     const columnas = [
@@ -35,96 +49,60 @@ export const HtsGrid2 = ({ encabezado }) => {
         {
             title: 'HTS Number',
             field: 'htsno',
-            
-        },
 
-        {
+
+        }, {
             title: 'Brief Description',
-            field: 'description',
-           
+            field: 'description'
+
         },
 
-    ]
+    ];
+
+    const actions = [
+        {
+            icon: () => <SaveOutlinedIcon color="primary" fontSize="large" />,
+            tooltip: 'Select HTS Number',
+            onClick: (event, rowData) => detailhts(rowData.htsno, rowData.general, rowData.special)
+        }
+    ];
 
     return (
 
-        //Aqui tengo las dos columnas que vamos a renderizar //
-        // Primera Columna Resumen de la Solicitud y Muestra los TAXES
         <>
-            <Grid item xs={4}>
-                <Paper className={classes.paper}><HtsHeader event={encabezado} /></Paper>
-            </Grid>
-            <Grid item xs={4}>
-                { /* <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell><h3 className={classes.color}>Product Category</h3></TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                         <HtsGetListCategories event={categorias} /> 
-                        </TableBody>
-                    </Table>
-                </TableContainer>  */}
-            </Grid>
-            <Grid item xs={4}>
-
-                <Paper className={classes.paper}>
-
-                    { /* <HtsGetListHts eventos={finales} categorias={categorias} /> */}
+            <Grid item
+                xs={
+                    4
+                } > <Paper className={
+                    classes.paper
+                }><HtsHeader event={encabezado} />
                 </Paper>
+            </Grid >
+            <Grid item
+                xs={4}></Grid > <Grid item
+                    xs={4}>
 
-            </Grid>
-            <Grid item xs={12}>
-                <Paper>
-
-                    <MaterialTable
-
-                        title="Select Suggest HTS"
+                <Paper className={
+                    classes.paper
+                }></Paper>
+            </Grid> < Grid item xs={
+                12
+            } > <Paper>
+                    <MaterialTable title="Select Suggest HTS"
                         columns={columnas}
                         data={data}
+                        actions={actions}
+                        options={{
+                            actionsColumnIndex: -1
+                        }}
                     >
 
                     </MaterialTable>
                 </Paper>
-            </Grid>
 
-        </>
-
+            </Grid> </>
     )
 }
 
-/*
-{
-    data.map(img => (
-        <HtsResultList
-            key={img.htsno}
-            {...img}
-        />
-    ))
-} */
-/*
-   <TableBody>
 
-                        {
-                            data.map(img => (
-                                <HtsResultList
-                                    key={img.hts}
-                                    {...img}
-                                />
-                            ))
-                        }
-                    </TableBody> */
 
-/*              <TableBody>
-
-              {
-                  data.map(img => (
-                      <HtsResultList
-                          key={img.htsno}
-                          {...img}
-                      />
-                  ))
-              }
-          </TableBody> */

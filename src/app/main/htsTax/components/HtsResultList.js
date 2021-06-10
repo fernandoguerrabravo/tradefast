@@ -15,8 +15,8 @@ export const HtsResultList = ({ htsno, description, general, special }) => {
          <TableRow>
             <TableCell ><Button>{htsno}</Button></TableCell>
             <TableCell>{description}</TableCell>
-            {/* <TableCell >{general}</TableCell>
-            <TableCell >{special}</TableCell> */}
+            <TableCell >{general}</TableCell>
+            <TableCell >{special}</TableCell> 
          </TableRow> 
       </>
    )

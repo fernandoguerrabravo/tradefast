@@ -1,7 +1,6 @@
-import FusePageCarded from '@fuse/core/FusePageCarded';
 import { makeStyles } from '@material-ui/core/styles';
 import HtsTaxContent from './htsTaxContent';
-
+import FusePageSimple from '@fuse/core/FusePageSimple';
 
 const useStyles = makeStyles({
 	layoutRoot: {}
@@ -12,7 +11,7 @@ const htsTaxCalculator = () => {
 	const classes = useStyles();
 
 	return (
-		<FusePageCarded
+		<FusePageSimple
 			classes={{
 				root: classes.layoutRoot
 			}}

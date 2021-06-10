@@ -3,12 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import RateSearch from './components/RateSearch';
-import Fedex from './components/fedex';
-import UPS from './components/ups';
-import DHL from './components/dhl';
-import ECL from './components/ecl'
+import InfoRate from './components/InfoRate';
+import HtsRate from './components/HtsRate';
+import MarketRate from './components/MarketRate';
+import InfoRateDetails from './components/InfoRateDetails';
+
+
 const useStyles = makeStyles((theme) => ({
-  
+
   root: {
     flexGrow: 1,
   },
@@ -37,31 +39,37 @@ export default function RateApp() {
 
   ]);
 
+  // Creo el estado del detalles de la cotizacion que se eligira , para mostrarlo 
 
+  const [quotation, setquotation] = useState({
+    
+    id_details: '',
+    hidden3: false
+
+  });
+
+ 
   return (
 
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><RateSearch></RateSearch></Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}><Fedex /></Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}><UPS /></Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}><DHL /></Paper>
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}><ECL /></Paper>
-        </Grid>
-        <Grid item xs={12}>
           <Paper className={classes.paper}></Paper>
         </Grid>
-       </Grid>
+        <Grid item xs={12}>
+          <InfoRate setquotation={setquotation} />
+        </Grid>
+        {quotation.hidden3 &&  <Grid item xs={12}> <Paper className={classes.paper}><InfoRateDetails id_details={quotation.id_details} /></Paper></Grid> }
+        <Grid item xs={12}>
+          <HtsRate />
+        </Grid>
+        <Grid item xs={12}>
+          {quotation.hidden3 && <MarketRate />}
+        </Grid>
+
+      </Grid>
     </div>
   );
-  
-}
+
+};
+

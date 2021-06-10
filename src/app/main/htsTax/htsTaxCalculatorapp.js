@@ -3,12 +3,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 //import SearchTax from './components/HtsSearch';
-//import  { HtsGrid }   from './components/HtsGrid';
-import Htsbegin from './components/htsbegin';
+import { HtsGrid } from './components/HtsGrid';
 import { HtsGrid2 } from './components/HtsGrid2';
+import Htsbegin from './components/htsbegin';
+import { ListHtsTools } from './components/ListHtsTools';
+import ListHtsTable from './components/ListHtsTable';
+
 
 const useStyles = makeStyles((theme) => ({
-  
+
   root: {
     flexGrow: 1,
   },
@@ -27,29 +30,38 @@ export default function FullWidthGrid() {
   const classes = useStyles();
 
   const [encabezado, setencabezado] = useState([
+
     {
       country: '',
       hts: '',
       hidden: false,
-      destination: ''
+      hidden1: false,
+      destination: '',
+      hts8: '',
+      general: '',
+      special: ''
 
     }
 
   ]);
 
-
   return (
 
     <div className={classes.root}>
       <Grid container spacing={3}>
-      <Grid item xs={12} sm={12}>
-          <Paper className={classes.paper}><Htsbegin setencabezado={setencabezado}/></Paper>
+        <Grid item xs={12} sm={12}>
+          <Paper className={classes.paper}><ListHtsTools /></Paper>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <ListHtsTable />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Paper className={classes.paper}><Htsbegin setencabezado={setencabezado} /></Paper>
+        </Grid>
+        {encabezado.hidden && <HtsGrid2 encabezado={encabezado} setencabezado={setencabezado} />}
+        {encabezado.hidden1 && <HtsGrid encabezado={encabezado} />}
       </Grid>
-          {encabezado.hidden && <HtsGrid2 encabezado = {encabezado}/>}
-      </Grid>
-        
-     
     </div>
   );
-  
+
 }

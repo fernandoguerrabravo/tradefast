@@ -3,7 +3,7 @@ import FuseUtils from '@fuse/utils';
 import DashboardConfig from 'app/main/dashboard/DashboardConfig';
 import ResearchConfig from 'app/main/research/ResearchConfig';
 import htsTaxConfig from 'app/main/htsTax/htsTaxConfig';
-import RateConfig from 'app/main/rate_calculator/RateConfig';
+import RateConfig from 'app/main/RateCalculator/RateConfig';
 import ListResearchConfig from 'app/main/ListResearch/ListResearchConfig';
 
 

@@ -68,6 +68,11 @@ export default function Htsbegin({ setencabezado }) {
 
     }
 
+    function onKeyDown(keyEvent) {
+        if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
+            keyEvent.preventDefault();
+        }
+    }
     //console.log(datos);
 
     const handleSubmit = (e) => {
@@ -92,64 +97,46 @@ export default function Htsbegin({ setencabezado }) {
     return (
 
         <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-            <Paper component="form" className={classes.root}>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="country"
-                        value={datos.country}
-                        onChange={handleInputChange}
-                        label="Origin Country"
-                        name='country'
-                    >
-                        <MenuItem value="">
-                            <em></em>
-                        </MenuItem>
-                        <MenuItem value={1}>Brazil</MenuItem>
-                        <MenuItem value={2}>Colombia</MenuItem>
-                        <MenuItem value={3}>Mexico</MenuItem>
-                        <MenuItem value={3}>China</MenuItem>
-                    </Select>
-                </FormControl>
-                <FormControl variant="outlined" className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-outlined-label"
-                        id="country"
-                        value={datos.country}
-                        onChange={handleInputChange}
-                        label="Origin Country"
-                        name='country'
-                    >
-                        <MenuItem value="">
-                            <em></em>
-                        </MenuItem>
-                        <MenuItem value={1}>Brazil</MenuItem>
-                        <MenuItem value={2}>Colombia</MenuItem>
-                        <MenuItem value={3}>Mexico</MenuItem>
-                        <MenuItem value={3}>China</MenuItem>
-                    </Select>
-                </FormControl>
-            </Paper>
-            <FormControl variant="outlined" className={classes.formControl}>
-                <TextField
-                    id="hts"
-                    name="hts"
-                    label="HTS Code (6 Digits)"
-                    variant="outlined"
-                    color="secondary"
-                    type="text"
-                    value={datos.hts}
-                    onChange={handleInputChange}
-                />
-            </FormControl>
-
-            <br></br>
-            <Button type="submit" variant="outlined" color="secondary">
-                Search
-      </Button>
-        </form>
+     
+    
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="country"
+            value = {datos.country}
+            onChange={handleInputChange}
+            label="Origin Country"
+            name='country'
+          >
+            <MenuItem value="">
+              <em></em>
+            </MenuItem>
+            <MenuItem value={1}>Brazil</MenuItem>
+            <MenuItem value={2}>Colombia</MenuItem>
+            <MenuItem value={3}>Mexico</MenuItem>
+          </Select>
+        </FormControl>
+       
+        <FormControl variant="outlined" className={classes.formControl}>
+          <TextField
+            id="hts"
+            name="hts"
+            label="HTS Code (6 Digits)"
+            variant="outlined"
+            color="secondary"
+            type = "text"
+            value= {datos.hts}
+            onChange={handleInputChange}
+          />
+        </FormControl>
+      
+        <br></br>
+        <Button type="submit" variant="outlined" color="secondary">
+          Search
+        </Button>
+      </form> 
+    
 
     );
 }
