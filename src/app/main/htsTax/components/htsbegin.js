@@ -13,6 +13,7 @@ import swal from 'sweetalert';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue } from '@material-ui/core/colors';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
 
@@ -69,6 +70,7 @@ export default function Htsbegin({ setencabezado }) {
     }
 
     function onKeyDown(keyEvent) {
+
         if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
             keyEvent.preventDefault();
         }
@@ -78,65 +80,78 @@ export default function Htsbegin({ setencabezado }) {
     const handleSubmit = (e) => {
 
         e.preventDefault();
-        setencabezado({
-            ...datos,
-            destination: 'United States',
-            hidden: true,
+        if (datos.hts.trim().length > 3 && datos.country.trim() != '') {
 
-        })
+            setencabezado({
 
-        setDatos({
-            country: '',
-            hts: '',
-            destination: 'United States',
+                ...datos,
+                destination: 'United States',
+                hidden: true,
+                hidden3: false,
 
-        });
+            })
+
+            setDatos({
+                country: '',
+                hts: '',
+                destination: 'United States',
+
+            });
+        } else {
+
+            swal({
+                title: "oops!",
+                text: "Insert a valid Information or Country !!",
+                icon: "warning",
+            });
+
+        }
 
     }
 
     return (
 
-        <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-     
-    
-        <FormControl variant="outlined" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="country"
-            value = {datos.country}
-            onChange={handleInputChange}
-            label="Origin Country"
-            name='country'
-          >
-            <MenuItem value="">
-              <em></em>
-            </MenuItem>
-            <MenuItem value={1}>Brazil</MenuItem>
-            <MenuItem value={2}>Colombia</MenuItem>
-            <MenuItem value={3}>Mexico</MenuItem>
-          </Select>
-        </FormControl>
-       
-        <FormControl variant="outlined" className={classes.formControl}>
-          <TextField
-            id="hts"
-            name="hts"
-            label="HTS Code (6 Digits)"
-            variant="outlined"
-            color="secondary"
-            type = "text"
-            value= {datos.hts}
-            onChange={handleInputChange}
-          />
-        </FormControl>
-      
-        <br></br>
-        <Button type="submit" variant="outlined" color="secondary">
-          Search
+        <form onKeyDown={onKeyDown} onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
+                <Select
+                    labelId="demo-simple-select-outlined-label"
+                    id="country"
+                    value={datos.country}
+                    onChange={handleInputChange}
+                    label="Origin Country"
+                    name='country'
+                >
+                    <MenuItem value="">
+                        <em></em>
+                    </MenuItem>
+                    <MenuItem value={'BR'}>Brazil</MenuItem>
+                    <MenuItem value={'CO'}>Colombia</MenuItem>
+                    <MenuItem value={'MX'}>Mexico</MenuItem>
+                    <MenuItem value={'CN'}>China</MenuItem>
+                </Select>
+            </FormControl>
+
+            <FormControl variant="outlined" className={classes.formControl}>
+                <TextField
+                    id="hts"
+                    name="hts"
+                    label="HTS Code (6 Digits) or Keyword"
+                    variant="outlined"
+                    color="secondary"
+                    type="text"
+                    value={datos.hts}
+                    onChange={handleInputChange}
+                />
+            </FormControl>
+
+            <br></br>
+            <Button type="submit" variant="contained" color="primary">
+                Search Classifications
         </Button>
-      </form> 
-    
+        </form>
+
 
     );
 }

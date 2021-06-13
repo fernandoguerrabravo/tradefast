@@ -1,15 +1,9 @@
-import React ,{ useEffect, useState , FC, ReactElement } from "react";
+import React, { useEffect, useState, FC, ReactElement } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import {
-  IfFulfilled,
-  IfPending,
-  IfRejected,
-  PromiseFn,
-  useAsync
-} from "react-async";
+import { IfFulfilled, IfPending, IfRejected, PromiseFn, useAsync } from 'react-async';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -17,8 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
-
-
+import MaterialTable, { MTableToolbar } from 'material-table';
 
 /*const useStyles = makeStyles((theme) => ({
 
@@ -37,116 +30,255 @@ import DraftsIcon from '@material-ui/icons/Drafts';
 
 }));*/
 
-const useStyles = makeStyles((theme) => ({
-
+const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
 
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    color: theme.palette.text.secondary,
-
-  },
-
+    color: theme.palette.text.secondary
+  }
 }));
 
-const getDetails = async ({id}) => {
-    
+const columnas = [
+
+  {
+    title: 'Box Nro',
+    field: 'id_box'
+  },
+
+  {
+    title: 'Quantity',
+    field: 'qty_box'
+  },
+
+  {
+    title: 'Unit Weight (Kg)',
+    field: 'weight'
+  },
+  {
+    title: 'Width (cm)',
+    field: 'width'
+  },
+  {
+    title: 'Length (cm)',
+    field: 'length'
+  },
+  {
+    title: 'Weight (cm)',
+    field: 'height'
+  }
+
+];
+
+const columnas2 = [
+
+  {
+    title: 'SKU',
+    field: 'sku_number'
+  },
+
+  {
+    title: 'Quantity',
+    field: 'sku_qty'
+  },
+
+  {
+    title: 'Unit Value (USD)',
+    field: 'fob_value'
+  },
+  {
+    title: 'Commodity',
+    field: 'description'
+  },
+  {
+    title: 'HTS Classification',
+    field: 'hts'
+  },
+  {
+    title: 'Duties Rate',
+    field: 'duties'
+  },
+  {
+    title: 'Total Estimated Duties (US)',
+    field: 'duties_calculos'
+  }
+
+];
+
+
+
+
+const getDetails = async ({ id }) => {
+
   const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ id })
+  };
+  const response = await (
+    await fetch(`https://tlj0xssu56.execute-api.us-east-1.amazonaws.com/dev/getquotationsbyid`, requestOptions)
+  ).json();
 
-   method: 'POST',
-   headers: {
-       'Content-Type': 'application/json'
-   },
-   body: JSON.stringify({id})
-  
- };
-   const response = await (await fetch(`https://tlj0xssu56.execute-api.us-east-1.amazonaws.com/dev/getquotationsbyid`, requestOptions )).json();
-   
-   console.log("respuesta fetch:", response);
+  console.log('respuesta fetch:', response);
 
-   return response[0];
+  return response[0];
 };
 
+const DetailsPreview = ({ id }) => {
 
-const DetailsPreview = ({id}) => {
+  const classes = useStyles();
+  const state = useAsync({ promiseFn: getDetails, id });
 
-    const classes = useStyles();
-
-    const state = useAsync({ promiseFn: getDetails, id });
-    
   return (
+    <>
 
-  <>
-    <p>Querying for {id}</p>
-    <IfPending state={state}>Loading...</IfPending>
-    <IfRejected state={state}>
-      {(error) => `Something went wrong: ${error.message}`}
-    </IfRejected>
-    <IfFulfilled state={state}>
-      {(data) => (
-        <div>
-          <strong>Loaded some data:</strong>
-          <Grid container spacing={3}>
-          <Grid item xs={4}>
-          <Paper className={classes.paper}>
-            
-        <List component="nav" aria-label="main mailbox folders">
-         <ListItem>
-          <ListItemIcon>
-              <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Origin Address"/><p></p>
-         </ListItem>
-          <ListItem>{data.origin_info.number} {data.origin_info.address}<p></p></ListItem>
-          <ListItem>{data.origin_info.city}, {data.origin_info.state}, {data.origin_info.country}, {data.origin_info.zipcode}<p></p></ListItem>
-         
-          <ListItem>
-          <ListItemIcon>
-            <DraftsIcon />
-          </ListItemIcon>
-          <ListItemText primary="Destination Address" />
-        </ListItem>
-      </List>
-      <Divider />
-             
-             
-             
-              <pre>{JSON.stringify(data.origin_info, null, 2)}</pre>
-          
-          
-          
-          
-              <pre>{JSON.stringify(data.destination_info, null, 2)}</pre>
+      <IfPending state={state}><strong>Loading...</strong></IfPending>
+      <IfRejected state={state}>{error => `Something went wrong: ${error.message}`}</IfRejected>
+      <IfFulfilled state={state}>
+        {data => (
 
-          </Paper> 
-          </Grid>
-          </Grid>
-        </div>
-      )}
-    </IfFulfilled>
-  </>
+          <div>
+            <Grid container spacing={3}>
+              <Grid item xs={4}>
+                <Paper className={classes.paper}>
+                  <List component="nav" aria-label="main mailbox folders">
+                    <ListItem>
+                      <ListItemIcon>
+                        <InboxIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Origin Address" />
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      {data.origin_info.number} {data.origin_info.address}
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      {data.origin_info.city}, {data.origin_info.state},{' '}
+                      {data.origin_info.country}, {data.origin_info.zipcode}
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemIcon>
+                        <DraftsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Destination Address" />
+                    </ListItem>
+                    <ListItem>
+                      {data.origin_info.number} {data.origin_info.address}
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      {data.origin_info.city}, {data.origin_info.state},{' '}
+                      {data.origin_info.country}, {data.origin_info.zipcode}
+                      <p></p>
+                    </ListItem>
+                  </List>
+                  <Divider />
+                  <List component="nav" aria-label="main mailbox folders">
+                    <ListItem>
+                      <ListItemIcon>
+                        <InboxIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Shipping Summary" />
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Carrier :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.carrier}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Reference :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.ref}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Total FOB US$ :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.final_quotation.total_fob}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Packages :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.final_quotation.total_packages}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Total Kg :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.final_quotation.total_kg}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Total Vol :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.final_quotation.total_volume}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Freight Cost US$ :&nbsp;&nbsp;</Typography>
+                      <Typography>{data.final_quotation.final_rate}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Estimated Duties USD$ :&nbsp;&nbsp;</Typography>
+                      <Typography> {data.final_quotation.total_tax}</Typography>
+                      <p></p>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="primary">Estimated Landing Cost USD$ :&nbsp;&nbsp;</Typography>
+                      <Typography> {data.final_quotation.total_fob + data.final_quotation.total_tax + data.final_quotation.final_rate}</Typography>
+                      <p></p>
+                    </ListItem>
+                  </List>
+                </Paper>
+              </Grid>
+              <Grid item xs={8}>
+                <>
+                  <MaterialTable
+                    columns={columnas}
+                    data={data.boxeslist}
+                    options={{
+                      search: false
+                    }}
+                    //actions={actions}
+                    title="Packages Details"
+                  >
+                  </MaterialTable><br></br>
+                  <Divider /><br></br>
+                  <MaterialTable
+                    columns={columnas2}
+                    data={data.skulist}
+                    options={{
+                      search: false,
 
-  )
+                    }}
+                    //actions={actions}
+                    title="SKU Details"
+                  >
+                  </MaterialTable>
+                </>
+              </Grid>
+            </Grid>
+          </div>
+        )}
+      </IfFulfilled>
+    </>
+  );
 };
 
+export default function InfoRateDetails({ id_details }) {
+  return (
+    <div>
+      <DetailsPreview key={id_details} id={id_details} />
+    </div>
+  );
+}
 
-export default  function  InfoRateDetails({id_details}) {
-
-    return (
-
-      <div>
-        <h1>Testing Async Components</h1>
-        <h2>This sandbox is using react-async</h2>
-        <DetailsPreview key= {id_details} id= {id_details}/>
-      </div>
-    );
-
-};
-
-/* 
+/*
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -207,19 +339,19 @@ export default function SimpleList() {
   const idem = "60be9f544acbab01f0e6e827"
   const headers = { Accept: "application/json" }
   const options = {
-   
+
     body :  JSON.stringify({"id": idem}),
     method: 'POST',
-   
+
   } */
-  /*  setdetalles(useFetch('https://tlj0xssu56.execute-api.us-east-1.amazonaws.com/dev/getquotationsbyid', {headers}, options));               
+/*  setdetalles(useFetch('https://tlj0xssu56.execute-api.us-east-1.amazonaws.com/dev/getquotationsbyid', {headers}, options));
 
   console.log("detalles:", detalles);*/
 
-  /*const {detalles} = useGetQuotationsbyid(idem);
-   
-   console.log(detalles); 
-  
+/*const {detalles} = useGetQuotationsbyid(idem);
+
+   console.log(detalles);
+
 //const idcliente = "abcdef";
 
 
@@ -237,9 +369,9 @@ const handleInputChange = (event) => {
       ...datos,
       [event.target.name] : event.target.value
   })
-  
+
 }
-  
+
   //console.log(datos);
 
   const handleSubmit = (e) => {
@@ -249,18 +381,14 @@ const handleInputChange = (event) => {
       ...datos,
       destination: 'United States',
       hidden: true,
-    
+
     })
-    
+
     setDatos({
       country: '',
       hts: '',
       destination: 'United States',
-     
+
     });
-    
+
 } */
-  
- 
-
-

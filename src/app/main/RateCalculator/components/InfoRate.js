@@ -26,32 +26,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function InfoRate({ setquotation }) {
 
-      const idcliente = "abcdef";
+    const idcliente = "abcdef";
 
-      const { data } = useGetQuotations(idcliente)
-    
-      const classes = useStyles();
-      
-      const detailrates = (e) => {
+    const { data } = useGetQuotations(idcliente)
 
-       
+    const classes = useStyles();
+
+    const detailrates = (e) => {
+
+
         setquotation({
-            
-            id_details : e,
+
+            id_details: e,
             hidden3: true
-           
+
         })
 
-      } 
-      
-      
-      const columnas = [
+    }
+
+
+    const columnas = [
 
         {
             title: 'Reference',
             field: 'ref'
         },
-       
+
         {
             title: 'Origin',
             field: 'origin'
@@ -72,7 +72,7 @@ export default function InfoRate({ setquotation }) {
             title: 'Boxes',
             field: 'final_quotation.total_packages'
         },
-        
+
         {
             title: 'Kg',
             field: 'final_quotation.total_kg'
@@ -85,7 +85,7 @@ export default function InfoRate({ setquotation }) {
             title: 'Shipping Cost',
             field: 'final_quotation.final_rate'
         }
-    
+
     ];
 
     const actions = [
@@ -99,11 +99,10 @@ export default function InfoRate({ setquotation }) {
     return (
 
         <>
-
             <MaterialTable
                 columns={columnas}
                 data={data}
-                actions = {actions}
+                actions={actions}
                 title="Select a Shipping Quotation"
                 components={{
                     Toolbar: props => (
@@ -117,7 +116,6 @@ export default function InfoRate({ setquotation }) {
                 }}
             >
             </MaterialTable>
-
         </>
 
     )

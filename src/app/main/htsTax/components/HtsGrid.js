@@ -27,11 +27,13 @@ const useStyles = makeStyles({
     }
 });
 
-export const HtsGrid = ({ encabezado }) => {
+export const HtsGrid = ({ encabezado, setencabezado }) => {
 
     const { data, loading, finales } = UseFetchHts(encabezado.hts)
     const { categorias } = UseFetchHtsCategory(encabezado.hts);
+
     const classes = useStyles();
+
 
     return (
 
@@ -59,7 +61,7 @@ export const HtsGrid = ({ encabezado }) => {
 
                 <Paper className={classes.paper}>
 
-                    <HtsGetListHts eventos={finales} categorias={categorias} encabezado = {encabezado} />
+                    <HtsGetListHts eventos={finales} categorias={categorias} encabezado={encabezado} />
 
                 </Paper>
 

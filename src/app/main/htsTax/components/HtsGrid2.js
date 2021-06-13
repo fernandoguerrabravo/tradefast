@@ -31,6 +31,7 @@ export const HtsGrid2 = ({ encabezado, setencabezado }) => { // const { data, lo
     //console.log("datos iniciales", data);
 
     const detailhts = (e, f, g) => {
+
         setencabezado({
             ...encabezado,
             hidden1: true,
@@ -70,24 +71,9 @@ export const HtsGrid2 = ({ encabezado, setencabezado }) => { // const { data, lo
     return (
 
         <>
-            <Grid item
-                xs={
-                    4
-                } > <Paper className={
-                    classes.paper
-                }><HtsHeader event={encabezado} />
-                </Paper>
-            </Grid >
-            <Grid item
-                xs={4}></Grid > <Grid item
-                    xs={4}>
 
-                <Paper className={
-                    classes.paper
-                }></Paper>
-            </Grid> < Grid item xs={
-                12
-            } > <Paper>
+            < Grid item xs={12}>
+                <Paper>
                     <MaterialTable title="Select Suggest HTS"
                         columns={columnas}
                         data={data}
@@ -96,10 +82,8 @@ export const HtsGrid2 = ({ encabezado, setencabezado }) => { // const { data, lo
                             actionsColumnIndex: -1
                         }}
                     >
-
                     </MaterialTable>
                 </Paper>
-
             </Grid> </>
     )
 }

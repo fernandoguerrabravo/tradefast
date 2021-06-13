@@ -52,12 +52,13 @@ const link = (asin) => {
     )
 }
 
-export const GiftGrid2 = ({ category }) => {
+export const GiftGrid2 = ({ category, sku }) => {
 
-    const { data, loading } = useFetchGifs(category)
+    const { data, loading } = useFetchGifs(category, sku)
     //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
-    //console.log(category)
+
+    console.log(category)
 
     const columnas = [
 
@@ -83,7 +84,13 @@ export const GiftGrid2 = ({ category }) => {
 
 
         },
-        
+        {
+            title: 'Price',
+            field: 'price',
+
+
+        },
+
         {
             title: 'Details',
             field: 'id',
@@ -114,15 +121,16 @@ export const GiftGrid2 = ({ category }) => {
                         justify="center"
                         alignItems="center" item xs={12}><Button variant="contained" color="primary">Save Your Search</Button>
                     </Grid>
+                    <Grid className={classes.centrar} item xs={12}>
+                        <MaterialTable
 
-                    <MaterialTable
+                            title=""
+                            columns={columnas}
+                            data={data}
+                        >
 
-                        title=""
-                        columns={columnas}
-                        data={data}
-                    >
-
-                    </MaterialTable>
+                        </MaterialTable>
+                    </Grid>
                 </>
             }
         </>

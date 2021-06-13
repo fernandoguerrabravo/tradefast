@@ -31,14 +31,14 @@ const navigationConfig = [
 				icon: 'whatshot',
 				url: '/hts'
 			},
-		/*	{
-				id: 'example-component',
-				title: 'example',
-				translate: 'EXAMPLE',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/example'
-			}, */
+			/*	{
+					id: 'example-component',
+					title: 'example',
+					translate: 'EXAMPLE',
+					type: 'item',
+					icon: 'whatshot',
+					url: '/example'
+				}, */
 			{
 				id: 'rate-component',
 				title: 'rate',
@@ -70,30 +70,23 @@ const navigationConfig = [
 				type: 'collapse',
 				icon: 'whatshot',
 				children: [
-				{
-					id: 'taxes-component',
-					title: 'taxes',
-					translate: 'DUTIES',
-					type: 'item',
-					icon: 'timeline',
-					url: '/htsTax'
-				},
-				{
-					id: 'hts-component',
-					title: 'classifications',
-					translate: 'CLASSIFICATIONS',
-					type: 'item',
-					icon: 'timeline',
-					url: '/research'
-				},
-				{
-					id: 'special-component',
-					title: 'htsspecial',
-					translate: 'HTSSPECIAL',
-					type: 'item',
-					icon: 'timeline',
-					url: '/research'
-				}
+
+					{
+						id: 'hts-component',
+						title: 'classifications',
+						translate: 'CLASSIFICATIONS',
+						type: 'item',
+						icon: 'timeline',
+						url: '/htstaxlist'
+					},
+					{
+						id: 'special-component',
+						title: 'htsspecial',
+						translate: 'HTSSPECIAL',
+						type: 'item',
+						icon: 'timeline',
+						url: '/research'
+					}
 
 				]
 

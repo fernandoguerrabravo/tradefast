@@ -1,7 +1,7 @@
 import { PostResearch } from "./PostResearch";
 
 
-export const getGifs = async (category) => {
+export const getGifs = async (category, sku) => {
 
     const idcliente = "abcdef";
     const myHeaders = new Headers();
@@ -10,17 +10,17 @@ export const getGifs = async (category) => {
     const raw = JSON.stringify({
 
         "category": category,
-        "id_cliente": idcliente
+        "id_cliente": idcliente,
+        "sku": sku
     });
 
     var requestOptions = {
-       
+
         method: 'POST',
         headers: myHeaders,
         body: raw,
-        
-       
-       
+
+
     };
 
     const url = "https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/postresearch";
@@ -29,19 +29,19 @@ export const getGifs = async (category) => {
     //const detalle = data.products
     //const gifs = detalle.map(img => {
 
-     /*   return {
+    /*   return {
 
-            id: img?.asin ?? '',
-            title: img?.title ?? '',
-            link: img?.url ?? '',
-            price: img?.price?.current_price ?? '',
-            reviews: img?.reviews?.rating ?? '',
-            total_reviews: img?.reviews?.total_review ?? '',
-            url: img?.thumbnail ?? ''
+           id: img?.asin ?? '',
+           title: img?.title ?? '',
+           link: img?.url ?? '',
+           price: img?.price?.current_price ?? '',
+           reviews: img?.reviews?.rating ?? '',
+           total_reviews: img?.reviews?.total_review ?? '',
+           url: img?.thumbnail ?? ''
 
-        }
+       }
 
-    }) */
+   }) */
 
     return data;
 

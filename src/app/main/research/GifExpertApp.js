@@ -24,8 +24,16 @@ export const GifExpertApp = () => {
 
     const classes = useStyles();
 
-    const [categories, setCategories] = useState([]);
-    
+    const [categories, setCategories] = useState(
+
+        {
+            sku: '',
+            keyword: '',
+            hidden: false
+
+        }
+    );
+
     return (
         <>
             <Grid container spacing={3}>
@@ -37,15 +45,12 @@ export const GifExpertApp = () => {
             <Grid container spacing={3}>
                 <br></br>
 
-                {
-                    categories.map(category => (
-                        <GiftGrid2 
-                            key={category}
-                            category={category}
-                        />
-
-                    ))
+                {categories.hidden && <GiftGrid2
+                    sku={categories.sku}
+                    category={categories.keyword}
+                />
                 }
+
             </Grid>
 
         </>

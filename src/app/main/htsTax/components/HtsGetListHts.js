@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import { green, red, blue } from '@material-ui/core/colors';
 import HtsDialogEnd from './HtsDialogEnd';
 import { animateVisualElement } from 'framer-motion';
-
+import Typography from '@material-ui/core/Typography';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     button: {
+
         margin: theme.spacing(1, 1, 0, 0),
         color: red[600]
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
     color: {
 
-        color: blue[700],
+        color: green[600],
 
     }
 }));
@@ -57,15 +58,21 @@ export default function HtsGetListHts({ eventos, categorias, encabezado }) {
 
     };
 
+    // genero el arreglo con la info de todo lo que presentare
+
+
+
+
+
 
     //console.log("data 10 digitos :", eventos);
-    
+
     return (
 
 
         <form onSubmit={handleSubmit}>
             <FormControl component="fieldset" error={error} className={classes.formControl}>
-                <FormLabel className={classes.color} component="legend">Make your HTS Selection</FormLabel><br></br>
+                <Typography variant="h5" className={classes.color}>Select Suggested US HTS </Typography><br></br>
                 <RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
 
                     {
@@ -79,7 +86,8 @@ export default function HtsGetListHts({ eventos, categorias, encabezado }) {
                 </RadioGroup>
                 <br></br>
                 <FormHelperText>{helperText}</FormHelperText> <br></br>
-                {value && <HtsDialogEnd evento1={value} evento2={categorias} evento3 = {descripcion.description} evento4 = {encabezado.general}/>}
+                {value && <HtsDialogEnd evento1={value} evento2={categorias} evento3={descripcion.description} evento4={encabezado} />}
+                {/*value && <HtsDialogFix evento1={value} evento2={categorias} evento3={descripcion.description} evento4={encabezado} /> */}
             </FormControl>
 
         </form>

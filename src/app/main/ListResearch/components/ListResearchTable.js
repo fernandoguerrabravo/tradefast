@@ -17,35 +17,39 @@ export default function ListResearchApp() {
             field: 'keyword'
         },
         {
-            title: 'Date Creation',
+            title: 'SKU Reference',
+            field: 'sku'
+        },
+        {
+            title: 'Actions',
             field: 'fecha'
         },
         {
             title: 'Date Creation',
             field: 'keyword',
-            render: rowData => <Button  variant="contained" color="secondary">Generate Report</Button>
+            render: rowData => <Button variant="contained" color="secondary">Generate Report</Button>
         }
-            
-  
-        
-    
+
+
+
+
     ];
 
-    const dato =[];
+    const dato = [];
 
     return (
 
 
-        <> 
+        <>
 
-          <MaterialTable
-          
-             title = ""
-             columns = {columnas}
-             data = {data}
-          >
+            <MaterialTable
 
-          </MaterialTable>
+                title=""
+                columns={columnas}
+                data={data}
+            >
+
+            </MaterialTable>
 
         </>
 

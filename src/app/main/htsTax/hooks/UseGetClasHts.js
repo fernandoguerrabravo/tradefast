@@ -1,29 +1,30 @@
 import { useState, useEffect } from 'react'
-import { getGifs } from '../helpers/getGifs';
+import { GetClasHts } from '../helpers/GetClasHts';
 
-export const useFetchGifs = (category, sku) => {
+
+export const useGetClasHts = (idcliente) => {
 
     const [state, setState] = useState({
 
         data: [],
-        loading: true
+
     })
 
     useEffect(() => {
 
-        getGifs(category, sku)
+        GetClasHts(idcliente)
             .then(imgs => {
-                //console.log(imgs);
                 setState({
-                    data: imgs,
-                    loading: false
-                });
 
+                    data: imgs,
+
+                });
             })
 
+    }, [idcliente]);
 
-    }, [category]);
+    console.log("datos fetch", state)
 
     return state;
 
-}
+};

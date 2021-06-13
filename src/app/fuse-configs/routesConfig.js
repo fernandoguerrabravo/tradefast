@@ -5,6 +5,8 @@ import ResearchConfig from 'app/main/research/ResearchConfig';
 import htsTaxConfig from 'app/main/htsTax/htsTaxConfig';
 import RateConfig from 'app/main/RateCalculator/RateConfig';
 import ListResearchConfig from 'app/main/ListResearch/ListResearchConfig';
+import HtsTaxListConfig from 'app/main/HtsList/HtsTaxListConfig';
+
 
 
 const routeConfigs = [
@@ -13,8 +15,9 @@ const routeConfigs = [
 	ResearchConfig,
 	htsTaxConfig,
 	RateConfig,
-	ListResearchConfig
-	
+	ListResearchConfig,
+	HtsTaxListConfig
+
 
 ];
 
