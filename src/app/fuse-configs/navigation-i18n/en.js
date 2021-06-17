@@ -9,8 +9,9 @@ const locale = {
 	CUSTOMS: 'Global Customs Clareance',
 	DUTIES: 'Tax Calculator',
 	CLASSIFICATIONS: 'Classifications Tools',
-	HTSSPECIAL : 'Special Services',
-	RATE: 'Shipping Calculator'
+	HTSSPECIAL: 'Special Services',
+	RATE: 'Shipping Calculator',
+	SHIPPINGQUOTATION: 'Shipping Quotation'
 
 };
 

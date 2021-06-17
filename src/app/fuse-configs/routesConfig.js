@@ -6,6 +6,7 @@ import htsTaxConfig from 'app/main/htsTax/htsTaxConfig';
 import RateConfig from 'app/main/RateCalculator/RateConfig';
 import ListResearchConfig from 'app/main/ListResearch/ListResearchConfig';
 import HtsTaxListConfig from 'app/main/HtsList/HtsTaxListConfig';
+import Door2doorConfig from 'app/main/door2door/Door2doorConfig';
 
 
 
@@ -16,7 +17,8 @@ const routeConfigs = [
 	htsTaxConfig,
 	RateConfig,
 	ListResearchConfig,
-	HtsTaxListConfig
+	HtsTaxListConfig,
+	Door2doorConfig
 
 
 ];

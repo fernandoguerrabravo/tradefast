@@ -24,6 +24,14 @@ const navigationConfig = [
 				url: '/dashboard'
 			},
 			{
+				id: 'shipping-component',
+				title: 'Shipping Quotation',
+				translate: 'SHIPPINGQUOTATION',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/door2door'
+			},
+			{
 				id: 'customs-component',
 				title: 'example',
 				translate: 'CUSTOMS',
