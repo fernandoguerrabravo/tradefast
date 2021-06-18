@@ -141,7 +141,6 @@ const DetailsPreview = ({ id }) => {
       <IfRejected state={state}>{error => `Something went wrong: ${error.message}`}</IfRejected>
       <IfFulfilled state={state}>
         {data => (
-
           <div>
             <Grid container spacing={3}>
               <Grid item xs={4}>
@@ -233,6 +232,16 @@ const DetailsPreview = ({ id }) => {
                       <Typography> {data.final_quotation.total_fob + data.final_quotation.total_tax + data.final_quotation.final_rate}</Typography>
                       <p></p>
                     </ListItem>
+                    <ListItem>
+                      <Typography color="secondary">Min Sell Price USD$: $95&nbsp;&nbsp;</Typography>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="secondary">Average Sell Price: USD$ 120 &nbsp;&nbsp;</Typography>
+                    </ListItem>
+                    <ListItem>
+                      <Typography color="secondary">Max Sell Price USD$: 150 &nbsp;&nbsp;</Typography>
+                    </ListItem>
+                    <p></p>
                   </List>
                 </Paper>
               </Grid>

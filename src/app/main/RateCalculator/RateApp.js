@@ -42,31 +42,25 @@ export default function RateApp() {
   // Creo el estado del detalles de la cotizacion que se eligira , para mostrarlo 
 
   const [quotation, setquotation] = useState({
-    
+
     id_details: '',
     hidden3: false
 
   });
 
- 
+
   return (
 
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}></Paper>
-        </Grid>
-        <Grid item xs={12}>
           <InfoRate setquotation={setquotation} />
         </Grid>
-        {quotation.hidden3 &&  <Grid item xs={12}> <Paper className={classes.paper}><InfoRateDetails id_details={quotation.id_details} /></Paper></Grid> }
+        {quotation.hidden3 && <Grid item xs={12}> <Paper className={classes.paper}><InfoRateDetails id_details={quotation.id_details} /></Paper></Grid>}
         <Grid item xs={12}>
-          <HtsRate />
         </Grid>
         <Grid item xs={12}>
-          {quotation.hidden3 && <MarketRate />}
         </Grid>
-
       </Grid>
     </div>
   );

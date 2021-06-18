@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export const SkuComponentList = ({ event }) => {
+export const BoxComponentList = ({ event }) => {
 
     const classes = useStyles();
 
@@ -50,29 +50,29 @@ export const SkuComponentList = ({ event }) => {
             <Table className={classes.table} aria-label="a dense table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>SKU Code</TableCell>
-                        <TableCell >Short Description</TableCell>
-                        <TableCell >Units</TableCell>
-                        <TableCell >SKU FOB USD</TableCell>
-                        <TableCell >HTS (8 Digits)</TableCell>
-                        <TableCell >General Duties</TableCell>
-                        <TableCell >Total FOB (USD)</TableCell>
-                        <TableCell >Estimated Duties</TableCell>
+                        <TableCell>Qty</TableCell>
+                        <TableCell >Weight (Kg)</TableCell>
+                        <TableCell >Width (cm)</TableCell>
+                        <TableCell >Length (cm)</TableCell>
+                        <TableCell >Height (cm)</TableCell>
+                        <TableCell >Total Weight (Kg)</TableCell>
+                        <TableCell >Total Volume (M3)</TableCell>
+                        <TableCell >Actions</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {event.map((row) => (
-                        <TableRow key={row.idlista}>
+                        <TableRow key={row.id}>
                             <TableCell component="th" scope="row">
-                                {row.sku}
+                                {row.qtybox}
                             </TableCell>
-                            <TableCell>{row.shortdescription}</TableCell>
-                            <TableCell>{row.qty}</TableCell>
-                            <TableCell>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(row.fob)}</TableCell>
-                            <TableCell>{row.hts8}</TableCell>
-                            <TableCell>{row.duties}</TableCell>
-                            <TableCell>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(row.fob * row.qty)}</TableCell>
-                            <TableCell>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format((row.qty * row.duties * row.fob) / 100)}</TableCell>
+                            <TableCell>{row.weight}</TableCell>
+                            <TableCell>{row.width}</TableCell>
+                            <TableCell>{row.length}</TableCell>
+                            <TableCell>{row.height}</TableCell>
+                            <TableCell>{row.weightbox}</TableCell>
+                            <TableCell>{row.volbox}</TableCell>
+                            <TableCell>xxxxxx</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

@@ -3,16 +3,17 @@ const locale = {
 	EXAMPLE: 'Example',
 	DASHBOARD: 'Dashboard',
 	RESEARCHMARKET: 'Products Research',
-	HTS: 'Classifications and Duties',
+	HTS: 'Compliance Tools',
 	BONDS: 'Continuos Import Bond',
 	INSURANCE: 'Cargo Insurance',
-	CUSTOMS: 'Global Customs Clareance',
+	CUSTOMS: 'US Customs Clareance Tools',
 	DUTIES: 'Tax Calculator',
 	CLASSIFICATIONS: 'Classifications Tools',
 	HTSSPECIAL: 'Special Services',
-	RATE: 'Shipping Calculator',
-	SHIPPINGQUOTATION: 'Shipping Quotation'
-
+	RATE: 'Shipping Decision Tools',
+	SHIPPINGQUOTATION: 'Shipping Quotation',
+	TOOLSDECISIONS: 'Decision Tools',
+	BOOKING: 'Book Shipments Now'
 };
 
 export default locale;

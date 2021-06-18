@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 
 const lista = [];
 
-export default function SkuComponent({ setencabezado }) {
+export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
     const idcliente = "abcdef";
     const classes = useStyles();
@@ -103,7 +103,8 @@ export default function SkuComponent({ setencabezado }) {
         hts8: '',
         duties: '',
         htsdescription: '',
-        qty: ''
+        qty: '',
+        FTA: ''
 
     });
 
@@ -151,7 +152,8 @@ export default function SkuComponent({ setencabezado }) {
                     hts8: valores.hts8,
                     duties: valores.duties,
                     htsdescription: valores.htsdescription,
-                    qty: ''
+                    qty: '',
+                    FTA: valores.FTA
 
                 })
 
@@ -165,6 +167,7 @@ export default function SkuComponent({ setencabezado }) {
         if (skus.qty != '' && skus.sku != '') {
 
             lista.push(skus)
+            let nrosku = lista.length
             let sumadefob = 0;
             for (const sumafob of lista) {
 
@@ -174,8 +177,8 @@ export default function SkuComponent({ setencabezado }) {
             setarregloskus({
 
                 arreglosdelsku: lista,
-                totalsku: lista.length,
-                totalfob: sumadefob
+                totalfob: sumadefob,
+                totalsku: nrosku
 
             });
 
@@ -183,6 +186,18 @@ export default function SkuComponent({ setencabezado }) {
                 qty: '',
                 sku: '',
             })
+
+            setdatosfinales((datosfinales) => {
+
+                return {
+                    ...datosfinales,
+                    skus: arregloskus
+                }
+
+            });
+
+
+
 
         } else {
 
@@ -218,6 +233,9 @@ export default function SkuComponent({ setencabezado }) {
                         SKU to Export
                     </Typography>
                     <Divider />
+                    <Typography className={classes.titles} style={{ color: green[600] }} variant="caption" gutterBottom>
+                        (1) In this section you must enter information for each Item identified by its SKU
+                    </Typography>
                 </Grid>
                 <Grid item xs={4}>
                     <Paper className={classes.paper}>
@@ -309,7 +327,7 @@ export default function SkuComponent({ setencabezado }) {
                                     </TableRow>
                                     <TableRow >
                                         <TableCell> <strong>FTA (USA)</strong></TableCell>
-                                        <TableCell style={{ color: blue[800] }}>{skus.duties}</TableCell>
+                                        <TableCell style={{ color: blue[800] }}>{skus.FTA}</TableCell>
                                     </TableRow>
                                     <TableRow >
                                         <TableCell> <strong>CBP Description</strong></TableCell>

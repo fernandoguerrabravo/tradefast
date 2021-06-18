@@ -24,61 +24,21 @@ const navigationConfig = [
 				url: '/dashboard'
 			},
 			{
-				id: 'shipping-component',
-				title: 'Shipping Quotation',
-				translate: 'SHIPPINGQUOTATION',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/door2door'
-			},
-			{
-				id: 'customs-component',
-				title: 'example',
-				translate: 'CUSTOMS',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/hts'
-			},
-			/*	{
-					id: 'example-component',
-					title: 'example',
-					translate: 'EXAMPLE',
-					type: 'item',
-					icon: 'whatshot',
-					url: '/example'
-				}, */
-			{
-				id: 'rate-component',
-				title: 'rate',
-				translate: 'RATE',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/rate'
-			},
-			{
-				id: 'research-component',
-				title: 'research',
-				translate: 'RESEARCHMARKET',
-				type: 'item',
-				icon: 'timeline',
-				url: '/research'
-			},
-			{
-				id: 'listresearch-component',
-				title: 'listresearch',
-				translate: 'LISTRESEARCH',
-				type: 'item',
-				icon: 'timeline',
-				url: '/listresearch'
-			},
-			{
 				id: 'hts-component',
 				title: 'example',
-				translate: 'HTS',
+				translate: 'TOOLSDECISIONS',
 				type: 'collapse',
 				icon: 'whatshot',
 				children: [
 
+					{
+						id: 'listresearch-component',
+						title: 'listresearch',
+						translate: 'RESEARCHMARKET',
+						type: 'item',
+						icon: 'timeline',
+						url: '/listresearch'
+					},
 					{
 						id: 'hts-component',
 						title: 'classifications',
@@ -88,12 +48,56 @@ const navigationConfig = [
 						url: '/htstaxlist'
 					},
 					{
+						id: 'shipping-component',
+						title: 'Shipping Quotation',
+						translate: 'SHIPPINGQUOTATION',
+						type: 'item',
+						icon: 'whatshot',
+						url: '/door2door'
+					},
+					{
+						id: 'rate-component',
+						title: 'rate',
+						translate: 'RATE',
+						type: 'item',
+						icon: 'whatshot',
+						url: '/rate'
+					},
+				]
+			},
+			{
+				id: 'booking-component',
+				title: 'example',
+				translate: 'BOOKING',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/'
+			},
+
+			{
+				id: 'customs-component',
+				title: 'example',
+				translate: 'CUSTOMS',
+				type: 'item',
+				icon: 'whatshot',
+				url: '/hts'
+			},
+			{
+				id: 'hts-component',
+				title: 'example',
+				translate: 'HTS',
+				type: 'collapse',
+				icon: 'whatshot',
+				children: [
+
+
+					{
 						id: 'special-component',
 						title: 'htsspecial',
 						translate: 'HTSSPECIAL',
 						type: 'item',
 						icon: 'timeline',
-						url: '/research'
+						url: '/'
 					}
 
 				]
@@ -105,7 +109,7 @@ const navigationConfig = [
 				translate: 'BONDS',
 				type: 'item',
 				icon: 'whatshot',
-				url: '/hts'
+				url: '/'
 			},
 			{
 				id: 'insurance-component',
@@ -113,7 +117,7 @@ const navigationConfig = [
 				translate: 'INSURANCE',
 				type: 'item',
 				icon: 'whatshot',
-				url: '/hts'
+				url: '/'
 			}
 		]
 	}
