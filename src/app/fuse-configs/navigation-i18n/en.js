@@ -13,7 +13,9 @@ const locale = {
 	RATE: 'Shipping Decision Tools',
 	SHIPPINGQUOTATION: 'Shipping Quotation',
 	TOOLSDECISIONS: 'Decision Tools',
-	BOOKING: 'Book Shipments Now'
+	BOOKING: 'Book Shipments Now',
+	SETTINGS: 'Settings',
+	SKUSTORE: 'Products'
 };
 
 export default locale;

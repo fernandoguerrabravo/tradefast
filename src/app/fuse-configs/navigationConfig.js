@@ -24,7 +24,7 @@ const navigationConfig = [
 				url: '/dashboard'
 			},
 			{
-				id: 'hts-component',
+				id: 'tools-component',
 				title: 'example',
 				translate: 'TOOLSDECISIONS',
 				type: 'collapse',
@@ -118,8 +118,26 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'whatshot',
 				url: '/'
+			},
+			{
+				id: 'settings-component',
+				title: 'settings',
+				translate: 'SETTINGS',
+				type: 'collapse',
+				icon: 'settings',
+				children: [
+					{
+						id: 'skustore-component',
+						title: 'skustore',
+						translate: 'SKUSTORE',
+						type: 'item',
+						icon: 'widgets',
+						url: '/skulist'
+					}
+				]
 			}
 		]
+
 	}
 ];
 
