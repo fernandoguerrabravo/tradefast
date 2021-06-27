@@ -42,10 +42,10 @@ export const SkuListApp = () => {
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <SkuListTools ></SkuListTools>
+                    <SkuListTools />
                 </Grid>
                 <Grid item xs={12}>
-                    <SkuListTable></SkuListTable>
+                    <SkuListTable />
                 </Grid>
             </Grid>
         </>

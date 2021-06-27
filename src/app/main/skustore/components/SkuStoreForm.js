@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,8 +14,12 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from 'react-select';
 import { UseGetCountry } from '../hooks/useGetCountry';
 import { SaveSku } from '../helpers/SaveSku';
-//import { useGetSkuHts } from '../hooks/useGetSkuHts';
 import swal from 'sweetalert';
+import { Divider, Grid } from '@material-ui/core';
+import { SkuStoreFiles } from './SkuStoreFiles';
+import SaveIcon from '@material-ui/icons/Save';
+
+
 
 const styles = (theme) => ({
 
@@ -37,14 +41,20 @@ const styles2 = makeStyles((theme) => ({
 
     formControl2: {
 
-        minWidth: 280,
+        minWidth: 320,
         padding: theme.spacing(1)
     },
 
     formControl1: {
 
-        minWidth: 500,
+        minWidth: 800,
         padding: theme.spacing(1)
+    },
+    button: {
+
+        leftmargin: 200,
+        padding: theme.spacing(1),
+        textAlign: 'right',
     },
 
 
@@ -105,10 +115,7 @@ export default function SkuStoreForm() {
 
         }
 
-
-
         //history.push('/htstaxlist')
-
 
     };
 
@@ -145,6 +152,17 @@ export default function SkuStoreForm() {
     return (
 
         <div>
+            <Grid container>
+                <Grid item>
+                    <Typography className={classes2.formControl2} style={{ color: '#F5981E' }} gutterBottom>
+                        <strong>Basic Information</strong>
+                    </Typography>
+                </Grid>
+                <Grid style={{ flexGrow: 1, textAlign: 'right' }} item>
+                    <Button onClick={Save} startIcon={<SaveIcon />} size="small" variant="contained" color="primary">Save Product</Button>
+                </Grid>
+            </Grid>
+            <Divider></Divider><br></br>
             <FormControl className={classes2.formControl2} variant="outlined">
                 <TextField
                     id="sku"
@@ -156,8 +174,8 @@ export default function SkuStoreForm() {
                     value={guardarsku.sku}
                     onChange={handlingChange}
                 />
-                <Typography style={{ color: '#F5981E' }} variant="caption" gutterBottom>
-                    <strong>Input Your SKU Code</strong>
+                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                    Input Your SKU Code
                 </Typography>
             </FormControl>
             <FormControl className={classes2.formControl2} variant="outlined">
@@ -171,10 +189,10 @@ export default function SkuStoreForm() {
                     value={guardarsku.upc_number}
                     onChange={handlingChange}
                 />
-                <Typography style={{ color: '#F5981E' }} variant="caption" gutterBottom>
-                    <strong>Input UPC Code (Optional)</strong>
+                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                    Input UPC Code (Optional)
                 </Typography>
-            </FormControl>
+            </FormControl><br></br>
             <FormControl className={classes2.formControl2} variant="outlined">
 
                 <TextField
@@ -190,8 +208,23 @@ export default function SkuStoreForm() {
                         startAdornment: <InputAdornment position="start">US$</InputAdornment>,
                     }}
                 />
-                <Typography style={{ color: '#F5981E' }} variant="caption" gutterBottom>
-                    <strong>Unit FOB Value</strong>
+                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                    Unit FOB Value
+                </Typography>
+            </FormControl>
+            <FormControl className={classes2.formControl2} variant="outlined">
+                <TextField
+                    id="shortdescription"
+                    name="shortdescription"
+                    label="Display Name (Short Description)"
+                    variant="outlined"
+                    color="primary"
+                    type="text"
+                    value={guardarsku.shortdescription}
+                    onChange={handlingChange}
+                />
+                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                    Input the Best Description
                 </Typography>
             </FormControl>
             <FormControl className={classes2.formControl2} variant="outlined">
@@ -202,26 +235,15 @@ export default function SkuStoreForm() {
                     options={newJson1}
                     onChange={SelectChange}
                 />
-                <Typography style={{ color: '#F5981E' }} variant="caption" gutterBottom>
-                    <strong>Select Country Origin</strong>
+                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                    Select Country Origin
                 </Typography>
             </FormControl>
-            <FormControl className={classes2.formControl1} variant="outlined">
-                <TextField
-                    id="shortdescription"
-                    name="shortdescription"
-                    //label="Display Name (Short Description)"
-                    variant="outlined"
-                    color="primary"
-                    type="text"
-                    value={guardarsku.shortdescription}
-                    onChange={handlingChange}
-                />
-                <Typography style={{ color: '#F5981E' }} variant="caption" gutterBottom>
-                    <strong>Input the Best Description</strong>
-                </Typography>
-            </FormControl>
-            <Button onClick={Save}>GUARDAR </Button>
+            <Divider></Divider><br></br>
+            <Grid>
+                <SkuStoreFiles skus={guardarsku.sku} idcliente={guardarsku.id_cliente}></SkuStoreFiles>
+            </Grid>
+
         </div >
     );
 }
