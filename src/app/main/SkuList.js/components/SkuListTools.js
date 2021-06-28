@@ -18,9 +18,7 @@ export const SkuListTools = () => {
                 container
                 direction="row"
                 justify="flex-end"
-                alignItems="right"
                 spacing={2}
-
             >
                 <Grid item>
                     <Link

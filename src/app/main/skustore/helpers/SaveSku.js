@@ -6,8 +6,9 @@ export const SaveSku = async (event) => {
     myHeaders.append("Content-Type", "application/json");
 
     const fecha = new Date();
-    const fecha1 = fecha.toDateString()
-    var raw = JSON.stringify(event)
+    const fecha1 = fecha.toDateString();
+    event.fecha_creacion = fecha1;
+    var raw = JSON.stringify(event);
 
 
     var requestOptions = {

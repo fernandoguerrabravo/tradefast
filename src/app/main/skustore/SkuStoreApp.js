@@ -43,14 +43,14 @@ export const SkuStoreApp = () => {
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-
+                    <SkuStoreTools></SkuStoreTools>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={8}>
                     <Paper className={classes.paper}>
                         <SkuStoreForm />
                     </Paper>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={4}>
                     <Paper className={classes.paper}>
 
                     </Paper>

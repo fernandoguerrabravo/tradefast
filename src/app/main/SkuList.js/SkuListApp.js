@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import SkuListTable from './components/SkuListTable'
-import { SkuListTools } from './components/SkuListTools';
+import PreviewCard from './components/SkuListDetails';
 
 
 export const SkuListApp = () => {
@@ -28,12 +28,11 @@ export const SkuListApp = () => {
 
     const classes = useStyles();
 
-    const [categories, setCategories] = useState(
+    const [skudetails, setskudetails] = useState(
 
         {
-            sku: '',
-            keyword: '',
-            hidden: false
+            skunumber: '',
+            hidden: true
 
         }
     );
@@ -42,10 +41,10 @@ export const SkuListApp = () => {
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    <SkuListTools />
+                    {skudetails.hidden ? <SkuListTable setskudetails={setskudetails} /> : null}
                 </Grid>
-                <Grid item xs={12}>
-                    <SkuListTable />
+                <Grid item xs={6}>
+                    {skudetails.hidden ? null : <PreviewCard event={skudetails} />}
                 </Grid>
             </Grid>
         </>

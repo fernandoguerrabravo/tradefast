@@ -18,7 +18,6 @@ export const SkuStoreTools = () => {
                 container
                 direction="row"
                 justify="flex-end"
-                alignItems="right"
                 spacing={2}
 
             >

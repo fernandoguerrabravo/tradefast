@@ -18,7 +18,8 @@ import swal from 'sweetalert';
 import { Divider, Grid } from '@material-ui/core';
 import { SkuStoreFiles } from './SkuStoreFiles';
 import SaveIcon from '@material-ui/icons/Save';
-
+import Swal from 'sweetalert2';
+import Paper from '@material-ui/core/Paper';
 
 
 const styles = (theme) => ({
@@ -41,20 +42,27 @@ const styles2 = makeStyles((theme) => ({
 
     formControl2: {
 
-        minWidth: 320,
+        minWidth: 200,
         padding: theme.spacing(1)
     },
 
     formControl1: {
 
-        minWidth: 800,
-        padding: theme.spacing(1)
+        minWidth: 100,
+        padding: theme.spacing(2)
     },
     button: {
 
         leftmargin: 200,
         padding: theme.spacing(1),
         textAlign: 'right',
+    },
+
+    paper: {
+
+        padding: theme.spacing(1),
+        color: theme.palette.text.secondary,
+
     },
 
 
@@ -66,7 +74,7 @@ export default function SkuStoreForm() {
     const classes2 = styles2();
     const [guardarsku, setguardarsku] = useState({
 
-        id_cliente: 'abcedef',
+        id_cliente: 'abcdef',
         sku: '',
         shortdescription: '',
         fob: '',
@@ -99,25 +107,37 @@ export default function SkuStoreForm() {
 
     }
 
-    const Save = () => {
+    const Save = async () => {
 
         if (guardarsku.sku != '' && guardarsku.shortdescription != '' && guardarsku.country_origin != '') {
 
             SaveSku(guardarsku)
+                .then(await Swal.fire({
+
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+
+                })).then((result) => { window.location.replace('/skulist') })
 
         } else {
 
-            swal({
+            Swal.fire({
+
                 title: "oops!",
-                text: "Insert a valid Information!!",
+                text: "Please complete all fields!!",
                 icon: "warning",
+
             });
 
         }
 
+
         //history.push('/htstaxlist')
 
-    };
+    }
 
     const country = UseGetCountry();
     const countryfinal = country.data;
@@ -126,7 +146,7 @@ export default function SkuStoreForm() {
     for (const pais of countryfinal) {
         {
             newJson1.push({
-                value: pais.Code, label: pais.Name
+                value: pais.Name, label: pais.Name
             });
         }
     }
@@ -152,96 +172,105 @@ export default function SkuStoreForm() {
     return (
 
         <div>
+
             <Grid container>
-                <Grid item>
-                    <Typography className={classes2.formControl2} style={{ color: '#F5981E' }} gutterBottom>
+
+                <Grid item xs={8}>
+                    <Typography className={classes2.formControl1} style={{ color: '#F5981E' }} gutterBottom>
                         <strong>Basic Information</strong>
                     </Typography>
-                </Grid>
-                <Grid style={{ flexGrow: 1, textAlign: 'right' }} item>
-                    <Button onClick={Save} startIcon={<SaveIcon />} size="small" variant="contained" color="primary">Save Product</Button>
-                </Grid>
-            </Grid>
-            <Divider></Divider><br></br>
-            <FormControl className={classes2.formControl2} variant="outlined">
-                <TextField
-                    id="sku"
-                    name="sku"
-                    label="Product Code (SKU)"
-                    variant="outlined"
-                    color="primary"
-                    type="text"
-                    value={guardarsku.sku}
-                    onChange={handlingChange}
-                />
-                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
-                    Input Your SKU Code
-                </Typography>
-            </FormControl>
-            <FormControl className={classes2.formControl2} variant="outlined">
-                <TextField
-                    id="upc_number"
-                    name="upc_number"
-                    label="UPC Number"
-                    variant="outlined"
-                    color="primary"
-                    type="number"
-                    value={guardarsku.upc_number}
-                    onChange={handlingChange}
-                />
-                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
-                    Input UPC Code (Optional)
-                </Typography>
-            </FormControl><br></br>
-            <FormControl className={classes2.formControl2} variant="outlined">
 
-                <TextField
-                    id="fob"
-                    name="fob"
-                    label="FOB Value"
-                    variant="outlined"
-                    color="primary"
-                    type="number"
-                    value={guardarsku.fob}
-                    onChange={handlingChange}
-                    InputProps={{
-                        startAdornment: <InputAdornment position="start">US$</InputAdornment>,
-                    }}
-                />
-                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
-                    Unit FOB Value
-                </Typography>
-            </FormControl>
-            <FormControl className={classes2.formControl2} variant="outlined">
-                <TextField
-                    id="shortdescription"
-                    name="shortdescription"
-                    label="Display Name (Short Description)"
-                    variant="outlined"
-                    color="primary"
-                    type="text"
-                    value={guardarsku.shortdescription}
-                    onChange={handlingChange}
-                />
-                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
-                    Input the Best Description
-                </Typography>
-            </FormControl>
-            <FormControl className={classes2.formControl2} variant="outlined">
-                <InputLabel shrink><strong>Country Origin</strong></InputLabel>
-                <Select
-                    id="country_origin"
-                    name="country_origin"
-                    options={newJson1}
-                    onChange={SelectChange}
-                />
-                <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
-                    Select Country Origin
-                </Typography>
-            </FormControl>
-            <Divider></Divider><br></br>
-            <Grid>
-                <SkuStoreFiles skus={guardarsku.sku} idcliente={guardarsku.id_cliente}></SkuStoreFiles>
+                </Grid>
+                <Grid item xs={4}>
+                    <Typography style={{ textAlign: 'right' }} className={classes2.formControl1} gutterBottom>
+                        <Button onClick={Save} startIcon={<SaveIcon />} size="small" variant="contained" color="primary">Save Product</Button>
+                    </Typography>
+
+                </Grid>
+
+                <Grid item xs={12}>
+                    <Divider></Divider><br></br>
+                    <FormControl className={classes2.formControl2} variant="outlined">
+                        <TextField
+                            id="sku"
+                            name="sku"
+                            label="Product Code (SKU)"
+                            variant="outlined"
+                            color="primary"
+                            type="text"
+                            value={guardarsku.sku}
+                            onChange={handlingChange}
+                        />
+                        <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                            Input Your SKU Code
+                        </Typography>
+                    </FormControl>
+                    <FormControl className={classes2.formControl2} variant="outlined">
+                        <TextField
+                            id="upc_number"
+                            name="upc_number"
+                            label="UPC Number"
+                            variant="outlined"
+                            color="primary"
+                            type="number"
+                            value={guardarsku.upc_number}
+                            onChange={handlingChange}
+                        />
+                        <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                            Input UPC Code (Optional)
+                        </Typography>
+                    </FormControl><br></br>
+                    <FormControl className={classes2.formControl2} variant="outlined">
+
+                        <TextField
+                            id="fob"
+                            name="fob"
+                            label="FOB Value"
+                            variant="outlined"
+                            color="primary"
+                            type="number"
+                            value={guardarsku.fob}
+                            onChange={handlingChange}
+                            InputProps={{
+                                startAdornment: <InputAdornment position="start">US$</InputAdornment>,
+                            }}
+                        />
+                        <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                            Unit FOB Value
+                        </Typography>
+                    </FormControl>
+                    <FormControl className={classes2.formControl2} variant="outlined">
+                        <TextField
+                            id="shortdescription"
+                            name="shortdescription"
+                            label="Short Description"
+                            variant="outlined"
+                            color="primary"
+                            type="text"
+                            value={guardarsku.shortdescription}
+                            onChange={handlingChange}
+                        />
+                        <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                            Input the Best Description
+                        </Typography>
+                    </FormControl>
+                    <FormControl className={classes2.formControl2} variant="outlined">
+                        <InputLabel shrink><strong>Country Origin</strong></InputLabel>
+                        <Select
+                            id="country_origin"
+                            name="country_origin"
+                            options={newJson1}
+                            onChange={SelectChange}
+                        />
+                        <Typography style={{ color: blue[800] }} variant="caption" gutterBottom>
+                            Select Country Origin
+                        </Typography>
+                    </FormControl>
+                </Grid><br></br>
+                <Grid item xs={12}>
+                    <Divider></Divider><br></br>
+                    <SkuStoreFiles skus={guardarsku.sku} idcliente={guardarsku.id_cliente}></SkuStoreFiles>
+                </Grid>
             </Grid>
 
         </div >

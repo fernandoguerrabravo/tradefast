@@ -22,11 +22,6 @@ const SkuList = () => {
                     <h1>Products</h1>
                 </div>
             }
-            contentToolbar={
-                <div className="p-24">
-                    <h4>Products List</h4>
-                </div>
-            }
             content={
                 <div className="p-24">
                     <SkuListContent />

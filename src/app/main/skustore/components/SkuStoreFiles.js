@@ -193,6 +193,13 @@ export const SkuStoreFiles = ({ skus, idcliente }) => {
             }
             setSubmitting(false)
             event.target.reset()
+        } else {
+
+            Swal.fire({
+                title: 'Opps!!',
+                text: 'Please enter a valid SKU',
+                icon: 'Warning'
+            })
         }
     }
 
@@ -212,38 +219,38 @@ export const SkuStoreFiles = ({ skus, idcliente }) => {
     return (
 
         <form onSubmit={handleFilesSubmit}>
+
             <Typography className={classes2.formControl2} style={{ color: '#F5981E' }} gutterBottom>
                 <strong>Upload Documents and Images</strong>&nbsp;&nbsp;
                 <Tooltip title="you can later upload documents or images of your product."><InfoIcon fontSize="small" color="action" /></Tooltip>
             </Typography>
-            <Grid container>
-                <Grid item>
-                    <FormControl className={classes2.formControl1}>
-                        <TextField
-                            id="file1"
-                            name="file1"
-                            type="file"
-                            onChange={getCurrentFiles}
-                            variant="outlined"
-                            className={classes2.input}
-                            multiple
-                        />
-                        <label htmlFor="file1">
-                            <Button startIcon={<AttachmentIcon />} size="large" variant="outlined" style={{ color: red[500] }} component="span">
-                                Select File ...
-                            </Button>
-                        </label>
-                    </FormControl>
-                </Grid>
-                <Grid style={{ flexGrow: 1, textAlign: 'right' }} item>
-                    <FormControl className={classes2.formControl2}>
-                        <Button startIcon={<PublishIcon />} size="large" variant="outlined" color='primary' type="submit">Upload List</Button>
-                    </FormControl>
-                </Grid>
-            </Grid>
+            <FormControl className={classes2.formControl1}>
+                <TextField
+                    id="file1"
+                    name="file1"
+                    type="file"
+                    onChange={getCurrentFiles}
+                    variant="outlined"
+                    className={classes2.input}
+                    multiple
+                />
+                <label htmlFor="file1">
+                    <Button startIcon={<AttachmentIcon />} size="large" variant="outlined" style={{ color: red[500] }} component="span">
+                        Select File ...
+                    </Button>
+                </label>
+            </FormControl>
+
+            {files.length > 0 ?
+
+                <FormControl className={classes2.formControl2}>
+                    <Button startIcon={<PublishIcon />} size="large" variant="outlined" color='primary' type="submit">Upload List</Button>
+                </FormControl> : null
+
+            }
 
             <Typography className={classes2.formControl2} style={{ color: blue[800] }} gutterBottom>
-                <h5>{files.length > 0 ? `Files in queue (${files.length}):` : 'No files in queue yet'}</h5>
+                {files.length > 0 ? `Files in queue (${files.length}):` : 'No files in queue yet'}
             </Typography>
             {
                 files.length > 0 ? <TableContainer className={classes2.formControl2}>
