@@ -7,7 +7,7 @@ import { Link, Redirect } from 'react-router-dom'
 
 
 
-export default function SkuListTable({ setskudetails }) {
+export default function SkuListTable({ setoculto, setskudetails }) {
 
     const idcliente = "abcdef"
     // const { data, loading } = useGetResearch(idcliente)
@@ -17,11 +17,17 @@ export default function SkuListTable({ setskudetails }) {
 
         setskudetails({
 
+            id_cliente: 'abcdef',
             skunumber: event,
+
+        });
+
+        setoculto({
+
             hidden: false
         })
 
-    }
+    };
 
 
     const { data } = useGetSku(idcliente)

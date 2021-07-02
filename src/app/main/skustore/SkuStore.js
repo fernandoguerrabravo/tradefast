@@ -22,11 +22,7 @@ const SkuStore = () => {
                     <h1>Products</h1>
                 </div>
             }
-            contentToolbar={
-                <div className="p-24">
-                    <h4>New Product</h4>
-                </div>
-            }
+
             content={
                 <div className="p-24">
                     <SkuStoreContent />

@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useState } from 'react'
 import MaterialTable from 'material-table';
 import { makeStyles } from '@material-ui/core/styles';
 import { useFetchGifs } from '../hooks/useFetchGifs';
@@ -8,31 +8,46 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { star } from '../hooks/star';
 import CustomizedDialogs from '../hooks/dialogo';
+import SaveIcon from '@material-ui/icons/Save';
+import { blue, red } from '@material-ui/core/colors';
 
+const useStyles = makeStyles((theme) => ({
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: 750,
+    root: {
+
+        flexGrow: 1,
     },
+
+    table: {
+
+        minWidth: 750,
+        padding: '2px 4px',
+    },
+
     centrar: {
 
         textAlign: 'center',
         direction: "row",
         justify: "center",
-        alignItems: "center"
+        alignItems: "center",
+        padding: theme.spacing(6),
     }
-});
 
-const reviews = (info) => {
+
+}));
+
+
+const reviews = (info, info2) => {
 
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                {info} <br></br>
-
+                Total Reviews: {info2} <br></br>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
+                {info}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {star(info)}
             </div>
 
@@ -52,13 +67,13 @@ const link = (asin) => {
     )
 }
 
-export const GiftGrid2 = ({ category, sku }) => {
+export const GiftGrid2 = ({ setCategories, category }) => {
 
-    const { data, loading } = useFetchGifs(category, sku)
+    const { data, loading } = useFetchGifs(category)
     //{loading && <p>Loading Results...</p>}
     const classes = useStyles();
 
-    console.log(category)
+    //console.log(category)
 
     const columnas = [
 
@@ -67,7 +82,7 @@ export const GiftGrid2 = ({ category, sku }) => {
             field: 'url',
             render: rowData =>
 
-                <img src={rowData.url} style={{ width: 150, borderRadius: '50%' }} />
+                <img src={rowData.url} style={{ width: 80 }} />
 
         },
 
@@ -103,7 +118,7 @@ export const GiftGrid2 = ({ category, sku }) => {
             field: 'reviews',
             render: rowData =>
 
-                reviews(rowData.reviews)
+                reviews(rowData.reviews, rowData.total_reviews)
 
         },
 
@@ -114,21 +129,37 @@ export const GiftGrid2 = ({ category, sku }) => {
             <br></br>
             <br></br>
             <br></br>
-            { loading ? <Grid className={classes.centrar} item xs={12}><CircularProgress color="primary" size={60} /></Grid> :
+            {loading ? <Grid className={classes.centrar} item xs={12}><CircularProgress color="primary" size={60} /></Grid> :
                 <>
-                    <Grid container
-                        direction="row"
-                        justify="center"
-                        alignItems="center" item xs={12}><Button variant="contained" color="primary">Save Your Search</Button>
-                    </Grid>
+
                     <Grid className={classes.centrar} item xs={12}>
                         <MaterialTable
-
                             title=""
                             columns={columnas}
                             data={data}
-                        >
+                            options={{
+                                selection: true
+                            }}
+                            //onSelectionChange={(event) => { event ? console.log(event[0]?.id) : null }}
+                            actions={[
+                                {
+                                    tooltip: 'Save Selected Products',
+                                    icon: () => <SaveIcon color="inherit" style={{ fontSize: 40 }} />,
+                                    onClick: (evt, data) =>
 
+                                        setCategories(
+
+                                            {
+                                                keyword: '',
+                                                hidden: false,
+                                                hidden1: true,
+                                                hidden2: false,
+                                                selected: data,
+                                            }
+                                        )
+                                }
+                            ]}
+                        >
                         </MaterialTable>
                     </Grid>
                 </>

@@ -1,46 +1,33 @@
 import React, { useState } from 'react';
-import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
-import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
 import { useContainedCardHeaderStyles } from '@mui-treasury/styles/cardHeader/contained';
 import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
 import { useFadedShadowStyles } from '@mui-treasury/styles/shadow/faded';
 import { useGetSkuDetails } from '../hooks/useGetSkuDetails';
-import { IfFulfilled, IfPending, IfRejected, PromiseFn, useAsync } from 'react-async';
+import { Typography } from '@material-ui/core';
+import { green, red, blue } from '@material-ui/core/colors';
 
+const useStyles = makeStyles((theme) => ({
 
+    type: {
 
-const useStyles = makeStyles(({ spacing }) => ({
+        padding: theme.spacing(1),
+        color: theme.palette.text.secondary,
 
-    card: {
-
-        marginTop: 40,
-        borderRadius: spacing(4),
-        transition: '0.3s',
-        width: '100%',
-        overflow: 'initial',
-        background: '#ffffff',
     },
-    content: {
-        paddingTop: 0,
-        textAlign: 'left',
-        overflowX: 'auto',
-        '& table': {
-            marginBottom: 0,
-        }
-    },
+
+
 }));
 
 // Funcion para renderizar mis detalles 
 
 export default function PreviewCard({ event }) {
+
 
     const info = useGetSkuDetails(event.skunumber)
     const infofinal = info.data;
@@ -51,49 +38,62 @@ export default function PreviewCard({ event }) {
 
     return (
 
-        <Card className={cx(classes.card, cardShadowStyles.root)}>
-
-            <CardHeader
-                className={cardHeaderShadowStyles.root}
-                classes={cardHeaderStyles}
-                title={'SKU Code : ' + infofinal.sku}
-                subheader={infofinal.shortdescription}
-            />
-
-            <CardContent className={classes.content}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Details</TableCell>
-                            <TableCell align="right"></TableCell>
-
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        <TableRow>
-                            <TableCell>FOB</TableCell>
-                            <TableCell>US$ {infofinal.fob}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Country Origin</TableCell>
-                            <TableCell>{infofinal.country_origin}</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>HTS</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>General Duties</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>FTA</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
-            </CardContent>
-        </Card>
+        <div>
+            <Typography variant="h5" component="h5" style={{ color: blue[900] }} className={classes.type}>Product Details</Typography>
+            <br></br>
+            <Table className={classes.type}>
+                <TableBody>
+                    <TableRow>
+                        <TableCell><strong>SKU Code</strong></TableCell>
+                        <TableCell><strong>{infofinal.sku}</strong></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Short Description</strong></TableCell>
+                        <TableCell><strong>{infofinal.shortdescription}</strong></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>FOB</strong></TableCell>
+                        <TableCell><strong> {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(infofinal.fob)}</strong></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Country Origin</strong></TableCell>
+                        <TableCell><strong>{infofinal.country_origin}</strong></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>HTS</strong></TableCell>
+                        <TableCell><strong>{infofinal.hts8}</strong></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>General Duties</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Others Duties</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>CBP Description</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Categories</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Min Sell Price</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Average Sell Price</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell><strong>Max Sell Price</strong></TableCell>
+                        <TableCell></TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
+        </div>
     );
 };
 

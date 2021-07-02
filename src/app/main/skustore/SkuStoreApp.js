@@ -52,12 +52,7 @@ export const SkuStoreApp = () => {
                 </Grid>
                 <Grid item xs={4}>
                     <Paper className={classes.paper}>
-
-                    </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                    <Paper className={classes.paper}>
-
+                        Instructions
                     </Paper>
                 </Grid>
             </Grid>

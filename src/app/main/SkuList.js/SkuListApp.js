@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-//import {  } from './components/'
-//import {  } from './components/'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import SkuListTable from './components/SkuListTable'
 import PreviewCard from './components/SkuListDetails';
+import { SkuStoreFiles } from '../skustore/components/SkuStoreFiles';
+import { SkuListTools } from './components/SkuListTools';
 
 
 export const SkuListApp = () => {
@@ -32,19 +32,32 @@ export const SkuListApp = () => {
 
         {
             skunumber: '',
-            hidden: true
+            id_cliente: 'abcdef'
 
         }
     );
+
+    const [oculto, setoculto] = useState(
+
+        {
+            hidden: true,
+        }
+    )
 
     return (
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
-                    {skudetails.hidden ? <SkuListTable setskudetails={setskudetails} /> : null}
+                    {oculto.hidden ? null : <SkuListTools setoculto={setoculto} />}
                 </Grid>
-                <Grid item xs={6}>
-                    {skudetails.hidden ? null : <PreviewCard event={skudetails} />}
+                <Grid item xs={12}>
+                    {oculto.hidden ? <SkuListTable setoculto={setoculto} setskudetails={setskudetails} /> : null}
+                </Grid>
+                <Grid item xs={8}>
+                    {oculto.hidden ? null : <Paper className={classes.paper}><PreviewCard event={skudetails} /></Paper>}
+                </Grid>
+                <Grid item xs={12}>
+                    {oculto.hidden ? null : <Paper className={classes.paper}><SkuStoreFiles skus={skudetails.skunumber} idcliente={skudetails.id_cliente}></SkuStoreFiles></Paper>}
                 </Grid>
             </Grid>
         </>

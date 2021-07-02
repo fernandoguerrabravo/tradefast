@@ -73,7 +73,7 @@ export default function CustomizedDialogs(codigo) {
         }
      ); */
 
-    console.log(state.cod);
+    //console.log(state.cod);
 
     //Funcion aque va a rescatar la informacion de la API 
     const getDetails = async () => {
@@ -97,14 +97,14 @@ export default function CustomizedDialogs(codigo) {
             method: 'POST',
             headers: myHeaders,
             body: raw,
-           
+
         };
 
         const url = `https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/getdetails`;
         const resp = await fetch(url, requestOptions);
         const detail = await resp.json();
         setstate(detail)
-        console.log("perro:", detail)
+        //console.log("perro:", detail)
 
     };
 
@@ -136,7 +136,7 @@ export default function CustomizedDialogs(codigo) {
                         <DialogActions>
                             <Button autoFocus onClick={handleClose} color="primary">
                                 Save changes
-                        </Button>
+                            </Button>
                         </DialogActions>
                     </Dialog>
                 </>

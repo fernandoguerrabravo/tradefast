@@ -5,10 +5,14 @@ import { Button, Grid } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import RefreshOutlinedIcon from '@material-ui/icons/RefreshOutlined';
 
-export const SkuListTools = () => {
+export const SkuListTools = ({ setoculto }) => {
 
-    const search = () => {
+    const back = () => {
 
+        setoculto({
+
+            hidden: true
+        })
     }
 
     return (
@@ -21,12 +25,9 @@ export const SkuListTools = () => {
                 spacing={2}
             >
                 <Grid item>
-                    <Link
-                        role="button"
-                        to="/skustore"
-                    >
-                        <Button variant="contained" color="secondary">+ New Product</Button>
-                    </Link>
+
+                    <Button onClick={back} variant="contained" color="secondary">+ Back to List</Button>
+
                 </Grid>
             </Grid>
         </>

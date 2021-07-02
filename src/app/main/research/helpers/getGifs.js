@@ -1,7 +1,7 @@
 import { PostResearch } from "./PostResearch";
 
 
-export const getGifs = async (category, sku) => {
+export const getGifs = async (category) => {
 
     const idcliente = "abcdef";
     const myHeaders = new Headers();
@@ -11,10 +11,11 @@ export const getGifs = async (category, sku) => {
 
         "category": category,
         "id_cliente": idcliente,
-        "sku": sku
+        //"sku": sku
     });
 
     var requestOptions = {
+
 
         method: 'POST',
         headers: myHeaders,
@@ -42,6 +43,8 @@ export const getGifs = async (category, sku) => {
        }
 
    }) */
+
+    console.log("respuesta API", data)
 
     return data;
 
