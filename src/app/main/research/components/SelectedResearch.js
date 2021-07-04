@@ -12,7 +12,9 @@ import FormControl from '@material-ui/core/FormControl';
 import { UseGetSku } from 'app/main/door2door/hooks/useGetSku';
 import { green, red, blue } from '@material-ui/core/colors';
 import ModalSku from 'app/main/door2door/components/ModalSku';
-
+import CardMedia from '@material-ui/core/CardMedia';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -45,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 300,
         padding: theme.spacing(1)
     },
+    media: {
 
-
-
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
 
 }));
 
@@ -166,6 +170,8 @@ export const SelectedResearch = ({ selected }) => {
 
         },
 
+
+
     ]
 
     const classes = useStyles();
@@ -205,12 +211,34 @@ export const SelectedResearch = ({ selected }) => {
 
 
                 <Grid item xs={6}>
+
                     <Paper className={classes.paper}>
-                        <FormControl variant="outlined" className={classes.formControl2}>
-                            <Typography className={classes.titles} variant="subtitle1" gutterBottom>
-                                <ModalSku></ModalSku>
-                            </Typography>
-                        </FormControl>
+
+                        <Grid container >
+
+                            <Grid item xs={3}>
+                                <CardMedia
+                                    className={classes.media}
+                                    image="https://fotos-ecl.s3.amazonaws.com/icons8-co%CC%81digo-de-barras-80.png"
+                                    title="Paella dish"
+                                />
+                            </Grid>
+
+                            <Grid item xs={3}>
+                                <FormControl variant="outlined" className={classes.formControl2}>
+                                    <Typography className={classes.titles} variant="subtitle1" gutterBottom>
+                                        <ModalSku></ModalSku>
+                                    </Typography>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={3}>
+                             
+                            </Grid>
+
+                        </Grid>
+
+
+
                         <FormControl variant="outlined" className={classes.formControl2}>
                             <Select
                                 options={newJson1}
