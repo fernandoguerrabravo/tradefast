@@ -4,7 +4,6 @@ import DashboardConfig from 'app/main/dashboard/DashboardConfig';
 import ResearchConfig from 'app/main/research/ResearchConfig';
 import htsTaxConfig from 'app/main/htsTax/htsTaxConfig';
 import RateConfig from 'app/main/RateCalculator/RateConfig';
-import ListResearchConfig from 'app/main/ListResearch/ListResearchConfig';
 import HtsTaxListConfig from 'app/main/HtsList/HtsTaxListConfig';
 import Door2doorConfig from 'app/main/door2door/Door2doorConfig';
 import SkuStoreConfig from 'app/main/skustore/SkuStoreConfig';
@@ -17,11 +16,11 @@ const routeConfigs = [
 	ResearchConfig,
 	htsTaxConfig,
 	RateConfig,
-	ListResearchConfig,
 	HtsTaxListConfig,
 	Door2doorConfig,
 	SkuStoreConfig,
-	SkuListConfig
+	SkuListConfig,
+	ResearchConfig
 
 
 ];

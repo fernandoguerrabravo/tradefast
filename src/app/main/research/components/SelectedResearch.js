@@ -7,14 +7,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import { Avatar } from '@material-ui/core';
-import Select from 'react-select';
 import FormControl from '@material-ui/core/FormControl';
-import { UseGetSku } from 'app/main/door2door/hooks/useGetSku';
 import { green, red, blue } from '@material-ui/core/colors';
 import ModalSku from 'app/main/door2door/components/ModalSku';
-import CardMedia from '@material-ui/core/CardMedia';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
+import { FinishSelected } from './FinishSelected';
+import Tooltip from '@material-ui/core/Tooltip';
+import InfoIcon from '@material-ui/icons/Info';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -33,24 +31,33 @@ const useStyles = makeStyles((theme) => ({
     paper: {
 
         padding: theme.spacing(2),
-        textAlign: 'center',
+        //textAlign: 'center',
         color: theme.palette.text.primary,
 
     },
 
     formControl: {
+
         margin: theme.spacing(1),
-        minWidth: 400,
+        minWidth: 200,
+        padding: theme.spacing(1)
+
     },
+
     formControl2: {
+
         margin: theme.spacing(1),
         minWidth: 300,
         padding: theme.spacing(1)
+
     },
+
     media: {
 
+        width: '30%',
         height: 0,
         paddingTop: '56.25%', // 16:9
+
     },
 
 }));
@@ -59,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
 
 const reviews = (info, info2) => {
 
-
     return (
+
         <>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 Total Reviews: {info2} <br></br>
@@ -89,23 +96,22 @@ const link = (asin) => {
     )
 }
 
-export const SelectedResearch = ({ selected }) => {
+export const SelectedResearch = ({ setescondidoinicial, selected, category }) => {
 
-    const idcliente = "abcdef";
-    const sku = UseGetSku(idcliente);
-    const skufinal = sku.data;
-    const newJson1 = [];
-    for (const codigo of skufinal) {
-        {
-            newJson1.push({
-                value: codigo.sku, label: codigo.sku
-            });
-        }
-    }
 
-    const handleInputChange = (event) => {
+    const [escondido, setescondido] = useState({
 
-        return '';
+        escondido: true,
+
+    })
+
+    const crearsku = () => {
+
+        setescondido({
+
+            escondido: false,
+
+        })
     }
 
     var precios = [];
@@ -131,35 +137,26 @@ export const SelectedResearch = ({ selected }) => {
             render: rowData =>
 
                 <img src={rowData.url} style={{ width: 80 }} />
-
         },
 
         {
             title: 'ASIN',
             field: 'id',
             render: rowData => link(rowData.id)
-
         },
 
         {
             title: 'Description',
             field: 'title',
-
-
         },
         {
             title: 'Price',
             field: 'price',
-
-
         },
 
         {
             title: '',
             field: 'id',
-
-
-
         },
         {
             title: '',
@@ -167,21 +164,17 @@ export const SelectedResearch = ({ selected }) => {
             render: rowData =>
 
                 reviews(rowData.reviews, rowData.total_reviews)
-
         },
-
-
-
     ]
 
     const classes = useStyles();
-    const bull = <span className={classes.bullet}>•</span>;
+
+
 
     return (
 
         <>
             <Grid container spacing={3}>
-
                 <Grid item xs={2}>
                     <Paper className={classes.paper}>
                         <Avatar className={classes.root} src="https://fotos-ecl.s3.amazonaws.com/icons8-precio-bajo-48.png" />
@@ -190,7 +183,6 @@ export const SelectedResearch = ({ selected }) => {
                         </Typography>
                     </Paper>
                 </Grid>
-
                 <Grid item xs={2}>
                     <Paper className={classes.paper}>
                         <Avatar className={classes.root} src="https://fotos-ecl.s3.amazonaws.com/icons8-flujo-de-fondos-48.png" />
@@ -199,7 +191,6 @@ export const SelectedResearch = ({ selected }) => {
                         </Typography>
                     </Paper>
                 </Grid>
-
                 <Grid item xs={2}>
                     <Paper className={classes.paper}>
                         <Avatar className={classes.root} src="https://fotos-ecl.s3.amazonaws.com/icons8-etiqueta-de-precio-usd-48.png" />
@@ -208,67 +199,31 @@ export const SelectedResearch = ({ selected }) => {
                         </Typography>
                     </Paper>
                 </Grid>
-
-
                 <Grid item xs={6}>
-
                     <Paper className={classes.paper}>
-
-                        <Grid container >
-
-                            <Grid item xs={3}>
-                                <CardMedia
-                                    className={classes.media}
-                                    image="https://fotos-ecl.s3.amazonaws.com/icons8-co%CC%81digo-de-barras-80.png"
-                                    title="Paella dish"
-                                />
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <Grid>
+                                {escondido.escondido ? <Button onClick={crearsku} variant="outlined" color="primary" >Create New Product </Button> : null}&nbsp;&nbsp;
+                                {escondido.escondido ? <Tooltip title="Create a New SKU. If you can't find it in the list"><InfoIcon style={{ color: green[500] }} /></Tooltip> : null}
                             </Grid>
-
-                            <Grid item xs={3}>
-                                <FormControl variant="outlined" className={classes.formControl2}>
-                                    <Typography className={classes.titles} variant="subtitle1" gutterBottom>
-                                        <ModalSku></ModalSku>
-                                    </Typography>
-                                </FormControl>
-                            </Grid>
-                            <Grid item xs={3}>
-                             
-                            </Grid>
-
-                        </Grid>
-
-
-
-                        <FormControl variant="outlined" className={classes.formControl2}>
-                            <Select
-                                options={newJson1}
-                                onChange={handleInputChange}
-                            /><b></b>
-                            <Typography className={classes.titles} style={{ color: red[400] }} variant="caption" gutterBottom>
-                                <strong>Search Your Saved SKU Code</strong>
-                            </Typography>
+                            &nbsp;&nbsp;
+                            {escondido.escondido ? null : <ModalSku setescondido={setescondido}></ModalSku>}
                         </FormControl>
                         <FormControl variant="outlined" className={classes.formControl2}>
-                            <Button>Save and Finish</Button>
+                            {escondido.escondido ? <FinishSelected setescondidoinicial={setescondidoinicial} selected={selected} average={average} max={max} min={min} category={category} ></FinishSelected> : null}<b></b>
                         </FormControl>
-
                     </Paper>
                 </Grid><br></br>
-
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <MaterialTable style={{ zIndex: 0 }} className={classes.table}
-
                             columns={columnas}
                             data={selected}
                         >
                         </MaterialTable>
                     </Paper>
                 </Grid>
-
-
             </Grid >
         </>
-
     );
 }

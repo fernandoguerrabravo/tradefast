@@ -47,6 +47,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const AddCategory = ({ setCategories }) => {
+
     const classes = useStyles();
 
     const [inputValue, setInputValue] = useState(
@@ -152,8 +153,4 @@ export const AddCategory = ({ setCategories }) => {
     );
 };
 
-AddCategory.propTypes = {
 
-    setCategories: PropTypes.func.isRequired
-
-};

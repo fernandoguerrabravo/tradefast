@@ -150,7 +150,7 @@ export const GiftGrid2 = ({ setCategories, category }) => {
                                         setCategories(
 
                                             {
-                                                keyword: '',
+                                                keyword: category,
                                                 hidden: false,
                                                 hidden1: true,
                                                 hidden2: false,

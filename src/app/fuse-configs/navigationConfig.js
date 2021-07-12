@@ -37,7 +37,7 @@ const navigationConfig = [
 						translate: 'RESEARCHMARKET',
 						type: 'item',
 						icon: 'timeline',
-						url: '/listresearch'
+						url: '/research'
 					},
 					{
 						id: 'hts-component',
