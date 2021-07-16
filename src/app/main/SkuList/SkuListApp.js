@@ -45,7 +45,9 @@ export const SkuListApp = () => {
     )
 
     return (
+
         <>
+            
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     {oculto.hidden ? null : <SkuListTools setoculto={setoculto} />}
@@ -60,6 +62,7 @@ export const SkuListApp = () => {
                     {oculto.hidden ? null : <Paper className={classes.paper}><SkuStoreFiles skus={skudetails.skunumber} idcliente={skudetails.id_cliente}></SkuStoreFiles></Paper>}
                 </Grid>
             </Grid>
+         
         </>
     )
 }

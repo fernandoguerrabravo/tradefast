@@ -1,17 +1,30 @@
-import react from 'react';
+import react, { useState } from 'react';
 import MaterialTable from 'material-table';
 import { useGetResearch } from '../hooks/useGetResearch';
 import Button from '@material-ui/core/Button';
-//import reporte from './pdfreport';
+import { ResearchReport } from './ResearchReport';
+import { PDFViewer } from '@react-pdf/renderer';
+import SampleDocument from './PdfReport';
+import Center from 'react-center';
 
 export default function ListResearchTable() {
 
-    const idcliente = "abcde"
+    const idcliente = "abcdef"
     const { data, loading } = useGetResearch(idcliente)
 
+    const [pdf, setpdf] = useState({
+
+        loading: true,
+        sku: ''
+
+    });
 
     const columnas = [
 
+        {
+            title: 'report',
+            field: 'report'
+        },
         {
             title: 'SKU Code',
             field: 'sku'
@@ -20,25 +33,28 @@ export default function ListResearchTable() {
             title: 'Keyword',
             field: 'keyword'
         },
+
         {
             title: 'Min Price',
-            field: 'min'
+            field: 'min',
+            render: rowData => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(rowData.min)
         },
         {
             title: 'Average Price',
-            field: 'average'
+            field: 'average',
+            render: rowData => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(rowData.average)
         },
         {
             title: 'Max Price',
-            field: 'max'
+            field: 'max',
+            render: rowData => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(rowData.max)
         },
 
         {
             title: 'Actions',
-            field: 'keyword',
-            render: rowData => <Button variant="contained" color="secondary">Generate Report</Button>
+            field: '',
+            render: rowData => <ResearchReport setpdf = {setpdf} sku={rowData.sku} report = {rowData.report} />
         }
-
 
 
 
@@ -51,14 +67,24 @@ export default function ListResearchTable() {
 
         <>
 
-            <MaterialTable
+            {pdf.loading ?
 
-                title=""
-                columns={columnas}
-                data={data}
-            >
+                <MaterialTable
+                    title=""
+                    columns={columnas}
+                    data={data}
+                >
+                </MaterialTable>
 
-            </MaterialTable>
+                :
+                <Center>
+                <PDFViewer width='1200' height='600'>
+
+                    <SampleDocument />
+
+                </PDFViewer>
+                </Center>
+            }
 
         </>
 

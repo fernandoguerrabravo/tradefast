@@ -7,7 +7,7 @@ import RateConfig from 'app/main/RateCalculator/RateConfig';
 import HtsTaxListConfig from 'app/main/HtsList/HtsTaxListConfig';
 import Door2doorConfig from 'app/main/door2door/Door2doorConfig';
 import SkuStoreConfig from 'app/main/skustore/SkuStoreConfig';
-import SkuListConfig from 'app/main/SkuList.js/SkuListConfig';
+import SkuListConfig from 'app/main/SkuList/SkuListConfig';
 
 
 const routeConfigs = [

@@ -17,7 +17,8 @@ export const UpdateSku = async (final) => {
             "max": datos.max,
             "min": datos.min,
             "data": datos.data,
-            "keyword": datos.keyword
+            "keyword": datos.keyword,
+            "res" : true
         }
 
     );

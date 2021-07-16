@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { AddCategory } from './components/AddCategory'
-import { GiftGrid2 } from './components/GiftGrid2'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { ListResearchTools } from './components/ListResearchTools';
 import ListResearchTable from './components/ListResearchTable';
 import { SearchResearch } from './components/SearchResearch';
+
+
 
 
 export const GifExpertApp = () => {
@@ -55,10 +55,13 @@ export const GifExpertApp = () => {
                 <Grid item xs={12}>
 
 
+
                     {escondidoinicial.escondidoinicial ? <Paper className={classes.paper}><ListResearchTable /></Paper> : null}
 
 
+
                 </Grid>
+
 
                 <Grid item xs={12}>
 
@@ -66,8 +69,14 @@ export const GifExpertApp = () => {
 
                 </Grid>
 
+
             </Grid>
-        </>
+
+
+
+</>
+        
+
     )
 }
 
