@@ -1,11 +1,11 @@
-import react, { useState } from 'react';
+import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import { useGetResearch } from '../hooks/useGetResearch';
 import Button from '@material-ui/core/Button';
 import { ResearchReport } from './ResearchReport';
-import { PDFViewer } from '@react-pdf/renderer';
-import SampleDocument from './PdfReport';
 import Center from 'react-center';
+import PdfViewer from './PdfViewer';
+
 
 export default function ListResearchTable() {
 
@@ -15,16 +15,16 @@ export default function ListResearchTable() {
     const [pdf, setpdf] = useState({
 
         loading: true,
-        sku: ''
+        sku: '',
+        min: '',
+        average: '',
+        max: ''
 
     });
 
     const columnas = [
 
-        {
-            title: 'report',
-            field: 'report'
-        },
+       
         {
             title: 'SKU Code',
             field: 'sku'
@@ -53,14 +53,14 @@ export default function ListResearchTable() {
         {
             title: 'Actions',
             field: '',
-            render: rowData => <ResearchReport setpdf = {setpdf} sku={rowData.sku} report = {rowData.report} />
+            render: rowData => <ResearchReport setpdf={setpdf} sku={rowData.sku} report={rowData.report} min={rowData.min} average={rowData.average} max={rowData.max} />
         }
 
 
 
     ];
 
-    const dato = [];
+
 
     return (
 
@@ -78,11 +78,9 @@ export default function ListResearchTable() {
 
                 :
                 <Center>
-                <PDFViewer width='1200' height='600'>
 
-                    <SampleDocument />
+                    <PdfViewer pdf={pdf} />
 
-                </PDFViewer>
                 </Center>
             }
 

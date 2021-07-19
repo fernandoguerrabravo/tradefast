@@ -1,5 +1,6 @@
 
-export const GetPdf= async () => {
+
+export const GetPdf= async (sku) => {
 
     const idcliente = "abcdef";
     const myHeaders = new Headers();
@@ -8,7 +9,7 @@ export const GetPdf= async () => {
     const raw = JSON.stringify({
 
         "id_cliente": idcliente,
-        "sku": "peroo"
+        "sku": sku
     });
 
     var requestOptions = {
@@ -41,7 +42,7 @@ export const GetPdf= async () => {
 
    }) */
 
-    console.log("respuesta de detalles", data)
+    
 
     return data;
 

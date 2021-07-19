@@ -2,10 +2,11 @@
 import React, { useState } from 'react';
 import { Button } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { PdfReport } from './PdfReport';
 
 
-export const ResearchReport = ({setpdf, sku , report}) => {
+
+
+export const ResearchReport = ({setpdf, sku , report, min, average, max}) => {
 
    
     const [state, setstate] = useState({
@@ -16,7 +17,6 @@ export const ResearchReport = ({setpdf, sku , report}) => {
 
     })
 
-    
     
 
     //Funcion aque va a rescatar la informacion de la API 
@@ -72,6 +72,11 @@ export const ResearchReport = ({setpdf, sku , report}) => {
         setpdf({
 
             loading: false,
+            sku : sku,
+            min : min,
+            average: average,
+            max: max
+
         })
         console.log(sku)
         console.log(report)
