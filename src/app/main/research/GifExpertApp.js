@@ -40,6 +40,23 @@ export const GifExpertApp = () => {
         }
     );
 
+    const [boton, setboton] = useState({
+
+        volver: true,
+
+    });
+
+    const [pdf, setpdf] = useState({
+
+        loading: true,
+        sku: '',
+        min: '',
+        average: '',
+        max: ''
+
+    });
+
+
     return (
         <>
             <Grid container spacing={3}>
@@ -47,7 +64,7 @@ export const GifExpertApp = () => {
                 <Grid item xs={12}>
 
 
-                    {escondidoinicial.escondidoinicial ? <Paper className={classes.paper}><ListResearchTools setescondidoinicial={setescondidoinicial} /></Paper> : null}
+                    <Paper className={classes.paper}><ListResearchTools setpdf={setpdf} volv={boton.volver} setboton={setboton} setescondidoinicial={setescondidoinicial} /></Paper>
 
 
                 </Grid>
@@ -56,7 +73,7 @@ export const GifExpertApp = () => {
 
 
 
-                    {escondidoinicial.escondidoinicial ? <Paper className={classes.paper}><ListResearchTable /></Paper> : null}
+                    {escondidoinicial.escondidoinicial ? <Paper className={classes.paper}><ListResearchTable pdf={pdf} setpdf={setpdf} setboton={setboton} /></Paper> : null}
 
 
 
@@ -74,8 +91,8 @@ export const GifExpertApp = () => {
 
 
 
-</>
-        
+        </>
+
 
     )
 }

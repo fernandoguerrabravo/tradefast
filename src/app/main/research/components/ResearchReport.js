@@ -6,24 +6,24 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 
-export const ResearchReport = ({setpdf, sku , report, min, average, max}) => {
+export const ResearchReport = ({ setboton, setpdf, sku, report, min, average, max }) => {
 
-   
+
     const [state, setstate] = useState({
 
         reporte: report,
         circular: false,
-        
+
 
     })
 
-    
+
 
     //Funcion aque va a rescatar la informacion de la API 
 
-    
 
-  const getDetails = async () => {
+
+    const getDetails = async () => {
 
         setstate({
 
@@ -43,7 +43,7 @@ export const ResearchReport = ({setpdf, sku , report, min, average, max}) => {
 
         });
 
-        console.log('enviado a la api:',raw)
+        console.log('enviado a la api:', raw)
 
         var requestOptions = {
 
@@ -65,15 +65,20 @@ export const ResearchReport = ({setpdf, sku , report, min, average, max}) => {
 
         console.log("perro:", resp)
 
-    }; 
-       
+    };
+
     const informe = () => {
+
+        setboton({
+
+            volver: false
+        })
 
         setpdf({
 
             loading: false,
-            sku : sku,
-            min : min,
+            sku: sku,
+            min: min,
             average: average,
             max: max
 
@@ -86,13 +91,13 @@ export const ResearchReport = ({setpdf, sku , report, min, average, max}) => {
     return (
 
         <>
-            
-            {state.reporte ? ( state.circular ? null : <Button onClick = {informe}>Ver Informe</Button>) : null}
-            {state.reporte ? null : ( state.circular ? <CircularProgress></CircularProgress> : null)}
-            {state.reporte ? null : ( state.circular ?  null :  <Button onClick = {getDetails}>Generar Informe </Button> )}
-            
-            {/*state.circular ? <CircularProgress></CircularProgress> :  <Button>Generar Informe</Button> */} 
-           
+
+            {state.reporte ? (state.circular ? null : <Button onClick={informe}>Ver Informe</Button>) : null}
+            {state.reporte ? null : (state.circular ? <CircularProgress></CircularProgress> : null)}
+            {state.reporte ? null : (state.circular ? null : <Button onClick={getDetails}>Generar Informe </Button>)}
+
+            {/*state.circular ? <CircularProgress></CircularProgress> :  <Button>Generar Informe</Button> */}
+
 
         </>
 

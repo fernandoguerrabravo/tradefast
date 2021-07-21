@@ -2,6 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import clsx from 'clsx';
 
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		'& .logo-icon': {
@@ -24,11 +25,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Logo() {
+
 	const classes = useStyles();
 
 	return (
-		<div className={clsx(classes.root, 'flex items-center')}>
-			<img className="logo-icon w-50 h-50" src="https://static.tradefast.io/logo-negative.svg" alt="logo" />
+
+		<div style={{ padding: '10px 30px' }}>
+			<img width='150' height='20' src="https://fotos-ecl.s3.amazonaws.com/logos-global-selling/white_logo_transparent_background.png" alt="logo" />
 		</div>
 	);
 }

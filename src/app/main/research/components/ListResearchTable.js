@@ -7,24 +7,16 @@ import Center from 'react-center';
 import PdfViewer from './PdfViewer';
 
 
-export default function ListResearchTable() {
+export default function ListResearchTable({ pdf, setpdf, setboton }) {
 
     const idcliente = "abcdef"
     const { data, loading } = useGetResearch(idcliente)
 
-    const [pdf, setpdf] = useState({
 
-        loading: true,
-        sku: '',
-        min: '',
-        average: '',
-        max: ''
-
-    });
 
     const columnas = [
 
-       
+
         {
             title: 'SKU Code',
             field: 'sku'
@@ -53,7 +45,7 @@ export default function ListResearchTable() {
         {
             title: 'Actions',
             field: '',
-            render: rowData => <ResearchReport setpdf={setpdf} sku={rowData.sku} report={rowData.report} min={rowData.min} average={rowData.average} max={rowData.max} />
+            render: rowData => <ResearchReport setboton={setboton} setpdf={setpdf} sku={rowData.sku} report={rowData.report} min={rowData.min} average={rowData.average} max={rowData.max} />
         }
 
 

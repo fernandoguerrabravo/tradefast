@@ -31,7 +31,7 @@ function FooterLayout1(props) {
 				id="fuse-footer"
 				className={clsx('relative z-20 shadow-md', props.className)}
 				color="default"
-				style={{ backgroundColor: footerTheme.palette.background.paper }}
+				style={{ backgroundColor: '#666d78' }}
 			>
 				<Toolbar className="min-h-48 md:min-h-64 px-8 sm:px-12 py-0 flex items-center overflow-x-auto">
 
@@ -44,8 +44,8 @@ function FooterLayout1(props) {
 								<img width="120" height="120" src="https://static.eclprojects.net/logos/ecl-logo-transparent-light.svg" />
 							</Grid>
 							<Grid item xs={2} >
-							Partner of
-								<img width="120" height="120" src="https://static.tradefast.io/amazon-spn.png" />
+								Partner of
+								<img width="120" height="120" src="https://fotos-ecl.s3.amazonaws.com/amazon-spn.png" />
 							</Grid>
 						</Grid>
 					</div>
