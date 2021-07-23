@@ -22,8 +22,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+<<<<<<< HEAD
 import { UseGetSku } from '../hooks/useGetSku';
 import useGetSellers from 'app/main/hooks/useGetSellers';
+=======
+import { GetSellers } from 'app/main/helpers/GetSellers';
+import { UseGetSellers } from 'app/main/hooks/useGetSellers';
+>>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
 
 
 
@@ -80,8 +85,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function AddressComponent({ setencabezado }) {
+export default function AddressComponent() {
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
     const id_cliente = "abcdef";
     const classes = useStyles();
     const fba = UseGetFba();
@@ -103,6 +112,7 @@ export default function AddressComponent({ setencabezado }) {
         }
     }
 
+<<<<<<< HEAD
     // Obtengo los datos del Seller para considerar su direccion por defecto
 
     const sellers = useGetSellers(id_cliente);
@@ -114,8 +124,17 @@ export default function AddressComponent({ setencabezado }) {
     }
     console.log("SELLERS", newsellers.address_1);
 
+=======
+    // Obtengo los datos del sellers
+    
+    
+>>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
 
-
+    const sellers = UseGetSellers(id_cliente);
+    const sellersfinal = sellers.data;
+    
+    console.log("PEO:", sellersfinal.Country)
+    
     /* function onKeyDown(keyEvent) {
      
         if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -170,7 +189,11 @@ export default function AddressComponent({ setencabezado }) {
                             Origin Address
                         </Typography>
                         <Typography className={classes.titles} variant="subtitle2" gutterBottom >
+<<<<<<< HEAD
 
+=======
+                         
+>>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
                             &nbsp;&nbsp;<Tooltip title="Seller's Default Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
                     </Paper>
                 </Grid>

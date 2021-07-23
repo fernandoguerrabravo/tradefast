@@ -1,35 +1,43 @@
 import React from 'react';
+import axios from 'axios';
 
 
-async function GetSellers(id_cliente) {
+export const GetSellers = async (id_cliente) => {
 
+    try {
 
-    var raw = JSON.stringify({
+        const response = (
 
-        "id_cliente": id_cliente
-    });
+            await axios
+                .post(
+                    "https://fl8vvup0y0.execute-api.us-east-1.amazonaws.com/dev/getseller",
+                    {
+                        id_cliente: id_cliente
+                    },
+                    {
+                        headers: {
 
+                            "Content-Type": "application/json",
 
-    var requestOptions = {
+                        }
+                    }
+                )
+                .catch((reason) => console.warn("Axios error:", reason))
+        ).data;
 
-        method: 'POST',
-        headers: {
+        console.log("API response:", response);
 
-            'Content-Type': 'application/json',
+        return response[0];
 
-        },
-        body: raw,
+    } catch (reason) {
 
+        console.warn("API request error:", reason);
 
-    };
+    }
 
-
-    const resp = await fetch('https://fl8vvup0y0.execute-api.us-east-1.amazonaws.com/dev/getseller', requestOptions);
-    const datos = await resp.json();
-
-    console.log(datos);
-    return datos;
 
 }
 
-export default GetSellers;
+
+
+
