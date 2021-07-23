@@ -23,6 +23,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { UseGetSku } from '../hooks/useGetSku';
+import useGetSellers from 'app/main/hooks/useGetSellers';
 
 
 
@@ -81,13 +82,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddressComponent({ setencabezado }) {
 
-    const idcliente = "abcdef";
+    const id_cliente = "abcdef";
     const classes = useStyles();
     const fba = UseGetFba();
     const fbafinal = fba.data;
     const originalJson = fbafinal;
     const newJson = [];
 
+    console.log('fba:', originalJson);
 
     // Relleno el Select con los FBA de Amazon
 
@@ -100,6 +102,17 @@ export default function AddressComponent({ setencabezado }) {
             });
         }
     }
+
+    // Obtengo los datos del Seller para considerar su direccion por defecto
+
+    const sellers = useGetSellers(id_cliente);
+    const sellersfinal = sellers.data;
+    const newsellers = []
+    for (const sell of sellersfinal) {
+
+        newsellers.push({ Country: sell.Country, addres_1: sell.address_1 });
+    }
+    console.log("SELLERS", newsellers.address_1);
 
 
 
@@ -157,7 +170,7 @@ export default function AddressComponent({ setencabezado }) {
                             Origin Address
                         </Typography>
                         <Typography className={classes.titles} variant="subtitle2" gutterBottom >
-                            Avenida Padre Arlindo Vieira, 898, Vila Vermelha, Sao Paulo, SP, 04297-000, Brazil
+
                             &nbsp;&nbsp;<Tooltip title="Seller's Default Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
                     </Paper>
                 </Grid>
