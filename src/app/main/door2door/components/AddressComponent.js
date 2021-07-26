@@ -22,19 +22,16 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-<<<<<<< HEAD
-import { UseGetSku } from '../hooks/useGetSku';
-import useGetSellers from 'app/main/hooks/useGetSellers';
-=======
 import { GetSellers } from 'app/main/helpers/GetSellers';
 import { UseGetSellers } from 'app/main/hooks/useGetSellers';
->>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
+import UseGetAddress from '../hooks/UseGetAddress';
 
 
 
 const useStyles = makeStyles((theme) => ({
 
     root: {
+
         flexGrow: 1,
         display: 'flex-grow',
         alignItems: 'center',
@@ -54,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     formControl: {
-        margin: theme.spacing(1),
+        margin: theme.spacing(2),
         minWidth: 400,
     },
     formControl2: {
@@ -70,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         display: 'flex-grow',
         textAlign: 'left',
-        padding: theme.spacing(1)
+        padding: theme.spacing(2)
     },
     paper: {
         padding: theme.spacing(1),
@@ -87,10 +84,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddressComponent() {
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
     const id_cliente = "abcdef";
     const classes = useStyles();
     const fba = UseGetFba();
@@ -112,29 +105,41 @@ export default function AddressComponent() {
         }
     }
 
-<<<<<<< HEAD
-    // Obtengo los datos del Seller para considerar su direccion por defecto
-
-    const sellers = useGetSellers(id_cliente);
-    const sellersfinal = sellers.data;
-    const newsellers = []
-    for (const sell of sellersfinal) {
-
-        newsellers.push({ Country: sell.Country, addres_1: sell.address_1 });
-    }
-    console.log("SELLERS", newsellers.address_1);
-
-=======
     // Obtengo los datos del sellers
-    
-    
->>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
 
-    const sellers = UseGetSellers(id_cliente);
+
+
+    const sellers = UseGetAddress(id_cliente);
     const sellersfinal = sellers.data;
-    
-    console.log("PEO:", sellersfinal.Country)
-    
+    console.log(sellersfinal.country);
+
+    /* const originalJson = imgs;
+                 const newJson = [];
+                 for (const htsCode of originalJson) {
+                     if (htsCode.htsno.length > 12) {
+                       newJson.push(htsCode);
+                     }
+                   } */
+    /*function getFilteredByKey(array, key, value) {
+        return array.filter(function(e) {
+          return e[key] == value;
+        });
+      } */
+
+    /*for (const Country of Object.entries(sellersfinal) {
+        console.log("PICO:", Country);
+    } */
+
+    /*  const newJson2 = [];
+      for (const direccion of sellersfinal) {
+          if (direccion.type == "exw") {
+              newJson2.push(direccion);
+          }
+      } */
+
+    /* console.log("filtrado:", originalJson2) */
+
+
     /* function onKeyDown(keyEvent) {
      
         if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -186,21 +191,16 @@ export default function AddressComponent() {
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
                         <Typography className={classes.titles} variant="subtitle1" gutterBottom>
-                            Origin Address
+                            <strong>Origin Address</strong>
                         </Typography>
                         <Typography className={classes.titles} variant="subtitle2" gutterBottom >
-<<<<<<< HEAD
-
-=======
-                         
->>>>>>> 4eeb77674294de248b47b815cc239da4cfcb2a16
-                            &nbsp;&nbsp;<Tooltip title="Seller's Default Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
+                            {sellersfinal.number}  {sellersfinal.address_1}, {sellersfinal.neighborhood}. {sellersfinal.state}, {sellersfinal.zip_code}, {sellersfinal.country} &nbsp;&nbsp;<Tooltip title="Seller's Default Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
                         <Typography className={classes.titles} variant="subtitle1" gutterBottom>
-                            Destination Address (FBA Address)
+                            <strong>Destination Address (FBA Address)</strong>
                         </Typography>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <Select options={newJson} />

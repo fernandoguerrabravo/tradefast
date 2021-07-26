@@ -9,6 +9,7 @@ export const GetSellers = async (id_cliente) => {
         const response = (
 
             await axios
+
                 .post(
                     "https://fl8vvup0y0.execute-api.us-east-1.amazonaws.com/dev/getseller",
                     {

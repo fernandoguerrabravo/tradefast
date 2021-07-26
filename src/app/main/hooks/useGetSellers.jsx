@@ -2,14 +2,11 @@ import { useState, useEffect } from 'react'
 import { GetSellers } from '../helpers/GetSellers';
 
 
-
 export const UseGetSellers = (id_cliente) => {
 
     const [state, setState] = useState({
 
         data: [],
-
-
 
     })
 
