@@ -94,13 +94,16 @@ export default function Door2doorApp() {
   const [datosfinales, setdatosfinales] = useState({
 
     zip_origen  : '',
+    ciudad_origen  : '',
+    pais_origen  : '',
     zip_destino : '',
-    country : '',
     boxes: [],
     skus: [],
     hidden: false
 
   })
+
+  
 
   const incrementCount = () => {
 
@@ -121,7 +124,7 @@ export default function Door2doorApp() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><AddressComponent /></Paper>
+          <Paper className={classes.paper}><AddressComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper>
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}><SkuComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper>

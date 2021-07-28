@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function AddressComponent() {
+export default function AddressComponent({datosfinales, setdatosfinales}) {
 
     const id_cliente = "abcdef";
     const classes = useStyles();
@@ -120,6 +120,7 @@ export default function AddressComponent() {
                        newJson.push(htsCode);
                      }
                    } */
+
     /*function getFilteredByKey(array, key, value) {
         return array.filter(function(e) {
           return e[key] == value;
@@ -138,6 +139,27 @@ export default function AddressComponent() {
       } */
 
     /* console.log("filtrado:", originalJson2) */
+
+    const [address, setaddress] = useState({
+
+        zip_origen: '',
+        ciudad_origen:'',
+        pais_origen: '',
+        zip_destino : '',
+
+    })
+
+    const handleInputChange = (event) => {
+        // console.log(event.target.name)
+         console.log(event.value)
+        
+       setdatosfinales({
+
+            ...datosfinales,
+            zip_destino : event.target.value
+        }) 
+
+    }
 
 
     /* function onKeyDown(keyEvent) {
@@ -203,7 +225,10 @@ export default function AddressComponent() {
                             <strong>Destination Address (FBA Address)</strong>
                         </Typography>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <Select options={newJson} />
+                            <Select 
+                            options={newJson} 
+                            onChange={handleInputChange}
+                            />
                         </FormControl>
                     </Paper>
                 </Grid>
