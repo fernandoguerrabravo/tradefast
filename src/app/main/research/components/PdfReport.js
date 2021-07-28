@@ -157,7 +157,7 @@ const SampleDocument = ({ contenido, pdf }) => {
 
               <View style={styles.row}>
                 <View style={styles.column}>
-                  <Image style={styles.image2} src={image.detalles.imagen} />
+                  {<Image style={styles.image2} src={image.detalles.imagen} />}
                 </View>
                 <View style={styles.column}>
                   <Text style={styles.text2}>{image.asin}</Text>
@@ -166,11 +166,12 @@ const SampleDocument = ({ contenido, pdf }) => {
                   <Text style={styles.text2}>{image.detalles.seller}</Text>
                   <Text style={styles.text2}>{image.detalles.peso}</Text>
                   <Text style={styles.text2}>{image.detalles.dimensions}</Text>
-                  <Text style={styles.text2}>{image.detalles.precio}</Text>
+                  <Text style={styles.text3}>Price: {image.detalles.precio}</Text>
+               
                 </View>
               </View>
 
-
+              <Text style={styles.text2}>{image.detalles.nota2}</Text>
             </View>
 
         )}

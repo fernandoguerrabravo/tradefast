@@ -191,10 +191,10 @@ export default function AddressComponent() {
                 <Grid item xs={6}>
                     <Paper className={classes.paper}>
                         <Typography className={classes.titles} variant="subtitle1" gutterBottom>
-                            <strong>Origin Address</strong>
+                            <strong>Pickup Address</strong>
                         </Typography>
                         <Typography className={classes.titles} variant="subtitle2" gutterBottom >
-                            {sellersfinal.number}  {sellersfinal.address_1}, {sellersfinal.neighborhood}. {sellersfinal.state}, {sellersfinal.zip_code}, {sellersfinal.country} &nbsp;&nbsp;<Tooltip title="Seller's Default Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
+                            {sellersfinal.number}  {sellersfinal.address_1}, {sellersfinal.neighborhood}. {sellersfinal.state}, {sellersfinal.zip_code}, {sellersfinal.country} &nbsp;&nbsp;<Tooltip title="Seller's Pickup Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>

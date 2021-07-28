@@ -93,6 +93,9 @@ export default function Door2doorApp() {
 
   const [datosfinales, setdatosfinales] = useState({
 
+    zip_origen  : '',
+    zip_destino : '',
+    country : '',
     boxes: [],
     skus: [],
     hidden: false
