@@ -241,7 +241,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                     <Paper className={classes.paper}>
                         <FormControl variant="outlined" className={classes.formControl2}>
                             <Typography className={classes.titles} variant="subtitle1" gutterBottom>
-                                <ModalSku />
+
                             </Typography>
                         </FormControl>
                         <FormControl variant="outlined" className={classes.formControl2}>
