@@ -147,16 +147,17 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
         pais_origen: '',
         zip_destino : '',
 
+
     })
 
     const handleInputChange = (event) => {
         // console.log(event.target.name)
          console.log(event.value)
         
-       setdatosfinales({
+       setaddress({
 
-            ...datosfinales,
-            zip_destino : event.target.value
+           ...address,
+            zip_destino : event.value
         }) 
 
     }
@@ -176,12 +177,11 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
          e.preventDefault();
          if (datos.hts.trim().length > 3 && datos.country.trim() != '') {
      
-             setencabezado({
+             setdatosfinales({
      
                  ...datos,
-                 destination: 'United States',
-                 hidden: true,
-                 hidden3: false,
+                 ...
+                
      
              })
      
