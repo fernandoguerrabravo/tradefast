@@ -175,8 +175,8 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             for (const sumafob of lista) {
 
                 sumadefob = sumadefob + (sumafob.fob) * (sumafob.qty)
-                sumadeduties = sumadeduties + (sumafob.duties)*(sumafob.fob)
-                console.log("suma de duties:", sumadeduties)
+                sumadeduties = sumadeduties + (sumafob.duties)*(sumafob.fob)*(sumafob.qty)
+                
             }
             setarregloskus({
 
