@@ -26,7 +26,7 @@ export const GetSellers = async (id_cliente) => {
                 .catch((reason) => console.warn("Axios error:", reason))
         ).data;
 
-        console.log("API response:", response);
+        console.log("API response:", response[0]);
 
         return response[0];
 

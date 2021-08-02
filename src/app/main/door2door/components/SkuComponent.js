@@ -160,6 +160,8 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             }
         }
 
+        console.log("direcciones con el sku:", datosfinales)
+
     }
 
     const submitsku = () => {
@@ -169,16 +171,20 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             lista.push(skus)
             let nrosku = lista.length
             let sumadefob = 0;
+            let sumadeduties = 0;
             for (const sumafob of lista) {
 
                 sumadefob = sumadefob + (sumafob.fob) * (sumafob.qty)
-
+                sumadeduties = sumadeduties + (sumafob.duties)*(sumafob.fob)
+                console.log("suma de duties:", sumadeduties)
             }
             setarregloskus({
 
                 arreglosdelsku: lista,
                 totalfob: sumadefob,
-                totalsku: nrosku
+                totalsku: nrosku,
+                totalduties: sumadeduties,
+
 
             });
 
@@ -195,7 +201,6 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                 }
 
             });
-
 
 
 
@@ -277,7 +282,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                                     </TableRow>
                                     <TableRow >
                                         <TableCell><strong>Total Estimated Duties</strong></TableCell>
-                                        <TableCell style={{ color: green[900] }}></TableCell>
+                                        <TableCell style={{ color: green[900] }}>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(arregloskus.totalduties)}</TableCell>
                                     </TableRow>
                                     <TableRow >
                                         <TableCell> <strong>Other Duties (Total)</strong></TableCell>

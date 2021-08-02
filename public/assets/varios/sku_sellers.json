@@ -1,0 +1,1014 @@
+[{
+  "_id": {
+    "$oid": "60e3acd4c0805900083842f0"
+  },
+  "id_cliente": "abcdef",
+  "sku": "peroo",
+  "shortdescription": "fdfdfdf",
+  "fob": "545",
+  "country_origin": "Bermuda",
+  "upc_number": "545454",
+  "fecha_creacion": "Mon Jul 05 2021",
+  "average": 232.49200000000002,
+  "keyword": "cook ware",
+  "max": 645,
+  "min": 99.99,
+  "research": [
+    {
+      "id": "B07X9M9QVP",
+      "title": "Sponsored Ad - SKY LIGHT Nonstick Cookware Set, 10 Piece Stone-Derived Cooking Pots and Pans with Lids, Home Kitchenware w...",
+      "price": 127.49,
+      "reviews": 4.6,
+      "total_reviews": 496,
+      "url": "https://m.media-amazon.com/images/I/71v2R4QZ-UL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 0,
+        "checked": true
+      }
+    },
+    {
+      "id": "B004KSN8XY",
+      "title": "T-fal Ultimate Hard Anodized Nonstick 12 Piece Cookware Set, Dishwasher Safe Pots and Pans Set, Black",
+      "price": 129.99,
+      "reviews": 4.7,
+      "total_reviews": 7592,
+      "url": "https://m.media-amazon.com/images/I/81GbJTYtaRL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 1,
+        "checked": true
+      }
+    },
+    {
+      "id": "B087VSGS6S",
+      "title": "Sponsored Ad - 20-Piece Nonstick Kitchen Cookware Set - PTFE/PFOA/PFOS-Free Heat Resistant Lacquer Kitchen Ware Pots Bakin...",
+      "price": 159.99,
+      "reviews": 4.7,
+      "total_reviews": 2007,
+      "url": "https://m.media-amazon.com/images/I/81aXpAOUNcL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 2,
+        "checked": true
+      }
+    },
+    {
+      "id": "B072NGDV46",
+      "title": "Calphalon Premier Space Saving Pots and Pans Set, 15 Piece Cookware Set, Nonstick",
+      "price": 645,
+      "reviews": 4.7,
+      "total_reviews": 808,
+      "url": "https://m.media-amazon.com/images/I/81vRJO2S0PL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 3,
+        "checked": true
+      }
+    },
+    {
+      "id": "B071X9PTYV",
+      "title": "GreenLife Soft Grip Healthy Ceramic Nonstick, Cookware Pots and Pans Set, 16 Piece, Turquoise",
+      "price": 99.99,
+      "reviews": 4.5,
+      "total_reviews": 8107,
+      "url": "https://m.media-amazon.com/images/I/818MID2aBGL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 4,
+        "checked": true
+      }
+    }
+  ],
+  "res": true,
+  "report": true
+},{
+  "_id": {
+    "$oid": "60e3b509534ce800088250dc"
+  },
+  "id_cliente": "abcdef",
+  "sku": "SKUTEST1234",
+  "shortdescription": "pantalones",
+  "fob": "43",
+  "country_origin": "Bermuda",
+  "upc_number": "34343",
+  "fecha_creacion": "Mon Jul 05 2021",
+  "average": 20.491914893617025,
+  "max": 300.72,
+  "min": 0,
+  "research": [
+    {
+      "id": "B00V3M8XRG",
+      "title": "Hoosier Hill Farm Buttermilk Powder, 1 Pound",
+      "price": 9.99,
+      "reviews": 4.6,
+      "total_reviews": 4409,
+      "url": "https://m.media-amazon.com/images/I/71UrqmwXL5L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 0,
+        "checked": true
+      }
+    },
+    {
+      "id": "B08J15782J",
+      "title": "Hoosier Hill Farm Buttermilk Powder, Gluten Free & Hormone Free, Made In USA, 2 Lb",
+      "price": 16.89,
+      "reviews": 4.7,
+      "total_reviews": 908,
+      "url": "https://m.media-amazon.com/images/I/81LVqqi8VeL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 1,
+        "checked": true
+      }
+    },
+    {
+      "id": "B012H9HM9I",
+      "title": "Justin's, Mini Peanut Butter Cups, Milk Chocolate, 4.7 oz",
+      "price": 6.29,
+      "reviews": 4.7,
+      "total_reviews": 3365,
+      "url": "https://m.media-amazon.com/images/I/41d8GAlVznL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 2,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00XUXH4QM",
+      "title": "Anthony's Premium Buttermilk Powder, 1.5 lb, Gluten Free, Non GMO, Made in USA, Keto Friendly, Hormone Free",
+      "price": 10.29,
+      "reviews": 4.7,
+      "total_reviews": 1227,
+      "url": "https://m.media-amazon.com/images/I/81aIk25BLAL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 3,
+        "checked": true
+      }
+    },
+    {
+      "id": "B000WLW9TW",
+      "title": "Organic Valley, Organic Low Fat Cultured Buttermilk, Pasteurized, Quart, 32 Ounces",
+      "price": 3.99,
+      "reviews": 4.7,
+      "total_reviews": 3539,
+      "url": "https://m.media-amazon.com/images/I/719BNy3DjgL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 4,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0861KTP4D",
+      "title": "It's Just - Buttermilk Powder, Sweet Cream Butter Milk, Made in USA, 32oz",
+      "price": 14.99,
+      "reviews": 4.6,
+      "total_reviews": 216,
+      "url": "https://m.media-amazon.com/images/I/71i1ocx6MBL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 5,
+        "checked": true
+      }
+    },
+    {
+      "id": "B005M4AMYI",
+      "title": "Justin's, Peanut Butter Cups, Milk Chocolate, 1.4 oz",
+      "price": 1.99,
+      "reviews": 4.7,
+      "total_reviews": 922,
+      "url": "https://m.media-amazon.com/images/I/71gWvw9F8EL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 6,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00WN1YTYC",
+      "title": "Buttermilk Powder 2 lbs Produced in USA",
+      "price": 12.99,
+      "reviews": 4.7,
+      "total_reviews": 783,
+      "url": "https://m.media-amazon.com/images/I/71nyCl452qL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 7,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07JB9H56G",
+      "title": "SACO Pantry Cultured Buttermilk Blend, for Cooking and Baking, Low-Fat, Low-Cholesterol, Gluten-Free, Nut-Free, 12oz, Pack...",
+      "price": 14.98,
+      "reviews": 4.6,
+      "total_reviews": 585,
+      "url": "https://m.media-amazon.com/images/I/81rPSoD8UTL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 8,
+        "checked": true
+      }
+    },
+    {
+      "id": "B08DHF31BJ",
+      "title": "ChocZero's Milk Chocolate Peanut Butter Cups - NO ADDED SUGAR, KETO FRIENDLY, 2bags",
+      "price": 11.99,
+      "reviews": 4.4,
+      "total_reviews": 3252,
+      "url": "https://m.media-amazon.com/images/I/81ELIeJhngL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 9,
+        "checked": true
+      }
+    },
+    {
+      "id": "B084D19R3Q",
+      "title": "Indian Milk & Honey Original Grass-Fed Ghee, Keto & Paleo, Clarified Butter, 44 oz, Pasture Raised, Lactose Free, Bulk for...",
+      "price": 34.29,
+      "reviews": 4.6,
+      "total_reviews": 619,
+      "url": "https://m.media-amazon.com/images/I/61fqqGujPRL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 10,
+        "checked": true
+      }
+    },
+    {
+      "id": "B08JRFCMPB",
+      "title": "Dove Pudding Mix, 3.34 oz. Box (12 Pack), Peanut Butter Milk Chocolate – Rich Indulgent Pudding Mix and Pie Filling, 4 Ser...",
+      "price": 25.99,
+      "reviews": 5,
+      "total_reviews": 4,
+      "url": "https://m.media-amazon.com/images/I/81FlAGGxlML._AC_UL320_.jpg",
+      "tableData": {
+        "id": 11,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0083JNRZA",
+      "title": "Saco Powdered Buttermilk, 12-ounce Can ( Multi-Pack)",
+      "price": 11.18,
+      "reviews": 4.4,
+      "total_reviews": 88,
+      "url": "https://m.media-amazon.com/images/I/91JO1MM1cUL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 12,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00ZGWYORW",
+      "title": "Tigers Milk Bar - Peanut Butter - 1.23 Oz - Case Of 24",
+      "price": 33.69,
+      "reviews": 4.7,
+      "total_reviews": 156,
+      "url": "https://m.media-amazon.com/images/I/414DJgorw1L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 13,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07B29DSXL",
+      "title": "GOAT GHEE A2/A2 BY GOLD NUGGET GHEE, FULL-YEAR/PASTURE-RAISED, GRASS-FED, KETO & PALEO 8oz",
+      "price": 18.59,
+      "reviews": 4.5,
+      "total_reviews": 178,
+      "url": "https://m.media-amazon.com/images/I/71enrxkVnqL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 14,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00FTETNIC",
+      "title": "Augason Farms Buttermilk Pancake Mix 3 lbs 4 oz No. 10 Can",
+      "price": 7.32,
+      "reviews": 4.8,
+      "total_reviews": 2887,
+      "url": "https://m.media-amazon.com/images/I/91SHVrmzXSL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 15,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07RB7T7VG",
+      "title": "Judee’s Buttermilk Powder 1.5lb (24oz) - 100% Non-GMO - Gluten-Free & Nut-Free - Perfect for Pancakes, Fried Chicken and M...",
+      "price": 14.99,
+      "reviews": 4.6,
+      "total_reviews": 236,
+      "url": "https://m.media-amazon.com/images/I/712MX8A3NMS._AC_UL320_.jpg",
+      "tableData": {
+        "id": 16,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00EQMJFAE",
+      "title": "Judee’s Buttermilk Powder 11.25oz - 100% Non-GMO, Gluten-Free & Nut-Free - Perfect for Pancakes, Fried Chicken and More - ...",
+      "price": 7.99,
+      "reviews": 4.6,
+      "total_reviews": 1665,
+      "url": "https://m.media-amazon.com/images/I/71xbQdpBO6S._AC_UL320_.jpg",
+      "tableData": {
+        "id": 17,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07BLKGNFL",
+      "title": "Delitia Buffalo Milk Butter 8oz (Pack 2)",
+      "price": 32.99,
+      "reviews": 4.5,
+      "total_reviews": 14,
+      "url": "https://m.media-amazon.com/images/I/51HWB0MFD-L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 18,
+        "checked": true
+      }
+    },
+    {
+      "id": "B08DD83DLM",
+      "title": "Naturevibe Botanicals Butter Milk Powder , 2lbs | Keto Friendly (32 ounces)",
+      "price": 9.99,
+      "reviews": 2,
+      "total_reviews": 63,
+      "url": "https://m.media-amazon.com/images/I/71CZsAXCXMS._AC_UL320_.jpg",
+      "tableData": {
+        "id": 19,
+        "checked": true
+      }
+    },
+    {
+      "id": "B084QD114V",
+      "title": "Saco Cultured Buttermilk for Cooking and Baking, Powdered, 12 oz - PACK OF 2",
+      "price": 18.84,
+      "reviews": 4.8,
+      "total_reviews": 224,
+      "url": "https://m.media-amazon.com/images/I/71zD5gybhNL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 20,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07CNN7CV4",
+      "title": "Tigers Milk Bar - Peanut Butter and Honey - 1.23 oz - Case of 2424",
+      "price": 0,
+      "reviews": 4.6,
+      "total_reviews": 5,
+      "url": "https://m.media-amazon.com/images/I/314BlbL1iJL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 21,
+        "checked": true
+      }
+    },
+    {
+      "id": "B01L0O0OZU",
+      "title": "Hoosier Hill Farm Real Butter powder, Gluten and Hormone.free, 2 lbs",
+      "price": 21.99,
+      "reviews": 4.7,
+      "total_reviews": 909,
+      "url": "https://m.media-amazon.com/images/I/81ivB3K2TBL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 22,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07B3N1RZV",
+      "title": "Dove Promises Peanut Butter and Milk Chocolate Candy Bag, 7.61 Oz",
+      "price": 5.99,
+      "reviews": 4.7,
+      "total_reviews": 248,
+      "url": "https://m.media-amazon.com/images/I/71XYMON+bvL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 23,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07N9M672V",
+      "title": "Reese's, Candy, Milk Chocolate Peanut Butter Cup Miniatures Party Bag, 35.6 oz",
+      "price": 11.49,
+      "reviews": 4.7,
+      "total_reviews": 13002,
+      "url": "https://m.media-amazon.com/images/I/71uJDvfmuTS._AC_UL320_.jpg",
+      "tableData": {
+        "id": 24,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0014D07BE",
+      "title": "Saco Cultured Buttermilk for Cooking and Baking, Powdered, 12 oz",
+      "price": 0,
+      "reviews": 4.7,
+      "total_reviews": 2147,
+      "url": "https://m.media-amazon.com/images/I/81P2c7uL9LL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 25,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07Q8NWY76",
+      "title": "Lily's Sweets, Milk Chocolate Style Peanut Butter Cups, 3.2 Ounce Pouch",
+      "price": 5.79,
+      "reviews": 4.4,
+      "total_reviews": 1856,
+      "url": "https://m.media-amazon.com/images/I/81btA8mKx4L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 26,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00O1A0E6U",
+      "title": "Delamere Butter Goat Delamer, 8.80 oz",
+      "price": 21.49,
+      "reviews": 4.8,
+      "total_reviews": 273,
+      "url": "https://m.media-amazon.com/images/I/81AMUS7Nx1L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 27,
+        "checked": true
+      }
+    },
+    {
+      "id": "B01FYXCQ1S",
+      "title": "PBfit All-Natural Organic Peanut Butter Powder, Powdered Peanut Spread from Real Roasted Pressed Peanuts, 8g of Protein (3...",
+      "price": 12.49,
+      "reviews": 4.8,
+      "total_reviews": 21425,
+      "url": "https://m.media-amazon.com/images/I/81Kua6DaOdL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 28,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07KKXXM67",
+      "title": "Reese's Peanut Butter Cup Milk Chocolate Thins, 7.37 oz",
+      "price": 4.69,
+      "reviews": 4.7,
+      "total_reviews": 998,
+      "url": "https://m.media-amazon.com/images/I/71VTD9oioHS._AC_UL320_.jpg",
+      "tableData": {
+        "id": 29,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07SMBF3KT",
+      "title": "UNREAL Dark Chocolate Coconut Bars | 3g Sugar | Certified Vegan, Gluten Free, Fair Trade, Non-GMO | No Sugar Alcohols or S...",
+      "price": 18.99,
+      "reviews": 4.7,
+      "total_reviews": 3819,
+      "url": "https://m.media-amazon.com/images/I/61JFRx-lFSL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 30,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00555H0LC",
+      "title": "Justin's Chocolate Hazelnut and Almond Butter, Organic Cocoa, No Stir, Gluten-free, Responsibly Sourced, Packaging May Var...",
+      "price": 8.38,
+      "reviews": 4.3,
+      "total_reviews": 1677,
+      "url": "https://m.media-amazon.com/images/I/81NIqCEqsPL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 31,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0096I6XSU",
+      "title": "Augason Farms Butter Powder 2 lbs 4 oz No. 10 Can",
+      "price": 28.36,
+      "reviews": 4.7,
+      "total_reviews": 4589,
+      "url": "https://m.media-amazon.com/images/I/71oN8RitDJL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 32,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00VXQGY28",
+      "title": "4th & Heart Original Grass-Fed Ghee Butter, 9 Ounce, Keto, Pasture Raised, Non-GMO, Lactose Free, Certified Paleo",
+      "price": 11.49,
+      "reviews": 4.7,
+      "total_reviews": 4333,
+      "url": "https://m.media-amazon.com/images/I/81afMHWLMyL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 33,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07KW6T46W",
+      "title": "Happy Belly Almond Butter, 27oz",
+      "price": 8.6,
+      "reviews": 4.1,
+      "total_reviews": 2585,
+      "url": "https://m.media-amazon.com/images/I/71WhfkVGPlL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 34,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00XUXJPSW",
+      "title": "Anthony's Premium Butter Powder, 1 lb, Gluten Free, Non GMO, Made in USA, Keto Friendly, Hormone Free",
+      "price": 11.89,
+      "reviews": 4.5,
+      "total_reviews": 935,
+      "url": "https://m.media-amazon.com/images/I/81j+-++XI0L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 35,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07DBX36KW",
+      "title": "Barney Butter Powdered Almond Butter, Unsweetened, 8 Ounce",
+      "price": 7.98,
+      "reviews": 4.3,
+      "total_reviews": 1772,
+      "url": "https://m.media-amazon.com/images/I/81In+MXkk3L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 36,
+        "checked": true
+      }
+    },
+    {
+      "id": "B001HTIUDC",
+      "title": "SunButter Sunflower Butter Natural Creamy (6 pack of 16oz Jars)",
+      "price": 32.04,
+      "reviews": 4.7,
+      "total_reviews": 629,
+      "url": "https://m.media-amazon.com/images/I/71+VvyaX7pL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 37,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0046IIPMW",
+      "title": "Organic Valley, Ghee Butter Clarified Organic, 13 Ounce",
+      "price": 18,
+      "reviews": 4.7,
+      "total_reviews": 1672,
+      "url": "https://m.media-amazon.com/images/I/71Yn4Il1s3L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 38,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00TKRQWS8",
+      "title": "Blendtec Total Classic Original Blender - WildSide plus Jar (90 oz) - Professional-Grade Power - 6 Pre-programmed Cycles -...",
+      "price": 300.72,
+      "reviews": 4.5,
+      "total_reviews": 972,
+      "url": "https://m.media-amazon.com/images/I/71zrQU+yLvL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 39,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07C34Y9JJ",
+      "title": "Ancient Organics Ghee, Organic Grass Fed Ghee Butter – Gluten Free Ghee, Clarified Butter, Vitamins & Omegas, Lactose Redu...",
+      "price": 26.95,
+      "reviews": 4.8,
+      "total_reviews": 301,
+      "url": "https://m.media-amazon.com/images/I/61QS1N169wL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 40,
+        "checked": true
+      }
+    },
+    {
+      "id": "B003TNANSO",
+      "title": "KIND Bars, Peanut Butter Dark Chocolate, Gluten Free,1.4 Ounce,12 Count",
+      "price": 12.68,
+      "reviews": 4.7,
+      "total_reviews": 23535,
+      "url": "https://m.media-amazon.com/images/I/81J03onFuLL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 41,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07NW4GSSR",
+      "title": "Califia Farms - Oat Milk, Original Barista Blend, 32 Oz | Dairy Free | Creamer | Vegan | Plant Based | Gluten-Free | Non-G...",
+      "price": 4.08,
+      "reviews": 4.7,
+      "total_reviews": 3976,
+      "url": "https://m.media-amazon.com/images/I/71i4rcLDsYL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 42,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07CTRH33N",
+      "title": "California Almonds, 4 Pounds – Supreme, Whole, Raw, Unsalted, Unroasted Nuts, Natural. Kosher, Vegan. Keto, Paleo, Low Sod...",
+      "price": 30.99,
+      "reviews": 4.6,
+      "total_reviews": 131,
+      "url": "https://m.media-amazon.com/images/I/81--Ph-fIbL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 43,
+        "checked": true
+      }
+    },
+    {
+      "id": "B072M8242M",
+      "title": "Fatworks Fine Filtered 100% Grass-Fed Goat Milk Ghee, Pasture Raised on Small Family U.S. Farm. KETO, PALEO, WHOLE 30 APPR...",
+      "price": 19.95,
+      "reviews": 4.4,
+      "total_reviews": 48,
+      "url": "https://m.media-amazon.com/images/I/61FD+PeJmCL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 44,
+        "checked": true
+      }
+    },
+    {
+      "id": "B08WRB15FM",
+      "title": "Scratch Premium Buttermilk Powder - Gourmet Baking Ingredients - Sweet Rich Flavor - Adds Moisture & Increases Fluffiness ...",
+      "price": 7.99,
+      "reviews": 3.7,
+      "total_reviews": 4,
+      "url": "https://m.media-amazon.com/images/I/71DN1Q+B73L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 45,
+        "checked": true
+      }
+    },
+    {
+      "id": "B000V79VSO",
+      "title": "Justin's Honey Almond Butter, 16 oz",
+      "price": 9.85,
+      "reviews": 4.6,
+      "total_reviews": 1690,
+      "url": "https://m.media-amazon.com/images/I/61xldqvtV1L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 46,
+        "checked": true
+      }
+    }
+  ],
+  "keyword": "butter milk",
+  "res": true,
+  "report": true
+},{
+  "_id": {
+    "$oid": "60e3b629534ce800088250dd"
+  },
+  "id_cliente": "abcdef",
+  "sku": "pici 1",
+  "shortdescription": "vitamin c",
+  "fob": "4343",
+  "country_origin": "Bermuda",
+  "upc_number": "2323",
+  "fecha_creacion": "Mon Jul 05 2021"
+},{
+  "_id": {
+    "$oid": "60e3b713534ce800088250de"
+  },
+  "id_cliente": "abcdef",
+  "sku": "pico enorme",
+  "shortdescription": "pantalones",
+  "fob": "4545",
+  "country_origin": "Bermuda",
+  "upc_number": "5454",
+  "fecha_creacion": "Mon Jul 05 2021"
+},{
+  "_id": {
+    "$oid": "60e3b789534ce800088250df"
+  },
+  "id_cliente": "abcdef",
+  "sku": "sin dormr",
+  "shortdescription": "pantalones de señora",
+  "fob": "54545",
+  "country_origin": "Belgium",
+  "upc_number": "4434343",
+  "fecha_creacion": "Mon Jul 05 2021"
+},{
+  "_id": {
+    "$oid": "60e3b821534ce800088250e0"
+  },
+  "id_cliente": "abcdef",
+  "sku": "pichula",
+  "shortdescription": "Pantalones de mujer",
+  "fob": "4343",
+  "country_origin": "Canada",
+  "upc_number": "3434",
+  "fecha_creacion": "Mon Jul 05 2021"
+},{
+  "_id": {
+    "$oid": "60febf476f61ac0009fb8b9b"
+  },
+  "id_cliente": "abcdef",
+  "sku": "GHEEBUTTER",
+  "shortdescription": "BUTTER MILK",
+  "fob": "0",
+  "country_origin": "Colombia",
+  "upc_number": "",
+  "fecha_creacion": "Mon Jul 26 2021",
+  "average": 14.073333333333336,
+  "keyword": "butter milk",
+  "max": 34.98,
+  "min": 2.89,
+  "res": true,
+  "research": [
+    {
+      "id": "B00V3M8XRG",
+      "title": "Hoosier Hill Farm Buttermilk Powder, 1 Pound",
+      "price": 9.99,
+      "reviews": 4.6,
+      "total_reviews": 4410,
+      "url": "https://m.media-amazon.com/images/I/71UrqmwXL5L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 0,
+        "checked": true
+      }
+    },
+    {
+      "id": "B08J15782J",
+      "title": "Hoosier Hill Farm Buttermilk Powder, Gluten Free & Hormone Free, Made In USA, 2 Lb",
+      "price": 16.89,
+      "reviews": 4.7,
+      "total_reviews": 908,
+      "url": "https://m.media-amazon.com/images/I/81LVqqi8VeL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 1,
+        "checked": true
+      }
+    },
+    {
+      "id": "B071DJPJ75",
+      "title": "Meyenberg Goat Milk Butter, 8 oz",
+      "price": 6.99,
+      "reviews": 4.8,
+      "total_reviews": 196,
+      "url": "https://m.media-amazon.com/images/I/91mLS8yXgAL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 2,
+        "checked": true
+      }
+    },
+    {
+      "id": "B084DX1RFW",
+      "title": "Miyoko's Creamery, Butter Oat Milk Garlic Parm, 7 Ounce",
+      "price": 6.99,
+      "reviews": 4.7,
+      "total_reviews": 528,
+      "url": "https://m.media-amazon.com/images/I/81rlmAd8pyL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 3,
+        "checked": true
+      }
+    },
+    {
+      "id": "B084D19R3Q",
+      "title": "Indian Milk & Honey Original Grass-Fed Ghee, Keto & Paleo, Clarified Butter, 44 oz, Pasture Raised, Lactose Free, Bulk for...",
+      "price": 34.29,
+      "reviews": 4.6,
+      "total_reviews": 619,
+      "url": "https://m.media-amazon.com/images/I/61fqqGujPRL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 4,
+        "checked": true
+      }
+    },
+    {
+      "id": "B01L0O0OZU",
+      "title": "Hoosier Hill Farm Real Butter powder, Gluten and Hormone.free, 2 lbs",
+      "price": 21.99,
+      "reviews": 4.7,
+      "total_reviews": 909,
+      "url": "https://m.media-amazon.com/images/I/81ivB3K2TBL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 5,
+        "checked": true
+      }
+    },
+    {
+      "id": "B084DX2CP2",
+      "title": "Miyokos Creamery, Butter Oat Milk, 12 Ounce",
+      "price": 5.99,
+      "reviews": 4.5,
+      "total_reviews": 1064,
+      "url": "https://m.media-amazon.com/images/I/81GkQu3TZRL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 6,
+        "checked": true
+      }
+    },
+    {
+      "id": "B074VBL8D5",
+      "title": "365 by WFM, Butter Salted, 16 Ounce",
+      "price": 3.99,
+      "reviews": 4.8,
+      "total_reviews": 8295,
+      "url": "https://m.media-amazon.com/images/I/81MjqhtVLwL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 7,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0011EKWBQ",
+      "title": "Kerrygold Pure Irish Butter, Salted, 8 oz",
+      "price": 3.99,
+      "reviews": 4.9,
+      "total_reviews": 13216,
+      "url": "https://m.media-amazon.com/images/I/81BkFw7uWKL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 8,
+        "checked": true
+      }
+    },
+    {
+      "id": "B074VDJ7KZ",
+      "title": "365 by WFM, Butter Unsalted, 16 Ounce",
+      "price": 3.99,
+      "reviews": 4.7,
+      "total_reviews": 7263,
+      "url": "https://m.media-amazon.com/images/I/71SwOk96dCL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 9,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0011EDTGG",
+      "title": "Kerrygold Pure Irish Butter, Unsalted, 8 oz",
+      "price": 3.99,
+      "reviews": 4.9,
+      "total_reviews": 5820,
+      "url": "https://m.media-amazon.com/images/I/81gOe7LhSML._AC_UL320_.jpg",
+      "tableData": {
+        "id": 10,
+        "checked": true
+      }
+    },
+    {
+      "id": "B000P6EEME",
+      "title": "Country Crock, Buttery Spread, Original, 15 oz",
+      "price": 2.89,
+      "reviews": 4.8,
+      "total_reviews": 2519,
+      "url": "https://m.media-amazon.com/images/I/81p7tJyYtSL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 11,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00O1A0E6U",
+      "title": "Delamere Butter Goat Delamer, 8.80 oz",
+      "price": 21.49,
+      "reviews": 4.8,
+      "total_reviews": 273,
+      "url": "https://m.media-amazon.com/images/I/81AMUS7Nx1L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 12,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07C34Y9JJ",
+      "title": "Ancient Organics Ghee, Organic Grass Fed Ghee Butter – Gluten Free Ghee, Clarified Butter, Vitamins & Omegas, Lactose Redu...",
+      "price": 26.95,
+      "reviews": 4.8,
+      "total_reviews": 301,
+      "url": "https://m.media-amazon.com/images/I/61QS1N169wL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 13,
+        "checked": true
+      }
+    },
+    {
+      "id": "B01FYXCQ1S",
+      "title": "PBfit All-Natural Organic Peanut Butter Powder, Powdered Peanut Spread from Real Roasted Pressed Peanuts, 8g of Protein (3...",
+      "price": 12.49,
+      "reviews": 4.8,
+      "total_reviews": 21427,
+      "url": "https://m.media-amazon.com/images/I/81Kua6DaOdL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 14,
+        "checked": true
+      }
+    },
+    {
+      "id": "B001HTIUDC",
+      "title": "SunButter Sunflower Butter Natural Creamy (6 pack of 16oz Jars)",
+      "price": 32.04,
+      "reviews": 4.7,
+      "total_reviews": 629,
+      "url": "https://m.media-amazon.com/images/I/71+VvyaX7pL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 15,
+        "checked": true
+      }
+    },
+    {
+      "id": "B074V3V1V3",
+      "title": "365 by WFM, Butter Unsalted Organic, 16 Ounce",
+      "price": 6.99,
+      "reviews": 4.8,
+      "total_reviews": 2771,
+      "url": "https://m.media-amazon.com/images/I/81ZlWaAF8NL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 16,
+        "checked": true
+      }
+    },
+    {
+      "id": "B074V3VT8V",
+      "title": "365 by WFM, Butter Salted Organic, 16 Ounce",
+      "price": 6.99,
+      "reviews": 4.8,
+      "total_reviews": 2405,
+      "url": "https://m.media-amazon.com/images/I/81g7H2zjnxL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 17,
+        "checked": true
+      }
+    },
+    {
+      "id": "B07VF6RXNL",
+      "title": "Amazon Brand - Happy Belly Salted Butter Sticks, 16 oz. (4 Four Oz. Sticks)",
+      "price": 2.99,
+      "reviews": 4.8,
+      "total_reviews": 13000,
+      "url": "https://m.media-amazon.com/images/I/81z1CWE385L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 18,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00XUXJPSW",
+      "title": "Anthony's Premium Butter Powder, 1 lb, Gluten Free, Non GMO, Made in USA, Keto Friendly, Hormone Free",
+      "price": 11.89,
+      "reviews": 4.5,
+      "total_reviews": 935,
+      "url": "https://m.media-amazon.com/images/I/81j+-++XI0L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 19,
+        "checked": true
+      }
+    },
+    {
+      "id": "B0861KTP4D",
+      "title": "It's Just - Buttermilk Powder, Sweet Cream Butter Milk, Made in USA, 32oz",
+      "price": 14.99,
+      "reviews": 4.6,
+      "total_reviews": 216,
+      "url": "https://m.media-amazon.com/images/I/71i1ocx6MBL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 20,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00ZGWYORW",
+      "title": "Tigers Milk Bar - Peanut Butter - 1.23 Oz - Case Of 24",
+      "price": 33.69,
+      "reviews": 4.7,
+      "total_reviews": 156,
+      "url": "https://m.media-amazon.com/images/I/414DJgorw1L._AC_UL320_.jpg",
+      "tableData": {
+        "id": 21,
+        "checked": true
+      }
+    },
+    {
+      "id": "B00XUXH4QM",
+      "title": "Anthony's Premium Buttermilk Powder, 1.5 lb, Gluten Free, Non GMO, Made in USA, Keto Friendly, Hormone Free",
+      "price": 10.29,
+      "reviews": 4.7,
+      "total_reviews": 1227,
+      "url": "https://m.media-amazon.com/images/I/81aIk25BLAL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 22,
+        "checked": true
+      }
+    },
+    {
+      "id": "B015OA6MHK",
+      "title": "Sponsored Ad - GoMacro MacroBar Organic Vegan Protein Bars, Peanut Butter, 2.3 Ounce Bars (Pack of 12)",
+      "price": 34.98,
+      "reviews": 4.7,
+      "total_reviews": 4261,
+      "url": "https://m.media-amazon.com/images/I/61Aba9fndTL._AC_UL320_.jpg",
+      "tableData": {
+        "id": 23,
+        "checked": true
+      }
+    }
+  ],
+  "report": true
+}]

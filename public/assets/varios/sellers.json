@@ -1,0 +1,37 @@
+
+[{
+
+    "id_cliente": "abcdef",
+    "sellersName" : "test",
+    "dbaName" : "test",
+    "cbpNumber" : "test",
+    "taxId" : "test",
+    "country": "test",
+    "amazonId": "test",
+    "facilites" : [
+
+        {
+            "number": "123",
+            "address_1": "test",
+            "address_2": "test",
+            "neighborhood" : "test",
+            "estado" : "test",
+            "zipCode": "test",
+            "country": "test",
+            "type": "exw"
+        },
+        {
+            "number": "12345",
+            "address_1": "test",
+            "address_2": "test",
+            "neighborhood" : "test",
+            "estado" : "test",
+            "zipCode": "test",
+            "country": "test",
+            "type": "principal"
+
+        }
+    ] 
+ 
+
+}]

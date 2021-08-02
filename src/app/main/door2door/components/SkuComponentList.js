@@ -72,7 +72,7 @@ export const SkuComponentList = ({ event }) => {
                             <TableCell>{row.hts8}</TableCell>
                             <TableCell>{row.duties}</TableCell>
                             <TableCell>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(row.fob * row.qty)}</TableCell>
-                            <TableCell>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format((row.qty * row.duties * row.fob) / 100)}</TableCell>
+                            <TableCell>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format((row.qty * row.duties * row.fob))}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

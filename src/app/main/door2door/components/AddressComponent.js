@@ -3,9 +3,6 @@ import React from 'react';
 import Select from 'react-select';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -16,14 +13,6 @@ import { Typography } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import { UseGetFba } from '../hooks/useGetFba';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { GetSellers } from 'app/main/helpers/GetSellers';
-import { UseGetSellers } from 'app/main/hooks/useGetSellers';
 import UseGetAddress from '../hooks/UseGetAddress';
 
 
@@ -91,8 +80,6 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
     const originalJson = fbafinal;
     const newJson = [];
 
-    console.log('fba:', originalJson);
-
     // Relleno el Select con los FBA de Amazon
 
     for (const htsCode of originalJson) {
@@ -111,8 +98,7 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
 
     const sellers = UseGetAddress(id_cliente);
     const sellersfinal = sellers.data;
-    console.log(sellersfinal.country);
-
+    
     /* const originalJson = imgs;
                  const newJson = [];
                  for (const htsCode of originalJson) {
@@ -128,7 +114,7 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
       } */
 
     /*for (const Country of Object.entries(sellersfinal) {
-        console.log("PICO:", Country);
+      
     } */
 
     /*  const newJson2 = [];
@@ -138,17 +124,16 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
           }
       } */
 
-    /* console.log("filtrado:", originalJson2) */
+  
 
-    const [address, setaddress] = useState({
+      const [address, setaddress] = useState({
 
         zip_origen: '',
         ciudad_origen:'',
         pais_origen: '',
         zip_destino : '',
 
-
-    })
+    });
 
     const handleInputChange = (event) => {
         // console.log(event.target.name)
@@ -157,12 +142,16 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
        setaddress({
 
            ...address,
-            zip_destino : event.value
-        }) 
+            zip_destino : event.value,
+            zip_origen  : sellersfinal.zipCode,
+            ciudad_origen: sellersfinal.ciudad,
+            pais_origen: sellersfinal.country,
 
+        }) 
+ console.log("direcciones: ",address);
     }
 
-
+   
     /* function onKeyDown(keyEvent) {
      
         if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -172,40 +161,34 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
 
 
 
-    /* const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
      
          e.preventDefault();
-         if (datos.hts.trim().length > 3 && datos.country.trim() != '') {
      
              setdatosfinales({
      
-                 ...datos,
-                 ...
-                
+                 ...datosfinales,
+                 ...address
      
              })
      
-             setDatos({
-                 country: '',
-                 hts: '',
-                 destination: 'United States',
-     
-             });
-         } else {
+         
+         /* else {
      
              swal({
                  title: "oops!",
                  text: "Insert a valid Information or Country !!",
                  icon: "warning",
-             });
+             }); */
      
          }
      
-     } */
+      
 
     return (
 
         <form noValidate autoComplete="off">
+            <Button onClick={handleSubmit} variant="contained" color="primary" >Next</Button>
             <Typography className={classes.titles} variant="h5">
                 Locations
             </Typography> <br></br>
@@ -216,7 +199,7 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
                             <strong>Pickup Address</strong>
                         </Typography>
                         <Typography className={classes.titles} variant="subtitle2" gutterBottom >
-                            {sellersfinal.number}  {sellersfinal.address_1}, {sellersfinal.neighborhood}. {sellersfinal.state}, {sellersfinal.zip_code}, {sellersfinal.country} &nbsp;&nbsp;<Tooltip title="Seller's Pickup Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
+                            {sellersfinal.number}  {sellersfinal.address_1}, {sellersfinal.neighborhood}, {sellersfinal.ciudad}, {sellersfinal.estado}, {sellersfinal.zipCode}, {sellersfinal.country} &nbsp;&nbsp;<Tooltip title="Seller's Pickup Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
                     </Paper>
                 </Grid>
                 <Grid item xs={6}>

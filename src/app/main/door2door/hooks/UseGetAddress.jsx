@@ -17,7 +17,7 @@ function UseGetAddress(id_cliente) {
         GetSellers(id_cliente)
             .then(imgs => {
 
-                const originalJson = imgs.facilities;
+                const originalJson = imgs.facilites;
                 const newJson = [];
                 for (const add of originalJson) {
                     if (add.type == "exw") {
