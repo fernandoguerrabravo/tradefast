@@ -337,6 +337,10 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                                         <TableCell> <strong>CBP Description</strong></TableCell>
                                         <TableCell style={{ color: blue[800] }}>{skus.htsdescription}</TableCell>
                                     </TableRow>
+                                    <TableRow >
+                                        <TableCell> <strong>Section 301B (Products Origin China)</strong></TableCell>
+                                        <TableCell style={{ color: blue[800] }}>{skus.List301}</TableCell>
+                                    </TableRow>
                                 </TableBody>
                             </Table>
                         </TableContainer>

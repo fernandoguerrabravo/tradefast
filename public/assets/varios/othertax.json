@@ -1,0 +1,59 @@
+[{
+
+"hmf" : {
+
+    "taxname": "Harbour maintenance fee",
+    "taxtype" : "Other Taxes",
+    "rate" : 0.00125,
+    "min" : "",
+    "max": "",
+    "base": "FOB",
+    "description": "The Harbor Maintenance Fee is charged for any product arriving into the US by Sea."
+
+},
+
+"mpf" : {
+
+    "taxname": "Merchandise Processing Fee",
+    "taxtype" : "Other Taxes",
+    "rate" : 0.0034664,
+    "min": 27.23,
+    "max": 528.33,
+    "base": "FOB",
+    "description": "MPF applies to the value of the goods."
+    
+},
+
+"301b" : [
+    
+    {
+        "type": "1",
+        "rate": 0.25
+
+    },
+    {
+        "type": "2",
+        "rate": 0.25
+
+    },
+    {
+        "type": "3",
+        "rate": 0.25
+
+    },
+    {
+        "type": "4a",
+        "rate": 0.075
+
+    },
+    {
+        "type": "4b",
+        "rate": 0
+
+    }
+
+
+]
+
+
+}]
