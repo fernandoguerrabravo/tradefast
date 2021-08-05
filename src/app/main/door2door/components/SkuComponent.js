@@ -21,6 +21,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import ModalSku from './ModalSku';
+import { UseGetOtherTax } from 'app/main/hooks/useGetOtherTax';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -93,7 +95,9 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
     const classes = useStyles();
     const sku = UseGetSku(idcliente);
     const skufinal = sku.data;
-
+    const othertaxes = UseGetOtherTax();
+    const othertaxesfinal = othertaxes.data;
+    console.log("otherstax: ",othertaxesfinal)
     const [skus, setskus] = useState({
 
         id: '',
@@ -153,7 +157,9 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                     duties: valores.duties,
                     htsdescription: valores.htsdescription,
                     qty: '',
-                    FTA: valores.FTA
+                    FTA: valores.FTA,
+                    List301:  valores.List301,
+                    tax301: valores.tax301
 
                 })
 
@@ -339,7 +345,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                                     </TableRow>
                                     <TableRow >
                                         <TableCell> <strong>Section 301B (Products Origin China)</strong></TableCell>
-                                        <TableCell style={{ color: blue[800] }}>{skus.List301}</TableCell>
+                                        <TableCell style={{ color: blue[800] }}>List {skus.List301}   Tariff : {skus.tax301} /FOB</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
