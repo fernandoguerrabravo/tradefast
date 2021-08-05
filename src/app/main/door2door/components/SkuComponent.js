@@ -97,7 +97,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
     const skufinal = sku.data;
     const othertaxes = UseGetOtherTax();
     const othertaxesfinal = othertaxes.data;
-    console.log("otherstax: ",othertaxesfinal)
+   
     const [skus, setskus] = useState({
 
         id: '',
@@ -178,10 +178,12 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             let nrosku = lista.length
             let sumadefob = 0;
             let sumadeduties = 0;
+            let sumadeothertax = 0;
             for (const sumafob of lista) {
 
                 sumadefob = sumadefob + (sumafob.fob) * (sumafob.qty)
                 sumadeduties = sumadeduties + (sumafob.duties)*(sumafob.fob)*(sumafob.qty)
+              
                 
             }
             setarregloskus({
