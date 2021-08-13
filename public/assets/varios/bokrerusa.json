@@ -1,0 +1,17 @@
+[{
+
+ "clareance" : 60.00,
+ "custom_bond" : 0.105,
+ "processing_fee" : 0.0034,
+ "min_processing_fee" : 25.00,
+ "fee_agency" : 40.00,
+ "pickup_ibc" : 0.10,
+ "min_pickup_ibc" : 35.00,
+ "import_fee" : 100.00,
+ "handling_mia" : 2.00,
+ "free_domicile_fee": 15.00,
+ "aditional_line" : 2.00,
+ "max_lines" : 5
+
+    
+}]

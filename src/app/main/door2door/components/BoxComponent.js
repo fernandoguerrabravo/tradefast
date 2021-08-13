@@ -125,7 +125,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
             volbox: vol
         })
 
-        console.log("queremos id del perro:", box)
+       
     }
 
     function onKeyDown(keyEvent) {
@@ -153,10 +153,10 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
             }
 
-
+            
             setarreglobox({
 
-                ...arreglobox,
+                
                 arreglosdebox: listabox,
                 totalkg: sumakg,
                 totalvol: sumavol,
@@ -164,6 +164,8 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
 
             });
+
+            console.log("PERRO: ", arreglobox.arreglosdebox)
 
             setbox({
 
@@ -176,14 +178,13 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 volbox: '',
             })
 
-            setdatosfinales((datosfinales) => {
-
-                return {
+            setdatosfinales({
+           
                     ...datosfinales,
                     boxes: arreglobox
-                }
 
-            });
+             } );
+
 
         } else {
 
@@ -198,7 +199,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
     }
 
-
+    
     return (
 
         <form onKeyDown={onKeyDown} noValidate autoComplete="off">

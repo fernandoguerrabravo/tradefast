@@ -91,13 +91,13 @@ const lista = [];
 
 export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
+    var otherduties = '';
     const idcliente = "abcdef";
     const classes = useStyles();
     const sku = UseGetSku(idcliente);
     const skufinal = sku.data;
     const othertaxes = UseGetOtherTax();
     const othertaxesfinal = othertaxes.data;
-   
     const [skus, setskus] = useState({
 
         id: '',
@@ -158,7 +158,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                     htsdescription: valores.htsdescription,
                     qty: '',
                     FTA: valores.FTA,
-                    List301:  valores.List301,
+                    List301: valores.List301,
                     tax301: valores.tax301
 
                 })
@@ -166,7 +166,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             }
         }
 
-        console.log("direcciones con el sku:", datosfinales)
+   
 
     }
 
@@ -182,16 +182,38 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             for (const sumafob of lista) {
 
                 sumadefob = sumadefob + (sumafob.fob) * (sumafob.qty)
-                sumadeduties = sumadeduties + (sumafob.duties)*(sumafob.fob)*(sumafob.qty)
-              
-                
+                sumadeduties = sumadeduties + (sumafob.duties) * (sumafob.fob) * (sumafob.qty)
+
+
             }
+
+            // Calculo de los otros impuestos 
+            // Harbour maintenance fee
+
+            var hmf = othertaxesfinal.hmf.rate * (sumadefob);
+
+            var mpf = othertaxesfinal.mpf.rate * (sumadefob);
+
+            if (mpf < 27.23) {
+
+                mpf = 27.23;
+            }
+
+            else if (mpf > 528.33) {
+
+                mpf = 528.33;
+            }
+
+            otherduties = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(hmf + mpf)
+           
+
             setarregloskus({
 
                 arreglosdelsku: lista,
                 totalfob: sumadefob,
                 totalsku: nrosku,
                 totalduties: sumadeduties,
+                totalotherduties: otherduties
 
 
             });
@@ -210,7 +232,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
             });
 
-
+            
 
         } else {
 
@@ -224,8 +246,6 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
         }
 
     }
-
-
 
     const newJson1 = [];
     for (const codigo of skufinal) {
@@ -294,7 +314,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                                     </TableRow>
                                     <TableRow >
                                         <TableCell> <strong>Other Duties (Total)</strong></TableCell>
-                                        <TableCell style={{ color: green[900] }}></TableCell>
+                                        <TableCell style={{ color: green[900] }}>{arregloskus.totalotherduties} &nbsp;&nbsp;<Tooltip title="Harbour Maintenance Fee, Merchandise Processing Fee"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>

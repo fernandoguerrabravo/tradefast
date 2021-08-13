@@ -25,7 +25,7 @@ export const GetOtherTax = async () => {
                 .catch((reason) => console.warn("Axios error:", reason))
         ).data;
 
-        console.log("API response:", response[0]);
+        
 
         return response[0];
 

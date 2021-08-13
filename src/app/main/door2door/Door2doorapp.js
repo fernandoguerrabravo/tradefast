@@ -93,28 +93,23 @@ export default function Door2doorApp() {
 
   const [datosfinales, setdatosfinales] = useState({
 
-    zip_origen  : '',
-    ciudad_origen  : '',
-    pais_origen  : '',
-    zip_destino : '',
+    zip_origen: '',
+    ciudad_origen: '',
+    pais_origen: '',
+    zip_destino: '',
     boxes: [],
     skus: [],
     hidden: false
 
   })
 
-  
 
-  const incrementCount = () => {
-
-    setdatosfinales((datosfinales) => {
-      return { ...datosfinales, hidden: true }
-    });
-  }
 
   const mostrar = () => {
 
-    incrementCount()
+    
+    console.log("PARA CALCULAR: ", datosfinales)
+
 
   }
 

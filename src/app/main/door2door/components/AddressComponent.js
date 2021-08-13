@@ -136,8 +136,8 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
     });
 
     const handleInputChange = (event) => {
-        // console.log(event.target.name)
-         console.log(event.value)
+      
+        
         
        setaddress({
 
@@ -148,7 +148,7 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
             pais_origen: sellersfinal.country,
 
         }) 
- console.log("direcciones: ",address);
+
     }
 
    

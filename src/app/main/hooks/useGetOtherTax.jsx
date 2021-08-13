@@ -24,7 +24,7 @@ export const UseGetOtherTax = () => {
             });
     }, []);
 
-    //console.log("useothertax:", state)
+
     return state;
 
 }
