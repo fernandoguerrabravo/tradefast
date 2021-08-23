@@ -125,7 +125,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
             volbox: vol
         })
 
-       
+       console.log(box)
     }
 
     function onKeyDown(keyEvent) {
@@ -156,7 +156,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
             
             setarreglobox({
 
-                
+                ...arreglobox,
                 arreglosdebox: listabox,
                 totalkg: sumakg,
                 totalvol: sumavol,
@@ -178,13 +178,15 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 volbox: '',
             })
 
-            setdatosfinales({
-           
+            setdatosfinales((datosfinales) => {
+
+                return {
                     ...datosfinales,
                     boxes: arreglobox
+                }
 
-             } );
-
+            });
+           
 
         } else {
 
@@ -239,7 +241,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                                 variant="outlined"
                                 color="secondary"
                                 type="number"
-                                value={box.weight || ''}
+                                value={box.weight}
                                 onChange={handleqtyChange}
                             />
                             <Typography className={classes.titles} style={{ color: blue[400] }} variant="caption" gutterBottom>
@@ -254,7 +256,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                                 variant="outlined"
                                 color="secondary"
                                 type="number"
-                                value={box.width || ''}
+                                value={box.width}
                                 onChange={handleqtyChange}
                             />
                             <Typography className={classes.titles} style={{ color: blue[400] }} variant="caption" gutterBottom>
@@ -269,7 +271,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                                 variant="outlined"
                                 color="secondary"
                                 type="number"
-                                value={box.length || ''}
+                                value={box.length}
                                 onChange={handleqtyChange}
                             />
                             <Typography className={classes.titles} style={{ color: blue[400] }} variant="caption" gutterBottom>
@@ -284,7 +286,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                                 variant="outlined"
                                 color="secondary"
                                 type="number"
-                                value={box.height || ''}
+                                value={box.height}
                                 onChange={handleqtyChange}
                             />
                             <Typography className={classes.titles} style={{ color: blue[400] }} variant="caption" gutterBottom>
