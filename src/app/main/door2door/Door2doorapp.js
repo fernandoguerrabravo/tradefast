@@ -99,10 +99,16 @@ export default function Door2doorApp() {
     zip_destino: '',
     boxes: [],
     skus: [],
-    hidden: false
+  })
+ 
+  const [hidden , sethidden] = useState({
+
+    hiddenlocation: true,
+    hiddensku : false,
+    hiddenbox: false,
+    hiddenfinal : false
 
   })
-
 
 
   const mostrar = () => {
@@ -119,19 +125,19 @@ export default function Door2doorApp() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><AddressComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper>
+         { hidden.hiddenlocation ?  <Paper className={classes.paper}><AddressComponent sethidden = {sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><SkuComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper>
+        { hidden.hiddensku ?  <Paper className={classes.paper}><SkuComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null } 
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><BoxComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper>
+        { hidden.hiddenbox ?  <Paper className={classes.paper}><BoxComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null }  
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}><Button onClick={mostrar} variant="contained" color="primary">Show Quotation</Button></Paper>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>{datosfinales.hidden && <CalculosFinales datosfinales={datosfinales} />}</Paper>
+         {hidden.hiddenfinal ? <Paper className={classes.paper}> <CalculosFinales datosfinales={datosfinales} /></Paper> : null }
         </Grid>
       </Grid>
     </div>

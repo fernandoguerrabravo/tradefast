@@ -85,9 +85,21 @@ const useStyles = makeStyles((theme) => ({
 
         minWidth: 200,
     },
+    paper1: {
+
+        float: 'right',
+        flexGrow: 1,
+        display: 'flex-grow',
+        padding: theme.spacing(2),
+        alignItems: 'left',
+        flexGrow: 1,
+        textAlign: 'left',
+
+
+    },
 }));
 
-const lista = [];
+var lista = [];
 
 export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
@@ -98,6 +110,8 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
     const skufinal = sku.data;
     const othertaxes = UseGetOtherTax();
     const othertaxesfinal = othertaxes.data;
+
+
     const [skus, setskus] = useState({
 
         id: '',
@@ -128,8 +142,10 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
         setskus({
 
             ...skus,
-            [event.target.name]: event.target.value
+            [event.target.name]: parseFloat(event.target.value)
         })
+
+
     }
 
     function onKeyDown(keyEvent) {
@@ -143,6 +159,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
 
         const id = lista.length
+
         for (const valores of skufinal) {
 
             if (valores.sku == event.value) {
@@ -166,8 +183,6 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             }
         }
 
-   
-
     }
 
     const submitsku = () => {
@@ -184,7 +199,6 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                 sumadefob = sumadefob + (sumafob.fob) * (sumafob.qty)
                 sumadeduties = sumadeduties + (sumafob.duties) * (sumafob.fob) * (sumafob.qty)
 
-
             }
 
             // Calculo de los otros impuestos 
@@ -193,6 +207,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             var hmf = othertaxesfinal.hmf.rate * (sumadefob);
 
             var mpf = othertaxesfinal.mpf.rate * (sumadefob);
+
 
             if (mpf < 27.23) {
 
@@ -204,9 +219,8 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                 mpf = 528.33;
             }
 
-            otherduties = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(hmf + mpf)
+            let otherduties = hmf + mpf
            
-
             setarregloskus({
 
                 arreglosdelsku: lista,
@@ -218,21 +232,17 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
             });
 
+
+
+           
+
+
             setskus({
                 qty: '',
                 sku: '',
             })
 
-            setdatosfinales((datosfinales) => {
 
-                return {
-                    ...datosfinales,
-                    skus: arregloskus
-                }
-
-            });
-
-            
 
         } else {
 
@@ -245,6 +255,23 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
         }
 
+
+
+    }
+
+    const nextsku = () => {
+
+
+        setdatosfinales((datosfinales) => {
+
+            return {
+                ...datosfinales,
+                skus: arregloskus
+            }
+
+        });
+
+        console.log(arregloskus)
     }
 
     const newJson1 = [];
@@ -260,6 +287,12 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
         <form onKeyDown={onKeyDown} noValidate autoComplete="off">
             <br></br>
+            <Grid item xs={12}>
+                <Paper className={classes.paper1}>
+                    <Button size="large" onClick ={nextsku} variant="contained" color="secondary">Back</Button>&nbsp;&nbsp;
+                    <Button size="large" variant="contained" color="secondary">Next</Button>
+                </Paper>
+            </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Typography className={classes.titles} variant="h6" gutterBottom>
@@ -314,7 +347,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                                     </TableRow>
                                     <TableRow >
                                         <TableCell> <strong>Other Duties (Total)</strong></TableCell>
-                                        <TableCell style={{ color: green[900] }}>{arregloskus.totalotherduties} &nbsp;&nbsp;<Tooltip title="Harbour Maintenance Fee, Merchandise Processing Fee"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></TableCell>
+                                        <TableCell style={{ color: green[900] }}>{new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(arregloskus.totalotherduties)} &nbsp;&nbsp;<Tooltip title="Harbour Maintenance Fee, Merchandise Processing Fee"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
@@ -366,8 +399,8 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                                         <TableCell style={{ color: blue[800] }}>{skus.htsdescription}</TableCell>
                                     </TableRow>
                                     <TableRow >
-                                        <TableCell> <strong>Section 301B (Products Origin China)</strong></TableCell>
-                                        <TableCell style={{ color: blue[800] }}>List {skus.List301}   Tariff : {skus.tax301} /FOB</TableCell>
+                                        <TableCell> <strong>Section 301 (Manufactured in China - List and Tax)</strong></TableCell>
+                                        <TableCell style={{ color: blue[800] }}> {skus.List301} {skus.tax301}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>

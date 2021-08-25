@@ -13,7 +13,7 @@ import { Divider, Typography } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import { BoxComponentList } from './BoxComponentList';
-
+import { Input } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const listabox = [];
+var listabox = [];
 
 export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
@@ -115,11 +115,10 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
         const peso = box.qtybox * box.weight;
         const vol = ((box.width * box.length * box.height) * box.qtybox) / 1000000
-
+        let qty = parseFloat(event.target.value)
         setbox({
-
             ...box,
-            [event.target.name]: event.target.value,
+            [event.target.name]: qty,
             id: listabox.length,
             weightbox: peso,
             volbox: vol
@@ -142,9 +141,9 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
         if (box.qtybox != '' && box.weightbox != '' && box.weight != '' && box.width != '' && box.length != '' && box.height != '') {
 
             listabox.push(box)
-            let sumakg = 0;
-            let sumavol = 0;
-            let sumaqty = 0;
+             var sumakg = 0;
+            var sumavol = 0;
+            var sumaqty = 0;
             for (const sumas of listabox) {
 
                 sumakg = sumakg + sumas.weightbox
@@ -153,7 +152,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
             }
 
-            
+        
             setarreglobox({
 
                 ...arreglobox,
@@ -178,15 +177,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 volbox: '',
             })
 
-            setdatosfinales((datosfinales) => {
-
-                return {
-                    ...datosfinales,
-                    boxes: arreglobox
-                }
-
-            });
-           
+        
 
         } else {
 
@@ -201,7 +192,23 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
     }
 
+    const nextbultos = () => {
+
+
+     setdatosfinales((datosfinales) => {
+
+            return {
+                ...datosfinales,
+                boxes: arreglobox
+            }
     
+        });
+
+        console.log(arreglobox)
+
+    }
+
+   
     return (
 
         <form onKeyDown={onKeyDown} noValidate autoComplete="off">
@@ -211,6 +218,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                     <Typography className={classes.titles} variant="h6" gutterBottom>
                         Boxes and Packaging
                     </Typography>
+                    <Button  onClick={nextbultos} variant="contained" color="primary" >Next</Button>
                     <Divider /><br></br>
                     <Typography className={classes.titles} style={{ color: green[600] }} variant="caption" gutterBottom>
                         (2) In this section you must include each kind of master box that will be shipped in your export.
@@ -219,7 +227,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <FormControl variant="outlined" className={classes.formControl2}>
-                            <TextField
+                            <Input
                                 id="qtybox"
                                 name="qtybox"
                                 label="Quantities of Box"
@@ -284,7 +292,7 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                                 name="height"
                                 label="Height (cm)"
                                 variant="outlined"
-                                color="secondary"
+                                color="secondary" 
                                 type="number"
                                 value={box.height}
                                 onChange={handleqtyChange}

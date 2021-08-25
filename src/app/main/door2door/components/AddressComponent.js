@@ -62,16 +62,33 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
         color: theme.palette.text.secondary,
     },
+
+    paper1: {
+
+        float: 'right',
+        flexGrow: 1,
+        display: 'flex-grow',
+        padding: theme.spacing(2),
+        color: theme.palette.text.secondary,
+    },
+
     icons: {
         fontSize: "small"
     },
+
     table: {
         minWidth: 650,
     },
+
+    button: {
+
+        alignItems: 'right',
+        flexGrow: 1,
+    }
 }));
 
 
-export default function AddressComponent({datosfinales, setdatosfinales}) {
+export default function AddressComponent({ sethidden, datosfinales, setdatosfinales }) {
 
     const id_cliente = "abcdef";
     const classes = useStyles();
@@ -95,10 +112,9 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
     // Obtengo los datos del sellers
 
 
-
     const sellers = UseGetAddress(id_cliente);
     const sellersfinal = sellers.data;
-    
+
     /* const originalJson = imgs;
                  const newJson = [];
                  for (const htsCode of originalJson) {
@@ -124,34 +140,32 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
           }
       } */
 
-  
 
-      const [address, setaddress] = useState({
+
+    const [address, setaddress] = useState({
 
         zip_origen: '',
-        ciudad_origen:'',
+        ciudad_origen: '',
         pais_origen: '',
-        zip_destino : '',
+        zip_destino: '',
 
     });
 
     const handleInputChange = (event) => {
-      
-        
-        
-       setaddress({
 
-           ...address,
-            zip_destino : event.value,
-            zip_origen  : sellersfinal.zipCode,
+        // Aviso que debe seleccionar un FBA 
+
+        setaddress({
+
+            ...address,
+            zip_destino: event.value,
+            zip_origen: sellersfinal.zipCode,
             ciudad_origen: sellersfinal.ciudad,
             pais_origen: sellersfinal.country,
 
-        }) 
-
+        })
     }
 
-   
     /* function onKeyDown(keyEvent) {
      
         if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
@@ -160,35 +174,46 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
     } */
 
 
-
     const handleSubmit = (e) => {
-     
-         e.preventDefault();
-     
-             setdatosfinales({
-     
-                 ...datosfinales,
-                 ...address
-     
-             })
-     
-         
-         /* else {
-     
-             swal({
-                 title: "oops!",
-                 text: "Insert a valid Information or Country !!",
-                 icon: "warning",
-             }); */
-     
-         }
-     
-      
+
+        e.preventDefault();
+        if (address.zip_destino != '') {
+
+            setdatosfinales({
+
+                ...datosfinales,
+                ...address
+
+            });
+
+            sethidden({
+
+                hiddenlocation: false,
+                hiddensku: true,
+                hiddenbox: false,
+                hiddenfinal: false
+
+            });
+        }
+
+        else {
+
+            swal({
+                title: "oops!",
+                text: "Insert a valid FBA !!",
+                icon: "warning",
+            });
+
+        }
+
+    }
 
     return (
 
         <form noValidate autoComplete="off">
-            <Button onClick={handleSubmit} variant="contained" color="primary" >Next</Button>
+            <Grid item xs={12}>
+                <Paper className={classes.paper1}><Button onClick={handleSubmit} size="large" variant="contained" color="secondary">Next</Button></Paper>
+            </Grid>
             <Typography className={classes.titles} variant="h5">
                 Locations
             </Typography> <br></br>
@@ -208,9 +233,9 @@ export default function AddressComponent({datosfinales, setdatosfinales}) {
                             <strong>Destination Address (FBA Address)</strong>
                         </Typography>
                         <FormControl variant="outlined" className={classes.formControl}>
-                            <Select 
-                            options={newJson} 
-                            onChange={handleInputChange}
+                            <Select
+                                options={newJson}
+                                onChange={handleInputChange}
                             />
                         </FormControl>
                     </Paper>
