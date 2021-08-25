@@ -7,23 +7,9 @@ import SkuComponent from './components/SkuComponent';
 import BoxComponent from './components/BoxComponent';
 import CalculosFinales from './components/CalculosFinales';
 import Button from '@material-ui/core/Button';
-import Select from 'react-select';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
-import swal from 'sweetalert';
 import { green, red, blue } from '@material-ui/core/colors';
-import { Divider, Typography } from '@material-ui/core';
-import InfoIcon from '@material-ui/icons/Info';
-import Tooltip from '@material-ui/core/Tooltip';
-import { UseGetSku } from './hooks/useGetSku';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import ModalSku from './components/ModalSku';
 import { SkuComponentList } from './components/SkuComponentList';
+import Resumen from './components/ResumenComponent';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -100,24 +86,19 @@ export default function Door2doorApp() {
     boxes: [],
     skus: [],
   })
- 
-  const [hidden , sethidden] = useState({
+
+  const [hidden, sethidden] = useState({
+
 
     hiddenlocation: true,
-    hiddensku : false,
+    hiddensku: false,
     hiddenbox: false,
-    hiddenfinal : false
+    hiddenfinal: false
 
   })
 
 
-  const mostrar = () => {
-
-    
-    console.log("PARA CALCULAR: ", datosfinales)
-
-
-  }
+  
 
 
   return (
@@ -125,19 +106,19 @@ export default function Door2doorApp() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-         { hidden.hiddenlocation ?  <Paper className={classes.paper}><AddressComponent sethidden = {sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
+          {hidden.hiddenlocation ? <Paper className={classes.paper}><AddressComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
         </Grid>
         <Grid item xs={12}>
-        { hidden.hiddensku ?  <Paper className={classes.paper}><SkuComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null } 
+          {hidden.hiddensku ? <Paper className={classes.paper}><SkuComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
         </Grid>
         <Grid item xs={12}>
-        { hidden.hiddenbox ?  <Paper className={classes.paper}><BoxComponent datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null }  
+          {hidden.hiddenbox ? <Paper className={classes.paper}><BoxComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}><Button onClick={mostrar} variant="contained" color="primary">Show Quotation</Button></Paper>
+          <Paper className={classes.paper}> <Resumen sethidden={sethidden} datosfinales={datosfinales} /></Paper> 
         </Grid>
         <Grid item xs={12}>
-         {hidden.hiddenfinal ? <Paper className={classes.paper}> <CalculosFinales datosfinales={datosfinales} /></Paper> : null }
+          {hidden.hiddenfinal ? <Paper className={classes.paper}> <CalculosFinales sethidden={sethidden} datosfinales={datosfinales} /></Paper> : null}
         </Grid>
       </Grid>
     </div>

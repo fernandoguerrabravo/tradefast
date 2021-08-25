@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 
 var lista = [];
 
-export default function SkuComponent({ datosfinales, setdatosfinales }) {
+export default function SkuComponent({ sethidden, datosfinales, setdatosfinales }) {
 
     var otherduties = '';
     const idcliente = "abcdef";
@@ -220,7 +220,7 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             }
 
             let otherduties = hmf + mpf
-           
+
             setarregloskus({
 
                 arreglosdelsku: lista,
@@ -229,20 +229,12 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
                 totalduties: sumadeduties,
                 totalotherduties: otherduties
 
-
             });
-
-
-
-           
-
 
             setskus({
                 qty: '',
                 sku: '',
             })
-
-
 
         } else {
 
@@ -255,23 +247,56 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
 
         }
 
-
-
     }
 
     const nextsku = () => {
 
+        if (arregloskus.arreglosdelsku != '') {
 
-        setdatosfinales((datosfinales) => {
+            setdatosfinales((datosfinales) => {
 
-            return {
-                ...datosfinales,
-                skus: arregloskus
-            }
+                return {
 
-        });
+                    ...datosfinales,
+                    skus: arregloskus
+                }
 
-        console.log(arregloskus)
+            });
+
+            sethidden({
+
+                hiddenlocation: false,
+                hiddensku: false,
+                hiddenbox: true,
+                hiddenfinal: false
+            })
+
+            
+
+            console.log(arregloskus)
+
+        } else {
+
+            swal({
+
+                title: "oops!",
+                text: "Select SKU to Export!!",
+                icon: "warning",
+            });
+
+        }
+
+    }
+
+    const backsku = () => {
+
+        sethidden({
+
+            hiddenlocation: true,
+            hiddensku: false,
+            hiddenbox: false,
+            hiddenfinal: false
+        })
     }
 
     const newJson1 = [];
@@ -289,8 +314,8 @@ export default function SkuComponent({ datosfinales, setdatosfinales }) {
             <br></br>
             <Grid item xs={12}>
                 <Paper className={classes.paper1}>
-                    <Button size="large" onClick ={nextsku} variant="contained" color="secondary">Back</Button>&nbsp;&nbsp;
-                    <Button size="large" variant="contained" color="secondary">Next</Button>
+                    <Button size="large" onClick = {backsku} variant="contained" color="secondary">Back</Button>&nbsp;&nbsp;
+                    <Button size="large" onClick={nextsku} variant="contained" color="secondary">Next</Button>
                 </Paper>
             </Grid>
             <Grid container spacing={3}>

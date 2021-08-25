@@ -80,11 +80,23 @@ const useStyles = makeStyles((theme) => ({
 
         minWidth: 200,
     },
+    paper1: {
+
+        float: 'right',
+        flexGrow: 1,
+        display: 'flex-grow',
+        padding: theme.spacing(2),
+        alignItems: 'left',
+        flexGrow: 1,
+        textAlign: 'left',
+
+
+    },
 }));
 
 var listabox = [];
 
-export default function BoxComponent({ datosfinales, setdatosfinales }) {
+export default function BoxComponent({ sethidden, datosfinales, setdatosfinales }) {
 
     const idcliente = "abcdef";
     const classes = useStyles();
@@ -137,7 +149,6 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
     const submitsku = () => {
 
-
         if (box.qtybox != '' && box.weightbox != '' && box.weight != '' && box.width != '' && box.length != '' && box.height != '') {
 
             listabox.push(box)
@@ -151,7 +162,6 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 sumaqty = sumaqty + sumas.qtybox
 
             }
-
         
             setarreglobox({
 
@@ -160,7 +170,6 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 totalkg: sumakg,
                 totalvol: sumavol,
                 totalqty: sumaqty
-
 
             });
 
@@ -177,8 +186,6 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
                 volbox: '',
             })
 
-        
-
         } else {
 
             swal({
@@ -194,17 +201,38 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
     const nextbultos = () => {
 
+     if (arreglobox.arreglosdebox != '') {
 
-     setdatosfinales((datosfinales) => {
+       setdatosfinales((datosfinales) => {
 
             return {
+
                 ...datosfinales,
                 boxes: arreglobox
             }
     
         });
 
+        sethidden({
+
+            hiddenlocation: false,
+            hiddensku: false,
+            hiddenbox: false,
+            hiddenfinal: true,
+        })
+
         console.log(arreglobox)
+
+    } else {
+
+        swal({
+
+            title: "oops!",
+            text: "Insert a valid Information!!",
+            icon: "warning",
+        });
+
+    }
 
     }
 
@@ -213,12 +241,17 @@ export default function BoxComponent({ datosfinales, setdatosfinales }) {
 
         <form onKeyDown={onKeyDown} noValidate autoComplete="off">
             <br></br>
+            <Grid item xs={12}>
+                <Paper className={classes.paper1}>
+                    <Button size="large"  variant="contained" color="secondary">Back</Button>&nbsp;&nbsp;
+                    <Button size="large"  onClick= {nextbultos} variant="contained" color="secondary">Next</Button>
+                </Paper>
+            </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Typography className={classes.titles} variant="h6" gutterBottom>
                         Boxes and Packaging
                     </Typography>
-                    <Button  onClick={nextbultos} variant="contained" color="primary" >Next</Button>
                     <Divider /><br></br>
                     <Typography className={classes.titles} style={{ color: green[600] }} variant="caption" gutterBottom>
                         (2) In this section you must include each kind of master box that will be shipped in your export.
