@@ -10,7 +10,7 @@ export const GetRatesBrLcl = async (datosfinales) => {
             'Content-Type': 'application/json'
         },
 
-        body: JSON.stringify(datosfinales)
+        body: JSON.stringify(datosfinales.boxes)
 
     };
 
