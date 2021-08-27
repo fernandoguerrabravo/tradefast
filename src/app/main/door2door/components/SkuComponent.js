@@ -22,7 +22,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import ModalSku from './ModalSku';
 import { UseGetOtherTax } from 'app/main/hooks/useGetOtherTax';
-
+import UseGetAddress from '../hooks/UseGetAddress';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -103,6 +103,7 @@ var lista = [];
 
 export default function SkuComponent({ sethidden, datosfinales, setdatosfinales }) {
 
+    const id_cliente = "abcdef";
     var otherduties = '';
     const idcliente = "abcdef";
     const classes = useStyles();
@@ -111,6 +112,8 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
     const othertaxes = UseGetOtherTax();
     const othertaxesfinal = othertaxes.data;
 
+    const sellers = UseGetAddress(id_cliente);
+    const sellersfinal = sellers.data;
 
     const [skus, setskus] = useState({
 
@@ -271,7 +274,7 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
                 hiddenfinal: false
             })
 
-            
+
 
             console.log(arregloskus)
 
@@ -312,11 +315,22 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 
         <form onKeyDown={onKeyDown} noValidate autoComplete="off">
             <br></br>
-            <Grid item xs={12}>
-                <Paper className={classes.paper1}>
-                    <Button size="large" onClick = {backsku} variant="contained" color="secondary">Back</Button>&nbsp;&nbsp;
-                    <Button size="large" onClick={nextsku} variant="contained" color="secondary">Next</Button>
-                </Paper>
+            <Grid container spacing={3}>
+                <Grid item xs={10}>
+                    <Paper className={classes.paper}>
+                        <Typography className={classes.titles} variant="subtitle1" gutterBottom>
+                            <strong>Pickup Address</strong>
+                        </Typography>
+                        <Typography className={classes.titles} variant="subtitle2" gutterBottom >
+                        {sellersfinal.number}  {sellersfinal.address_1}, {sellersfinal.neighborhood}, {sellersfinal.ciudad}, {sellersfinal.estado}, {sellersfinal.zipCode}, {sellersfinal.country} &nbsp;&nbsp;<Tooltip title="Seller's Pickup Address"><InfoIcon style={{ color: green[500] }} className={classes.icon} /></Tooltip></Typography>
+                    </Paper>
+                </Grid>
+                <Grid item xs={2}>
+                    <Paper className={classes.paper}>
+                        <Button size="large" onClick={backsku} variant="contained" color="secondary">Back</Button>&nbsp;&nbsp;
+                        <Button size="large" onClick={nextsku} variant="contained" color="secondary">Next</Button>
+                    </Paper>
+                </Grid>
             </Grid>
             <Grid container spacing={3}>
                 <Grid item xs={12}>

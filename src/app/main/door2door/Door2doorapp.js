@@ -7,10 +7,15 @@ import SkuComponent from './components/SkuComponent';
 import BoxComponent from './components/BoxComponent';
 import CalculosFinales from './components/CalculosFinales';
 import Button from '@material-ui/core/Button';
-import { green, red, blue } from '@material-ui/core/colors';
+import { deepOrange, green, red, blue } from '@material-ui/core/colors';
 import { SkuComponentList } from './components/SkuComponentList';
 import Resumen from './components/ResumenComponent';
-
+import Avatar from '@material-ui/core/Avatar';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -70,6 +75,13 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 200,
   },
 
+  square: {
+    color: theme.palette.getContrastText(green[500]),
+    backgroundColor: green[500],
+    width: theme.spacing(7),
+    height: theme.spacing(7)
+  },
+
 }));
 
 
@@ -85,20 +97,22 @@ export default function Door2doorApp() {
     zip_destino: '',
     boxes: [],
     skus: [],
+    pallets: [],
+    tipobulto: ''
+    // el tipo de bulto puede ser 'p' -> pallet  o 'b' -> box
+
+
   })
 
   const [hidden, sethidden] = useState({
 
 
     hiddenlocation: true,
-    hiddensku: false,
+    hiddensku: true,
     hiddenbox: false,
     hiddenfinal: false
 
   })
-
-
-  
 
 
   return (
@@ -106,7 +120,22 @@ export default function Door2doorApp() {
     <div className={classes.root}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          {hidden.hiddenlocation ? <Paper className={classes.paper}><AddressComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
+          {/* hidden.hiddenlocation ? <Paper className={classes.paper}><AddressComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null */}
+        </Grid>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+
+            <img src="https://fotos-ecl.s3.amazonaws.com/icons8-pallets-512.png" width='90' height='90' alt="Italian Trulli" />
+            <img src="https://fotos-ecl.s3.amazonaws.com/icons8-plataforma-500.png" width='90' height='90' alt="Italian" />
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Packaging</FormLabel>
+              <RadioGroup aria-label="gender" name="gender1">
+                <FormControlLabel value="b" control={<Radio />} label="Boxes" />
+                <FormControlLabel value="p" control={<Radio />} label="Pallets" />
+              </RadioGroup>
+            </FormControl>
+
+          </Paper>
         </Grid>
         <Grid item xs={12}>
           {hidden.hiddensku ? <Paper className={classes.paper}><SkuComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
@@ -115,7 +144,7 @@ export default function Door2doorApp() {
           {hidden.hiddenbox ? <Paper className={classes.paper}><BoxComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null}
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paper}> <Resumen sethidden={sethidden} datosfinales={datosfinales} /></Paper> 
+          <Paper className={classes.paper}> <Resumen sethidden={sethidden} datosfinales={datosfinales} /></Paper>
         </Grid>
         <Grid item xs={12}>
           {hidden.hiddenfinal ? <Paper className={classes.paper}> <CalculosFinales sethidden={sethidden} datosfinales={datosfinales} /></Paper> : null}
