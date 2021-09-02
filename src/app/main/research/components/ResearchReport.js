@@ -12,7 +12,7 @@ export const ResearchReport = ({ setboton, setpdf, sku, report, min, average, ma
     const [state, setstate] = useState({
 
         reporte: report,
-        circular: false,
+              circular: false,
 
 
     })

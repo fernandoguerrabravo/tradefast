@@ -5,25 +5,22 @@ import en from './i18n/en';
 import tr from './i18n/tr';
 import ar from './i18n/ar';
 
-
 i18next.addResourceBundle('en', 'skuslistpage', en);
 i18next.addResourceBundle('tr', 'skuslistpage', tr);
 i18next.addResourceBundle('ar', 'skulistpage', ar);
 
-
 const SkuListConfig = {
-
-    settings: {
-        layout: {
-            config: {}
-        }
-    },
-    routes: [
-        {
-            path: '/skulist',
-            component: SkuList
-        }
-    ]
+	settings: {
+		layout: {
+			config: {}
+		}
+	},
+	routes: [
+		{
+			path: '/skulist',
+			component: SkuList
+		}
+	]
 };
 
 export default SkuListConfig;

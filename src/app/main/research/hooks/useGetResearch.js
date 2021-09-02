@@ -1,29 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { GetResearch } from '../helpers/GetResearch';
 
-export const useGetResearch = (idcliente) => {
+export default function useGetResearch(idcliente) {
+	const [state, setState] = useState({
+		data: [],
+		loading: true
+	});
+	useEffect(() => {
+		GetResearch(idcliente).then(imgs => {
+			setState({
+				data: imgs,
+				loading: false
+			});
+		});
+	}, [idcliente]);
 
-    const [state, setState] = useState({
-
-        data: [],
-        loading: true
-    })
-
-    useEffect(() => {
-
-        GetResearch(idcliente)
-            .then(imgs => {
-                //console.log("Respuesta de la puta", imgs);
-                setState({
-                    data: imgs,
-                    loading: false
-                });
-
-            })
-
-
-    }, [idcliente]);
-
-    return state;
-
+	return state;
 }
