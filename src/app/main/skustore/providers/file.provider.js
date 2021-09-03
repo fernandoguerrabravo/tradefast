@@ -1,11 +1,11 @@
-import { HttpClient } from "../helpers/providers.helper";
+import { HttpClient } from '../helpers/providers.helper';
 
 class FileProvider {
-  httpClient = HttpClient;
+	httpClient = HttpClient;
 
-  async submitFiles(files, refId, sku) {
-    return await this.httpClient.post(`https://eclapi.com/sandbox/file/upload?refId=${refId}&sku=${sku}`, files)
-  }
+	async submitFiles(files, refId, sku) {
+		return await this.httpClient.post(`https://eclapi.com/sandbox/file/upload?refId=${refId}&sku=${sku}`, files);
+	}
 }
 
 export default FileProvider;
