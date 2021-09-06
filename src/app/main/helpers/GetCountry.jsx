@@ -11,3 +11,5 @@ const GetCountry = async () => {
 
 	return datos;
 };
+
+export default GetCountry;

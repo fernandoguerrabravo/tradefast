@@ -8,7 +8,7 @@ export const GetResearch = async idcliente => {
 				.post(
 					'https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/getrsearch',
 					{
-						id_cliente: 'abcdef'
+						idcliente: 'abcdef'
 					},
 					{
 						headers: {

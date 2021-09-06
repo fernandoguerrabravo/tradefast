@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GetCountry } from '../helpers/GetCountry';
+import GetCountry from '../helpers/GetCountry';
 
 export default function UseGetCountry() {
 	const [state, setState] = useState({

@@ -15,8 +15,9 @@ import swal from 'sweetalert';
 import { Divider, Grid } from '@material-ui/core';
 import SaveIcon from '@material-ui/icons/Save';
 import Paper from '@material-ui/core/Paper';
+import Swal from 'sweetalert2';
 import UseGetCountry from '../../hooks/useGetCountry';
-import { SaveSku } from '../helpers/SaveSku';
+import SaveSku from '../helpers/SaveSku';
 import SkuStoreFiles from './SkuStoreFiles';
 
 const styles = theme => ({
@@ -54,7 +55,7 @@ const styles2 = makeStyles(theme => ({
 	}
 }));
 
-export default function SkuStoreForm() {
+export default function SkuStoreForm({ setoculto }) {
 	const classes2 = styles2();
 	const [guardarsku, setguardarsku] = useState({
 		id_cliente: 'abcdef',
@@ -94,7 +95,12 @@ export default function SkuStoreForm() {
 					})
 				)
 				.then(result => {
-					window.location.replace('/skulist');
+					setoculto({
+						hiddenlistools: false,
+						hiddenstoreform: false,
+						hiddentable: true,
+						hiddendetails: false
+					});
 				});
 		} else {
 			Swal.fire({

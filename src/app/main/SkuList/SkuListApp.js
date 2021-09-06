@@ -4,8 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import SkuListTable from './components/SkuListTable';
 import PreviewCard from './components/SkuListDetails';
-import { SkuStoreFiles } from '../skustore/components/SkuStoreFiles';
-import { SkuListTools } from './components/SkuListTools';
+import SkuListTools from './components/SkuListTools';
+import SkuStoreForm from './components/SkuStoreForm';
 
 export const SkuListApp = () => {
 	const useStyles = makeStyles(theme => ({
@@ -23,40 +23,43 @@ export const SkuListApp = () => {
 
 	const [skudetails, setskudetails] = useState({
 		skunumber: '',
-		id_cliente: 'abcdef'
+		idcliente: 'abcdef'
 	});
 
 	const [oculto, setoculto] = useState({
-		hidden: true
+		hiddenlistools: false,
+		hiddenstoreform: false,
+		hiddentable: true,
+		hiddendetails: false
 	});
 
 	return (
 		<>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					{oculto.hidden ? null : <SkuListTools setoculto={setoculto} />}
+					{oculto.hiddenlistools ? <SkuListTools setoculto={setoculto} /> : null}
 				</Grid>
 				<Grid item xs={12}>
-					{oculto.hidden ? (
+					{oculto.hiddentable ? (
 						<Paper className={classes.paper}>
 							{' '}
-							<SkuListTable setoculto={setoculto} setskudetails={setskudetails} />
+							<SkuListTable oculto={oculto} setoculto={setoculto} setskudetails={setskudetails} />
 						</Paper>
 					) : null}
 				</Grid>
 				<Grid item xs={8}>
-					{oculto.hidden ? null : (
+					{oculto.hiddendetails ? (
 						<Paper className={classes.paper}>
 							<PreviewCard event={skudetails} />
 						</Paper>
-					)}
+					) : null}
 				</Grid>
-				<Grid item xs={12}>
-					{oculto.hidden ? null : (
+				<Grid item xs={8}>
+					{oculto.hiddenstoreform ? (
 						<Paper className={classes.paper}>
-							<SkuStoreFiles skus={skudetails.skunumber} idcliente={skudetails.id_cliente} />
+							<SkuStoreForm setoculto={setoculto} />
 						</Paper>
-					)}
+					) : null}
 				</Grid>
 			</Grid>
 		</>

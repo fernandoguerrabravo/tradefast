@@ -20,3 +20,5 @@ const SaveSku = async event => {
 
 	return '';
 };
+
+export default SaveSku;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import { ListResearchTools } from './components/ListResearchTools';
+import ListResearchTools from './components/ListResearchTools';
 import ListResearchTable from './components/ListResearchTable';
 import { SearchResearch } from './components/SearchResearch';
 

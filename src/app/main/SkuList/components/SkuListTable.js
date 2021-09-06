@@ -1,4 +1,4 @@
-import react from 'react';
+import { useState, react } from 'react';
 import MaterialTable, { MTableToolbar } from 'material-table';
 import Button from '@material-ui/core/Button';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
@@ -6,7 +6,16 @@ import { Link, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { useGetSku } from '../hooks/useGetSku';
 
-export default function SkuListTable({ setoculto, setskudetails }) {
+export default function SkuListTable({ oculto, setoculto, setskudetails }) {
+	const crearsku = () => {
+		setoculto({
+			...oculto,
+			hiddenstoreform: true,
+			hiddentable: false,
+			hiddenlistools: true
+		});
+	};
+
 	const useStyles = makeStyles(theme => ({
 		root: {
 			flexGrow: 1
@@ -25,7 +34,7 @@ export default function SkuListTable({ setoculto, setskudetails }) {
 
 	const details = event => {
 		setskudetails({
-			id_cliente: 'abcdef',
+			idcliente: 'abcdef',
 			skunumber: event
 		});
 
@@ -78,11 +87,9 @@ export default function SkuListTable({ setoculto, setskudetails }) {
 						<div style={{ backgroundColor: 'primary' }}>
 							<MTableToolbar {...props} />
 							<div style={{ padding: '20px 20px' }}>
-								<Link role="button" to="/skustore">
-									<Button variant="contained" color="secondary">
-										+ New Product
-									</Button>
-								</Link>
+								<Button onClick={crearsku} variant="contained" color="secondary">
+									+ New Product
+								</Button>
 							</div>
 						</div>
 					)

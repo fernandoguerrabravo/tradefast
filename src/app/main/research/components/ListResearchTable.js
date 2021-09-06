@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import Center from 'react-center';
 import useGetResearch from '../hooks/useGetResearch';
-import { ResearchReport } from './ResearchReport';
+import ResearchReport from './ResearchReport';
 import PdfViewer from './PdfViewer';
 
 export default function ListResearchTable({ pdf, setpdf, setboton }) {

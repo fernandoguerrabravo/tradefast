@@ -292,3 +292,5 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 		</form>
 	);
 };
+
+export default SkuStoreFiles;
