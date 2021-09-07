@@ -1,6 +1,4 @@
-
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,162 +11,100 @@ import swal from 'sweetalert';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue } from '@material-ui/core/colors';
 
+const useStyles = makeStyles(theme => ({
+	root: {
+		display: 'flex-grow',
+		alignItems: 'center',
+		width: '100%',
+		margin: theme.spacing(0),
+		input: {
+			marginLeft: theme.spacing(1),
+			flex: 1
+		},
+		iconButton: {
+			padding: 10
+		},
+		divider: {
+			height: 28,
+			margin: 4
+		}
+	},
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-
-        display: 'flex-grow',
-        alignItems: 'center',
-        width: '100%',
-        margin: theme.spacing(0),
-        input: {
-            marginLeft: theme.spacing(1),
-            flex: 1,
-
-        },
-        iconButton: {
-            padding: 10,
-        },
-        divider: {
-            height: 28,
-            margin: 4,
-        },
-    },
-
-    formControl: {
-        margin: theme.spacing(3),
-        minWidth: 500,
-    },
-    selectEmpty: {
-        marginTop: theme.spacing(2),
-    },
-
+	formControl: {
+		margin: theme.spacing(3),
+		minWidth: 500
+	},
+	selectEmpty: {
+		marginTop: theme.spacing(2)
+	}
 }));
 
-
 export default function Htsbegin({ setencabezado }) {
+	const classes = useStyles();
 
-    const classes = useStyles();
+	const [datos, setDatos] = useState({
+		country: '',
+		hts: ''
+	});
 
-    const [datos, setDatos] = useState({
+	const handleInputChange = event => {
+		// console.log(event.target.name)
+		// console.log(event.target.value)
+		setDatos({
+			...datos,
+			[event.target.name]: event.target.value
+		});
+	};
 
-        country: '',
-        hts: '',
+	function onKeyDown(keyEvent) {
+		if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
+			keyEvent.preventDefault();
+		}
+	}
+	// console.log(datos);
 
+	const handleSubmit = e => {
+		e.preventDefault();
+		if (datos.hts.trim().length > 3) {
+			setencabezado({
+				...datos,
+				destination: 'United States',
+				hidden: true,
+				hidden3: false
+			});
 
-    });
+			setDatos({
+				country: '',
+				hts: '',
+				destination: 'United States'
+			});
+		} else {
+			swal({
+				title: 'oops!',
+				text: 'Insert a valid Information or Country !!',
+				icon: 'warning'
+			});
+		}
+	};
 
-    const handleInputChange = (event) => {
-        // console.log(event.target.name)
-        // console.log(event.target.value)
-        setDatos({
-
-            ...datos,
-            [event.target.name]: event.target.value
-        })
-
-    }
-
-    function onKeyDown(keyEvent) {
-
-        if ((keyEvent.charCode || keyEvent.keyCode) === 13) {
-            keyEvent.preventDefault();
-        }
-    }
-    //console.log(datos);
-
-    const handleSubmit = (e) => {
-
-        e.preventDefault();
-        if (datos.hts.trim().length > 3 && datos.country.trim() != '') {
-
-            setencabezado({
-
-                ...datos,
-                destination: 'United States',
-                hidden: true,
-                hidden3: false,
-
-            })
-
-            setDatos({
-                country: '',
-                hts: '',
-                destination: 'United States',
-
-            });
-        } else {
-
-            swal({
-                title: "oops!",
-                text: "Insert a valid Information or Country !!",
-                icon: "warning",
-            });
-
-        }
-
-    }
-
-    return (
-
-        <form onKeyDown={onKeyDown} onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-
-            <FormControl variant="outlined" className={classes.formControl}>
-                <InputLabel id="demo-simple-select-outlined-label">Origin Country</InputLabel>
-                <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="country"
-                    value={datos.country}
-                    onChange={handleInputChange}
-                    label="Origin Country"
-                    name='country'
-                >
-                    <MenuItem value="">
-                        <em></em>
-                    </MenuItem>
-                    <MenuItem value={'BR'}>Brazil</MenuItem>
-                    <MenuItem value={'CO'}>Colombia</MenuItem>
-                    <MenuItem value={'MX'}>Mexico</MenuItem>
-                    <MenuItem value={'CN'}>China</MenuItem>
-                </Select>
-            </FormControl>
-
-            <FormControl variant="outlined" className={classes.formControl}>
-                <TextField
-                    id="hts"
-                    name="hts"
-                    label="HTS Code (6 Digits) or Keyword"
-                    variant="outlined"
-                    color="secondary"
-                    type="text"
-                    value={datos.hts}
-                    onChange={handleInputChange}
-                />
-            </FormControl>
-
-            <br></br>
-            <Button type="submit" variant="contained" color="primary">
-                Search Classifications
-        </Button>
-        </form>
-
-
-    );
+	return (
+		<>
+			<FormControl variant="outlined" className={classes.formControl}>
+				<TextField
+					id="hts"
+					name="hts"
+					label="HTS Code (6 Digits) or Keyword"
+					variant="outlined"
+					color="secondary"
+					type="text"
+					value={datos.hts}
+					onChange={handleInputChange}
+				/>
+			</FormControl>
+			<br />
+			<Button onClick={handleSubmit} variant="contained" color="primary">
+				Search Classifications
+			</Button>
+		</>
+	);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
