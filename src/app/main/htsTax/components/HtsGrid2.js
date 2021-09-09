@@ -29,7 +29,7 @@ const HtsGrid2 = ({ encabezado, setencabezado }) => {
 	// {loading && <p>Loading Results...</p>}
 	// console.log("datos iniciales", data);
 
-	const detailhts = (e, f, g) => {
+	const detailhts = (e, f, g, h, i) => {
 		setencabezado({
 			...encabezado,
 			hidden1: true,
@@ -37,7 +37,9 @@ const HtsGrid2 = ({ encabezado, setencabezado }) => {
 			hts: e,
 			hts8: e,
 			general: f,
-			special: g
+			special: g,
+			duties: h,
+			dutiespecific: i
 		});
 	};
 
@@ -58,7 +60,8 @@ const HtsGrid2 = ({ encabezado, setencabezado }) => {
 		{
 			icon: () => <SaveOutlinedIcon color="primary" fontSize="large" />,
 			tooltip: 'Select HTS Number',
-			onClick: (event, rowData) => detailhts(rowData.htsno, rowData.general, rowData.special)
+			onClick: (event, rowData) =>
+				detailhts(rowData.htsno, rowData.general, rowData.special, rowData.duties, rowData.dutiespecific)
 		}
 	];
 

@@ -20,11 +20,11 @@ def lambda_handler(event, context):
     
     ## Obtencion de la zona considerando el ZIP de destino para calcular tarifa ultima milla 
     
-    parametro = 'Mule'
+    parametro = 'Vitamin'
     
     
     mycursor = mydb.cursor()
-    
+     
     sql = "SELECT * FROM hts8 WHERE brief_description LIKE %s"
     code = ('%' + parametro + '%',)
     mycursor.execute(sql, code)
@@ -36,7 +36,7 @@ def lambda_handler(event, context):
            res.append({'hts8': x[0],'description': x[1], 'general' : x[5], 'advrate': x[8], 'specific':x[9], 'fta': x[11]})
            
     
-    return res
+    return myresult
     
       
     

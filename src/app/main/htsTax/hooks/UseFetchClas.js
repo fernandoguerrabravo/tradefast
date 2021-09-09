@@ -12,12 +12,11 @@ const UseFetchClas = htscode => {
 		GetClas(htscode).then(imgs => {
 			const originalJson = imgs;
 			const newJson = [];
-			for (const htsCode of originalJson) {
+			originalJson.forEach(htsCode => {
 				if (htsCode.htsno.length > 12) {
 					newJson.push(htsCode);
 				}
-			}
-
+			});
 			setState({
 				data: imgs,
 				loading: false,

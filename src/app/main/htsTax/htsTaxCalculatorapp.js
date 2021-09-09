@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { HtsGrid } from './components/HtsGrid';
+import HtsGrid from './components/HtsGrid';
 import HtsGrid2 from './components/HtsGrid2';
 import Htsbegin from './components/htsbegin';
 import { ListHtsTools } from './components/ListHtsTools';
@@ -31,7 +31,9 @@ export default function FullWidthGrid() {
 			destination: '',
 			hts8: '',
 			general: '',
-			special: ''
+			special: '',
+			duties: '',
+			dutiespecific: ''
 		}
 	]);
 

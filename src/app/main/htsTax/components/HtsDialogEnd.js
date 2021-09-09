@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useHistory } from "react-router-dom";
-import { withStyles } from '@material-ui/core/styles';
+import { useHistory } from 'react-router-dom';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -10,221 +10,189 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
-import { makeStyles } from '@material-ui/core/styles';
 import { green, red, blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import swal from 'sweetalert';
 import { SaveClasHts } from '../helpers/SaveClasHts';
 
+const styles = theme => ({
+	root: {
+		margin: 0,
+		padding: theme.spacing(2)
+	},
 
-
-
-const styles = (theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-
-    closeButton: {
-        position: 'absolute',
-        right: theme.spacing(1),
-        top: theme.spacing(1),
-        color: theme.palette.grey[500],
-    },
+	closeButton: {
+		position: 'absolute',
+		right: theme.spacing(1),
+		top: theme.spacing(1),
+		color: theme.palette.grey[500]
+	}
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
+	margin: theme.spacing(3),
+	minWidth: 500,
+	color: {
+		color: blue[700]
+	},
+	color1: {
+		color: green[500]
+	},
 
-    margin: theme.spacing(3),
-    minWidth: 500,
-    color: {
-
-        color: blue[700],
-    },
-    color1: {
-
-        color: green[500],
-    },
-
-    formControl: {
-
-        margin: theme.spacing(1),
-        minWidth: 30,
-    },
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 30
+	}
 }));
 
-
-
-const DialogTitle = withStyles(styles)((props) => {
-    const { children, classes, onClose, ...other } = props;
-    return (
-        <MuiDialogTitle disableTypography className={classes.root} {...other}>
-            <Typography variant="h6">{children}</Typography>
-            {onClose ? (
-                <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-                    <CloseIcon />
-                </IconButton>
-            ) : null}
-        </MuiDialogTitle>
-    );
+const DialogTitle = withStyles(styles)(props => {
+	const { children, classes, onClose, ...other } = props;
+	return (
+		<MuiDialogTitle disableTypography className={classes.root} {...other}>
+			<Typography variant="h6">{children}</Typography>
+			{onClose ? (
+				<IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+					<CloseIcon />
+				</IconButton>
+			) : null}
+		</MuiDialogTitle>
+	);
 });
 
-const DialogContent = withStyles((theme) => ({
-    root: {
-        padding: theme.spacing(2),
-    },
+const DialogContent = withStyles(theme => ({
+	root: {
+		padding: theme.spacing(2)
+	}
 }))(MuiDialogContent);
 
-const DialogActions = withStyles((theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(1),
-    },
+const DialogActions = withStyles(theme => ({
+	root: {
+		margin: 0,
+		padding: theme.spacing(1)
+	}
 }))(MuiDialogActions);
 
 export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
+	// para manejar los eventos de las dos cajas de texto
+	const history = useHistory();
 
-    // para manejar los eventos de las dos cajas de texto 
-    const history = useHistory();
+	const [datos, setDatos] = useState({
+		sku: '',
+		shortdescription: ''
+	});
 
-    const [datos, setDatos] = useState({
+	const [saveclashts, setSaveclashts] = useState({
+		categories: evento2,
+		hts8: evento4.hts8,
+		duties: evento4.general,
+		special: evento4.special,
+		country: evento4.country,
+		destination: evento4.destination,
+		description: evento3,
+		hts: evento1,
+		dutiesrate: evento4.duties,
+		dutiespecific: evento4.dutiespecific
+	});
 
-        sku: '',
-        shortdescription: ''
+	const handleInputChange = event => {
+		// console.log(event.target.name)
+		// console.log(event.target.value)
+		setDatos({
+			...datos,
+			[event.target.name]: event.target.value
+		});
+	};
 
-    });
+	const classes = useStyles();
 
-    const [saveclashts, setSaveclashts] = useState({
+	const [open, setOpen] = useState(false);
 
-        categories: evento2,
-        hts8: evento4.hts8,
-        duties: evento4.general,
-        special: evento4.special,
-        country: evento4.country,
-        destination: evento4.destination,
-        description: evento3,
-        hts: evento1
+	const handleClickOpen = () => {
+		if (datos.sku === '' || datos.shortdescription === '') {
+			swal({
+				title: 'oops!',
+				text: 'Please insert SKU and Short Description!',
+				icon: 'warning'
+			});
+		} else {
+			setOpen(true);
+		}
+	};
 
-    });
+	const handleClose = () => {
+		SaveClasHts(saveclashts, datos.sku, datos.shortdescription);
+		setOpen(false);
+		history.push('/htstaxlist');
+	};
 
-    const handleInputChange = (event) => {
-        // console.log(event.target.name)
-        // console.log(event.target.value)
-        setDatos({
+	return (
+		<>
+			<Typography>Input Products References</Typography>
+			<FormControl className={classes.formControl}>
+				<TextField
+					id="sku"
+					label="SKU Number"
+					color="secondary"
+					name="sku"
+					type="text"
+					value={datos.sku}
+					onChange={handleInputChange}
+				/>
+			</FormControl>
+			<FormControl className={classes.formControl}>
+				<TextField
+					color="secondary"
+					id="shortdescription"
+					label="Short Description"
+					name="shortdescription"
+					type="text"
+					value={datos.description}
+					onChange={handleInputChange}
+				/>
+			</FormControl>
+			<FormControl className={classes.formControl}>
+				<Button type="submit" variant="outlined" color="primary" onClick={handleClickOpen}>
+					Generate Report
+				</Button>
+			</FormControl>
 
-            ...datos,
-            [event.target.name]: event.target.value
-
-        })
-
-
-    };
-
-    const classes = useStyles();
-
-    const [open, setOpen] = useState(false);
-
-
-
-
-    const handleClickOpen = () => {
-
-
-
-        if (datos.sku == '' || datos.shortdescription == '') {
-
-            swal({
-                title: "oops!",
-                text: "Please insert SKU and Short Description!",
-                icon: "warning",
-            });
-
-
-        } else {
-
-            setOpen(true)
-        }
-
-    };
-
-    const handleClose = () => {
-
-        SaveClasHts(saveclashts, datos.sku, datos.shortdescription)
-        setOpen(false);
-        history.push('/htstaxlist')
-
-
-    };
-
-    return (
-
-        <>
-            <Typography>Input Products References</Typography>
-            <FormControl className={classes.formControl}>
-                <TextField
-                    id="sku"
-                    label="SKU Number"
-                    color="secondary"
-                    name="sku"
-                    color="secondary"
-                    type="text"
-                    value={datos.sku}
-                    onChange={handleInputChange}
-                >
-                </TextField>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <TextField
-                    color="secondary"
-                    id="shortdescription"
-                    label="Short Description"
-                    color="secondary"
-                    name="shortdescription"
-                    type="text"
-                    value={datos.description}
-                    onChange={handleInputChange}
-                >
-                </TextField>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-                <Button type="submit" variant="outlined" color="primary" onClick={handleClickOpen}>
-                    Generate Report
-            </Button>
-            </FormControl>
-
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                <DialogTitle className={classes.color} id="customized-dialog-title" onClose={handleClose}>
-                    HTS : {evento1}
-                </DialogTitle>
-                <DialogContent dividers>
-                    <Typography gutterBottom>
-                        <ListItem className={classes.color}>Customer References: </ListItem>
-                        <ListItem><span className={classes.color1}>SKU:</span>&nbsp;{datos.sku}</ListItem>
-                        <ListItem><span className={classes.color1}>Short Description:</span>&nbsp;{datos.shortdescription}</ListItem>
-                    </Typography>
-                    <Typography gutterBottom>
-                        <ListItem className={classes.color}>Categories: </ListItem>
-                        <ListItem>{evento2.L0}</ListItem>
-                        <ListItem>{evento2.L1}</ListItem>
-                        <ListItem>{evento2.L2}</ListItem>
-                        <ListItem>{evento2.L3}</ListItem>
-                    </Typography>
-                    <Typography gutterBottom>
-                        <ListItem className={classes.color}>Description: </ListItem>
-                        <ListItem>{evento3} </ListItem>
-                    </Typography>
-                    <Typography gutterBottom>
-                        <ListItem className={classes.color}>Import Taxes (Duties): </ListItem>
-                        <ListItem>{evento4.general}</ListItem>
-
-                    </Typography>
-                </DialogContent>
-                <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                        Save Classification
-          </Button>
-                </DialogActions>
-            </Dialog>
-        </>
-    );
+			<Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+				<DialogTitle className={classes.color} id="customized-dialog-title" onClose={handleClose}>
+					HTS : {evento1}
+				</DialogTitle>
+				<DialogContent dividers>
+					<Typography gutterBottom>
+						<ListItem className={classes.color}>Customer References: </ListItem>
+						<ListItem>
+							<span className={classes.color1}>SKU:</span>&nbsp;{datos.sku}
+						</ListItem>
+						<ListItem>
+							<span className={classes.color1}>Short Description:</span>&nbsp;{datos.shortdescription}
+						</ListItem>
+					</Typography>
+					<Typography gutterBottom>
+						<ListItem className={classes.color}>Categories: </ListItem>
+						<ListItem>{evento2.L0}</ListItem>
+						<ListItem>{evento2.L1}</ListItem>
+						<ListItem>{evento2.L2}</ListItem>
+						<ListItem>{evento2.L3}</ListItem>
+					</Typography>
+					<Typography gutterBottom>
+						<ListItem className={classes.color}>Description: </ListItem>
+						<ListItem>{evento3} </ListItem>
+					</Typography>
+					<Typography gutterBottom>
+						<ListItem className={classes.color}>Import Taxes (Duties): </ListItem>
+						<ListItem>{evento4.general}</ListItem>
+					</Typography>
+				</DialogContent>
+				<DialogActions>
+					<Button autoFocus onClick={handleClose} color="primary">
+						Save Classification
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</>
+	);
 }

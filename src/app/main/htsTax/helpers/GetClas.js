@@ -25,10 +25,12 @@ const GetClas = async htsnumber => {
 			score: img?.score ?? '',
 			special: img?.col1_special_text ?? '',
 			htsno: img?.hts8 ?? '',
-			general: img?.mfn_text_rate ?? ''
+			general: img?.mfn_text_rate ?? '',
+			duties: img?.mfn_ad_val_rate ?? '',
+			dutiespecific: img?.mfn_specific_rate ?? ''
 		};
 	});
-	console.log(hts);
+	// console.log('gethts:', hts);
 	return hts;
 };
 
