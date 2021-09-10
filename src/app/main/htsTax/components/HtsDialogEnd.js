@@ -14,6 +14,8 @@ import { green, red, blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import swal from 'sweetalert';
+import Select from 'react-select';
+import UseGetSku from 'app/main/hooks/UseGetSku';
 import { SaveClasHts } from '../helpers/SaveClasHts';
 
 const styles = theme => ({
@@ -74,6 +76,17 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
+	const idcliente = 'abcdef';
+	const sku = UseGetSku(idcliente);
+	const skufinal = sku.data;
+	const newJson1 = [];
+	skufinal.forEach(codigo => {
+		newJson1.push({
+			value: codigo.sku,
+			label: codigo.sku
+		});
+	});
+
 	// para manejar los eventos de las dos cajas de texto
 	const history = useHistory();
 
@@ -99,8 +112,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		// console.log(event.target.name)
 		// console.log(event.target.value)
 		setDatos({
-			...datos,
-			[event.target.name]: event.target.value
+			sku: event.value
 		});
 	};
 
@@ -109,13 +121,14 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 	const [open, setOpen] = useState(false);
 
 	const handleClickOpen = () => {
-		if (datos.sku === '' || datos.shortdescription === '') {
+		if (datos.sku === '') {
 			swal({
 				title: 'oops!',
 				text: 'Please insert SKU and Short Description!',
 				icon: 'warning'
 			});
 		} else {
+			console.log(datos.sku);
 			setOpen(true);
 		}
 	};
@@ -130,27 +143,12 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		<>
 			<Typography>Input Products References</Typography>
 			<FormControl className={classes.formControl}>
-				<TextField
-					id="sku"
-					label="SKU Number"
-					color="secondary"
-					name="sku"
-					type="text"
-					value={datos.sku}
-					onChange={handleInputChange}
-				/>
+				<Select options={newJson1} onChange={handleInputChange}  />
+				<Typography className={classes.titles} style={{ color: red[400] }} variant="caption" gutterBottom>
+					<strong>Search Your Saved SKU Code</strong>
+				</Typography>
 			</FormControl>
-			<FormControl className={classes.formControl}>
-				<TextField
-					color="secondary"
-					id="shortdescription"
-					label="Short Description"
-					name="shortdescription"
-					type="text"
-					value={datos.description}
-					onChange={handleInputChange}
-				/>
-			</FormControl>
+
 			<FormControl className={classes.formControl}>
 				<Button type="submit" variant="outlined" color="primary" onClick={handleClickOpen}>
 					Generate Report
