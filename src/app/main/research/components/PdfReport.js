@@ -147,7 +147,6 @@ const SampleDocument = ({ contenido, pdf }) => {
 								<Text style={styles.text2}>{image.asin}</Text>
 								<Text style={styles.text2}>{image.detalles.model}</Text>
 								<Text style={styles.text2}>{image.detalles.brand}</Text>
-								<Text style={styles.text2}>{image.detalles.seller}</Text>
 								<Text style={styles.text2}>{image.detalles.peso}</Text>
 								<Text style={styles.text2}>{image.detalles.dimensions}</Text>
 								<Text style={styles.text2}>{image.detalles.feature_0}</Text>

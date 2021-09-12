@@ -24,13 +24,29 @@ const navigationConfig = [
 				url: '/dashboard'
 			},
 			{
+				id: 'settings-component',
+				title: 'settings',
+				translate: 'SETTINGS',
+				type: 'collapse',
+				icon: 'settings',
+				children: [
+					{
+						id: 'skustore-component',
+						title: 'skustore',
+						translate: 'SKUSTORE',
+						type: 'item',
+						icon: 'widgets',
+						url: '/skulist'
+					}
+				]
+			},
+			{
 				id: 'tools-component',
 				title: 'example',
 				translate: 'TOOLSDECISIONS',
 				type: 'collapse',
 				icon: 'whatshot',
 				children: [
-
 					{
 						id: 'listresearch-component',
 						title: 'listresearch',
@@ -62,7 +78,7 @@ const navigationConfig = [
 						type: 'item',
 						icon: 'whatshot',
 						url: '/rate'
-					},
+					}
 				]
 			},
 			{
@@ -89,8 +105,6 @@ const navigationConfig = [
 				type: 'collapse',
 				icon: 'whatshot',
 				children: [
-
-
 					{
 						id: 'special-component',
 						title: 'htsspecial',
@@ -99,9 +113,7 @@ const navigationConfig = [
 						icon: 'timeline',
 						url: '/'
 					}
-
 				]
-
 			},
 			{
 				id: 'bonds-component',
@@ -118,26 +130,8 @@ const navigationConfig = [
 				type: 'item',
 				icon: 'whatshot',
 				url: '/'
-			},
-			{
-				id: 'settings-component',
-				title: 'settings',
-				translate: 'SETTINGS',
-				type: 'collapse',
-				icon: 'settings',
-				children: [
-					{
-						id: 'skustore-component',
-						title: 'skustore',
-						translate: 'SKUSTORE',
-						type: 'item',
-						icon: 'widgets',
-						url: '/skulist'
-					}
-				]
 			}
 		]
-
 	}
 ];
 

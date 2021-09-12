@@ -2,41 +2,34 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { ListHtsTools } from './components/ListHtsTools';
+import ListHtsTools from './components/ListHtsTools';
 import ListHtsTable from './components/ListHtsTable';
 
+const useStyles = makeStyles(theme => ({
+	root: {
+		flexGrow: 1
+	},
 
-const useStyles = makeStyles((theme) => ({
-
-  root: {
-    flexGrow: 1,
-  },
-
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-
-  },
-
+	paper: {
+		padding: theme.spacing(2),
+		textAlign: 'center',
+		color: theme.palette.text.secondary
+	}
 }));
 
 export default function FullWidthGrid() {
+	const classes = useStyles();
 
-  const classes = useStyles();
-
-  return (
-
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={12}>
-          <ListHtsTools />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <ListHtsTable />
-        </Grid>
-      </Grid>
-    </div>
-  );
-
+	return (
+		<div className={classes.root}>
+			<Grid container spacing={3}>
+				<Grid item xs={12} sm={12}>
+					<ListHtsTools />
+				</Grid>
+				<Grid item xs={12} sm={12}>
+					<ListHtsTable />
+				</Grid>
+			</Grid>
+		</div>
+	);
 }

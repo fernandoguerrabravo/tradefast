@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
-import { useState } from 'react';
+
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,7 +19,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { UseGetOtherTax } from 'app/main/hooks/useGetOtherTax';
-import { SkuComponentList } from './SkuComponentList';
+import SkuComponentList from './SkuComponentList';
 import ModalSku from './ModalSku';
 import { UseGetSku } from '../hooks/useGetSku';
 import UseGetAddress from '../hooks/UseGetAddress';
@@ -114,7 +114,9 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 		duties: '',
 		htsdescription: '',
 		qty: '',
-		FTA: ''
+		FTA: '',
+		dutiesrate: '',
+		dutiespecific: ''
 	});
 
 	const [arregloskus, setarregloskus] = useState({
@@ -140,24 +142,25 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 
 	const handleInputChange = event => {
 		const id = lista.length;
-
-		for (const valores of skufinal) {
-			if (valores.sku == event.value) {
+		skufinal.forEach(valores => {
+			if (valores.sku === event.value) {
 				setskus({
 					idlista: id,
 					fob: valores.fob,
 					shortdescription: valores.shortdescription,
 					sku: event.value,
-					hts8: valores.hts8,
-					duties: valores.duties,
-					htsdescription: valores.htsdescription,
+					hts8: valores.htsclas.hts,
+					duties: valores.htsclas.duties,
+					htsdescription: valores.htsclas.description,
 					qty: '',
-					FTA: valores.FTA,
+					FTA: valores.htsclas.special,
 					List301: valores.List301,
-					tax301: valores.tax301
+					tax301: valores.tax301,
+					dutiesrate: valores.htsclas.dutiesrate
 				});
+				console.log(skus.dutiesrate);
 			}
-		}
+		});
 	};
 
 	const submitsku = () => {
@@ -166,12 +169,11 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 			const nrosku = lista.length;
 			let sumadefob = 0;
 			let sumadeduties = 0;
-			let sumadeothertax = 0;
-			for (const sumafob of lista) {
-				sumadefob = sumadefob + sumafob.fob * sumafob.qty;
-				sumadeduties = sumadeduties + sumafob.duties * sumafob.fob * sumafob.qty;
-			}
-
+			const sumadeothertax = 0;
+			lista.forEach(sumafob => {
+				sumadefob += sumafob.fob * sumafob.qty;
+				sumadeduties += sumafob.dutiesrate * sumafob.fob * sumafob.qty;
+			});
 			// Calculo de los otros impuestos
 			// Harbour maintenance fee
 
@@ -244,18 +246,16 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 	};
 
 	const newJson1 = [];
-	for (const codigo of skufinal) {
-		{
-			newJson1.push({
-				value: codigo.sku,
-				label: codigo.sku
-			});
-		}
-	}
+	skufinal.forEach(codigo => {
+		newJson1.push({
+			value: codigo.sku,
+			label: codigo.sku
+		});
+	});
 
 	return (
-		<form onKeyDown={onKeyDown} noValidate autoComplete="off">
-			<br></br>
+		<>
+			<br />
 			<Grid container spacing={3}>
 				<Grid item xs={10}>
 					<Paper className={classes.paper}>
@@ -492,6 +492,6 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 					<SkuComponentList event={arregloskus.arreglosdelsku} />
 				</Grid>
 			</Grid>
-		</form>
+		</>
 	);
 }

@@ -11,12 +11,11 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
 import { green, red, blue } from '@material-ui/core/colors';
-import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import swal from 'sweetalert';
 import Select from 'react-select';
 import UseGetSku from 'app/main/hooks/UseGetSku';
-import { SaveClasHts } from '../helpers/SaveClasHts';
+import SaveClasHts from '../helpers/SaveClasHts';
 
 const styles = theme => ({
 	root: {
@@ -95,6 +94,9 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		shortdescription: ''
 	});
 
+	const fecha = new Date();
+	const date = fecha.toLocaleDateString();
+
 	const [saveclashts, setSaveclashts] = useState({
 		categories: evento2,
 		hts8: evento4.hts8,
@@ -105,14 +107,20 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		description: evento3,
 		hts: evento1,
 		dutiesrate: evento4.duties,
-		dutiespecific: evento4.dutiespecific
+		dutiespecific: evento4.dutiespecific,
+		date
 	});
 
 	const handleInputChange = event => {
 		// console.log(event.target.name)
 		// console.log(event.target.value)
-		setDatos({
-			sku: event.value
+		skufinal.forEach(key => {
+			if (key.sku === event.value) {
+				setDatos({
+					sku: event.value,
+					shortdescription: key.shortdescription
+				});
+			}
 		});
 	};
 
@@ -124,17 +132,16 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		if (datos.sku === '') {
 			swal({
 				title: 'oops!',
-				text: 'Please insert SKU and Short Description!',
+				text: 'Please select your SKU!',
 				icon: 'warning'
 			});
 		} else {
-			console.log(datos.sku);
+			SaveClasHts(saveclashts, datos.sku);
 			setOpen(true);
 		}
 	};
 
 	const handleClose = () => {
-		SaveClasHts(saveclashts, datos.sku, datos.shortdescription);
 		setOpen(false);
 		history.push('/htstaxlist');
 	};
@@ -143,7 +150,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		<>
 			<Typography>Input Products References</Typography>
 			<FormControl className={classes.formControl}>
-				<Select options={newJson1} onChange={handleInputChange}  />
+				<Select options={newJson1} onChange={handleInputChange} />
 				<Typography className={classes.titles} style={{ color: red[400] }} variant="caption" gutterBottom>
 					<strong>Search Your Saved SKU Code</strong>
 				</Typography>
@@ -151,7 +158,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 
 			<FormControl className={classes.formControl}>
 				<Button type="submit" variant="outlined" color="primary" onClick={handleClickOpen}>
-					Generate Report
+					Save Classification
 				</Button>
 			</FormControl>
 
@@ -187,7 +194,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 				</DialogContent>
 				<DialogActions>
 					<Button autoFocus onClick={handleClose} color="primary">
-						Save Classification
+						Close Details
 					</Button>
 				</DialogActions>
 			</Dialog>
