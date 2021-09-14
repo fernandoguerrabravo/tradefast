@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Getcustomusa } from '../helpers/GetCustomusa';
+import GetShippo from '../helpers/GetShippo';
 
-function UseGetCustomsusa(datosfinales) {
+function UseGetRateIntegradores(datosfinales) {
 	const [state, setState] = useState({
 		data: []
 	});
 
 	useEffect(() => {
-		Getcustomusa(datosfinales).then(imgs => {
+		GetShippo(datosfinales).then(imgs => {
 			setState({
 				data: imgs
 			});
@@ -17,4 +17,4 @@ function UseGetCustomsusa(datosfinales) {
 	return state;
 }
 
-export default UseGetCustomsusa;
+export default UseGetRateIntegradores;

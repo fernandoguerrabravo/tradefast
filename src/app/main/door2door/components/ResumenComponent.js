@@ -3,9 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 import UseGetRatesBrLcl from '../hooks/UseGetRatesBrLcl';
 import UseGetCustomsusa from '../hooks/UseGetCustomusa';
 import UseGetLastmileibc from '../hooks/UseGetLastmileibc';
+import UseGetRateIntegradores from '../hooks/UseGetRateIntegradores';
+import ShippoItem from './ShippoItem';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -41,6 +44,9 @@ export default function Resumen({ sethidden, datosfinales }) {
 	console.log('ultima milla ibc ', lclratefinal);
 	console.log('ultima milla ibc ', customusafinal);
 
+	const shippo = UseGetRateIntegradores(datosfinales);
+	const shippofinal = shippo.data;
+	console.log('SHIPPO:', shippofinal);
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
@@ -78,22 +84,29 @@ export default function Resumen({ sethidden, datosfinales }) {
 				</Grid>
 				<Grid item xs={3}>
 					<Paper className={classes.paper}>
-						{lastmileibcfinal.lastmile_total}
+						<img
+							src="https://fotos-ecl.s3.amazonaws.com/new-ecl-logo "
+							alt="ecl"
+							width="300"
+							height="300"
+						/>
 						<br />
-						{lclratefinal.total_lcl_brazil}
+						Rate Door to Door Full Shipment Sea LCL: <br />
 						<br />
-						{customusafinal.total_clareance_usa}
-						<br />
+						<strong>
+							USD:{' '}
+							{(
+								lastmileibcfinal.lastmile_total +
+								lclratefinal.total_lcl_brazil +
+								customusafinal.total_clareance_usa
+							).toFixed(2)}{' '}
+						</strong>
 					</Paper>
 				</Grid>
-				<Grid item xs={3}>
-					<Paper className={classes.paper}>xs=3</Paper>
-				</Grid>
-				<Grid item xs={3}>
-					<Paper className={classes.paper}>xs=3</Paper>
-				</Grid>
-				<Grid item xs={3}>
-					<Paper className={classes.paper}>xs=3</Paper>
+				<Grid item xs={12}>
+					{shippofinal.map(img => (
+						<ShippoItem key={img} {...img} />
+					))}
 				</Grid>
 			</Grid>
 		</div>
