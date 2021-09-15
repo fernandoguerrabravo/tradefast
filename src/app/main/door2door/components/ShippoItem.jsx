@@ -41,6 +41,7 @@ const ShippoItem = ({ fba, rates }) => {
 									<TableCell align="right">Currency</TableCell>
 									<TableCell align="right">Rate</TableCell>
 									<TableCell align="right">Service Level</TableCell>
+									<TableCell align="right">Transit Time</TableCell>
 									<TableCell align="right" />
 								</TableRow>
 							</TableHead>

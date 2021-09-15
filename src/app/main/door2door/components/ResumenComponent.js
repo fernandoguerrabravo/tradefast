@@ -51,11 +51,15 @@ export default function Resumen({ sethidden, datosfinales }) {
 		<div className={classes.root}>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					<Paper className={classes.paper}>Door to Door Shipment Summary</Paper>
+					<Paper className={classes.paper}>
+						<Typography variant="h4" component="h4">
+							Door to Door Shipment Summary
+						</Typography>
+					</Paper>
 				</Grid>
 				<Grid item xs={12}>
 					<Paper className={classes.paper}>
-						<Button onClick={mostrar} variant="contained" color="primary">
+						<Button onClick={mostrar} variant="contained" color="secondary">
 							Save Quotation
 						</Button>
 					</Paper>
@@ -91,7 +95,10 @@ export default function Resumen({ sethidden, datosfinales }) {
 							height="300"
 						/>
 						<br />
-						Rate Door to Door Full Shipment Sea LCL: <br />
+						Rate Door to Door Full Shipment Sea LCL
+						<br />
+						Transit Time 30 Days
+						<br />
 						<br />
 						<strong>
 							USD:{' '}

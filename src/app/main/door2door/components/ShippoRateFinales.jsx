@@ -21,7 +21,15 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const ShippoRateFinales = ({ shipment, currency_local, amount_local, provider, provider_image_75, servicelevel }) => {
+const ShippoRateFinales = ({
+	shipment,
+	currency_local,
+	amount_local,
+	provider,
+	provider_image_75,
+	servicelevel,
+	estimated_days
+}) => {
 	const classes = useStyles();
 
 	return (
@@ -31,10 +39,11 @@ const ShippoRateFinales = ({ shipment, currency_local, amount_local, provider, p
 					{provider}
 				</TableCell>
 				<TableCell align="right">{currency_local}</TableCell>
-				<TableCell align="right">{(amount_local * 0.4).toFixed(2)}</TableCell>
+				<TableCell align="right">{(amount_local * 1).toFixed(2)}</TableCell>
 				<TableCell align="right">{servicelevel}</TableCell>
+				<TableCell align="right">{estimated_days} &nbsp; Days</TableCell>
 				<TableCell align="right">
-					<img src={provider_image_75} alt="Girl in a jacket" width="50" height="50" />
+					<img src={provider_image_75} alt="Girl in a jacket" width="60" height="60" />
 				</TableCell>
 			</TableRow>
 		</>
