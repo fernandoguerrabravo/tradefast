@@ -74,7 +74,7 @@ const DialogActions = withStyles(theme => ({
 	}
 }))(MuiDialogActions);
 
-export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
+export default function HtsDialogEnd({ evento1, evento2, evento3, evento4, evento5 }) {
 	const idcliente = 'abcdef';
 	const sku = UseGetSku(idcliente);
 	const skufinal = sku.data;
@@ -85,7 +85,7 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 			label: codigo.sku
 		});
 	});
-
+	console.log('chinos de la gran puta', evento5.chinos.type);
 	// para manejar los eventos de las dos cajas de texto
 	const history = useHistory();
 
@@ -108,6 +108,8 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 		hts: evento1,
 		dutiesrate: evento4.duties,
 		dutiespecific: evento4.dutiespecific,
+		list301: evento5.chinos.type,
+		duties301: evento5.chinos.rate,
 		date
 	});
 
@@ -190,6 +192,11 @@ export default function HtsDialogEnd({ evento1, evento2, evento3, evento4 }) {
 					<Typography gutterBottom>
 						<ListItem className={classes.color}>Import Taxes (Duties): </ListItem>
 						<ListItem>{evento4.general}</ListItem>
+					</Typography>
+					<Typography gutterBottom>
+						<ListItem className={classes.color}>Section 301</ListItem>
+						<ListItem>List: {evento5.chinos.type}</ListItem>
+						<ListItem>Rate: {evento5.chinos.rate}</ListItem>
 					</Typography>
 				</DialogContent>
 				<DialogActions>

@@ -2,7 +2,7 @@ const GetHts = async htsnumber => {
 	const requestOptions = {
 		method: 'GET'
 	};
-	console.log(htsnumber);
+	// console.log(htsnumber);
 
 	const resp = await fetch(
 		`https://xh1sv46z4b.execute-api.us-west-2.amazonaws.com/dev/htsgov?query=${htsnumber}`,
@@ -25,7 +25,7 @@ const GetHts = async htsnumber => {
 		};
 	});
 
-	console.log(hts);
+	// console.log(hts);
 	return hts;
 };
 

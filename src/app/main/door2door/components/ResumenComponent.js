@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import { IfFulfilled, IfPending, IfRejected, PromiseFn, useAsync } from 'react-async';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import UseGetRatesBrLcl from '../hooks/UseGetRatesBrLcl';
 import UseGetCustomsusa from '../hooks/UseGetCustomusa';
 import UseGetLastmileibc from '../hooks/UseGetLastmileibc';
 import UseGetRateIntegradores from '../hooks/UseGetRateIntegradores';
 import ShippoItem from './ShippoItem';
+import SkuComponentList from './SkuComponentList';
+import InfoRateDetails from './InfoRateDetails';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -28,11 +32,6 @@ export default function Resumen({ sethidden, datosfinales }) {
 		console.log('PARA CALCULAR: ', datosfinales);
 	};
 
-	/* export_rate_brazil: 316.92775
-      international_freight: 6.237
-      total_first_mile_brazil: 15.05808144
-      total_local_cost: 331.47513812154693 
-      */
 	const lclrate = UseGetRatesBrLcl(datosfinales);
 	const lclratefinal = lclrate.data;
 	const customusa = UseGetCustomsusa(datosfinales);
@@ -45,8 +44,10 @@ export default function Resumen({ sethidden, datosfinales }) {
 	console.log('ultima milla ibc ', customusafinal);
 
 	const shippo = UseGetRateIntegradores(datosfinales);
+	const escondido = shippo.circulo;
 	const shippofinal = shippo.data;
 	console.log('SHIPPO:', shippofinal);
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
@@ -64,28 +65,7 @@ export default function Resumen({ sethidden, datosfinales }) {
 						</Button>
 					</Paper>
 				</Grid>
-				<Grid item xs={6}>
-					<Paper className={classes.paper}>
-						Total Sku : {datosfinales.skus.totalsku}
-						<br />
-						Total FOB : {datosfinales.skus.totalfob}
-						<br />
-						Total Duties : {datosfinales.skus.totalduties}
-						<br />
-						Total Other Duties: {datosfinales.skus.totalotherduties}
-					</Paper>
-				</Grid>
-				<Grid item xs={6}>
-					<Paper className={classes.paper}>
-						Total Boxes : {datosfinales.boxes.totalqty}
-						<br />
-						Total Kg : {datosfinales.boxes.totalkg}
-						<br />
-						Total Volume : {datosfinales.boxes.totalvol}
-						<br />
-						Total Other Duties: {datosfinales.skus.totalotherduties}
-					</Paper>
-				</Grid>
+
 				<Grid item xs={3}>
 					<Paper className={classes.paper}>
 						<img
@@ -110,10 +90,23 @@ export default function Resumen({ sethidden, datosfinales }) {
 						</strong>
 					</Paper>
 				</Grid>
+				{escondido ? (
+					<Grid item xs={9}>
+						<Paper className={classes.paper}>
+							<CircularProgress />
+						</Paper>
+					</Grid>
+				) : (
+					<Grid item xs={9}>
+						{shippofinal.map(img => (
+							<ShippoItem key={img} {...img} />
+						))}
+					</Grid>
+				)}
 				<Grid item xs={12}>
-					{shippofinal.map(img => (
-						<ShippoItem key={img} {...img} />
-					))}
+					<Paper className={classes.paper}>
+						<InfoRateDetails event={datosfinales} />
+					</Paper>
 				</Grid>
 			</Grid>
 		</div>

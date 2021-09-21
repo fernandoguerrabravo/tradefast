@@ -1,6 +1,6 @@
 export const HtsGetCategories = async (htsnumber) => {
 
-    console.log(htsnumber);
+    
 
     var requestOptions = {
 

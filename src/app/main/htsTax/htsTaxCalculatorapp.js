@@ -33,7 +33,9 @@ export default function FullWidthGrid() {
 			general: '',
 			special: '',
 			duties: '',
-			dutiespecific: ''
+			dutiespecific: '',
+			list301: '',
+			duties301: ''
 		}
 	]);
 

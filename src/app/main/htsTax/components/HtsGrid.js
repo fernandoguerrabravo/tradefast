@@ -15,6 +15,7 @@ import { UseFetchHtsCategory } from '../hooks/UseFetchHtsCategory';
 import { HtsGetListCategories } from './HtsGetListCategories';
 import HtsHeader from './HtsHeader';
 import HtsGetListHts from './HtsGetListHts';
+import UseFetchChina from '../hooks/USeFetchChina';
 
 const useStyles = makeStyles({
 	table: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles({
 const HtsGrid = ({ encabezado, setencabezado }) => {
 	const { data, loading, finales } = UseFetchHts(encabezado.hts);
 	const { categorias } = UseFetchHtsCategory(encabezado.hts);
+	const htschinos = UseFetchChina(encabezado.hts);
 
 	const classes = useStyles();
 
@@ -58,7 +60,12 @@ const HtsGrid = ({ encabezado, setencabezado }) => {
 			</Grid>
 			<Grid item xs={4}>
 				<Paper className={classes.paper}>
-					<HtsGetListHts eventos={finales} categorias={categorias} encabezado={encabezado} />
+					<HtsGetListHts
+						htschino={htschinos}
+						eventos={finales}
+						categorias={categorias}
+						encabezado={encabezado}
+					/>
 				</Paper>
 			</Grid>
 			<Grid item xs={12}>

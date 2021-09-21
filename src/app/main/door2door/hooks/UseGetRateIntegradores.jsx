@@ -3,13 +3,15 @@ import GetShippo from '../helpers/GetShippo';
 
 function UseGetRateIntegradores(datosfinales) {
 	const [state, setState] = useState({
-		data: []
+		data: [],
+		circulo: true
 	});
 
 	useEffect(() => {
 		GetShippo(datosfinales).then(imgs => {
 			setState({
-				data: imgs
+				data: imgs,
+				circulo: false
 			});
 		});
 	}, [datosfinales]);

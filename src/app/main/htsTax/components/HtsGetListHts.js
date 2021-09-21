@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function HtsGetListHts({ eventos, categorias, encabezado }) {
+export default function HtsGetListHts({ htschino, eventos, categorias, encabezado }) {
 	const classes = useStyles();
 	const [value, setValue] = useState('');
 	const [error, setError] = useState(false);
@@ -70,6 +70,7 @@ export default function HtsGetListHts({ eventos, categorias, encabezado }) {
 						evento2={categorias}
 						evento3={descripcion.description}
 						evento4={encabezado}
+						evento5={htschino}
 					/>
 				)}
 				{/* value && <HtsDialogFix evento1={value} evento2={categorias} evento3={descripcion.description} evento4={encabezado} /> */}

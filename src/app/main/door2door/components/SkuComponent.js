@@ -149,14 +149,14 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 					fob: valores.fob,
 					shortdescription: valores.shortdescription,
 					sku: event.value,
-					hts8: valores.htsclas.hts,
-					duties: valores.htsclas.duties,
-					htsdescription: valores.htsclas.description,
+					hts8: valores.htsclas?.hts ?? '',
+					duties: valores.htsclas?.duties ?? '',
+					htsdescription: valores.htsclas?.description ?? '',
 					qty: '',
-					FTA: valores.htsclas.special,
-					List301: valores.List301,
-					tax301: valores.tax301,
-					dutiesrate: valores.htsclas.dutiesrate
+					FTA: valores?.htsclas?.special ?? '',
+					List301: valores?.htsclas?.list301 ?? '',
+					tax301: valores?.htsclas?.duties301 ?? '',
+					dutiesrate: valores.htsclas?.dutiesrate ?? '',
 				});
 				console.log(skus.dutiesrate);
 			}
@@ -451,11 +451,11 @@ export default function SkuComponent({ sethidden, datosfinales, setdatosfinales 
 									<TableRow>
 										<TableCell>
 											{' '}
-											<strong>Section 301 (Manufactured in China - List and Tax)</strong>
+											<strong>Section 301 (Products Manufactured in China - List and Tax)</strong>
 										</TableCell>
 										<TableCell style={{ color: blue[800] }}>
 											{' '}
-											{skus.List301} {skus.tax301}
+											List: {skus.List301} / Rate: {skus.tax301}
 										</TableCell>
 									</TableRow>
 								</TableBody>

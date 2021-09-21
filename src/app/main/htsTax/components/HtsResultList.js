@@ -9,7 +9,7 @@ export const HtsResultList = ({ htsno, description, general, special }) => {
 
    
    //<SimplePopover codigo = {id}/> 
-   console.log(htsno);
+  
    return (
       <>
          <TableRow>

@@ -7,7 +7,6 @@ import MaterialTable from 'material-table';
 import { Button } from '@material-ui/core';
 import SaveOutlinedIcon from '@material-ui/icons/SaveOutlined';
 import UseFetchClas from '../hooks/UseFetchClas';
-import HtsHeader from './HtsHeader';
 
 const useStyles = makeStyles({
 	table: {
@@ -25,9 +24,9 @@ const HtsGrid2 = ({ encabezado, setencabezado }) => {
 	// const { data, loading, finales } = UseFetchHts(encabezado.hts)
 
 	const { data, loading, finales } = UseFetchClas(encabezado.hts);
+
 	// const { categorias } = UseFetchHtsCategory(encabezado.hts);
 	// {loading && <p>Loading Results...</p>}
-	// console.log("datos iniciales", data);
 
 	const detailhts = (e, f, g, h, i) => {
 		setencabezado({
