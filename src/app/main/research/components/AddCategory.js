@@ -62,14 +62,7 @@ export const AddCategory = ({ setCategories }) => {
     const handleInputChange = (event) => {
         //console.log(e.target.value)
 
-        setCategories(
-
-            {
-                hidden: false,
-                hidden1: false,
-                hidden2: true
-
-            });
+        
 
         setInputValue({
 

@@ -1,36 +1,29 @@
-import { PostResearch } from "./PostResearch";
+import { PostResearch } from './PostResearch';
 
+const getGifs = async category => {
+	const idcliente = 'abcdef';
+	const myHeaders = new Headers();
+	myHeaders.append('Content-Type', 'text/plain');
 
-export const getGifs = async (category) => {
+	const raw = JSON.stringify({
+		category,
+		id_cliente: idcliente
+		// "sku": sku
+	});
 
-    const idcliente = "abcdef";
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "text/plain");
+	const requestOptions = {
+		method: 'POST',
+		headers: myHeaders,
+		body: raw
+	};
 
-    const raw = JSON.stringify({
+	const url = 'https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/postresearch';
+	const resp = await fetch(url, requestOptions);
+	const data = await resp.json();
+	// const detalle = data.products
+	// const gifs = detalle.map(img => {
 
-        "category": category,
-        "id_cliente": idcliente,
-        //"sku": sku
-    });
-
-    var requestOptions = {
-
-
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-
-
-    };
-
-    const url = "https://kne6zd76af.execute-api.us-east-1.amazonaws.com/dev/postresearch";
-    const resp = await fetch(url, requestOptions);
-    const data = await resp.json();
-    //const detalle = data.products
-    //const gifs = detalle.map(img => {
-
-    /*   return {
+	/*   return {
 
            id: img?.asin ?? '',
            title: img?.title ?? '',
@@ -44,12 +37,9 @@ export const getGifs = async (category) => {
 
    }) */
 
-    console.log("respuesta API", data)
+	console.log('respuesta API', data);
 
-    return data;
+	return data;
+};
 
-}
-
-
-
-
+export default getGifs;
