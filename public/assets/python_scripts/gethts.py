@@ -48,7 +48,7 @@ print(resultado)
 
 def lambda_handler(event, context):
     
-    # conexión base de datos
+resu    # conexión base de datos
     con = MongoClient('mongodb://root:zZYGZg1Mqc7G@ip-172-31-66-65.ec2.internal',27017)
     db = con.globalselling
     

@@ -1,40 +1,28 @@
-
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { GetSellers } from 'app/main/helpers/GetSellers';
 
-
 function UseGetAddress(id_cliente) {
+	const [state, setState] = useState({
+		data: []
+	});
 
+	useEffect(() => {
+		GetSellers(id_cliente).then(imgs => {
+			const originalJson = imgs.facilites;
+			const newJson = [];
+			for (const add of originalJson) {
+				if (add.type == 'exw') {
+					newJson.push(add);
+				}
+			}
 
-    const [state, setState] = useState({
+			setState({
+				data: newJson[0]
+			});
+		});
+	}, [id_cliente]);
 
-        data: [],
-
-    })
-
-    useEffect(() => {
-
-        GetSellers(id_cliente)
-            .then(imgs => {
-
-                const originalJson = imgs.facilites;
-                const newJson = [];
-                for (const add of originalJson) {
-                    if (add.type == "exw") {
-                        newJson.push(add);
-                    }
-                }
-
-                setState({
-
-                    data: newJson[0],
-
-                });
-            });
-    }, [id_cliente]);
-
-
-    return state;
+	return state;
 }
 
-export default UseGetAddress
+export default UseGetAddress;

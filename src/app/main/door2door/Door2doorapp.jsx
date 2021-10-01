@@ -7,6 +7,8 @@ import Resumen from './components/ResumenComponent';
 import BoxComponent from './components/BoxComponent';
 import Skutipobulto from './components/Skutipobulto';
 import SkuComponent from './components/SkuComponent';
+import SkutipobultoMx from './components/SkutipobultoMx';
+import MxRates from './components/MxRates';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -105,9 +107,20 @@ export default function Door2doorApp() {
 					) : null}
 				</Grid>
 				<Grid item xs={12}>
-					{hidden.hiddenbultos ? (
+					{/* hidden.hiddenbultos ? (
 						<Paper className={classes.paper}>
 							<Skutipobulto
+								sethidden={sethidden}
+								datosfinales={datosfinales}
+								setdatosfinales={setdatosfinales}
+							/>
+						</Paper>
+					) : null */}
+				</Grid>
+				<Grid item xs={12}>
+					{hidden.hiddenbultos ? (
+						<Paper className={classes.paper}>
+							<MxRates
 								sethidden={sethidden}
 								datosfinales={datosfinales}
 								setdatosfinales={setdatosfinales}
