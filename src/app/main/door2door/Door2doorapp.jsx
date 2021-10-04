@@ -3,12 +3,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { deepOrange, green, red, blue } from '@material-ui/core/colors';
-import Resumen from './components/ResumenComponent';
-import BoxComponent from './components/BoxComponent';
-import Skutipobulto from './components/Skutipobulto';
-import SkuComponent from './components/SkuComponent';
-import SkutipobultoMx from './components/SkutipobultoMx';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import StepContent from '@material-ui/core/StepContent';
+import Button from '@material-ui/core/Button';
+import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
+import swal from 'sweetalert';
 import MxRates from './components/MxRates';
+import SkutipobultoMx from './components/SkutipobultoMx';
+import SkuComponent from './components/SkuComponent';
+import Skutipobulto from './components/Skutipobulto';
+import Resumen from './components/ResumenComponent';
+import SkuDetailsMx from './components/SkuDetailsMx';
+import Totalvalormexico from './components/totalvalormexico';
+import UseGetAddress from './hooks/UseGetAddress';
+import SkuSummary from './components/SkuSummary';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -52,7 +65,7 @@ const useStyles = makeStyles(theme => ({
 	icons: {
 		fontSize: 'small',
 		backgroundColor: red[500],
-		color: red[500]
+		color: '#e47911'
 	},
 
 	table: {
@@ -67,7 +80,76 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+const steps = [
+	{
+		label: 'Select Freight Packaging',
+		description: ``
+	},
+	{
+		label: 'Create an ad group',
+		description: 'An ad group contains one or more ads which target a shared set of keywords.'
+	},
+	{
+		label: 'Create an ad',
+		description: `Try out different ad text to see what brings in the most customers,
+              and learn how to enhance your ads using features like ad extensions.
+              If you run into any problems with your ads, find out how to tell if
+              they're running and how to resolve approval issues.`
+	}
+];
+
 export default function Door2doorApp() {
+	// Arreglos para generar el resumen de SKU en SkuSummary
+
+	const [arregloskus, setarregloskus] = useState({
+		arreglosdelsku: [],
+		totalsku: '',
+		totalfob: '',
+		totalduties: '',
+		totalotherduties: ''
+	});
+
+	const [mexico, setmexico] = useState({
+		codigo_fba: 'PHX5',
+		fedexwarehouse: '',
+		qtyout: '',
+		qty_pallet: '',
+		tipo: ''
+	});
+
+	const [mexico2, setmexico2] = useState({
+		codigo_fba: 'PHX5',
+		fedexwarehouse: '',
+		qtyout: '',
+		qty_pallet: '',
+		tipo: ''
+	});
+
+	const idcliente = 'abcdef';
+	const sellers = UseGetAddress(idcliente);
+	const sellersfinal = sellers.data;
+
+	const [activeStep, setActiveStep] = React.useState(0);
+
+	const handleNext = () => {
+		setActiveStep(prevActiveStep => prevActiveStep + 1);
+		setdatosfinales({
+			...datosfinales,
+			skus: arregloskus,
+			origen: sellersfinal
+		});
+
+		console.log(mexico);
+	};
+
+	const handleBack = () => {
+		setActiveStep(prevActiveStep => prevActiveStep - 1);
+	};
+
+	const handleReset = () => {
+		setActiveStep(0);
+	};
+
 	const classes = useStyles();
 
 	const [datosfinales, setdatosfinales] = useState({
@@ -92,19 +174,114 @@ export default function Door2doorApp() {
 		<div className={classes.root}>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					{/* hidden.hiddenlocation ? <Paper className={classes.paper}><AddressComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null */}
+					<Paper className={classes.paper}>
+						<Typography className={classes.titles} variant="subtitle1" gutterBottom>
+							<strong>Seller's Pickup Address</strong>
+						</Typography>
+						<Typography className={classes.titles} variant="subtitle2" gutterBottom>
+							{sellersfinal.number} {sellersfinal.address_1}, {sellersfinal.neighborhood},{' '}
+							{sellersfinal.ciudad}, {sellersfinal.estado}, {sellersfinal.zipCode}, {sellersfinal.country}{' '}
+							&nbsp;&nbsp;
+							<Tooltip title="Seller's Pickup Address">
+								<InfoIcon style={{ color: '#e47911' }} className={classes.icon} />
+							</Tooltip>
+						</Typography>
+					</Paper>
 				</Grid>
+			</Grid>
+			<br />
 
+			<Paper className={classes.paper}>
+				<Stepper activeStep={activeStep} orientation="vertical">
+					<Step>
+						<StepLabel>Select Products to Export</StepLabel>
+						<StepContent>
+							<Typography>
+								In this section you must enter information for each Item identified by its SKU
+							</Typography>
+							<br />
+							<Grid container spacing={3}>
+								<Grid item xs={12}>
+									<SkuComponent
+										arregloskus={arregloskus}
+										setarregloskus={setarregloskus}
+										datosfinales={datosfinales}
+										setdatosfinales={setdatosfinales}
+									/>
+									<br />
+									<Box sx={{ mb: 2 }}>
+										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+											Continue
+										</Button>
+									</Box>
+								</Grid>
+							</Grid>
+						</StepContent>
+					</Step>
+					<Step>
+						<StepLabel>Input Shipping Details</StepLabel>
+						<StepContent>
+							<Typography>
+								In this section you must select the type of shipment you will perform based on your
+								shipping plan.
+							</Typography>{' '}
+							<br />
+							<Grid container spacing={3}>
+								<Grid item xs={12}>
+									<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
+									<br />
+									<Box sx={{ mb: 2 }}>
+										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+											Continue
+										</Button>
+										<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+											Back
+										</Button>
+									</Box>
+								</Grid>
+							</Grid>
+							<Typography />
+						</StepContent>
+					</Step>
+					<Step>
+						<StepLabel>Shippping Details</StepLabel>
+						<StepContent>
+							<Grid container spacing={3}>
+								<Grid item xs={6}>
+									<SkuSummary arregloskus={arregloskus} />
+								</Grid>
+								<Grid item xs={6}>
+									<Totalvalormexico mexico={mexico} />
+								</Grid>
+							</Grid>
+							<Typography />
+							<br />
+							<Box sx={{ mb: 2 }}>
+								<div>
+									<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+										Continue
+									</Button>
+									<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+										Back
+									</Button>
+								</div>
+							</Box>
+						</StepContent>
+					</Step>
+				</Stepper>
+				{activeStep === steps.length && (
+					<Paper square elevation={0} sx={{ p: 3 }}>
+						<Typography>All steps completed - you&apos;re finished</Typography>
+						<Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+							Reset
+						</Button>
+					</Paper>
+				)}
+			</Paper>
+
+			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					{hidden.hiddensku ? (
-						<Paper className={classes.paper}>
-							<SkuComponent
-								sethidden={sethidden}
-								datosfinales={datosfinales}
-								setdatosfinales={setdatosfinales}
-							/>
-						</Paper>
-					) : null}
+					{/* hidden.hiddenlocation ? <Paper className={classes.paper}><AddressComponent sethidden={sethidden} datosfinales={datosfinales} setdatosfinales={setdatosfinales} /></Paper> : null */}
 				</Grid>
 				<Grid item xs={12}>
 					{/* hidden.hiddenbultos ? (
@@ -129,15 +306,15 @@ export default function Door2doorApp() {
 					) : null}
 				</Grid>
 				<Grid item xs={12}>
-					{hidden.hiddenbox ? (
+					{/* hidden.hiddenbox ? (
 						<Paper className={classes.paper}>
-							<BoxComponent
+							<{BoxComponent
 								sethidden={sethidden}
 								datosfinales={datosfinales}
 								setdatosfinales={setdatosfinales}
 							/>
 						</Paper>
-					) : null}
+							) : null */}
 				</Grid>
 				<Grid item xs={12}>
 					{hidden.hiddenfinal ? (

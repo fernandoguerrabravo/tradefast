@@ -9,10 +9,21 @@ import './styles/app-base.css';
 import './styles/app-components.css';
 import './styles/app-utilities.css';
 import App from 'app/App';
+import { Auth0Provider } from '@auth0/auth0-react';
 import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+	<Auth0Provider
+		domain="eclprojects.us.auth0.com"
+		clientId="dbHC9DrhkHt4W9ohZDUPKky2BFkjJuYi"
+		redirectUri={window.location.origin}
+	>
+		<App />,
+	</Auth0Provider>,
+
+	document.getElementById('root')
+);
 
 reportWebVitals();
 

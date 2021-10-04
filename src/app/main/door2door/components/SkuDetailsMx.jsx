@@ -7,16 +7,18 @@ import Grid from '@material-ui/core/Grid';
 import swal from 'sweetalert';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue, orange } from '@material-ui/core/colors';
-import { Divider, Typography } from '@material-ui/core';
+import { Box, Divider, Typography } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
+import MenuItem from '@material-ui/core/MenuItem';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormLabel from '@material-ui/core/FormLabel';
 import Icon from '@material-ui/core/Icon';
 import { composeInitialProps } from 'react-i18next';
-import Select from 'react-select';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -38,14 +40,14 @@ const useStyles = makeStyles(theme => ({
 			margin: 4
 		}
 	},
+
 	formControl: {
-		margin: theme.spacing(1),
-		minWidth: 400
+		margin: theme.spacing(1)
 	},
 	formControl2: {
 		margin: theme.spacing(1),
-		minWidth: 300,
-		padding: theme.spacing(3)
+		minWidth: 100,
+		padding: theme.spacing(1)
 	},
 	selectEmpty: {
 		marginTop: theme.spacing(1)
@@ -59,9 +61,8 @@ const useStyles = makeStyles(theme => ({
 	},
 
 	paper: {
-		color: theme.palette.text.secondary,
-		padding: theme.spacing(3),
-		flexGrow: 1
+		padding: theme.spacing(1),
+		color: theme.palette.text.secondary
 	},
 
 	icons: {
@@ -102,105 +103,122 @@ const newJson1 = [
 	}
 ];
 
-export default function SkuDetailsMx({ sethidden, datosfinales, setdatosfinales }) {
+const newJson2 = [
+	{
+		value: 'p',
+		label: 'Pallets'
+	},
+	{
+		value: 'b',
+		label: 'Boxes'
+	}
+];
+
+export default function SkuDetailsMx({ mexico, setmexico }) {
 	const classes = useStyles();
 	const [value, setValue] = React.useState('');
 
-	const handleChange = event => {
-		setValue(event.target.value);
+	const handleChange = e => {
+		setmexico({
+			...mexico,
+			fedexwarehouse: e.target.value
+		});
 	};
 
-	const nextpack = () => {
-		if (value !== '') {
-			setdatosfinales({
-				...datosfinales,
-				tipobulto: value
-			});
+	const handleqtyChange = e => {
+		setmexico({
+			...mexico,
+			qty_pallet: parseFloat(e.target.value)
+		});
+	};
 
-			sethidden({
-				hiddenbultos: false,
-				hiddensku: false,
-				hiddenbox: true,
-				hiddenfinal: false,
-				hiddenrate: false
-			});
-		} else {
-			swal({
-				title: 'oops!',
-				text: 'Select your Shipping Packaging',
-				icon: 'warning'
-			});
-		}
+	const handleChange1 = e => {
+		setmexico({
+			...mexico,
+			tipo: e.target.value
+		});
+	};
+
+	const handleqtyChange1 = e => {
+		setmexico({
+			...mexico,
+			qtyout: parseFloat(e.target.value)
+		});
 	};
 
 	return (
 		<div className={classes.root}>
-			<Grid item xs={12}>
-				<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-					<Grid container spacing={10}>
-						<Grid item xs={6}>
-							<Paper className={classes.paper}>
-								<Select options={newJson1} />
-								<b />
-								<Typography
-									className={classes.titles}
-									style={{ color: red[400] }}
-									variant="caption"
-									gutterBottom
-								>
-									<strong>Seleccione Bodega Fedex de Origen MX</strong>
-								</Typography>
-								<TextField
-									id="qty"
-									name="qty"
-									label="Pallets Quantities"
-									variant="outlined"
-									color="primary"
-									type="number"
-								/>
-								<Typography
-									className={classes.titles}
-									style={{ color: red[400] }}
-									variant="caption"
-									gutterBottom
-								>
-									<strong>Input Quantities to Export</strong>
-								</Typography>
-							</Paper>
-						</Grid>
-						<Grid item xs={6}>
-							<Paper className={classes.paper}>
-								<TextField
-									id="qty"
-									name="qty"
-									label="Pallets Quantities"
-									variant="outlined"
-									color="primary"
-									type="number"
-								/>
-								<Typography
-									className={classes.titles}
-									style={{ color: red[400] }}
-									variant="caption"
-									gutterBottom
-								>
-									<strong>Input Quantities to Export</strong>
-								</Typography>
-							</Paper>
-						</Grid>
-					</Grid>
-				</RadioGroup>
+			<Grid container spacing={3}>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>
+						<FormControl variant="outlined" className={classes.formControl2}>
+							<InputLabel id="mxwarehouse">Fedex Warehouse MX</InputLabel>
+							<Select
+								labelId="mxwarehouse"
+								onChange={handleChange}
+								value={mexico.fedexwarehouse}
+								label="Fedex Warehouse MX"
+								color="primary"
+							>
+								{newJson1.map(option => (
+									<MenuItem key={option.value} value={option.value}>
+										{option.label}
+									</MenuItem>
+								))}
+							</Select>
+							<br />
+							<TextField
+								id="qty_pallet"
+								name="qty_pallet"
+								variant="outlined"
+								label="Pallets to Export"
+								color="primary"
+								type="number"
+								value={mexico.qty_pallet || ''}
+								onChange={handleqtyChange}
+							/>
+						</FormControl>
+					</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>Infografia</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>
+						<FormControl variant="outlined" className={classes.formControl2}>
+							<InputLabel id="outtipo">Select Packaging to Out</InputLabel>
+
+							<Select
+								labelId="outtipo"
+								id="tipo"
+								onChange={handleChange1}
+								value={mexico.tipo}
+								color="primary"
+							>
+								{newJson2.map(option => (
+									<MenuItem key={option.value} value={option.value}>
+										{option.label}
+									</MenuItem>
+								))}
+							</Select>
+							<br />
+							<TextField
+								id="qty"
+								name="qty"
+								label="Pallets Quantities"
+								variant="outlined"
+								color="primary"
+								type="number"
+								value={mexico.qtyout || ''}
+								onChange={handleqtyChange1}
+							/>
+						</FormControl>
+					</Paper>
+				</Grid>
+				<Grid item xs={3}>
+					<Paper className={classes.paper}>Infografia</Paper>
+				</Grid>
 			</Grid>
-			<br />
-			<Divider />
-			<br />
-			<Typography className={classes.titles} style={{ color: orange[500] }} variant="caption" gutterBottom>
-				<strong>
-					{' '}
-					(1) In this section you must select the type of shipment you will perform based on your shipping
-					plan.
-				</strong>
-			</Typography>
 		</div>
 	);
 }

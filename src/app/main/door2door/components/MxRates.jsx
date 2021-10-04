@@ -12,6 +12,7 @@ import { green, red, blue, orange } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 import SkutipobultoMx from './SkutipobultoMx';
 import SkuDetailsMx from './SkuDetailsMx';
+import Totalvalormexico from './totalvalormexico';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -102,10 +103,19 @@ const steps = [
 export default function MxRates() {
 	const classes = useStyles();
 
+	const [mexico, setmexico] = React.useState({
+		codigo_fba: 'PHX5',
+		fedexwarehouse: '',
+		qtyout: '',
+		qty_pallet: '',
+		tipo: ''
+	});
+
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
 		setActiveStep(prevActiveStep => prevActiveStep + 1);
+		console.log('MEXICO', mexico);
 	};
 
 	const handleBack = () => {
@@ -140,12 +150,12 @@ export default function MxRates() {
 					</StepContent>
 				</Step>
 				<Step>
-					<StepLabel>Select Freight Packaging</StepLabel>
+					<StepLabel>Input Shipping Details</StepLabel>
 					<StepContent>
 						<Grid container spacing={3}>
 							<Grid item xs={12}>
 								<Paper className={classes.paper}>
-									<SkuDetailsMx />
+									<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
 									<p />
 									<p />
 									<Box sx={{ mb: 2 }}>
@@ -165,6 +175,7 @@ export default function MxRates() {
 				<Step>
 					<StepLabel>Shippping Details</StepLabel>
 					<StepContent>
+						<Totalvalormexico mexico={mexico} />
 						<Typography />
 						<Box sx={{ mb: 2 }}>
 							<div>

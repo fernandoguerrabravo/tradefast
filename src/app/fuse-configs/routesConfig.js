@@ -9,9 +9,7 @@ import Door2doorConfig from 'app/main/door2door/Door2doorConfig';
 import SkuStoreConfig from 'app/main/skustore/SkuStoreConfig';
 import SkuListConfig from 'app/main/SkuList/SkuListConfig';
 
-
 const routeConfigs = [
-
 	DashboardConfig,
 	ResearchConfig,
 	htsTaxConfig,
@@ -21,8 +19,6 @@ const routeConfigs = [
 	SkuStoreConfig,
 	SkuListConfig,
 	ResearchConfig
-
-
 ];
 
 const routes = [
