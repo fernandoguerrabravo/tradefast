@@ -258,8 +258,8 @@ export default function Door2doorApp() {
 							<br />
 							<Box sx={{ mb: 2 }}>
 								<div>
-									<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
-										Continue
+									<Button variant="contained" sx={{ mt: 1, mr: 1 }}>
+										Save
 									</Button>
 									<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
 										Back

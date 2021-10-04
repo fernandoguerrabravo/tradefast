@@ -236,6 +236,7 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 								<strong>Search Your Saved SKU Code</strong>
 							</Typography>
 							<TextField
+								style={{ color: '#e47911', zIndex: 0 }}
 								id="qty"
 								name="qty"
 								label="SKU Quantities"
