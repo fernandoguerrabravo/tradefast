@@ -1,28 +1,22 @@
-import { useState, useEffect } from 'react'
-import { GetSkuDetails } from '../helpers/GetSkuDetails';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from 'react';
+import GetSkuDetails from '../helpers/GetSkuDetails';
 
+const useGetSkuDetails = skunumber => {
+	const [state, setState] = useState({
+		data: []
+	});
 
+	useEffect(() => {
+		GetSkuDetails(skunumber).then(imgs => {
+			setState({
+				data: imgs
+			});
+		});
+	}, []);
 
-export const useGetSkuDetails = (skunumber) => {
+	console.log('FetchSKuDetails', state);
+	return state;
+};
 
-    const [state, setState] = useState({
-
-        data: [],
-
-    })
-
-    useEffect(() => {
-
-        GetSkuDetails(skunumber)
-            .then(imgs => {
-                setState({
-                    data: imgs,
-                });
-            });
-
-    }, [skunumber]);
-
-    console.log("FetchSKuDetails", state)
-    return state;
-
-}
+export default useGetSkuDetails;

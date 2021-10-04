@@ -181,7 +181,10 @@ export default function SkuDetailsMx({ mexico, setmexico }) {
 					</Paper>
 				</Grid>
 				<Grid item xs={3}>
-					<Paper className={classes.paper}>Infografia</Paper>
+					<Paper className={classes.paper}>
+						<img src="https://fotos-ecl.s3.amazonaws.com/Laredo+TX%2C+USA+(2).png" alt="laredo" />
+
+					</Paper>
 				</Grid>
 				<Grid item xs={3}>
 					<Paper className={classes.paper}>

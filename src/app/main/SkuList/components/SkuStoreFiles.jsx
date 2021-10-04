@@ -1,6 +1,6 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-await-in-loop */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Grid, Divider, FormLabel, FormControlLabel } from '@material-ui/core';
@@ -143,16 +143,16 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 	};
 
 	/* const handleRefIdChange = (event) => {
-         if (event.isTrusted) {
-             setRefId(event.target.value)
-         }
-     } 
+		 if (event.isTrusted) {
+			 setRefId(event.target.value)
+		 }
+	 } 
  
-     const handleSkuChange = (event) => {
-         if (event.isTrusted) {
-             setSku(event.target.value);
-         }
-     }v */
+	 const handleSkuChange = (event) => {
+		 if (event.isTrusted) {
+			 setSku(event.target.value);
+		 }
+	 }v */
 
 	const handleFilesSubmit = async event => {
 		event.preventDefault();
@@ -215,7 +215,7 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 
 	return (
 		<form onSubmit={handleFilesSubmit}>
-			<Typography className={classes2.formControl2} style={{ color: '#F5981E' }} gutterBottom>
+			<Typography variant="h5" gutterBottom className={classes2.formControl2}>
 				<strong>Upload Documents and Images</strong>&nbsp;&nbsp;
 				<Tooltip title="you can later upload documents or images of your product.">
 					<InfoIcon fontSize="small" color="action" />
@@ -232,13 +232,7 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 					multiple
 				/>
 				<label htmlFor="file1">
-					<Button
-						startIcon={<AttachmentIcon />}
-						size="large"
-						variant="outlined"
-						style={{ color: red[500] }}
-						component="span"
-					>
+					<Button startIcon={<AttachmentIcon />} size="large" variant="outlined" component="span">
 						Select File ...
 					</Button>
 				</label>
@@ -252,7 +246,7 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 				</FormControl>
 			) : null}
 
-			<Typography className={classes2.formControl2} style={{ color: blue[800] }} gutterBottom>
+			<Typography className={classes2.formControl2} gutterBottom>
 				{files.length > 0 ? `Files in queue (${files.length}):` : 'No files in queue yet'}
 			</Typography>
 			{files.length > 0 ? (
@@ -275,6 +269,7 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 										<TableCell>{getFormattedSize(file.size, 2)}</TableCell>
 										<TableCell>
 											<Button
+												variant="outlined"
 												type="button"
 												onClick={event => removeFile(event, index)}
 												disabled={submitting}

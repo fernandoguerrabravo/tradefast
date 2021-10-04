@@ -14,7 +14,7 @@ export const SkuListApp = () => {
 		},
 
 		paper: {
-			padding: theme.spacing(2),
+			padding: theme.spacing(3),
 			color: theme.palette.text.secondary
 		}
 	}));
@@ -47,19 +47,11 @@ export const SkuListApp = () => {
 						</Paper>
 					) : null}
 				</Grid>
-				<Grid item xs={8}>
-					{oculto.hiddendetails ? (
-						<Paper className={classes.paper}>
-							<PreviewCard event={skudetails} />
-						</Paper>
-					) : null}
+				<Grid item xs={12}>
+					{oculto.hiddendetails ? <PreviewCard event={skudetails} /> : null}
 				</Grid>
-				<Grid item xs={8}>
-					{oculto.hiddenstoreform ? (
-						<Paper className={classes.paper}>
-							<SkuStoreForm setoculto={setoculto} />
-						</Paper>
-					) : null}
+				<Grid item xs={12}>
+					{oculto.hiddenstoreform ? <SkuStoreForm setoculto={setoculto} /> : null}
 				</Grid>
 			</Grid>
 		</>

@@ -39,7 +39,10 @@ export default function SkuListTable({ oculto, setoculto, setskudetails }) {
 		});
 
 		setoculto({
-			hidden: false
+			hiddenlistools: false,
+			hiddenstoreform: false,
+			hiddentable: false,
+			hiddendetails: true
 		});
 	};
 
@@ -69,7 +72,7 @@ export default function SkuListTable({ oculto, setoculto, setskudetails }) {
 
 	const actions = [
 		{
-			icon: () => <RemoveRedEyeIcon className={classes.paper} color="primary" fontSize="large" />,
+			icon: () => <RemoveRedEyeIcon style={{ color: '#e39d3b' }} fontSize="large" />,
 			tooltip: 'View Details',
 			onClick: (event, rowData) => details(rowData.sku)
 		}
@@ -78,16 +81,22 @@ export default function SkuListTable({ oculto, setoculto, setskudetails }) {
 	return (
 		<>
 			<MaterialTable
-				title="Products Details"
+				title="Products List"
 				columns={columnas}
 				data={data}
 				actions={actions}
+				options={{
+					headerStyle: {
+						backgroundColor: '#000',
+						color: '#FFF'
+					}
+				}}
 				components={{
 					Toolbar: props => (
 						<div style={{ backgroundColor: 'primary' }}>
 							<MTableToolbar {...props} />
 							<div style={{ padding: '20px 20px' }}>
-								<Button onClick={crearsku} variant="contained" color="secondary">
+								<Button onClick={crearsku} variant="contained" color="primary">
 									+ New Product
 								</Button>
 							</div>

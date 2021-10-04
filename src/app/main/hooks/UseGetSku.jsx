@@ -12,7 +12,7 @@ const UseGetSku = idcliente => {
 				data: imgs
 			});
 		});
-	}, [idcliente]);
+	}, []);
 
 	return state;
 };
