@@ -13,7 +13,7 @@ const GetSkuDetails = async skunumber => {
 	);
 	const sku = await resp.json();
 
-	console.log('Mongo SKUDETAILS,', sku[0].htclas.duties);
+	console.log('Mongo SKUDETAILS,', sku[0]);
 	return sku[0];
 };
 
