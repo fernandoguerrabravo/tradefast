@@ -35,11 +35,12 @@ export default function SkuListTable({ oculto, setoculto, setskudetails }) {
 	const details = event => {
 		setskudetails({
 			idcliente: 'abcdef',
-			skunumber: event
+			skunumber: event,
+			skudetail: data
 		});
 
 		setoculto({
-			hiddenlistools: false,
+			hiddenlistools: true,
 			hiddenstoreform: false,
 			hiddentable: false,
 			hiddendetails: true

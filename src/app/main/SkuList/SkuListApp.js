@@ -1,11 +1,13 @@
+/* eslint-disable import/named */
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import SkuListTable from './components/SkuListTable';
 import PreviewCard from './components/SkuListDetails';
-import SkuListTools from './components/SkuListTools';
+
 import SkuStoreForm from './components/SkuStoreForm';
+import SkuListTools from './components/SkuListTools';
 
 export const SkuListApp = () => {
 	const useStyles = makeStyles(theme => ({
@@ -23,7 +25,8 @@ export const SkuListApp = () => {
 
 	const [skudetails, setskudetails] = useState({
 		skunumber: '',
-		idcliente: 'abcdef'
+		idcliente: 'abcdef',
+		skudetalle: []
 	});
 
 	const [oculto, setoculto] = useState({
@@ -48,7 +51,7 @@ export const SkuListApp = () => {
 					) : null}
 				</Grid>
 				<Grid item xs={12}>
-					{oculto.hiddendetails ? <PreviewCard event={skudetails} /> : null}
+					{oculto.hiddendetails ? <PreviewCard skudetails={skudetails} /> : null}
 				</Grid>
 				<Grid item xs={12}>
 					{oculto.hiddenstoreform ? <SkuStoreForm setoculto={setoculto} /> : null}

@@ -215,8 +215,8 @@ const SkuStoreFiles = ({ skus, idcliente }) => {
 
 	return (
 		<form onSubmit={handleFilesSubmit}>
-			<Typography variant="h5" gutterBottom className={classes2.formControl2}>
-				<strong>Upload Documents and Images</strong>&nbsp;&nbsp;
+			<Typography variant="h6" gutterBottom className={classes2.formControl2}>
+				Upload Documents and Images
 				<Tooltip title="you can later upload documents or images of your product.">
 					<InfoIcon fontSize="small" color="action" />
 				</Tooltip>

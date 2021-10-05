@@ -58,7 +58,17 @@ export default function ListResearchTable({ pdf, setpdf, setboton }) {
 	return (
 		<>
 			{pdf.loading ? (
-				<MaterialTable title="" columns={columnas} data={data} />
+				<MaterialTable
+					title=""
+					columns={columnas}
+					data={data}
+					options={{
+						headerStyle: {
+							backgroundColor: '#000',
+							color: '#FFF'
+						}
+					}}
+				/>
 			) : (
 				<Center>
 					<PdfViewer pdf={pdf} />

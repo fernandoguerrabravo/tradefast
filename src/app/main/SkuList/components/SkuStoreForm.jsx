@@ -52,7 +52,7 @@ const styles2 = makeStyles(theme => ({
 	}
 }));
 
-export default function SkuStoreForm({ setoculto }) {
+export default function SkuStoreForm({ setoculto, setescondido }) {
 	const classes2 = styles2();
 	const [guardarsku, setguardarsku] = useState({
 		id_cliente: 'abcdef',
@@ -98,6 +98,9 @@ export default function SkuStoreForm({ setoculto }) {
 						hiddentable: true,
 						hiddendetails: false
 					});
+					setescondido({
+						escondido: true
+					});
 				});
 		} else {
 			Swal.fire({
@@ -138,12 +141,7 @@ export default function SkuStoreForm({ setoculto }) {
 						<Typography variant="h5" gutterBottom className={classes2.formControl2}>
 							<strong>Basic Information</strong>
 						</Typography>
-						<Typography
-							maxwidth
-							style={{ textAlign: 'center' }}
-							className={classes2.formControl2}
-							gutterBottom
-						>
+						<Typography style={{ textAlign: 'center' }} className={classes2.formControl2} gutterBottom>
 							<Button
 								onClick={Save}
 								startIcon={<SaveIcon />}

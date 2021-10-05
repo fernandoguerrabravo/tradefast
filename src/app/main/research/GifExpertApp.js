@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import ListResearchTools from './components/ListResearchTools';
 import ListResearchTable from './components/ListResearchTable';
-import { SearchResearch } from './components/SearchResearch';
+import SearchResearch from './components/SearchResearch';
 
 export const GifExpertApp = () => {
 	const useStyles = makeStyles(theme => ({
@@ -13,7 +13,7 @@ export const GifExpertApp = () => {
 		},
 
 		paper: {
-			padding: theme.spacing(2),
+			padding: theme.spacing(3),
 			textAlign: 'center',
 			color: theme.palette.text.secondary
 		}

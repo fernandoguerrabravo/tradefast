@@ -38,7 +38,7 @@ const ListResearchTools = ({ setpdf, volv, setboton, setescondidoinicial }) => {
 				</Button>
 			) : null}
 			{volv ? null : (
-				<Button onClick={volver} variant="contained" color="secondary">
+				<Button onClick={volver} variant="contained" color="primary">
 					Back to List
 				</Button>
 			)}

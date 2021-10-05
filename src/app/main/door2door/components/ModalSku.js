@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { green, red, blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from 'react-select';
-import { UseGetCountry } from '../hooks/useGetCountry';
 import { SaveSku } from 'app/main/skustore/helpers/SaveSku';
 import Paper from '@material-ui/core/Paper';
 import Swal from 'sweetalert2';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
+import { UseGetCountry } from '../hooks/useGetCountry';
 
 const styles2 = makeStyles(theme => ({
 	root: {
@@ -39,8 +38,8 @@ const styles2 = makeStyles(theme => ({
 	},
 
 	paper: {
-		padding: theme.spacing(1),
-		//textAlign: 'center',
+		padding: theme.spacing(3),
+		// textAlign: 'center',
 		color: theme.palette.text.primary
 	}
 }));
@@ -81,10 +80,10 @@ export default function ModalSku({ setescondido }) {
 
 	const handleClose = async () => {
 		if (
-			guardarsku.fob != '' &&
-			guardarsku.sku != '' &&
-			guardarsku.shortdescription != '' &&
-			guardarsku.country_origin != ''
+			guardarsku.fob !== '' &&
+			guardarsku.sku !== '' &&
+			guardarsku.shortdescription !== '' &&
+			guardarsku.country_origin !== ''
 		) {
 			SaveSku(guardarsku).then(
 				await Swal.fire({
@@ -110,14 +109,12 @@ export default function ModalSku({ setescondido }) {
 	const countryfinal = country.data;
 
 	const newJson1 = [];
-	for (const pais of countryfinal) {
-		{
-			newJson1.push({
-				value: pais.Name,
-				label: pais.Name
-			});
-		}
-	}
+	countryfinal.forEach(pais => {
+		newJson1.push({
+			value: pais.Name,
+			label: pais.Name
+		});
+	});
 
 	const [hidden, sethidden] = useState({
 		escondido: false
@@ -129,21 +126,11 @@ export default function ModalSku({ setescondido }) {
 	return (
 		<div>
 			<Paper className={classes2.paper}>
-				<img
-					src="https://fotos-ecl.s3.amazonaws.com/icons8-esca%CC%81ner-de-co%CC%81digo-de-barras-2-filled-100.png"
-					width="60"
-					height="60"
-				/>
 				<Tooltip title="Back">
-					<img
-						onClick={volver}
-						src="https://fotos-ecl.s3.amazonaws.com/icons8-izquierda-ci%CC%81rculo-64.png"
-						width="40"
-						height="40"
-					/>
+					<Button onClick={volver} variant="outlined" />
 				</Tooltip>
 				Create New Product
-				<FormControl variant="outlined" className={classes2.formControl2} variant="outlined">
+				<FormControl variant="outlined" className={classes2.formControl2}>
 					<TextField
 						id="sku"
 						name="sku"
@@ -181,14 +168,14 @@ export default function ModalSku({ setescondido }) {
 							startAdornment: <InputAdornment position="start">US$</InputAdornment>
 						}}
 					/>
-					<br></br>
+					<br />
 				</FormControl>
 				<FormControl className={classes2.formControl2} variant="outlined">
 					<InputLabel shrink>
 						<strong>Country Origin</strong>
 					</InputLabel>
 					<Select id="country_origin" name="country_origin" options={newJson1} onChange={SelectChange} />
-					<br></br>
+					<br />
 				</FormControl>
 				<FormControl className={classes2.formControl1} variant="outlined">
 					<TextField
