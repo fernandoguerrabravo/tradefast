@@ -22,6 +22,7 @@ import SkuDetailsMx from './components/SkuDetailsMx';
 import Totalvalormexico from './components/totalvalormexico';
 import UseGetAddress from './hooks/UseGetAddress';
 import SkuSummary from './components/SkuSummary';
+import SkuDetailsMx2 from './components/SkuDetailsMx2';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -229,6 +230,31 @@ export default function Door2doorApp() {
 							<Grid container spacing={3}>
 								<Grid item xs={12}>
 									<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
+									<br />
+									<Box sx={{ mb: 2 }}>
+										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+											Continue
+										</Button>
+										<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+											Back
+										</Button>
+									</Box>
+								</Grid>
+							</Grid>
+							<Typography />
+						</StepContent>
+					</Step>
+					<Step>
+						<StepLabel>Input Shipping Details</StepLabel>
+						<StepContent>
+							<Typography>
+								In this section you must select the type of shipment you will perform based on your
+								shipping plan.
+							</Typography>{' '}
+							<br />
+							<Grid container spacing={3}>
+								<Grid item xs={12}>
+									<SkuDetailsMx2 mexico={mexico} setmexico={setmexico} />
 									<br />
 									<Box sx={{ mb: 2 }}>
 										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>

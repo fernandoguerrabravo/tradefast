@@ -11,15 +11,11 @@ const ListHtsTools = () => {
 	// <SimplePopover codigo = {id}/>
 	return (
 		<>
-			<Grid container direction="row" justify="flex-end" spacing={2}>
-				<Grid item>
-					<Link role="button" to="htsTax">
-						<Button onClick={search} variant="contained" color="secondary">
-							+ New Search
-						</Button>
-					</Link>
-				</Grid>
-			</Grid>
+			<Link role="button" to="htsTax">
+				<Button onClick={search} variant="contained" color="primary">
+					+ New HTS Classification
+				</Button>
+			</Link>
 		</>
 	);
 };

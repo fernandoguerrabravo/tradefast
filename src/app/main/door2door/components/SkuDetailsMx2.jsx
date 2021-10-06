@@ -152,15 +152,15 @@ export default function SkuDetailsMx({ mexico, setmexico }) {
 				<Grid item xs={3}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
 						<FormControl variant="outlined" className={classes.formControl2}>
-							<InputLabel id="mxwarehouse">Warehouse MX</InputLabel>
+							<InputLabel id="outtipo">Packaging to Out</InputLabel>
 							<Select
-								labelId="mxwarehouse"
-								onChange={handleChange}
-								value={mexico.fedexwarehouse}
-								label="Fedex Warehouse MX"
+								labelId="outtipo"
+								id="tipo"
+								onChange={handleChange1}
+								value={mexico.tipo}
 								color="secondary"
 							>
-								{newJson1.map(option => (
+								{newJson2.map(option => (
 									<MenuItem key={option.value} value={option.value}>
 										{option.label}
 									</MenuItem>
@@ -168,22 +168,21 @@ export default function SkuDetailsMx({ mexico, setmexico }) {
 							</Select>
 							<br />
 							<TextField
-								id="qty_pallet"
-								name="qty_pallet"
+								id="qty"
+								name="qty"
+								label="Quantities"
 								variant="outlined"
-								label="Pallets to Export"
 								color="secondary"
 								type="number"
-								value={mexico.qty_pallet || ''}
-								onChange={handleqtyChange}
+								value={mexico.qtyout || ''}
+								onChange={handleqtyChange1}
 							/>
 						</FormControl>
 					</Paper>
-					<br />
 				</Grid>
 				<Grid item xs={3}>
 					<Paper className={classes.paper}>
-						<img src="https://fotos-ecl.s3.amazonaws.com/Laredo+TX%2C+USA+(2).gif" alt="laredo" />
+						<img src="https://fotos-ecl.s3.amazonaws.com/Laredo+TX%2C+USA+(1).gif" alt="laredo" />
 					</Paper>
 				</Grid>
 			</Grid>

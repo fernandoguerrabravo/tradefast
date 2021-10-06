@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import HtsGrid from './components/HtsGrid';
 import HtsGrid2 from './components/HtsGrid2';
 import Htsbegin from './components/htsbegin';
-import { ListHtsTools } from './components/ListHtsTools';
+import ListHtsTools from './components/ListHtsTools';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 	},
 
 	paper: {
-		padding: theme.spacing(2),
+		padding: theme.spacing(3),
 		textAlign: 'center',
 		color: theme.palette.text.secondary
 	}
@@ -42,15 +42,24 @@ export default function FullWidthGrid() {
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
-				<Grid item xs={12} sm={12}>
-					<ListHtsTools setencabezado={setencabezado} />
+				<Grid item xs={12}>
+					<Paper className={classes.paper}>
+						<ListHtsTools setencabezado={setencabezado} />
+					</Paper>
 				</Grid>
-				<Grid item xs={12} sm={12}>
+				<Grid item xs={12}>
 					<Paper className={classes.paper}>
 						<Htsbegin setencabezado={setencabezado} />
 					</Paper>
 				</Grid>
-				{encabezado.hidden && <HtsGrid2 encabezado={encabezado} setencabezado={setencabezado} />}
+				<Grid item xs={12}>
+					{encabezado.hidden && (
+						<Paper className={classes.paper}>
+							<HtsGrid2 encabezado={encabezado} setencabezado={setencabezado} />
+						</Paper>
+					)}
+				</Grid>
+
 				{encabezado.hidden1 && <HtsGrid encabezado={encabezado} setencabezado={setencabezado} />}
 			</Grid>
 		</div>

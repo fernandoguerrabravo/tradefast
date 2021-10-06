@@ -56,7 +56,17 @@ export default function ListHtsTable() {
 
 	return (
 		<>
-			<MaterialTable title="" columns={columnas} data={data} />
+			<MaterialTable
+				title="Clasiffication List"
+				columns={columnas}
+				data={data}
+				options={{
+					headerStyle: {
+						backgroundColor: '#000',
+						color: '#FFF'
+					}
+				}}
+			/>
 		</>
 	);
 }

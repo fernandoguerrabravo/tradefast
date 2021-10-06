@@ -13,6 +13,7 @@ import Paper from '@material-ui/core/Paper';
 import Swal from 'sweetalert2';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Divider } from '@material-ui/core';
 import { UseGetCountry } from '../hooks/useGetCountry';
 
 const styles2 = makeStyles(theme => ({
@@ -39,7 +40,7 @@ const styles2 = makeStyles(theme => ({
 
 	paper: {
 		padding: theme.spacing(3),
-		// textAlign: 'center',
+		textAlign: 'center',
 		color: theme.palette.text.primary
 	}
 }));
@@ -126,10 +127,18 @@ export default function ModalSku({ setescondido }) {
 	return (
 		<div>
 			<Paper className={classes2.paper}>
-				<Tooltip title="Back">
-					<Button onClick={volver} variant="outlined" />
-				</Tooltip>
-				Create New Product
+				<Button onClick={volver} variant="contained" color="primary">
+					Back
+				</Button>
+			</Paper>
+			<br />
+			<Paper className={classes2.paper}>
+				<Typography variant="h6" gutterBottom component="div">
+					<strong>Add New Product</strong>
+				</Typography>
+
+				<br />
+				<Divider />
 				<FormControl variant="outlined" className={classes2.formControl2}>
 					<TextField
 						id="sku"
@@ -190,7 +199,7 @@ export default function ModalSku({ setescondido }) {
 					/>
 				</FormControl>
 				<FormControl className={classes2.formControl2} variant="outlined">
-					<Button variant="contained" color="primary" autoFocus onClick={handleClose} color="primary">
+					<Button variant="contained" autoFocus onClick={handleClose} color="primary">
 						Save Information
 					</Button>
 				</FormControl>

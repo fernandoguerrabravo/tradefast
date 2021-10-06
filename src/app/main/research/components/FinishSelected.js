@@ -42,28 +42,28 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export  const FinishSelected = ({ selected, average, max, min, setescondidoinicial, category }) => {
+const FinishSelected = ({ selected, average, max, min, setescondidoinicial, category }) => {
 	const classes = useStyles();
 	const idcliente = 'abcdef';
 	const sku = UseGetSku(idcliente);
 	const skufinal = sku.data;
 	const newJson1 = [];
-	for (const codigo of skufinal) {
-		{
-			newJson1.push({
-				value: codigo.sku,
-				label: codigo.sku
-			});
-		}
-	}
+	skufinal.forEach(event => {
+		event.res !== true
+			? newJson1.push({
+					value: event.sku,
+					label: event.sku
+			  })
+			: null;
+	});
 
 	// Defino mi arreglo final para enviar a la base de datos
 
 	const [final, setfinal] = useState({
 		sku: '',
-		average: average,
-		max: max,
-		min: min,
+		average,
+		max,
+		min,
 		keyword: category,
 		data: selected
 	});
@@ -105,3 +105,5 @@ export  const FinishSelected = ({ selected, average, max, min, setescondidoinici
 		</>
 	);
 };
+
+export default FinishSelected;

@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { green, red, blue } from '@material-ui/core/colors';
 import InfoIcon from '@material-ui/icons/Info';
 import ModalSku from 'app/main/door2door/components/ModalSku';
-import { FinishSelected } from './FinishSelected';
+import FinishSelected from './FinishSelected';
 import { star } from '../hooks/star';
 
 const useStyles = makeStyles(theme => ({
