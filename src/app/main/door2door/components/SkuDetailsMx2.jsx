@@ -19,6 +19,7 @@ import Icon from '@material-ui/core/Icon';
 import { composeInitialProps } from 'react-i18next';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import PackOutList from './PackOutList';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -105,47 +106,69 @@ const newJson1 = [
 
 const newJson2 = [
 	{
-		value: 'p',
+		value: 'Pallets',
 		label: 'Pallets'
 	},
 	{
-		value: 'b',
+		value: 'Boxes',
 		label: 'Boxes'
 	}
 ];
 
-export default function SkuDetailsMx({ mexico, setmexico }) {
+const lista = [];
+
+export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
 	const classes = useStyles();
 	const [value, setValue] = React.useState('');
 
-	const handleChange = e => {
-		setmexico({
-			...mexico,
-			fedexwarehouse: e.target.value
-		});
-	};
-
-	const handleqtyChange = e => {
-		setmexico({
-			...mexico,
-			qty_pallet: parseFloat(e.target.value)
-		});
-	};
+	const [paquetes, setpaquetes] = useState({
+		tipo: '',
+		qtyout: '',
+		id: ''
+	});
 
 	const handleChange1 = e => {
-		setmexico({
-			...mexico,
+		setpaquetes({
+			...paquetes,
+			idlista: lista.length,
 			tipo: e.target.value
 		});
 	};
 
 	const handleqtyChange1 = e => {
-		setmexico({
-			...mexico,
+		setpaquetes({
+			...paquetes,
 			qtyout: parseFloat(e.target.value)
 		});
 	};
+	const submitout = () => {
+		if (paquetes.qtyout !== '' && paquetes.tipo !== '') {
+			lista.push(paquetes);
+			let totalporembarque = 0;
+			let totalporembarque1 = 0;
+			let totalout = 0;
 
+			lista.forEach(total => {
+				if (total.tipo === 'Pallets') {
+					totalporembarque1 = 7.48 * total.qtyout;
+					if (totalporembarque1 < 46) {
+						totalporembarque = 46 + 34.5;
+					} else totalporembarque = 7.48 * total.qtyout + 34.5;
+				} else {
+					totalporembarque = 2.9 * total.qtyout + 34.5;
+				}
+
+				totalout += totalporembarque;
+				console.log('PICO', totalout);
+			});
+
+			setmexico2({
+				...mexico2,
+				arreglodelpack: lista,
+				totalout
+			});
+		}
+	};
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
@@ -157,7 +180,7 @@ export default function SkuDetailsMx({ mexico, setmexico }) {
 								labelId="outtipo"
 								id="tipo"
 								onChange={handleChange1}
-								value={mexico.tipo}
+								value={paquetes.tipo}
 								color="secondary"
 							>
 								{newJson2.map(option => (
@@ -174,9 +197,12 @@ export default function SkuDetailsMx({ mexico, setmexico }) {
 								variant="outlined"
 								color="secondary"
 								type="number"
-								value={mexico.qtyout || ''}
+								value={paquetes.qtyout || ''}
 								onChange={handleqtyChange1}
 							/>
+							<Button onClick={submitout} variant="contained" color="primary">
+								+ Add Item to List
+							</Button>
 						</FormControl>
 					</Paper>
 				</Grid>
@@ -184,6 +210,9 @@ export default function SkuDetailsMx({ mexico, setmexico }) {
 					<Paper className={classes.paper}>
 						<img src="https://fotos-ecl.s3.amazonaws.com/Laredo+TX%2C+USA+(1).gif" alt="laredo" />
 					</Paper>
+				</Grid>
+				<Grid item xs={9}>
+					<PackOutList event={mexico2.arreglodelpack} />
 				</Grid>
 			</Grid>
 		</div>

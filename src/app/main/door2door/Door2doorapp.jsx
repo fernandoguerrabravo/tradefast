@@ -121,9 +121,9 @@ export default function Door2doorApp() {
 	const [mexico2, setmexico2] = useState({
 		codigo_fba: 'PHX5',
 		fedexwarehouse: '',
-		qtyout: '',
 		qty_pallet: '',
-		tipo: ''
+		arreglodelpack: [],
+		totalout: ''
 	});
 
 	const idcliente = 'abcdef';
@@ -191,7 +191,6 @@ export default function Door2doorApp() {
 				</Grid>
 			</Grid>
 			<br />
-
 			<Paper className={classes.paper}>
 				<Stepper activeStep={activeStep} orientation="vertical">
 					<Step>
@@ -254,7 +253,7 @@ export default function Door2doorApp() {
 							<br />
 							<Grid container spacing={3}>
 								<Grid item xs={12}>
-									<SkuDetailsMx2 mexico={mexico} setmexico={setmexico} />
+									<SkuDetailsMx2 mexico2={mexico2} setmexico2={setmexico2} />
 									<br />
 									<Box sx={{ mb: 2 }}>
 										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
@@ -277,7 +276,7 @@ export default function Door2doorApp() {
 									<SkuSummary arregloskus={arregloskus} />
 								</Grid>
 								<Grid item xs={6}>
-									<Totalvalormexico mexico={mexico} />
+									{/* <Totalvalormexico mexico={mexico} />*/}
 								</Grid>
 							</Grid>
 							<Typography />
