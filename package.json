@@ -95,7 +95,7 @@
         "redux-logger": "4.0.0",
         "styled-components": "5.2.1",
         "sweetalert": "^2.1.2",
-        "sweetalert2": "^11.0.18",
+        "sweetalert2": "^11.1.7",
         "typeface-poppins": "1.1.13",
         "velocity-animate": "1.5.2",
         "velocity-react": "1.4.3",

@@ -159,13 +159,23 @@ export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
 				}
 
 				totalout += totalporembarque;
-				console.log('PICO', totalout);
 			});
 
 			setmexico2({
 				...mexico2,
 				arreglodelpack: lista,
 				totalout
+			});
+			setpaquetes({
+				tipo: '',
+				qtyout: '',
+				id: ''
+			});
+		} else {
+			swal({
+				title: 'Opss!',
+				text: 'Add Packaging and Quantities',
+				icon: 'warning'
 			});
 		}
 	};
@@ -200,6 +210,7 @@ export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
 								value={paquetes.qtyout || ''}
 								onChange={handleqtyChange1}
 							/>
+							<br />
 							<Button onClick={submitout} variant="contained" color="primary">
 								+ Add Item to List
 							</Button>

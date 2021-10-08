@@ -56,7 +56,8 @@ const useStyles = makeStyles(theme => ({
 
 	paper: {
 		padding: theme.spacing(1),
-		color: theme.palette.text.secondary
+		color: theme.palette.text.secondary,
+		textAlign: 'center'
 	},
 
 	icons: {
@@ -223,7 +224,7 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 		<div className={classes.root}>
 			<Grid container spacing={3}>
 				<Grid item xs={3}>
-					<Paper className={classes.paper}>
+					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
 						<FormControl variant="outlined" className={classes.formControl2}>
 							<Select id="sku" name="sku" options={newJson1} onChange={handleInputChange} />
 							<b />

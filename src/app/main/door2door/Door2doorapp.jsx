@@ -12,7 +12,7 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import MxRates from './components/MxRates';
 import SkutipobultoMx from './components/SkutipobultoMx';
 import SkuComponent from './components/SkuComponent';
@@ -23,6 +23,8 @@ import Totalvalormexico from './components/totalvalormexico';
 import UseGetAddress from './hooks/UseGetAddress';
 import SkuSummary from './components/SkuSummary';
 import SkuDetailsMx2 from './components/SkuDetailsMx2';
+import SaveMexico from './helpers/SaveMexico';
+import MxQuotationList from './components/MxQuotationList';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -113,9 +115,9 @@ export default function Door2doorApp() {
 	const [mexico, setmexico] = useState({
 		codigo_fba: 'PHX5',
 		fedexwarehouse: '',
-		qtyout: '',
 		qty_pallet: '',
-		tipo: ''
+		arreglodelpack: [],
+		totalout: ''
 	});
 
 	const [mexico2, setmexico2] = useState({
@@ -133,14 +135,51 @@ export default function Door2doorApp() {
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
-		setActiveStep(prevActiveStep => prevActiveStep + 1);
-		setdatosfinales({
-			...datosfinales,
-			skus: arregloskus,
-			origen: sellersfinal
-		});
+		if (arregloskus.totalsku === '') {
+			Swal.fire({
+				title: 'Atention!',
+				text: 'Add SKU to List and Go to Next Step',
+				icon: 'error'
+			});
+		} else {
+			setActiveStep(prevActiveStep => prevActiveStep + 1);
+			setdatosfinales({
+				...datosfinales,
+				skus: arregloskus
+			});
+		}
+	};
 
-		console.log(mexico);
+	const handleNextIn = () => {
+		if (mexico.qty_pallet === '' || mexico.fedexwarehouse === '') {
+			Swal.fire({
+				title: 'Atention!',
+				text: 'Select Warehouse and Input Pallets Quantity to Export and Continue',
+				icon: 'error'
+			});
+		} else {
+			setActiveStep(prevActiveStep => prevActiveStep + 1);
+			setdatosfinales({
+				...datosfinales,
+				mexico
+			});
+		}
+	};
+
+	const handleNextOut = () => {
+		if (mexico.totalout === '') {
+			Swal.fire({
+				title: 'Atention!',
+				text: 'Add Shipment Out from Laredo to FBA and Continue',
+				icon: 'error'
+			});
+		} else {
+			setActiveStep(prevActiveStep => prevActiveStep + 1);
+			setdatosfinales({
+				...datosfinales,
+				mexico
+			});
+		}
 	};
 
 	const handleBack = () => {
@@ -154,12 +193,10 @@ export default function Door2doorApp() {
 	const classes = useStyles();
 
 	const [datosfinales, setdatosfinales] = useState({
-		zip_destino: '',
-		boxes: [],
 		skus: [],
-		pallets: [],
-		tipobulto: '',
-		origen: []
+		mexico: [],
+		idcliente
+
 		// el tipo de bulto puede ser 'p' -> pallet  o 'b' -> box
 	});
 
@@ -171,6 +208,23 @@ export default function Door2doorApp() {
 		hiddenrate: false
 	});
 
+	const Save = async () => {
+		SaveMexico(datosfinales)
+			.then(
+				await Swal.fire({
+					position: 'top-end',
+					icon: 'success',
+					title: 'Your work has been saved',
+					showConfirmButton: false,
+					timer: 2000
+				})
+			)
+			.then(result => {
+				window.location.replace('/dashboard');
+			});
+
+		// history.push('/htstaxlist')
+	};
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
@@ -190,6 +244,7 @@ export default function Door2doorApp() {
 					</Paper>
 				</Grid>
 			</Grid>
+			<MxQuotationList />
 			<br />
 			<Paper className={classes.paper}>
 				<Stepper activeStep={activeStep} orientation="vertical">
@@ -210,7 +265,12 @@ export default function Door2doorApp() {
 									/>
 									<br />
 									<Box sx={{ mb: 2 }}>
-										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+										<Button
+											color="secondary"
+											variant="contained"
+											onClick={handleNext}
+											sx={{ mt: 1, mr: 1 }}
+										>
 											Continue
 										</Button>
 									</Box>
@@ -219,7 +279,7 @@ export default function Door2doorApp() {
 						</StepContent>
 					</Step>
 					<Step>
-						<StepLabel>Input Shipping Details</StepLabel>
+						<StepLabel>Export Shipping Information</StepLabel>
 						<StepContent>
 							<Typography>
 								In this section you must select the type of shipment you will perform based on your
@@ -231,10 +291,21 @@ export default function Door2doorApp() {
 									<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
 									<br />
 									<Box sx={{ mb: 2 }}>
-										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+										<Button
+											color="secondary"
+											variant="contained"
+											onClick={handleNextIn}
+											sx={{ mt: 1, mr: 1 }}
+										>
 											Continue
 										</Button>
-										<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+										&nbsp;&nbsp;
+										<Button
+											variant="outlined"
+											color="secondary"
+											onClick={handleBack}
+											sx={{ mt: 1, mr: 1 }}
+										>
 											Back
 										</Button>
 									</Box>
@@ -244,22 +315,32 @@ export default function Door2doorApp() {
 						</StepContent>
 					</Step>
 					<Step>
-						<StepLabel>Input Shipping Details</StepLabel>
+						<StepLabel>Add Shipping Out from Laredo TX</StepLabel>
 						<StepContent>
 							<Typography>
-								In this section you must select the type of shipment you will perform based on your
-								shipping plan.
+								In this section you must to add Handling Out Shipments from Laredo TX to FBA
 							</Typography>{' '}
 							<br />
 							<Grid container spacing={3}>
 								<Grid item xs={12}>
-									<SkuDetailsMx2 mexico2={mexico2} setmexico2={setmexico2} />
+									<SkuDetailsMx2 mexico2={mexico} setmexico2={setmexico} />
 									<br />
 									<Box sx={{ mb: 2 }}>
-										<Button variant="contained" onClick={handleNext} sx={{ mt: 1, mr: 1 }}>
+										<Button
+											color="secondary"
+											variant="contained"
+											onClick={handleNextOut}
+											sx={{ mt: 1, mr: 1 }}
+										>
 											Continue
 										</Button>
-										<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
+										&nbsp;&nbsp;
+										<Button
+											variant="outlined"
+											color="secondary"
+											onClick={handleBack}
+											sx={{ mt: 1, mr: 1 }}
+										>
 											Back
 										</Button>
 									</Box>
@@ -269,23 +350,28 @@ export default function Door2doorApp() {
 						</StepContent>
 					</Step>
 					<Step>
-						<StepLabel>Shippping Details</StepLabel>
+						<StepLabel>Shipping Summary</StepLabel>
 						<StepContent>
 							<Grid container spacing={3}>
 								<Grid item xs={6}>
 									<SkuSummary arregloskus={arregloskus} />
 								</Grid>
 								<Grid item xs={6}>
-									{/* <Totalvalormexico mexico={mexico} />*/}
+									<Totalvalormexico mexico={mexico} />
 								</Grid>
 							</Grid>
 							<Typography />
 							<br />
 							<Box sx={{ mb: 2 }}>
 								<div>
-									<Button variant="contained" sx={{ mt: 1, mr: 1 }}>
+									<Button onClick={Save} color="secondary" variant="contained" sx={{ mt: 1, mr: 1 }}>
 										Save
 									</Button>
+									&nbsp;&nbsp;
+									<Button color="primary" variant="contained" sx={{ mt: 1, mr: 1 }}>
+										Book Now
+									</Button>
+									&nbsp;&nbsp;
 									<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
 										Back
 									</Button>
@@ -294,14 +380,6 @@ export default function Door2doorApp() {
 						</StepContent>
 					</Step>
 				</Stepper>
-				{activeStep === steps.length && (
-					<Paper square elevation={0} sx={{ p: 3 }}>
-						<Typography>All steps completed - you&apos;re finished</Typography>
-						<Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-							Reset
-						</Button>
-					</Paper>
-				)}
 			</Paper>
 
 			<Grid container spacing={3}>

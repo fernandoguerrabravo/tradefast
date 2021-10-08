@@ -1,6 +1,5 @@
 /* eslint-disable array-callback-return */
 import React, { useState } from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue } from '@material-ui/core/colors';
@@ -41,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 const PackOutList = ({ event }) => {
 	const classes = useStyles();
-	var tarifa = 0;
+
 	return (
 		<TableContainer component={Paper}>
 			<Table className={classes.table} aria-label="a dense table">
@@ -66,9 +65,15 @@ const PackOutList = ({ event }) => {
 							<TableCell>
 								{row.tipo === 'Pallets'
 									? 7.48 * row.qtyout < 46
-										? 46 + 34.5
-										: 7.48 * row.qtyout + 34.5
-									: 2.9 * row.qtyout + 34.5}
+										? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+												46 + 34.5
+										  )
+										: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+												7.48 * row.qtyout + 34.5
+										  )
+									: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+											2.9 * row.qtyout + 34.5
+									  )}
 							</TableCell>
 							<TableCell>
 								{/* new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(

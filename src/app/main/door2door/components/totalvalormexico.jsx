@@ -107,12 +107,21 @@ export default function Totalvalormexico({ mexico }) {
 					</TableHead>
 					<TableBody>
 						<TableRow>
-							<TableCell>Shipping Cost MX Fedex - Laredo Tx</TableCell>
+							<TableCell>Estimated Shipping Cost MX Fedex - Laredo Tx</TableCell>
 							<TableCell style={{ color: green[900] }}>
 								{new Intl.NumberFormat('en-US', {
 									style: 'currency',
 									currency: 'USD'
 								}).format(datfinales.total)}
+							</TableCell>
+						</TableRow>
+						<TableRow>
+							<TableCell>Estimated Total Handling Cost</TableCell>
+							<TableCell style={{ color: green[900] }}>
+								{new Intl.NumberFormat('en-US', {
+									style: 'currency',
+									currency: 'USD'
+								}).format(mexico.totalout)}
 							</TableCell>
 						</TableRow>
 						<TableRow>
