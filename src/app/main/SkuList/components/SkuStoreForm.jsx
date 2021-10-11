@@ -52,7 +52,7 @@ const styles2 = makeStyles(theme => ({
 	}
 }));
 
-export default function SkuStoreForm({ setoculto, setescondido }) {
+export default function SkuStoreForm({ setoculto }) {
 	const classes2 = styles2();
 	const [guardarsku, setguardarsku] = useState({
 		id_cliente: 'abcdef',
@@ -97,9 +97,6 @@ export default function SkuStoreForm({ setoculto, setescondido }) {
 						hiddenstoreform: false,
 						hiddentable: true,
 						hiddendetails: false
-					});
-					setescondido({
-						escondido: true
 					});
 				});
 		} else {
