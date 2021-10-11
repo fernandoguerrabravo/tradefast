@@ -2,14 +2,18 @@
 import { useState, useEffect } from 'react';
 import GetMexico from '../helpers/GetMexico';
 
-const UseGetMexico = event => {
+const UseGetMexico = (setmexico, mexico) => {
 	const [state, setState] = useState({
 		data: [],
 		loading: true
 	});
 
 	useEffect(() => {
-		GetMexico(event).then(imgs => {
+		GetMexico(mexico).then(imgs => {
+			setmexico({
+				...mexico,
+				totalin: 100
+			});
 			setState({
 				data: imgs
 			});

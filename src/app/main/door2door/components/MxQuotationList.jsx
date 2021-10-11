@@ -33,18 +33,9 @@ const MxQuoationList = ({ oculto, setoculto, setskudetails }) => {
 	// const { data, loading } = useGetResearch(idcliente)
 
 	const details = event => {
-		setskudetails({
-			idcliente: 'abcdef',
-			skunumber: event,
-			skudetail: data
-		});
+		setskudetails({ idcliente: 'abcdef', skunumber: event, skudetail: data });
 
-		setoculto({
-			hiddenlistools: true,
-			hiddenstoreform: false,
-			hiddentable: false,
-			hiddendetails: true
-		});
+		setoculto({ hiddenlistools: true, hiddenstoreform: false, hiddentable: false, hiddendetails: true });
 	};
 
 	const { data } = UseGetMxQuotation(idcliente);
@@ -53,45 +44,46 @@ const MxQuoationList = ({ oculto, setoculto, setskudetails }) => {
 
 	const columnas = [
 		{
-			title: 'Short Description',
-			field: 'fecha_creacion'
+			title: '#',
+			field: '',
+			render: rowData => data.indexOf(rowData) + 1
 		}
 	];
 
-	const actions = [
-		{
-			icon: () => <RemoveRedEyeIcon style={{ color: '#e39d3b' }} fontSize="large" />,
-			tooltip: 'View Details',
-			onClick: (event, rowData) => details(rowData.sku)
-		}
-	];
+	/* const actions = [{
+          
+            tooltip: 'View Details',
+            onClick: (event, rowData) => details(rowData.sku),
+            icon: () => <RemoveRedEyeIcon style={{
+                color: '#e39d3b'
+            }}
+            fontSize="large"/>
+        }]; */
 
 	return (
-		<>
-			<MaterialTable
-				title="Products List"
-				columns={columnas}
-				data={data}
-				options={{
-					headerStyle: {
-						backgroundColor: '#000',
-						color: '#FFF'
-					}
-				}}
-				components={{
-					Toolbar: props => (
-						<div style={{ backgroundColor: 'primary' }}>
-							<MTableToolbar {...props} />
-							<div style={{ padding: '20px 20px' }}>
-								<Button variant="contained" color="primary">
-									+ New Quotation
-								</Button>
-							</div>
+		<MaterialTable
+			title="Products List"
+			columns={columnas}
+			data={data}
+			options={{
+				headerStyle: {
+					backgroundColor: '#000',
+					color: '#FFF'
+				}
+			}}
+			components={{
+				Toolbar: props => (
+					<div style={{ backgroundColor: 'primary' }}>
+						<MTableToolbar {...props} />
+						<div style={{ padding: '20px 20px' }}>
+							<Button variant="contained" color="primary">
+								+ New Quotation
+							</Button>
 						</div>
-					)
-				}}
-			/>
-		</>
+					</div>
+				)
+			}}
+		/>
 	);
 };
 

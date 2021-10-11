@@ -82,15 +82,11 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function Totalvalormexico({ mexico }) {
+export default function Totalvalormexico({ setmexico, mexico }) {
 	const classes = useStyles();
 	const [value, setValue] = React.useState('');
-
-	const datos = UseGetMexico(mexico);
+	const datos = UseGetMexico(setmexico, mexico);
 	const datfinales = datos.data;
-	const handleChange = event => {
-		setValue(event.target.value);
-	};
 
 	return (
 		<Paper className={classes.paper}>

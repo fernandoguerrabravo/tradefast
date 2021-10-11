@@ -117,7 +117,8 @@ export default function Door2doorApp() {
 		fedexwarehouse: '',
 		qty_pallet: '',
 		arreglodelpack: [],
-		totalout: ''
+		totalout: '',
+		totalin: ''
 	});
 
 	const [mexico2, setmexico2] = useState({
@@ -125,7 +126,8 @@ export default function Door2doorApp() {
 		fedexwarehouse: '',
 		qty_pallet: '',
 		arreglodelpack: [],
-		totalout: ''
+		totalout: '',
+		totalin: ''
 	});
 
 	const idcliente = 'abcdef';
@@ -244,7 +246,7 @@ export default function Door2doorApp() {
 					</Paper>
 				</Grid>
 			</Grid>
-			<MxQuotationList />
+
 			<br />
 			<Paper className={classes.paper}>
 				<Stepper activeStep={activeStep} orientation="vertical">
@@ -357,7 +359,7 @@ export default function Door2doorApp() {
 									<SkuSummary arregloskus={arregloskus} />
 								</Grid>
 								<Grid item xs={6}>
-									<Totalvalormexico mexico={mexico} />
+									<Totalvalormexico setmexico={setmexico} mexico={mexico} />
 								</Grid>
 							</Grid>
 							<Typography />

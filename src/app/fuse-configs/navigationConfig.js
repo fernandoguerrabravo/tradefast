@@ -70,14 +70,6 @@ const navigationConfig = [
 						type: 'item',
 						icon: 'whatshot',
 						url: '/door2door'
-					},
-					{
-						id: 'rate-component',
-						title: 'rate',
-						translate: 'RATE',
-						type: 'item',
-						icon: 'whatshot',
-						url: '/rate'
 					}
 				]
 			},
@@ -85,48 +77,6 @@ const navigationConfig = [
 				id: 'booking-component',
 				title: 'example',
 				translate: 'BOOKING',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/'
-			},
-
-			{
-				id: 'customs-component',
-				title: 'example',
-				translate: 'CUSTOMS',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/hts'
-			},
-			{
-				id: 'hts-component',
-				title: 'example',
-				translate: 'HTS',
-				type: 'collapse',
-				icon: 'whatshot',
-				children: [
-					{
-						id: 'special-component',
-						title: 'htsspecial',
-						translate: 'HTSSPECIAL',
-						type: 'item',
-						icon: 'timeline',
-						url: '/'
-					}
-				]
-			},
-			{
-				id: 'bonds-component',
-				title: 'example',
-				translate: 'BONDS',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/'
-			},
-			{
-				id: 'insurance-component',
-				title: 'example',
-				translate: 'INSURANCE',
 				type: 'item',
 				icon: 'whatshot',
 				url: '/'
