@@ -17,7 +17,7 @@ ReactDOM.render(
 	<Auth0Provider
 		domain="eclprojects.us.auth0.com"
 		clientId="dbHC9DrhkHt4W9ohZDUPKky2BFkjJuYi"
-		redirectUri="http://localhost:3000/dashboard"
+		redirectUri="https://www.gsasellers.com/dashboard"
 	>
 		<App />
 	</Auth0Provider>,

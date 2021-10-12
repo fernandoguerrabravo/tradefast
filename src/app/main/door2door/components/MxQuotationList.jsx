@@ -24,7 +24,7 @@ const MxQuoationList = ({ hidden, sethidden }) => {
 	const idcliente = 'abcdef';
 	// const { data, loading } = useGetResearch(idcliente)
 
-	const nuevacotizacion = () => {
+	const nuevacotizacion = event => {
 		sethidden({
 			...hidden,
 			hiddenlista: false,
@@ -67,9 +67,9 @@ const MxQuoationList = ({ hidden, sethidden }) => {
 			render: rowData => rowData.mexico.arreglodelpack[0].qtyout
 		},
 		{
-			title: 'Qty Out',
+			title: 'Actions',
 			field: '',
-			render: rowData => console.log('pichula', rowData)
+			render: rowData => console.log('pico', rowData)
 		}
 	];
 
@@ -85,7 +85,7 @@ const MxQuoationList = ({ hidden, sethidden }) => {
 
 	return (
 		<MaterialTable
-			title="Products List"
+			title="Quotation List"
 			columns={columnas}
 			data={data}
 			options={{
