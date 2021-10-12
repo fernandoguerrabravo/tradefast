@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import UseGetMxQuotation from '../hooks/UseGetMxQuotation';
 import UseGetMexico from '../hooks/UseGetMexico';
 
-const MxQuoationList = ({ hidden, sethidden, setskudetails }) => {
+const MxQuoationList = ({ hidden, sethidden }) => {
 	const useStyles = makeStyles(theme => ({
 		root: {
 			flexGrow: 1
@@ -65,6 +65,11 @@ const MxQuoationList = ({ hidden, sethidden, setskudetails }) => {
 			title: 'Qty Out',
 			field: '',
 			render: rowData => rowData.mexico.arreglodelpack[0].qtyout
+		},
+		{
+			title: 'Qty Out',
+			field: '',
+			render: rowData => console.log('pichula', rowData)
 		}
 	];
 
