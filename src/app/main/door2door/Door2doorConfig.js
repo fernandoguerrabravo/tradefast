@@ -5,14 +5,11 @@ import en from './i18n/en';
 import tr from './i18n/tr';
 import ar from './i18n/ar';
 
-
 i18next.addResourceBundle('en', 'door2doorpage', en);
 i18next.addResourceBundle('tr', 'door2doorpage', tr);
 i18next.addResourceBundle('ar', 'door2doorpage', ar);
 
-
 const Door2doorConfig = {
-
 	settings: {
 		layout: {
 			config: {}

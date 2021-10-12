@@ -1,30 +1,19 @@
-import { useState, useEffect } from 'react'
+/* eslint-disable import/prefer-default-export */
+import { useState, useEffect } from 'react';
 import { GetOtherTax } from '../helpers/GetOtherTax';
 
-
-
 export const UseGetOtherTax = () => {
+	const [state, setState] = useState({
+		data: []
+	});
 
-    const [state, setState] = useState({
+	useEffect(() => {
+		GetOtherTax().then(imgs => {
+			setState({
+				data: imgs
+			});
+		});
+	}, []);
 
-        data: [],
-
-    })
-
-    useEffect(() => {
-
-        GetOtherTax()
-            .then(imgs => {
-               
-                 setState({
-
-                    data: imgs,
-
-                });
-            });
-    }, []);
-
-
-    return state;
-
-}
+	return state;
+};

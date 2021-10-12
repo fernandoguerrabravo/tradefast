@@ -1,11 +1,7 @@
 import { memo } from 'react';
 
 function DashboardContent() {
-	return (
-		<div>
-			
-		</div>
-	);
+	return <div />;
 }
 
 export default memo(DashboardContent);

@@ -64,7 +64,7 @@ const ResearchReport = ({ setboton, setpdf, sku, report, min, average, max }) =>
 		<>
 			{state.reporte ? (
 				state.circular ? null : (
-					<Button variant="outlined" color="primary"  onClick={informe}>
+					<Button variant="outlined" color="primary" onClick={informe}>
 						Show Report
 					</Button>
 				)

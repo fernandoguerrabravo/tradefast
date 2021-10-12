@@ -42,7 +42,7 @@ export default function BasicTable({ detalle }) {
 					<TableRow>
 						<TableCell>Model:</TableCell>
 						<TableCell>
-							{' '}             
+							{' '}
 							{detalle.model}
 							<br />
 						</TableCell>

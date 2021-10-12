@@ -1,22 +1,17 @@
-export const HtsGetCategories = async (htsnumber) => {
+/* eslint-disable import/prefer-default-export */
+export const HtsGetCategories = async htsnumber => {
+	const requestOptions = {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ categoria: htsnumber })
+	};
 
-    
+	// const url = "https://j6zrjwrhe0.execute-api.us-west-2.amazonaws.com/prod/htsgov";
+	const resp = await fetch(`https://dx5kwxo8qa.execute-api.us-west-2.amazonaws.com/dev/getcategory`, requestOptions);
+	const data = await resp.json();
+	const dato = data.body;
+	// console.log("DATO:");
+	// console.log(dato);
 
-    var requestOptions = {
-
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ "categoria": htsnumber })
-    };
-
-    //const url = "https://j6zrjwrhe0.execute-api.us-west-2.amazonaws.com/prod/htsgov";
-    const resp = await fetch(`https://dx5kwxo8qa.execute-api.us-west-2.amazonaws.com/dev/getcategory`, requestOptions);
-    const data = await resp.json();
-    const dato = data.body;
-    //console.log("DATO:");
-    //console.log(dato);
-
-
-    return dato;
-
-}
+	return dato;
+};

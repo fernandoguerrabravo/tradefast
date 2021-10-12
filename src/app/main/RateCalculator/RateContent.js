@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import RateApp from './RateApp';
 
-const  RateContent  = () => {
+const RateContent = () => {
 	return (
 		<>
-		<RateApp />
+			<RateApp />
 		</>
 	);
-}
+};
 
 export default memo(RateContent);

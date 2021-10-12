@@ -1,3 +1,5 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-restricted-syntax */
 import React, { useState, useEffect } from 'react';
 import { GetSellers } from 'app/main/helpers/GetSellers';
 
@@ -11,7 +13,7 @@ function UseGetAddress(id_cliente) {
 			const originalJson = imgs.facilites;
 			const newJson = [];
 			for (const add of originalJson) {
-				if (add.type == 'exw') {
+				if (add.type === 'exw') {
 					newJson.push(add);
 				}
 			}

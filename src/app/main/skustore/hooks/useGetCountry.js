@@ -1,32 +1,19 @@
-import { useState, useEffect } from 'react'
+/* eslint-disable import/prefer-default-export */
+import { useState, useEffect } from 'react';
 import { GetCountry } from '../helpers/GetCountry';
 
-
 export const UseGetCountry = () => {
+	const [state, setState] = useState({
+		data: []
+	});
 
-    const [state, setState] = useState({
+	useEffect(() => {
+		GetCountry().then(imgs => {
+			setState({
+				data: imgs
+			});
+		});
+	}, []);
 
-        data: [],
-
-
-    })
-
-    useEffect(() => {
-
-        GetCountry()
-            .then(imgs => {
-
-                setState({
-
-                    data: imgs,
-
-                });
-
-            });
-
-    }, []);
-
-
-    return state;
-
-}
+	return state;
+};

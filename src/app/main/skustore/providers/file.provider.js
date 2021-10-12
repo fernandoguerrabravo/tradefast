@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 import { HttpClient } from '../helpers/providers.helper';
 
 class FileProvider {

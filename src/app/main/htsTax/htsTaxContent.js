@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import FullWidthGrid from './htsTaxCalculatorapp';
 
-const  HtsTaxContent  = () => {
+const HtsTaxContent = () => {
 	return (
 		<>
-		<FullWidthGrid />
+			<FullWidthGrid />
 		</>
 	);
-}
+};
 
 export default memo(HtsTaxContent);

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -207,7 +208,9 @@ export default function Door2doorApp() {
 		hiddensku: true,
 		hiddenbox: false,
 		hiddenfinal: false,
-		hiddenrate: false
+		hiddenrate: false,
+		hiddenlista: true,
+		hiddencotizacion: false
 	});
 
 	const Save = async () => {
@@ -222,7 +225,11 @@ export default function Door2doorApp() {
 				})
 			)
 			.then(result => {
-				window.location.replace('/dashboard');
+				sethidden({
+					...hidden,
+					hiddenlista: true,
+		            hiddencotizacion: false
+				})
 			});
 
 		// history.push('/htstaxlist')
@@ -245,144 +252,154 @@ export default function Door2doorApp() {
 						</Typography>
 					</Paper>
 				</Grid>
+				<Grid item xs={12}>
+					{hidden.hiddenlista ? <MxQuotationList hidden={hidden} sethidden = {sethidden}/> : null}
+				</Grid>
 			</Grid>
 
 			<br />
-			<Paper className={classes.paper}>
-				<Stepper activeStep={activeStep} orientation="vertical">
-					<Step>
-						<StepLabel>Select Products to Export</StepLabel>
-						<StepContent>
-							<Typography>
-								In this section you must enter information for each Item identified by its SKU
-							</Typography>
-							<br />
-							<Grid container spacing={3}>
-								<Grid item xs={12}>
-									<SkuComponent
-										arregloskus={arregloskus}
-										setarregloskus={setarregloskus}
-										datosfinales={datosfinales}
-										setdatosfinales={setdatosfinales}
-									/>
-									<br />
-									<Box sx={{ mb: 2 }}>
-										<Button
-											color="secondary"
-											variant="contained"
-											onClick={handleNext}
-											sx={{ mt: 1, mr: 1 }}
-										>
-											Continue
-										</Button>
-									</Box>
+			{hidden.hiddencotizacion ? (
+				<Paper className={classes.paper}>
+					<Stepper activeStep={activeStep} orientation="vertical">
+						<Step>
+							<StepLabel>Select Products to Export</StepLabel>
+							<StepContent>
+								<Typography>
+									In this section you must enter information for each Item identified by its SKU
+								</Typography>
+								<br />
+								<Grid container spacing={3}>
+									<Grid item xs={12}>
+										<SkuComponent
+											arregloskus={arregloskus}
+											setarregloskus={setarregloskus}
+											datosfinales={datosfinales}
+											setdatosfinales={setdatosfinales}
+										/>
+										<br />
+										<Box sx={{ mb: 2 }}>
+											<Button
+												color="secondary"
+												variant="contained"
+												onClick={handleNext}
+												sx={{ mt: 1, mr: 1 }}
+											>
+												Continue
+											</Button>
+										</Box>
+									</Grid>
 								</Grid>
-							</Grid>
-						</StepContent>
-					</Step>
-					<Step>
-						<StepLabel>Export Shipping Information</StepLabel>
-						<StepContent>
-							<Typography>
-								In this section you must select the type of shipment you will perform based on your
-								shipping plan.
-							</Typography>{' '}
-							<br />
-							<Grid container spacing={3}>
-								<Grid item xs={12}>
-									<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
-									<br />
-									<Box sx={{ mb: 2 }}>
+							</StepContent>
+						</Step>
+						<Step>
+							<StepLabel>Export Shipping Information</StepLabel>
+							<StepContent>
+								<Typography>
+									In this section you must select the type of shipment you will perform based on your
+									shipping plan.
+								</Typography>{' '}
+								<br />
+								<Grid container spacing={3}>
+									<Grid item xs={12}>
+										<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
+										<br />
+										<Box sx={{ mb: 2 }}>
+											<Button
+												color="secondary"
+												variant="contained"
+												onClick={handleNextIn}
+												sx={{ mt: 1, mr: 1 }}
+											>
+												Continue
+											</Button>
+											&nbsp;&nbsp;
+											<Button
+												variant="outlined"
+												color="secondary"
+												onClick={handleBack}
+												sx={{ mt: 1, mr: 1 }}
+											>
+												Back
+											</Button>
+										</Box>
+									</Grid>
+								</Grid>
+								<Typography />
+							</StepContent>
+						</Step>
+						<Step>
+							<StepLabel>Add Shipping Out from Laredo TX</StepLabel>
+							<StepContent>
+								<Typography>
+									In this section you must to add Handling Out Shipments from Laredo TX to FBA
+								</Typography>{' '}
+								<br />
+								<Grid container spacing={3}>
+									<Grid item xs={12}>
+										<SkuDetailsMx2 mexico2={mexico} setmexico2={setmexico} />
+										<br />
+										<Box sx={{ mb: 2 }}>
+											<Button
+												color="secondary"
+												variant="contained"
+												onClick={handleNextOut}
+												sx={{ mt: 1, mr: 1 }}
+											>
+												Continue
+											</Button>
+											&nbsp;&nbsp;
+											<Button
+												variant="outlined"
+												color="secondary"
+												onClick={handleBack}
+												sx={{ mt: 1, mr: 1 }}
+											>
+												Back
+											</Button>
+										</Box>
+									</Grid>
+								</Grid>
+								<Typography />
+							</StepContent>
+						</Step>
+						<Step>
+							<StepLabel>Shipping Summary</StepLabel>
+							<StepContent>
+								<Grid container spacing={3}>
+									<Grid item xs={6}>
+										<SkuSummary arregloskus={arregloskus} />
+									</Grid>
+									<Grid item xs={6}>
+										<Totalvalormexico setmexico={setmexico} mexico={mexico} />
+									</Grid>
+								</Grid>
+								<Typography />
+								<br />
+								<Box sx={{ mb: 2 }}>
+									<div>
 										<Button
+											onClick={Save}
 											color="secondary"
 											variant="contained"
-											onClick={handleNextIn}
 											sx={{ mt: 1, mr: 1 }}
 										>
-											Continue
+											Save
 										</Button>
 										&nbsp;&nbsp;
-										<Button
-											variant="outlined"
-											color="secondary"
-											onClick={handleBack}
-											sx={{ mt: 1, mr: 1 }}
-										>
-											Back
-										</Button>
-									</Box>
-								</Grid>
-							</Grid>
-							<Typography />
-						</StepContent>
-					</Step>
-					<Step>
-						<StepLabel>Add Shipping Out from Laredo TX</StepLabel>
-						<StepContent>
-							<Typography>
-								In this section you must to add Handling Out Shipments from Laredo TX to FBA
-							</Typography>{' '}
-							<br />
-							<Grid container spacing={3}>
-								<Grid item xs={12}>
-									<SkuDetailsMx2 mexico2={mexico} setmexico2={setmexico} />
-									<br />
-									<Box sx={{ mb: 2 }}>
-										<Button
-											color="secondary"
-											variant="contained"
-											onClick={handleNextOut}
-											sx={{ mt: 1, mr: 1 }}
-										>
-											Continue
+										<Button color="primary" variant="contained" sx={{ mt: 1, mr: 1 }}>
+											Book Now
 										</Button>
 										&nbsp;&nbsp;
-										<Button
-											variant="outlined"
-											color="secondary"
-											onClick={handleBack}
-											sx={{ mt: 1, mr: 1 }}
-										>
+										<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
 											Back
 										</Button>
-									</Box>
-								</Grid>
-							</Grid>
-							<Typography />
-						</StepContent>
-					</Step>
-					<Step>
-						<StepLabel>Shipping Summary</StepLabel>
-						<StepContent>
-							<Grid container spacing={3}>
-								<Grid item xs={6}>
-									<SkuSummary arregloskus={arregloskus} />
-								</Grid>
-								<Grid item xs={6}>
-									<Totalvalormexico setmexico={setmexico} mexico={mexico} />
-								</Grid>
-							</Grid>
-							<Typography />
-							<br />
-							<Box sx={{ mb: 2 }}>
-								<div>
-									<Button onClick={Save} color="secondary" variant="contained" sx={{ mt: 1, mr: 1 }}>
-										Save
-									</Button>
-									&nbsp;&nbsp;
-									<Button color="primary" variant="contained" sx={{ mt: 1, mr: 1 }}>
-										Book Now
-									</Button>
-									&nbsp;&nbsp;
-									<Button onClick={handleBack} sx={{ mt: 1, mr: 1 }}>
-										Back
-									</Button>
-								</div>
-							</Box>
-						</StepContent>
-					</Step>
-				</Stepper>
-			</Paper>
+									</div>
+								</Box>
+							</StepContent>
+						</Step>
+					</Stepper>
+				</Paper>
+			) : null}
 
 			<Grid container spacing={3}>
 				<Grid item xs={12}>

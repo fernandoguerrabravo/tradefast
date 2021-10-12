@@ -17,91 +17,82 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import BasicTable from './tableDetail';
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 400,
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
+const useStyles = makeStyles(theme => ({
+	root: {
+		maxWidth: 400
+	},
+	media: {
+		height: 0,
+		paddingTop: '56.25%' // 16:9
+	},
+	expand: {
+		transform: 'rotate(0deg)',
+		marginLeft: 'auto',
+		transition: theme.transitions.create('transform', {
+			duration: theme.transitions.duration.shortest
+		})
+	},
+	expandOpen: {
+		transform: 'rotate(180deg)'
+	},
+	avatar: {
+		backgroundColor: red[500]
+	}
 }));
 
-export default function RecipeReviewCard({event}) {
+export default function RecipeReviewCard({ event }) {
+	const classes = useStyles();
+	const [expanded, setExpanded] = useState(false);
 
-  const classes = useStyles();
-  const [expanded, setExpanded] = useState(false);
+	const handleExpandClick = () => {
+		setExpanded(!expanded);
+	};
+	console.log(event.imagen);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-  console.log(event.imagen);
-
-  return (
-    <Card className={classes.root}>
-      <CardHeader
-       /* avatar={
+	return (
+		<Card className={classes.root}>
+			<CardHeader
+				/* avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             R
           </Avatar>
         }  */
-       /* action={
+				/* action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         } */
-        title= ""
-        subheader={event.title}
-      />
-      <CardMedia
-        className={classes.media}
-        image= {event.imagen}
-        title=""
-      />
-      <CardContent>
-        <BasicTable detalle={event}></BasicTable>
-      </CardContent>
-     
-      <CardActions disableSpacing>
-      <Typography paragraph>Product Detail ...</Typography>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-       
-          <ol>
-          {event.nota2}
-          </ol>
-          <br></br>
-          <br></br>
-          <hr></hr>
-          <br></br>
-          <br></br>
-        </CardContent>
-      </Collapse>
-    </Card>
-  );
+				title=""
+				subheader={event.title}
+			/>
+			<CardMedia className={classes.media} image={event.imagen} title="" />
+			<CardContent>
+				<BasicTable detalle={event} />
+			</CardContent>
+
+			<CardActions disableSpacing>
+				<Typography paragraph>Product Detail ...</Typography>
+				<IconButton
+					className={clsx(classes.expand, {
+						[classes.expandOpen]: expanded
+					})}
+					onClick={handleExpandClick}
+					aria-expanded={expanded}
+					aria-label="show more"
+				>
+					<ExpandMoreIcon />
+				</IconButton>
+			</CardActions>
+			<Collapse in={expanded} timeout="auto" unmountOnExit>
+				<CardContent>
+					<ol>{event.nota2}</ol>
+					<br />
+					<br />
+					<hr />
+					<br />
+					<br />
+				</CardContent>
+			</Collapse>
+		</Card>
+	);
 }

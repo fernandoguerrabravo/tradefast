@@ -7,6 +7,6 @@ const Door2doorContent = () => {
 			<Door2doorApp />
 		</>
 	);
-}
+};
 
 export default memo(Door2doorContent);

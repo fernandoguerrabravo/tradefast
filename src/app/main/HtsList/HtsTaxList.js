@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
-import HtsTaxListContent from './HtsTaxListContent';
 import FusePageSimple from '@fuse/core/FusePageSimple';
+import HtsTaxListContent from './HtsTaxListContent';
 
 const useStyles = makeStyles({
 	layoutRoot: {}
 });
 
 const HtsTaxList = () => {
-
 	const classes = useStyles();
 
 	return (
@@ -32,6 +31,6 @@ const HtsTaxList = () => {
 			}
 		/>
 	);
-}
+};
 
 export default HtsTaxList;

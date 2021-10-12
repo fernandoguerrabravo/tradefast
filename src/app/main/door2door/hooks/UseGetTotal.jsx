@@ -2,22 +2,20 @@
 import { useState, useEffect } from 'react';
 import GetMexico from '../helpers/GetMexico';
 
-const UseGetMexico = mexico => {
+const UseGetTotal = (mexico, setmexico, total) => {
 	const [state, setState] = useState({
 		data: [],
-		loading: true,
-		totalito: ''
+		loading: true
 	});
 
 	useEffect(() => {
-		GetMexico(mexico).then(imgs => {
-			setState({
-				data: imgs
-			});
+		setmexico({
+			...mexico,
+			totalin: total
 		});
-	}, []);
+	}, [total]);
 
 	return state;
 };
 
-export default UseGetMexico;
+export default UseGetTotal;

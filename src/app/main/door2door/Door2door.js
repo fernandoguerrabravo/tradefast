@@ -6,13 +6,10 @@ const useStyles = makeStyles({
 	layoutRoot: {}
 });
 
-
 const Door2door = () => {
-
 	const classes = useStyles();
 
 	return (
-
 		<FusePageSimple
 			classes={{
 				root: classes.layoutRoot
@@ -34,6 +31,6 @@ const Door2door = () => {
 			}
 		/>
 	);
-}
+};
 
 export default Door2door;

@@ -1,27 +1,23 @@
+/* eslint-disable import/prefer-default-export */
+export const SaveSku = async event => {
+	const myHeaders = new Headers();
+	myHeaders.append('Content-Type', 'application/json');
 
-export const SaveSku = async (event) => {
+	const fecha = new Date();
+	const fecha1 = fecha.toDateString();
+	event.fecha_creacion = fecha1;
+	const raw = JSON.stringify(event);
 
+	const requestOptions = {
+		method: 'POST',
+		headers: myHeaders,
+		body: raw
+	};
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+	fetch(' https://vwat0hqjt0.execute-api.us-east-1.amazonaws.com/dev/savesku', requestOptions)
+		.then(response => response.json())
+		.then(result => console.log(result))
+		.catch(error => console.log('error', error));
 
-    const fecha = new Date();
-    const fecha1 = fecha.toDateString();
-    event.fecha_creacion = fecha1;
-    var raw = JSON.stringify(event);
-
-
-    var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-    };
-
-    fetch(" https://vwat0hqjt0.execute-api.us-east-1.amazonaws.com/dev/savesku", requestOptions)
-        .then(response => response.json())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-
-    return '';
-
-}
+	return '';
+};

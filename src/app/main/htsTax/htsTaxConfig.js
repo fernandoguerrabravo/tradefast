@@ -3,12 +3,11 @@ import i18next from 'i18next';
 import en from './i18n/en';
 import tr from './i18n/tr';
 import ar from './i18n/ar';
-import htsTaxCalculator from './htsTaxCalculator'
+import htsTaxCalculator from './htsTaxCalculator';
 
 i18next.addResourceBundle('en', 'htsTaxCalculatorpage', en);
 i18next.addResourceBundle('tr', 'htsTaxCalculatorpage', tr);
 i18next.addResourceBundle('ar', 'htsTaxCalculatorpage', ar);
-
 
 const htsTaxConfig = {
 	settings: {

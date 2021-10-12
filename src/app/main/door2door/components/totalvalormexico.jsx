@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable prettier/prettier */
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -24,6 +26,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import UseGetMexico from '../hooks/UseGetMexico';
+import UseGetTotal from '../hooks/UseGetTotal';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -84,9 +87,15 @@ const useStyles = makeStyles(theme => ({
 
 export default function Totalvalormexico({ setmexico, mexico }) {
 	const classes = useStyles();
-	const [value, setValue] = React.useState('');
-	const datos = UseGetMexico(setmexico, mexico);
-	const datfinales = datos.data;
+	const [value, setValue] = React.useState({
+		tarifa: ''
+	});
+	const dato = UseGetMexico(mexico);
+	const datfinales = dato.data;
+
+	/* setValue({
+		tarifa: totales
+	}) */
 
 	return (
 		<Paper className={classes.paper}>

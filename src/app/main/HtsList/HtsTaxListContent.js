@@ -7,6 +7,6 @@ const HtsTaxListContent = () => {
 			<FullWidthGrid />
 		</>
 	);
-}
+};
 
 export default memo(HtsTaxListContent);

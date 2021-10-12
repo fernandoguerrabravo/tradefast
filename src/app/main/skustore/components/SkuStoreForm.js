@@ -1,5 +1,7 @@
+/* eslint-disable no-lone-blocks */
+/* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -8,18 +10,17 @@ import InfoIcon from '@material-ui/icons/Info';
 import { green, red, blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from 'react-select';
-import { UseGetCountry } from '../hooks/useGetCountry';
-import { SaveSku } from '../helpers/SaveSku';
 import swal from 'sweetalert';
 import { Divider, Grid } from '@material-ui/core';
-import { SkuStoreFiles } from './SkuStoreFiles';
 import SaveIcon from '@material-ui/icons/Save';
 import Swal from 'sweetalert2';
 import Paper from '@material-ui/core/Paper';
+import { SkuStoreFiles } from './SkuStoreFiles';
+import { SaveSku } from '../helpers/SaveSku';
+import { UseGetCountry } from '../hooks/useGetCountry';
 
 const styles = theme => ({
 	root: {
@@ -84,7 +85,7 @@ export default function SkuStoreForm() {
 	};
 
 	const Save = async () => {
-		if (guardarsku.sku != '' && guardarsku.shortdescription != '' && guardarsku.country_origin != '') {
+		if (guardarsku.sku !== '' && guardarsku.shortdescription !== '' && guardarsku.country_origin !== '') {
 			SaveSku(guardarsku)
 				.then(
 					await Swal.fire({
@@ -106,7 +107,7 @@ export default function SkuStoreForm() {
 			});
 		}
 
-		//history.push('/htstaxlist')
+		// history.push('/htstaxlist')
 	};
 
 	const country = UseGetCountry();
@@ -157,8 +158,8 @@ export default function SkuStoreForm() {
 				</Grid>
 
 				<Grid item xs={12}>
-					<Divider></Divider>
-					<br></br>
+					<Divider />
+					<br />
 					<FormControl className={classes2.formControl2} variant="outlined">
 						<TextField
 							id="sku"
@@ -189,7 +190,7 @@ export default function SkuStoreForm() {
 							Input UPC Code (Optional)
 						</Typography>
 					</FormControl>
-					<br></br>
+					<br />
 					<FormControl className={classes2.formControl2} variant="outlined">
 						<TextField
 							id="fob"
@@ -233,11 +234,11 @@ export default function SkuStoreForm() {
 						</Typography>
 					</FormControl>
 				</Grid>
-				<br></br>
+				<br />
 				<Grid item xs={12}>
-					<Divider></Divider>
-					<br></br>
-					<SkuStoreFiles skus={guardarsku.sku} idcliente={guardarsku.id_cliente}></SkuStoreFiles>
+					<Divider />
+					<br />
+					<SkuStoreFiles skus={guardarsku.sku} idcliente={guardarsku.id_cliente} />
 				</Grid>
 			</Grid>
 		</div>

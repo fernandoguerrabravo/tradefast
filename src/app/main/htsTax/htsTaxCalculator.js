@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { makeStyles } from '@material-ui/core/styles';
-import HtsTaxContent from './htsTaxContent';
 import FusePageSimple from '@fuse/core/FusePageSimple';
+import HtsTaxContent from './htsTaxContent';
 
 const useStyles = makeStyles({
 	layoutRoot: {}
 });
 
 const htsTaxCalculator = () => {
-
 	const classes = useStyles();
 
 	return (
@@ -32,6 +32,6 @@ const htsTaxCalculator = () => {
 			}
 		/>
 	);
-}
+};
 
 export default htsTaxCalculator;

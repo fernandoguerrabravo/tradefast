@@ -5,11 +5,9 @@ import en from './i18n/en';
 import tr from './i18n/tr';
 import ar from './i18n/ar';
 
-
 i18next.addResourceBundle('en', 'researchpage', en);
 i18next.addResourceBundle('tr', 'researchpage', tr);
 i18next.addResourceBundle('ar', 'researchpage', ar);
-
 
 const DashBoardConfig = {
 	settings: {

@@ -5,17 +5,9 @@ import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import { Link, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import UseGetMxQuotation from '../hooks/UseGetMxQuotation';
+import UseGetMexico from '../hooks/UseGetMexico';
 
-const MxQuoationList = ({ oculto, setoculto, setskudetails }) => {
-	const crearquotation = () => {
-		setoculto({
-			...oculto,
-			hiddenstoreform: true,
-			hiddentable: false,
-			hiddenlistools: true
-		});
-	};
-
+const MxQuoationList = ({ hidden, sethidden, setskudetails }) => {
 	const useStyles = makeStyles(theme => ({
 		root: {
 			flexGrow: 1
@@ -32,12 +24,13 @@ const MxQuoationList = ({ oculto, setoculto, setskudetails }) => {
 	const idcliente = 'abcdef';
 	// const { data, loading } = useGetResearch(idcliente)
 
-	const details = event => {
-		setskudetails({ idcliente: 'abcdef', skunumber: event, skudetail: data });
-
-		setoculto({ hiddenlistools: true, hiddenstoreform: false, hiddentable: false, hiddendetails: true });
+	const nuevacotizacion = () => {
+		sethidden({
+			...hidden,
+			hiddenlista: false,
+			hiddencotizacion: true
+		});
 	};
-
 	const { data } = UseGetMxQuotation(idcliente);
 
 	console.log('datos para tabla:', data);
@@ -47,6 +40,31 @@ const MxQuoationList = ({ oculto, setoculto, setskudetails }) => {
 			title: '#',
 			field: '',
 			render: rowData => data.indexOf(rowData) + 1
+		},
+		{
+			title: 'Pallets to Export',
+			field: '',
+			render: rowData => rowData.mexico.qty_pallet
+		},
+		{
+			title: 'Sku to Export',
+			field: '',
+			render: rowData => rowData.skus.totalsku
+		},
+		{
+			title: 'Total FOB',
+			field: '',
+			render: rowData => rowData.skus.totalfob
+		},
+		{
+			title: 'Handling Out Pack',
+			field: '',
+			render: rowData => rowData.mexico.arreglodelpack[0].tipo
+		},
+		{
+			title: 'Qty Out',
+			field: '',
+			render: rowData => rowData.mexico.arreglodelpack[0].qtyout
 		}
 	];
 
@@ -76,7 +94,7 @@ const MxQuoationList = ({ oculto, setoculto, setskudetails }) => {
 					<div style={{ backgroundColor: 'primary' }}>
 						<MTableToolbar {...props} />
 						<div style={{ padding: '20px 20px' }}>
-							<Button variant="contained" color="primary">
+							<Button onClick={nuevacotizacion} variant="contained" color="primary">
 								+ New Quotation
 							</Button>
 						</div>

@@ -8,6 +8,7 @@ import HtsTaxListConfig from 'app/main/HtsList/HtsTaxListConfig';
 import Door2doorConfig from 'app/main/door2door/Door2doorConfig';
 import SkuStoreConfig from 'app/main/skustore/SkuStoreConfig';
 import SkuListConfig from 'app/main/SkuList/SkuListConfig';
+import LoginConfig from 'app/main/login/LoginConfig';
 
 const routeConfigs = [
 	DashboardConfig,
@@ -18,7 +19,8 @@ const routeConfigs = [
 	Door2doorConfig,
 	SkuStoreConfig,
 	SkuListConfig,
-	ResearchConfig
+	ResearchConfig,
+	LoginConfig
 ];
 
 const routes = [
@@ -28,7 +30,7 @@ const routes = [
 	...FuseUtils.generateRoutesFromConfigs(routeConfigs),
 	{
 		path: '/',
-		component: () => <Redirect to="/dashboard" />
+		component: () => <Redirect to="/login" />
 	}
 ];
 

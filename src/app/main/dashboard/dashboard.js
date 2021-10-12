@@ -1,7 +1,8 @@
-import DashboardContent from './DashboardContent';
+/* eslint-disable jsx-a11y/heading-has-content */
 import FusePageCarded from '@fuse/core/FusePageCarded';
 import FusePageSimple from '@fuse/core/FusePageSimple';
 import { makeStyles } from '@material-ui/core/styles';
+import DashboardContent from './DashboardContent';
 
 const useStyles = makeStyles({
 	layoutRoot: {}
@@ -22,12 +23,12 @@ function SimpleFullWidthSample() {
 			}
 			contentToolbar={
 				<div className="px-24">
-					<h4></h4>
+					<h4 />
 				</div>
 			}
 			content={
 				<div className="p-24">
-					<h4></h4>
+					<h4 />
 					<br />
 					<DashboardContent />
 				</div>

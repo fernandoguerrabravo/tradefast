@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-//import {  } from './components/'
-//import {  } from './components/'
+// import {  } from './components/'
+// import {  } from './components/'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,7 +31,7 @@ export const SkuStoreApp = () => {
 		<>
 			<Grid container spacing={3}>
 				<Grid item xs={12}>
-					<SkuStoreTools></SkuStoreTools>
+					<SkuStoreTools />
 				</Grid>
 				<Grid item xs={8}>
 					<Paper className={classes.paper}>

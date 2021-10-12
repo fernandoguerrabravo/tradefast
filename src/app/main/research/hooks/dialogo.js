@@ -1,3 +1,4 @@
+/* eslint-disable vars-on-top */
 import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -52,7 +53,7 @@ const DialogActions = withStyles(theme => ({
 }))(MuiDialogActions);
 
 export default function CustomizedDialogs(codigo) {
-	//inicio los estados y contenidos de la información que se desplegara en el popover
+	// inicio los estados y contenidos de la información que se desplegara en el popover
 
 	const [state, setstate] = useState({
 		rank: '',
@@ -70,23 +71,23 @@ export default function CustomizedDialogs(codigo) {
         }
      ); */
 
-	//console.log(state.cod);
+	// console.log(state.cod);
 
-	//Funcion aque va a rescatar la informacion de la API
+	// Funcion aque va a rescatar la informacion de la API
 	const getDetails = async () => {
 		setstate({
 			...state,
 			loading: true
 		});
 
-		var myHeaders = new Headers();
+		const myHeaders = new Headers();
 		myHeaders.append('Content-Type', 'application/json');
 
-		var raw = JSON.stringify({
+		const raw = JSON.stringify({
 			asin: codigo.codigo
 		});
 
-		var requestOptions = {
+		const requestOptions = {
 			method: 'POST',
 			headers: myHeaders,
 			body: raw
@@ -96,7 +97,7 @@ export default function CustomizedDialogs(codigo) {
 		const resp = await fetch(url, requestOptions);
 		const detail = await resp.json();
 		setstate(detail);
-		//console.log("perro:", detail)
+		// console.log("perro:", detail)
 	};
 
 	const [open, setOpen] = React.useState(false);

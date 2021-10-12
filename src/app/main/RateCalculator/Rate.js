@@ -6,9 +6,7 @@ const useStyles = makeStyles({
 	layoutRoot: {}
 });
 
-
 const Rate = () => {
-
 	const classes = useStyles();
 
 	return (
@@ -33,6 +31,6 @@ const Rate = () => {
 			}
 		/>
 	);
-}
+};
 
 export default Rate;
