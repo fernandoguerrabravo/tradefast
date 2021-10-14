@@ -122,14 +122,11 @@ export default function Door2doorApp() {
 		totalin: ''
 	});
 
-	const [mexico2, setmexico2] = useState({
-		codigo_fba: 'PHX5',
-		fedexwarehouse: '',
-		qty_pallet: '',
-		arreglodelpack: [],
-		totalout: '',
-		totalin: ''
+	
+    const [listoco,setlistoco] = useState({
+		lista: []
 	});
+
 
 	const idcliente = 'abcdef';
 	const sellers = UseGetAddress(idcliente);
@@ -150,6 +147,13 @@ export default function Door2doorApp() {
 				...datosfinales,
 				skus: arregloskus
 			});
+			setdatosfinales({
+				arreglosdelsku: [],
+				totalsku: '',
+				totalfob: '',
+				totalduties: '',
+				totalotherduties: ''
+			});
 		}
 	};
 
@@ -166,6 +170,13 @@ export default function Door2doorApp() {
 				...datosfinales,
 				mexico
 			});
+			setdatosfinales({
+				arreglosdelsku: [],
+				totalsku: '',
+				totalfob: '',
+				totalduties: '',
+				totalotherduties: ''
+			});
 		}
 	};
 
@@ -181,6 +192,13 @@ export default function Door2doorApp() {
 			setdatosfinales({
 				...datosfinales,
 				mexico
+			});
+			setdatosfinales({
+				arreglosdelsku: [],
+				totalsku: '',
+				totalfob: '',
+				totalduties: '',
+				totalotherduties: ''
 			});
 		}
 	};
@@ -225,10 +243,26 @@ export default function Door2doorApp() {
 				})
 			)
 			.then(result => {
+				setActiveStep(0);
 				sethidden({
 					...hidden,
 					hiddenlista: true,
-		            hiddencotizacion: false
+					hiddencotizacion: false
+				});
+				setarregloskus({
+					arreglosdelsku: [],
+					totalsku: '',
+					totalfob: '',
+					totalduties: '',
+					totalotherduties: ''
+				});
+				setdatosfinales({
+					skus: [],
+					mexico: [],
+					idcliente
+				});
+				setlistoco({
+					lista:[]
 				})
 			});
 
@@ -253,7 +287,9 @@ export default function Door2doorApp() {
 					</Paper>
 				</Grid>
 				<Grid item xs={12}>
-					{hidden.hiddenlista ? <MxQuotationList hidden={hidden} sethidden = {sethidden}/> : null}
+					{hidden.hiddenlista ? (
+						<MxQuotationList hidden={hidden} sethidden={sethidden} setarregloskus={setarregloskus} />
+					) : null}
 				</Grid>
 			</Grid>
 
@@ -275,6 +311,8 @@ export default function Door2doorApp() {
 											setarregloskus={setarregloskus}
 											datosfinales={datosfinales}
 											setdatosfinales={setdatosfinales}
+											lista = {listoco.lista}
+											setlistoco = {setlistoco}
 										/>
 										<br />
 										<Box sx={{ mb: 2 }}>
@@ -417,7 +455,7 @@ export default function Door2doorApp() {
 					) : null */}
 				</Grid>
 				<Grid item xs={12}>
-					{hidden.hiddenbultos ? (
+					{/* hidden.hiddenbultos ? (
 						<Paper className={classes.paper}>
 							<MxRates
 								sethidden={sethidden}
@@ -425,7 +463,7 @@ export default function Door2doorApp() {
 								setdatosfinales={setdatosfinales}
 							/>
 						</Paper>
-					) : null}
+					) : null */}
 				</Grid>
 				<Grid item xs={12}>
 					{/* hidden.hiddenbox ? (
@@ -439,11 +477,11 @@ export default function Door2doorApp() {
 							) : null */}
 				</Grid>
 				<Grid item xs={12}>
-					{hidden.hiddenfinal ? (
+					{/* hidden.hiddenfinal ? (
 						<Paper className={classes.paper}>
 							<Resumen sethidden={sethidden} datosfinales={datosfinales} />
 						</Paper>
-					) : null}
+					) : null */}
 				</Grid>
 			</Grid>
 		</div>

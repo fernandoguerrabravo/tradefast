@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import UseGetMxQuotation from '../hooks/UseGetMxQuotation';
 import UseGetMexico from '../hooks/UseGetMexico';
 
-const MxQuoationList = ({ hidden, sethidden }) => {
+const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 	const useStyles = makeStyles(theme => ({
 		root: {
 			flexGrow: 1
@@ -29,6 +29,13 @@ const MxQuoationList = ({ hidden, sethidden }) => {
 			...hidden,
 			hiddenlista: false,
 			hiddencotizacion: true
+		});
+		setarregloskus({
+			arreglosdelsku: [],
+			totalfob: '',
+			totalsku: '',
+			totalduties: '',
+			totalotherduties: ''
 		});
 	};
 	const { data } = UseGetMxQuotation(idcliente);

@@ -1,3 +1,7 @@
+/* eslint-disable prefer-const */
+/* eslint-disable no-shadow */
+/* eslint-disable no-const-assign */
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import Select from 'react-select';
 import { makeStyles } from '@material-ui/core/styles';
@@ -85,9 +89,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const lista = [];
-
-export default function SkuComponent({ arregloskus, setarregloskus, datosfinales, setdatosfinales }) {
+export default function SkuComponent({ arregloskus, setarregloskus, datosfinales, setdatosfinales, lista, setlistoco }) {
 	const sel = document.getElementById('sku');
 	let otherduties = '';
 	const idcliente = 'abcdef';
@@ -132,6 +134,7 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 		skufinal.forEach(valores => {
 			if (valores.sku === event.value) {
 				setskus({
+					...skus,
 					idlista: id,
 					fob: valores.fob,
 					shortdescription: valores.shortdescription,
@@ -139,7 +142,6 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 					hts8: valores.htsclas?.hts ?? '',
 					duties: valores.htsclas?.duties ?? '',
 					htsdescription: valores.htsclas?.description ?? '',
-					qty: '',
 					FTA: valores?.htsclas?.special ?? '',
 					List301: valores?.htsclas?.list301 ?? '',
 					tax301: valores?.htsclas?.duties301 ?? '',
@@ -151,15 +153,15 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 
 	const submitsku = () => {
 		if (skus.qty !== '' && skus.sku !== '') {
-			lista.push(skus);
+			setlistoco({lista : [...lista, skus]});
 			const nrosku = lista.length;
 			let sumadefob = 0;
 			let sumadeduties = 0;
 			const sumadeothertax = 0;
-			lista.forEach(sumafob => {
+			/* lista.forEach(sumafob => {
 				sumadefob += sumafob.fob * sumafob.qty;
 				sumadeduties += sumafob.dutiesrate * sumafob.fob * sumafob.qty;
-			});
+			}); */
 			// Calculo de los otros impuestos
 			// Harbour maintenance fee
 
@@ -184,8 +186,18 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 			});
 
 			setskus({
+				idlista: '',
+				fob: '',
+				shortdescription: '',
+				sku: '',
+				hts8: '',
+				duties: '',
+				htsdescription: '',
+				FTA: '',
+				List301: '',
+				tax301: '',
 				qty: '',
-				sku: ''
+				dutiesrate: ''
 			});
 		} else {
 			swal({
@@ -262,7 +274,7 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 					</Paper>
 				</Grid>
 				<Grid item xs={9}>
-					<SkuComponentList event={arregloskus.arreglosdelsku} />
+					<SkuComponentList event={lista} />
 				</Grid>
 			</Grid>
 		</div>

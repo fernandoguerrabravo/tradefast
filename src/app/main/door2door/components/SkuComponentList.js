@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue } from '@material-ui/core/colors';
@@ -9,6 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import DataTable from 'react-data-table-component';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -37,52 +37,52 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+const columns = [
+	{
+		name: 'SKU Code',
+		selector: row => row.sku
+	},
+	{
+		name: 'Description',
+		selector: row => row.shortdescription
+	},
+	{
+		name: 'Units',
+		selector: row => row.qty
+	},
+	{
+		name: 'SKU FOB USD',
+		selector: row => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.fob)
+	},
+	{
+		name: 'HTS (8 Digits)',
+		selector: row => row.hts8
+	},
+	{
+		name: 'General Duties',
+		selector: row => row.duties
+	},
+	{
+		name: 'Total FOB (USD)',
+		selector: row =>
+			new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.fob * row.qty)
+	},
+	{
+		name: 'Estimated Duties',
+		selector: row =>
+			new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+				row.qty * row.dutiesrate * row.fob
+			)
+	}
+];
+
 const SkuComponentList = ({ event }) => {
 	const classes = useStyles();
-
+	console.log('PERRO', event);
 	return (
-		<TableContainer component={Paper}>
-			<Table className={classes.table} aria-label="a dense table">
-				<TableHead>
-					<TableRow>
-						<TableCell>SKU Code</TableCell>
-						<TableCell>Short Description</TableCell>
-						<TableCell>Units</TableCell>
-						<TableCell>SKU FOB USD</TableCell>
-						<TableCell>HTS (8 Digits)</TableCell>
-						<TableCell>General Duties</TableCell>
-						<TableCell>Total FOB (USD)</TableCell>
-						<TableCell>Estimated Duties</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{event.map(row => (
-						<TableRow key={row.idlista}>
-							<TableCell component="th" scope="row">
-								{row.sku}
-							</TableCell>
-							<TableCell>{row.shortdescription}</TableCell>
-							<TableCell>{row.qty}</TableCell>
-							<TableCell>
-								{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(row.fob)}
-							</TableCell>
-							<TableCell>{row.hts8}</TableCell>
-							<TableCell>{row.duties}</TableCell>
-							<TableCell>
-								{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-									row.fob * row.qty
-								)}
-							</TableCell>
-							<TableCell>
-								{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-									row.qty * row.dutiesrate * row.fob
-								)}
-							</TableCell>
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+		<>
+			<DataTable columns={columns} data={event} />
+		</>
 	);
 };
 
