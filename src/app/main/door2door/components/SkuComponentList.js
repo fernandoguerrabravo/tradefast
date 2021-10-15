@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue } from '@material-ui/core/colors';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import DataTable from 'react-data-table-component';
 
 const useStyles = makeStyles(theme => ({
@@ -78,7 +72,7 @@ const columns = [
 
 const SkuComponentList = ({ event }) => {
 	const classes = useStyles();
-	console.log('PERRO', event);
+
 	return (
 		<>
 			<DataTable columns={columns} data={event} />

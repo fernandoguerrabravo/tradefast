@@ -115,9 +115,7 @@ const newJson2 = [
 	}
 ];
 
-const lista = [];
-
-export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
+export default function SkuDetailsMx2({ mexico, setmexico, lista, setlistoco1 }) {
 	const classes = useStyles();
 	const [value, setValue] = React.useState('');
 
@@ -143,11 +141,10 @@ export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
 	};
 	const submitout = () => {
 		if (paquetes.qtyout !== '' && paquetes.tipo !== '') {
-			lista.push(paquetes);
+			setlistoco1({ lista: [...lista, paquetes] });
 			let totalporembarque = 0;
 			let totalporembarque1 = 0;
 			let totalout = 0;
-
 			lista.forEach(total => {
 				if (total.tipo === 'Pallets') {
 					totalporembarque1 = 7.48 * total.qtyout;
@@ -161,8 +158,8 @@ export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
 				totalout += totalporembarque;
 			});
 
-			setmexico2({
-				...mexico2,
+			setmexico({
+				...mexico,
 				arreglodelpack: lista,
 				totalout
 			});
@@ -223,7 +220,7 @@ export default function SkuDetailsMx2({ mexico2, setmexico2 }) {
 					</Paper>
 				</Grid>
 				<Grid item xs={9}>
-					<PackOutList event={mexico2.arreglodelpack} />
+					<PackOutList event={lista} />
 				</Grid>
 			</Grid>
 		</div>

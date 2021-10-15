@@ -89,7 +89,14 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-export default function SkuComponent({ arregloskus, setarregloskus, datosfinales, setdatosfinales, lista, setlistoco }) {
+export default function SkuComponent({
+	arregloskus,
+	setarregloskus,
+	datosfinales,
+	setdatosfinales,
+	lista,
+	setlistoco
+}) {
 	const sel = document.getElementById('sku');
 	let otherduties = '';
 	const idcliente = 'abcdef';
@@ -153,7 +160,7 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 
 	const submitsku = () => {
 		if (skus.qty !== '' && skus.sku !== '') {
-			setlistoco({lista : [...lista, skus]});
+			setlistoco({ lista: [...lista, skus] });
 			const nrosku = lista.length;
 			let sumadefob = 0;
 			let sumadeduties = 0;
@@ -274,7 +281,9 @@ export default function SkuComponent({ arregloskus, setarregloskus, datosfinales
 					</Paper>
 				</Grid>
 				<Grid item xs={9}>
-					<SkuComponentList event={lista} />
+					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
+						<SkuComponentList event={lista} />
+					</Paper>
 				</Grid>
 			</Grid>
 		</div>

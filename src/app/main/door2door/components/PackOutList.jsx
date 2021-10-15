@@ -10,6 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Row } from 'react-bootstrap';
+import DataTable from 'react-data-table-component';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -38,53 +39,43 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
+const columns = [
+	{
+		name: '#',
+		selector: row => row.idlista + 1
+	},
+	{
+		name: 'Packaging',
+		selector: row => row.tipo
+	},
+	{
+		name: 'Quantities',
+		selector: row => row.qtyout
+	},
+	{
+		name: 'Handling Out',
+		selector: row =>
+			row.tipo === 'Pallets'
+				? 7.48 * row.qtyout < 46
+					? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(46 + 34.5)
+					: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+							7.48 * row.qtyout + 34.5
+					  )
+				: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(2.9 * row.qtyout + 34.5)
+	},
+	{
+		name: 'Special Services',
+		selector: row => {}
+	}
+];
+
 const PackOutList = ({ event }) => {
 	const classes = useStyles();
 
 	return (
-		<TableContainer component={Paper}>
-			<Table className={classes.table} aria-label="a dense table">
-				<TableHead>
-					<TableRow>
-						<TableCell>#</TableCell>
-						<TableCell>Packaging</TableCell>
-						<TableCell>Quantities</TableCell>
-						<TableCell>Handling Out</TableCell>
-						<TableCell>Special Services</TableCell>
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{event.map(row => (
-						<TableRow key={row.idlista}>
-							<TableCell component="th" scope="row">
-								{row.idlista + 1}
-							</TableCell>
-							<TableCell>{row.tipo}</TableCell>
-							<TableCell>{row.qtyout}</TableCell>
-
-							<TableCell>
-								{row.tipo === 'Pallets'
-									? 7.48 * row.qtyout < 46
-										? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-												46 + 34.5
-										  )
-										: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-												7.48 * row.qtyout + 34.5
-										  )
-									: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-											2.9 * row.qtyout + 34.5
-									  )}
-							</TableCell>
-							<TableCell>
-								{/* new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
-									row.qty * row.dutiesrate * row.fob
-                                ) */}
-							</TableCell>
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+		<>
+			<DataTable columns={columns} data={event} />
+		</>
 	);
 };
 

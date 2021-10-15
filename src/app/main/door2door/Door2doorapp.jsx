@@ -118,8 +118,7 @@ export default function Door2doorApp() {
 		fedexwarehouse: '',
 		qty_pallet: '',
 		arreglodelpack: [],
-		totalout: '',
-		totalin: ''
+		
 	});
 
 	
@@ -127,7 +126,9 @@ export default function Door2doorApp() {
 		lista: []
 	});
 
-
+	const [listoco1, setlistoco1] = useState({
+		lista: []
+	})
 	const idcliente = 'abcdef';
 	const sellers = UseGetAddress(idcliente);
 	const sellersfinal = sellers.data;
@@ -170,13 +171,7 @@ export default function Door2doorApp() {
 				...datosfinales,
 				mexico
 			});
-			setdatosfinales({
-				arreglosdelsku: [],
-				totalsku: '',
-				totalfob: '',
-				totalduties: '',
-				totalotherduties: ''
-			});
+			
 		}
 	};
 
@@ -189,17 +184,14 @@ export default function Door2doorApp() {
 			});
 		} else {
 			setActiveStep(prevActiveStep => prevActiveStep + 1);
+			setmexico({
+				...mexico,
+			});
 			setdatosfinales({
 				...datosfinales,
 				mexico
 			});
-			setdatosfinales({
-				arreglosdelsku: [],
-				totalsku: '',
-				totalfob: '',
-				totalduties: '',
-				totalotherduties: ''
-			});
+			
 		}
 	};
 
@@ -264,6 +256,10 @@ export default function Door2doorApp() {
 				setlistoco({
 					lista:[]
 				})
+				setlistoco1({
+					lista:[]
+				})
+
 			});
 
 		// history.push('/htstaxlist')
@@ -374,7 +370,7 @@ export default function Door2doorApp() {
 								<br />
 								<Grid container spacing={3}>
 									<Grid item xs={12}>
-										<SkuDetailsMx2 mexico2={mexico} setmexico2={setmexico} />
+										<SkuDetailsMx2 mexico={mexico} setmexico={setmexico} lista = {listoco1.lista} setlistoco1 = {setlistoco1}/>
 										<br />
 										<Box sx={{ mb: 2 }}>
 											<Button
