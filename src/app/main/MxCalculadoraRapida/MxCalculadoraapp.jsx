@@ -38,6 +38,10 @@ const MxCalculadoraApp = () => {
 					<Paper className={classes.paper}>
 						<MxExpoPalletFTL />
 					</Paper>
+					<br />
+					<Paper className={classes.paper}>
+						<MxExpoShipping />
+					</Paper>
 				</Grid>
 				<Grid item xs={12} />
 			</Grid>
