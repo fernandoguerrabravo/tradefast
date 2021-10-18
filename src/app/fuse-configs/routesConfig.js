@@ -9,6 +9,7 @@ import Door2doorConfig from 'app/main/door2door/Door2doorConfig';
 import SkuStoreConfig from 'app/main/skustore/SkuStoreConfig';
 import SkuListConfig from 'app/main/SkuList/SkuListConfig';
 import LoginConfig from 'app/main/login/LoginConfig';
+import MxCalculadoraConfig from 'app/main/MxCalculadoraRapida/MxCalculadoraConfig';
 
 const routeConfigs = [
 	DashboardConfig,
@@ -20,7 +21,8 @@ const routeConfigs = [
 	SkuStoreConfig,
 	SkuListConfig,
 	ResearchConfig,
-	LoginConfig
+	LoginConfig,
+	MxCalculadoraConfig
 ];
 
 const routes = [

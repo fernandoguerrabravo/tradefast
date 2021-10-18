@@ -1,13 +1,13 @@
 import FusePageCarded from '@fuse/core/FusePageCarded';
 import { makeStyles } from '@material-ui/core/styles';
 import FusePageSimple from '@fuse/core/FusePageSimple';
-import ListResearchContent from './ListResearchContent';
+import MxCalculadoraContent from './MxCalculadoraContent';
 
 const useStyles = makeStyles({
 	layoutRoot: {}
 });
 
-const ListResearch = () => {
+const MxCalculadora = () => {
 	const classes = useStyles();
 
 	return (
@@ -27,11 +27,11 @@ const ListResearch = () => {
 			} */
 			content={
 				<div className="p-24">
-					<ListResearchContent />
+					<MxCalculadoraContent />
 				</div>
 			}
 		/>
 	);
 };
 
-export default ListResearch;
+export default MxCalculadora;
