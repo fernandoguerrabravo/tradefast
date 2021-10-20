@@ -17,7 +17,7 @@ const MxCalculadora = () => {
 			}}
 			header={
 				<div className="p-24">
-					<h1>Product Research Tool</h1>
+					<h1>Quick Calculator Mx-Tx</h1>
 				</div>
 			}
 			/* contentToolbar={
