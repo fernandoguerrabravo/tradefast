@@ -24,6 +24,14 @@ const navigationConfig = [
 				url: '/dashboard'
 			},
 			{
+				id: 'mxcalculadora-component',
+				title: 'calculator',
+				translate: 'CALCULATOR',
+				type: 'item',
+				icon: 'calculate',
+				url: '/MxCalculadora'
+			},
+			{
 				id: 'settings-component',
 				title: 'settings',
 				translate: 'SETTINGS',

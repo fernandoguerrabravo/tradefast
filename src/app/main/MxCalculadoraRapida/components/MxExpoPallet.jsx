@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -19,6 +21,8 @@ import Icon from '@material-ui/core/Icon';
 import { composeInitialProps } from 'react-i18next';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+
+import MxExpoPalletTotal from './MxExpoPalletTotal';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -114,36 +118,72 @@ const newJson2 = [
 	}
 ];
 
-const MxExpoPallet = ({ mexico, setmexico }) => {
+const MxExpoPallet = () => {
 	const classes = useStyles();
-	const [value, setValue] = React.useState('');
+
+	const formatter = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+		minimumFractionDigits: 2
+	});
+
+	const [valued, setvalued] = useState({
+		codigo_fba: 'PHX5',
+		fedexwarehouse: '',
+		qty_pallet: '',
+		totalout: '',
+		arreglodelpack: [],
+		fob: ''
+	});
+
+	const [aparecidos, setaparecidos] = useState({
+		totalaparecido: false
+	});
 
 	const handleChange = e => {
-		setmexico({
-			...mexico,
+		setvalued({
+			...valued,
 			fedexwarehouse: e.target.value
+		});
+		setaparecidos({
+			totalaparecido: false
 		});
 	};
 
 	const handleqtyChange = e => {
-		setmexico({
-			...mexico,
-			qty_pallet: parseFloat(e.target.value)
+		setvalued({
+			...valued,
+			qty_pallet: parseInt(e.target.value),
+			totalaparecido: false
+		});
+		setaparecidos({
+			totalaparecido: false
 		});
 	};
 
-	const handleChange1 = e => {
-		setmexico({
-			...mexico,
-			tipo: e.target.value
+	const handlefobChange = e => {
+		setvalued({
+			...valued,
+			fob: parseInt(e.target.value),
+			totalaparecido: false
+		});
+		setaparecidos({
+			totalaparecido: false
 		});
 	};
 
-	const handleqtyChange1 = e => {
-		setmexico({
-			...mexico,
-			qtyout: parseFloat(e.target.value)
-		});
+	const calcular = e => {
+		if (valued.qty_pallet === '' || valued.fedexwarehouse === '' || valued.qty_pallet > 12) {
+			swal({
+				title: 'oops!',
+				text: 'Input Correct Information (Max 12 Pallets)!!',
+				icon: 'warning'
+			});
+		} else {
+			setaparecidos({
+				totalaparecido: true
+			});
+		}
 	};
 
 	return (
@@ -152,28 +192,13 @@ const MxExpoPallet = ({ mexico, setmexico }) => {
 				<Grid item xs={6}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
 						<Grid item xs={12}>
-							<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-								<Paper className={classes.paper}>
-									<Grid container spacing={2}>
-										<FormControlLabel
-											value="p"
-											control={<Radio />}
-											label="Service at Availability"
-										/>
-										<FormControlLabel value="f" control={<Radio />} label="Guaranteed Service" />
-									</Grid>
-								</Paper>
-							</RadioGroup>
-						</Grid>{' '}
-						<br />
-						<Grid item xs={12}>
 							<Paper className={classes.paper1}>
 								<FormControl variant="outlined" className={classes.formControl2}>
 									<InputLabel id="mxwarehouse">Warehouse MX</InputLabel>
 									<Select
 										labelId="mxwarehouse"
 										onChange={handleChange}
-										// value={mexico.fedexwarehouse}
+										value={valued.fedexwarehouse}
 										label="Fedex Warehouse MX"
 										color="secondary"
 									>
@@ -191,15 +216,57 @@ const MxExpoPallet = ({ mexico, setmexico }) => {
 										label="Pallets to Export"
 										color="secondary"
 										type="number"
-										// value={mexico.qty_pallet || ''}
+										value={valued.qty_pallet || ''}
 										onChange={handleqtyChange}
 									/>
+									<br />
+									<TextField
+										id="qty_pallet"
+										name="qty_pallet"
+										variant="outlined"
+										label="FOB Value (Optional)"
+										color="secondary"
+										type="number"
+										value={valued.fob || ''}
+										onChange={handlefobChange}
+									/>
+									<br />
+									<Button color="primary" variant="contained" onClick={calcular}>
+										Search Rates
+									</Button>
 								</FormControl>
 							</Paper>
 						</Grid>
 					</Paper>
 					<br />
 				</Grid>
+				<Grid item xs={6}>
+					{aparecidos.totalaparecido ? (
+						<Paper className={classes.paper1}>
+							<MxExpoPalletTotal valued={valued} />
+							<br />
+							Insurance (optional):
+							<strong>
+								{valued.fob
+									? valued.fob * 0.003 < 40
+										? formatter.format(40)
+										: formatter.format(valued.fob * 0.003)
+									: 'Not Request'}
+							</strong>
+						</Paper>
+					) : null}
+					<br />
+					<Paper className={classes.paper1}>
+						<h6>
+							Recogida desde la bodega del Seller sin costo, si esta ubicada en el area metropolitana de
+							alguna de las ciudades donde estan ubicadas las 3 bodegas de Fedex indicadas; Despacho
+							Auanero Export-Import; transporte hasta Laredo; y recepcion & manejo en bodega de Laredo, TX
+							para conectar con operador de utima milla seleccionado por el Seller. No incluye costos por
+							aranceles que defina la Aduanas de USA y la fianza ante Aduanas de USA (que debe prepagarse
+							independientemente)
+						</h6>
+					</Paper>
+				</Grid>{' '}
 			</Grid>
 		</div>
 	);

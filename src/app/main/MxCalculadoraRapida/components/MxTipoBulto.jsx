@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -86,34 +87,32 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const MxTipoBulto = ({ sethidden, datosfinales, setdatosfinales }) => {
-	console.log(datosfinales);
+const MxTipoBulto = ({ hidden, sethidden }) => {
 	const classes = useStyles();
-	const [value, setValue] = React.useState('');
+	const [value, setvalue] = React.useState({
+		tipo: ''
+	});
 
-	const handleChange = event => {
-		setValue(event.target.value);
-	};
-
-	const nextpack = () => {
-		if (value !== '') {
-			setdatosfinales({
-				...datosfinales,
-				tipobulto: value
-			});
-
+	const handleChange = e => {
+		if (e.target.value === 'p') {
 			sethidden({
-				hiddenbultos: false,
-				hiddensku: false,
-				hiddenbox: true,
-				hiddenfinal: false,
-				hiddenrate: false
+				...hidden,
+				ltl: true,
+				ftl: false,
+				expo: true
+			});
+			setvalue({
+				tipo: e.target.value
 			});
 		} else {
-			swal({
-				title: 'oops!',
-				text: 'Select your Shipping Packaging',
-				icon: 'warning'
+			sethidden({
+				...hidden,
+				ltl: false,
+				ftl: true,
+				expo: true
+			});
+			setvalue({
+				tipo: e.target.value
 			});
 		}
 	};
@@ -135,7 +134,7 @@ const MxTipoBulto = ({ sethidden, datosfinales, setdatosfinales }) => {
 					</Paper>
 				</Grid>
 				<Grid item xs={12}>
-					<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+					<RadioGroup aria-label="gender" name="gender1" value={value.tipo} onChange={handleChange}>
 						<Grid container spacing={3}>
 							<Grid item xs={6}>
 								<Paper className={classes.paper}>

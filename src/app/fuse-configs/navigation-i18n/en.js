@@ -15,7 +15,8 @@ const locale = {
 	TOOLSDECISIONS: 'Decision Tools',
 	BOOKING: 'Book Shipments Now',
 	SETTINGS: 'Settings',
-	SKUSTORE: 'Products'
+	SKUSTORE: 'Products',
+	CALCULATOR: 'MX Quick Calculator'
 };
 
 export default locale;

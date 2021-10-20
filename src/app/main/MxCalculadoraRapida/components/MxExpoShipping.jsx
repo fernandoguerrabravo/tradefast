@@ -19,6 +19,7 @@ import Icon from '@material-ui/core/Icon';
 import { composeInitialProps } from 'react-i18next';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import MxPackOutList from './MxPackoutlist';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -88,21 +89,6 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const newJson1 = [
-	{
-		value: '2300',
-		label: 'CDMX C.P. 02300'
-	},
-	{
-		value: '45679',
-		label: 'JALISCO C.P. 45679'
-	},
-	{
-		value: '66628',
-		label: 'NUEVA LEON C.P. 66628'
-	}
-];
-
 const newJson2 = [
 	{
 		value: 'Pallets',
@@ -114,20 +100,19 @@ const newJson2 = [
 	}
 ];
 
-export default function SkuDetailsMx2({ mexico, setmexico, lista, setlistoco1 }) {
+const MxExpoShipping = ({ lista, setoutlista }) => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState('');
 
 	const [paquetes, setpaquetes] = useState({
 		tipo: '',
 		qtyout: '',
-		id: ''
+		totalout: ''
 	});
 
 	const handleChange1 = e => {
 		setpaquetes({
 			...paquetes,
-			idlista: lista.length,
 			tipo: e.target.value
 		});
 	};
@@ -140,7 +125,7 @@ export default function SkuDetailsMx2({ mexico, setmexico, lista, setlistoco1 })
 	};
 	const submitout = () => {
 		if (paquetes.qtyout !== '' && paquetes.tipo !== '') {
-			setlistoco1({ lista: [...lista, paquetes] });
+			setoutlista({ lista: [...lista, paquetes] });
 			let totalporembarque = 0;
 			let totalporembarque1 = 0;
 			let totalout = 0;
@@ -157,12 +142,8 @@ export default function SkuDetailsMx2({ mexico, setmexico, lista, setlistoco1 })
 				totalout += totalporembarque;
 			});
 
-			setmexico({
-				...mexico,
-				arreglodelpack: lista,
-				totalout
-			});
 			setpaquetes({
+				...paquetes,
 				tipo: '',
 				qtyout: '',
 				id: ''
@@ -178,7 +159,7 @@ export default function SkuDetailsMx2({ mexico, setmexico, lista, setlistoco1 })
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
-				<Grid item xs={3}>
+				<Grid item xs={6}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
 						<FormControl variant="outlined" className={classes.formControl2}>
 							<InputLabel id="outtipo">Packaging to Out</InputLabel>
@@ -213,15 +194,12 @@ export default function SkuDetailsMx2({ mexico, setmexico, lista, setlistoco1 })
 						</FormControl>
 					</Paper>
 				</Grid>
-				<Grid item xs={3}>
-					<Paper className={classes.paper}>
-						<img src="https://fotos-ecl.s3.amazonaws.com/Laredo+TX%2C+USA+(1).gif" alt="laredo" />
-					</Paper>
-				</Grid>
-				<Grid item xs={9}>
-					<PackOutList event={lista} />
+				<Grid item xs={6}>
+					<MxPackOutList total={paquetes.totalout} event={lista} />
 				</Grid>
 			</Grid>
 		</div>
 	);
-}
+};
+
+export default MxExpoShipping;

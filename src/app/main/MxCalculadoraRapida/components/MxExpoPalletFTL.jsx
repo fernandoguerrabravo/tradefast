@@ -1,3 +1,6 @@
+/* eslint-disable radix */
+/* eslint-disable no-alert */
+/* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -45,8 +48,7 @@ const useStyles = makeStyles(theme => ({
 		margin: theme.spacing(1)
 	},
 	formControl2: {
-		margin: theme.spacing(1),
-		padding: theme.spacing(1)
+		margin: theme.spacing(1)
 	},
 	selectEmpty: {
 		marginTop: theme.spacing(1)
@@ -102,47 +104,134 @@ const newJson1 = [
 	}
 ];
 
-const newJson2 = [
-	{
-		value: 'p',
-		label: 'Pallets'
-	},
-	{
-		value: 'b',
-		label: 'Boxes'
-	}
-];
-
 const MxExpoPalletFTL = ({ mexico, setmexico }) => {
+	const formatter = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+		minimumFractionDigits: 2
+	});
+
 	const classes = useStyles();
-	const [value, setValue] = React.useState('');
 
-	const handleChange = e => {
-		setmexico({
-			...mexico,
-			fedexwarehouse: e.target.value
-		});
+	const [value, setvalue] = React.useState({
+		tipo: '',
+		bodega: '',
+		flete: '',
+		fob: '',
+		garantizado: false,
+		disponible: false
+	});
+
+	const handlechangeoption = e => {
+		if (e.target.value === 'g') {
+			setvalue({
+				...value,
+				tipo: e.target.value,
+				garantizado: true,
+				disponible: false,
+				flete: ''
+			});
+		} else {
+			setvalue({
+				...value,
+				tipo: e.target.value,
+				garantizado: false,
+				disponible: true,
+				flete: ''
+			});
+		}
 	};
 
-	const handleqtyChange = e => {
-		setmexico({
-			...mexico,
-			qty_pallet: parseFloat(e.target.value)
+	const handlefobChange = e => {
+		setvalue({
+			...value,
+			fob: parseInt(e.target.value)
 		});
 	};
+	const handleChangegarantizado = e => {
+		switch (e.target.value) {
+			case '2300':
+				setvalue({
+					...value,
+					flete: 2369.84 + 150 + 145,
+					bodega: e.target.value
+				});
 
-	const handleChange1 = e => {
-		setmexico({
-			...mexico,
-			tipo: e.target.value
-		});
+				break;
+			case '45679':
+				setvalue({
+					...value,
+					flete: 2342.84 + 150 + 145,
+					bodega: e.target.value
+				});
+				break;
+			case '66628':
+				setvalue({
+					...value,
+					flete: 1092.24 + 150 + 145,
+					bodega: e.target.value
+				});
+
+				break;
+
+			default:
+				setvalue({
+					...value,
+					flete: 0,
+					bodega: ''
+				});
+
+				break;
+		}
 	};
 
-	const handleqtyChange1 = e => {
-		setmexico({
-			...mexico,
-			qtyout: parseFloat(e.target.value)
-		});
+	const handleChangedisponible = e => {
+		switch (e.target.value) {
+			case '2300':
+				setvalue({
+					...value,
+					flete: 1983.75 + 150 + 145,
+					bodega: e.target.value
+				});
+
+				break;
+			case '45679':
+				setvalue({
+					...value,
+					flete: 1907.56 + 150 + 145,
+					bodega: e.target.value
+				});
+				break;
+			case '66628':
+				setvalue({
+					...value,
+					flete: 0,
+					bodega: ''
+				});
+
+				break;
+			default:
+				setvalue({
+					...value,
+					flete: 0,
+					bodega: ''
+				});
+
+				break;
+		}
+	};
+
+	const FTL = {
+		disponible: {
+			2300: 1983.75,
+			45679: 1907.56,
+			66628: 0
+		},
+		garantizado: {
+			2300: 2369.84,
+			45679: 2342.84,
+			66628: 1092.24
+		}
 	};
 
 	return (
@@ -151,49 +240,149 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 				<Grid item xs={6}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
 						<Grid item xs={12}>
-							<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-								<Paper className={classes.paper}>
+							<FormControl className={classes.formControl2}>
+								<FormLabel component="legend">Select FULL TRACK Service</FormLabel>
+								<br />
+								<RadioGroup
+									aria-label="gender"
+									name="gender1"
+									value={value.tipo}
+									onChange={handlechangeoption}
+								>
 									<Grid container spacing={2}>
 										<FormControlLabel
-											value="p"
+											value="a"
 											control={<Radio />}
 											label="Service at Availability"
 										/>
-										<FormControlLabel value="f" control={<Radio />} label="Guaranteed Service" />
+										<FormControlLabel value="g" control={<Radio />} label="Guaranteed Service" />
 									</Grid>
-								</Paper>
-							</RadioGroup>
+								</RadioGroup>
+							</FormControl>
+						</Grid>{' '}
+						<br />
+						{value.garantizado ? (
+							<>
+								<Grid item xs={12}>
+									<Paper className={classes.paper}>
+										<FormControl variant="outlined" className={classes.formControl2}>
+											<InputLabel id="mxwarehouse">Warehouse MX</InputLabel>
+											<Select
+												labelId="mxwarehouse"
+												onChange={handleChangegarantizado}
+												value={value.bodega}
+												label="Fedex Warehouse MX"
+												color="secondary"
+												style={{ width: 200 }}
+											>
+												{newJson1.map(option => (
+													<MenuItem key={option.value} value={option.value}>
+														{option.label}
+													</MenuItem>
+												))}
+											</Select>
+											<br />
+											<TextField
+												id="fob"
+												name="fob"
+												variant="outlined"
+												label="FOB Value (Optional)"
+												color="secondary"
+												type="number"
+												value={value.fob || ''}
+												onChange={handlefobChange}
+											/>
+										</FormControl>
+									</Paper>
+								</Grid>
+								<br />
+								<Grid item xs={12}>
+									<Paper className={classes.paper}>
+										El servicio <strong>"Garantizado"</strong> tiene un periodo maximo de 48 horas
+										de salida desde el momento de la confirmacion de su booking, y esta basado en el
+										reposicionamiento de camiones disponibles en otros lugares.
+									</Paper>
+								</Grid>
+							</>
+						) : null}
+						{value.disponible ? (
+							<>
+								<Grid item xs={12}>
+									<Paper className={classes.paper}>
+										<FormControl variant="outlined" className={classes.formControl2}>
+											<InputLabel id="mxwarehouse2">Warehouse MX Disponible </InputLabel>
+											<Select
+												labelId="mxwarehouse2"
+												onChange={handleChangedisponible}
+												value={value.bodega}
+												label="Fedex Warehouse MX"
+												color="secondary"
+												style={{ width: 200 }}
+											>
+												{newJson1.map(option => (
+													<MenuItem key={option.value} value={option.value}>
+														{option.label}
+													</MenuItem>
+												))}
+											</Select>
+											<br />
+											<TextField
+												id="fob"
+												name="fob"
+												variant="outlined"
+												label="FOB Value (Optional)"
+												color="secondary"
+												type="number"
+												value={value.fob || ''}
+												onChange={handlefobChange}
+											/>
+										</FormControl>
+									</Paper>
+								</Grid>
+								<br />
+								<Grid item xs={12}>
+									<Paper className={classes.paper}>
+										Servicio <strong>"Sujeto a Disponibilidad"</strong> depende de la disponibilidad
+										de camionesx en el area de la bodega del Seller. La fecha probable de recogida
+										sera informada al Seller una vez que consulte por esta opcion.
+									</Paper>
+								</Grid>
+							</>
+						) : null}
+					</Paper>
+					<br />
+				</Grid>
+				<Grid item xs={6}>
+					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
+						<Grid item xs={12}>
+							<Paper className={classes.paper}>
+								<h4>
+									Tarifa MX-Laredo TX &nbsp;&nbsp;<strong>{formatter.format(value.flete)}</strong>
+								</h4>
+								<br />
+								<h6>
+									Insurance (optional):
+									<strong>
+										{value.fob
+											? value.fob * 0.003 < 40
+												? formatter.format(40)
+												: formatter.format(value.fob * 0.003)
+											: 'Not Request'}
+									</strong>
+								</h6>
+							</Paper>
 						</Grid>{' '}
 						<br />
 						<Grid item xs={12}>
-							<Paper className={classes.paper1}>
-								<FormControl variant="outlined" className={classes.formControl2}>
-									<InputLabel id="mxwarehouse">Warehouse MX</InputLabel>
-									<Select
-										labelId="mxwarehouse"
-										onChange={handleChange}
-										// value={mexico.fedexwarehouse}
-										label="Fedex Warehouse MX"
-										color="secondary"
-									>
-										{newJson1.map(option => (
-											<MenuItem key={option.value} value={option.value}>
-												{option.label}
-											</MenuItem>
-										))}
-									</Select>
-									<br />
-									<TextField
-										id="qty_pallet"
-										name="qty_pallet"
-										variant="outlined"
-										label="Pallets to Export"
-										color="secondary"
-										type="number"
-										// value={mexico.qty_pallet || ''}
-										onChange={handleqtyChange}
-									/>
-								</FormControl>
+							<Paper className={classes.paper}>
+								<h6>
+									Recogida desde la bodega del Seller sin costo, si esta ubicada en el area
+									metropolitana de alguna de las ciudades donde estan ubicadas las 3 bodegas de Fedex
+									indicadas; Despacho Auanero Export-Import; transporte hasta Laredo; y recepcion &
+									manejo en bodega de Laredo, TX para conectar con operador de utima milla
+									seleccionado por el Seller. No incluye costos por aranceles que defina la Aduanas de
+									USA y la fianza ante Aduanas de USA (que debe prepagarse independientemente)
+								</h6>
 							</Paper>
 						</Grid>
 					</Paper>
