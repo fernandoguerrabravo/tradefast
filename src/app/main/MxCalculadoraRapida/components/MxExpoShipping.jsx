@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable no-lone-blocks */
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,6 +20,7 @@ import Icon from '@material-ui/core/Icon';
 import { composeInitialProps } from 'react-i18next';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
+import DataTable from 'react-data-table-component';
 import MxPackOutList from './MxPackoutlist';
 
 const useStyles = makeStyles(theme => ({
@@ -100,7 +102,7 @@ const newJson2 = [
 	}
 ];
 
-const MxExpoShipping = ({ lista, setoutlista }) => {
+const MxExpoShipping = ({ handout, sethandout, lista, setoutlista }) => {
 	const classes = useStyles();
 	const [value, setValue] = React.useState('');
 
@@ -109,6 +111,26 @@ const MxExpoShipping = ({ lista, setoutlista }) => {
 		qtyout: '',
 		totalout: ''
 	});
+
+	const getTotals = data => {
+		let total = 0;
+		data.forEach(item => {
+			let costo = 0;
+			if (item.tipo === 'Pallets') {
+				costo = 7.48 * item.qtyout;
+				if (costo < 46) {
+					costo = 46 + 34.5;
+				} else {
+					costo = 7.48 * item.qtyout + 34.5;
+				}
+			} else {
+				costo = 2.9 * item.qtyout + 34.5;
+			}
+			total += costo;
+		});
+
+		return total;
+	};
 
 	const handleChange1 = e => {
 		setpaquetes({
@@ -123,6 +145,11 @@ const MxExpoShipping = ({ lista, setoutlista }) => {
 			qtyout: parseFloat(e.target.value)
 		});
 	};
+
+	useEffect(() => {
+		sethandout({ out: getTotals(lista) });
+	}, [lista, sethandout]);
+
 	const submitout = () => {
 		if (paquetes.qtyout !== '' && paquetes.tipo !== '') {
 			setoutlista({ lista: [...lista, paquetes] });
@@ -156,6 +183,31 @@ const MxExpoShipping = ({ lista, setoutlista }) => {
 			});
 		}
 	};
+
+	const columns = [
+		{
+			name: 'Packaging',
+			selector: row => row.tipo
+		},
+		{
+			name: 'Quantities',
+			selector: row => row.qtyout
+		},
+		{
+			name: 'Handling Out',
+			selector: row =>
+				row.tipo === 'Pallets'
+					? 7.48 * row.qtyout < 46
+						? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(46 + 34.5)
+						: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+								7.48 * row.qtyout + 34.5
+						  )
+					: new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+							2.9 * row.qtyout + 34.5
+					  )
+		}
+	];
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
@@ -195,7 +247,20 @@ const MxExpoShipping = ({ lista, setoutlista }) => {
 					</Paper>
 				</Grid>
 				<Grid item xs={6}>
-					<MxPackOutList total={paquetes.totalout} event={lista} />
+					{/* <MxPackOutList handout={handout} sethandout={sethandout} total={paquetes.totalout} event={lista} /> */}
+					<Paper className={classes.paper1}>
+						{' '}
+						<h4>
+							Total Handling Out:{' '}
+							<strong>
+								{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+									getTotals(lista)
+								)}
+							</strong>
+						</h4>
+					</Paper>
+					<br />
+					<DataTable columns={columns} data={lista} />
 				</Grid>
 			</Grid>
 		</div>

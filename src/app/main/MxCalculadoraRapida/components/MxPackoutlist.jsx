@@ -81,8 +81,14 @@ const getTotals = data => {
 
 	return total;
 };
-const MxPackOutList = ({ event, total }) => {
+const MxPackOutList = ({ handout, sethandout, event, total }) => {
 	const classes = useStyles();
+
+	sethandout({
+		...handout,
+		out: getTotals(event)
+	});
+
 	return (
 		<>
 			<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>

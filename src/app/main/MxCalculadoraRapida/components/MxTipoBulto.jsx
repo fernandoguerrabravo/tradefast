@@ -99,7 +99,8 @@ const MxTipoBulto = ({ hidden, sethidden }) => {
 				...hidden,
 				ltl: true,
 				ftl: false,
-				expo: true
+				expo: true,
+				summary: true
 			});
 			setvalue({
 				tipo: e.target.value
@@ -109,7 +110,8 @@ const MxTipoBulto = ({ hidden, sethidden }) => {
 				...hidden,
 				ltl: false,
 				ftl: true,
-				expo: true
+				expo: true,
+				summary: true
 			});
 			setvalue({
 				tipo: e.target.value
@@ -157,7 +159,7 @@ const MxTipoBulto = ({ hidden, sethidden }) => {
 								<Paper className={classes.paper}>
 									<Grid container spacing={2}>
 										<img
-											src="https://fotos-ecl.s3.amazonaws.com/icons8-contenedor-de-carga-500.png"
+											src="https://fotos-ecl.s3.amazonaws.com/icons8-camio%CC%81n-interestatal.svg"
 											height="50"
 											width="50"
 											alt=""
@@ -165,7 +167,7 @@ const MxTipoBulto = ({ hidden, sethidden }) => {
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<FormControlLabel value="f" control={<Radio />} label="FTL Truck" />
 										<Typography style={{ color: green[600] }} variant="caption" gutterBottom>
-											<strong>Full Track Services 13 to 22 Pallets</strong>
+											<strong>Full Truck Services 13 to 22 Pallets</strong>
 										</Typography>
 									</Grid>
 								</Paper>

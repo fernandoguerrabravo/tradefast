@@ -21,8 +21,8 @@ import Icon from '@material-ui/core/Icon';
 import { composeInitialProps } from 'react-i18next';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-
 import MxExpoPalletTotal from './MxExpoPalletTotal';
+import GetMexico from '../helpers/GetMexico';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -118,7 +118,7 @@ const newJson2 = [
 	}
 ];
 
-const MxExpoPallet = () => {
+const MxExpoPallet = ({ finales, setfinales }) => {
 	const classes = useStyles();
 
 	const formatter = new Intl.NumberFormat('en-US', {
@@ -134,6 +134,10 @@ const MxExpoPallet = () => {
 		totalout: '',
 		arreglodelpack: [],
 		fob: ''
+	});
+
+	const [fletetotal, setfletetotal] = useState({
+		total: 0
 	});
 
 	const [aparecidos, setaparecidos] = useState({
@@ -172,7 +176,7 @@ const MxExpoPallet = () => {
 		});
 	};
 
-	const calcular = e => {
+	const calcular = () => {
 		if (valued.qty_pallet === '' || valued.fedexwarehouse === '' || valued.qty_pallet > 12) {
 			swal({
 				title: 'oops!',
@@ -183,6 +187,7 @@ const MxExpoPallet = () => {
 			setaparecidos({
 				totalaparecido: true
 			});
+			GetMexico({ valued }).then(result => setfinales({ ...finales, total: result }));
 		}
 	};
 
@@ -243,7 +248,7 @@ const MxExpoPallet = () => {
 				<Grid item xs={6}>
 					{aparecidos.totalaparecido ? (
 						<Paper className={classes.paper1}>
-							<MxExpoPalletTotal valued={valued} />
+							<MxExpoPalletTotal setfletetotal={setfletetotal} valued={valued} />
 							<br />
 							Insurance (optional):
 							<strong>

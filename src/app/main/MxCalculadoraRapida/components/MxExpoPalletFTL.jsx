@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable radix */
 /* eslint-disable no-alert */
 /* eslint-disable prettier/prettier */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -104,7 +105,7 @@ const newJson1 = [
 	}
 ];
 
-const MxExpoPalletFTL = ({ mexico, setmexico }) => {
+const MxExpoPalletFTL = ({ finales, setfinales }) => {
 	const formatter = new Intl.NumberFormat('en-US', {
 		style: 'currency',
 		currency: 'USD',
@@ -118,7 +119,7 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 		bodega: '',
 		flete: '',
 		fob: '',
-		garantizado: false,
+		garantizado: true,
 		disponible: false
 	});
 
@@ -148,6 +149,17 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 			fob: parseInt(e.target.value)
 		});
 	};
+
+	useEffect(() => {
+		
+		setfinales({
+			
+			...finales,
+			totalseguro: value.fob
+				
+		});
+	}, [value.fob]);
+
 	const handleChangegarantizado = e => {
 		switch (e.target.value) {
 			case '2300':
@@ -155,6 +167,10 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 					...value,
 					flete: 2369.84 + 150 + 145,
 					bodega: e.target.value
+				});
+				setfinales({
+					...finales,
+					total: 2369.84 + 150 + 145
 				});
 
 				break;
@@ -164,12 +180,20 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 					flete: 2342.84 + 150 + 145,
 					bodega: e.target.value
 				});
+				setfinales({
+					...finales,
+					total: 2342.84 + 150 + 145
+				});
 				break;
 			case '66628':
 				setvalue({
 					...value,
 					flete: 1092.24 + 150 + 145,
 					bodega: e.target.value
+				});
+				setfinales({
+					...finales,
+					total: 1092.24 + 150 + 145
 				});
 
 				break;
@@ -239,7 +263,7 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 			<Grid container spacing={3}>
 				<Grid item xs={6}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
-						<Grid item xs={12}>
+						{/* <Grid item xs={12}>
 							<FormControl className={classes.formControl2}>
 								<FormLabel component="legend">Select FULL TRACK Service</FormLabel>
 								<br />
@@ -259,7 +283,7 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 									</Grid>
 								</RadioGroup>
 							</FormControl>
-						</Grid>{' '}
+						</Grid> */}
 						<br />
 						{value.garantizado ? (
 							<>
@@ -292,6 +316,7 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 												value={value.fob || ''}
 												onChange={handlefobChange}
 											/>
+											<br />
 										</FormControl>
 									</Paper>
 								</Grid>
@@ -305,7 +330,7 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 								</Grid>
 							</>
 						) : null}
-						{value.disponible ? (
+						{/* value.disponible ? (
 							<>
 								<Grid item xs={12}>
 									<Paper className={classes.paper}>
@@ -348,7 +373,7 @@ const MxExpoPalletFTL = ({ mexico, setmexico }) => {
 									</Paper>
 								</Grid>
 							</>
-						) : null}
+												) : null */}
 					</Paper>
 					<br />
 				</Grid>
