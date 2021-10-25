@@ -55,7 +55,7 @@ function UserNavbarHeader(props) {
 						/*
 						user.data.photoURL && user.data.photoURL !== ''
 							? user.data.photoURL
-							: */ 'https://fotos-ecl.s3.amazonaws.com/icons8-amazonas.svg'
+							: */ 'https://fotos-ecl.s3.amazonaws.com/icons8-amazonas-240.png'
 					}
 				/>
 			</div>
