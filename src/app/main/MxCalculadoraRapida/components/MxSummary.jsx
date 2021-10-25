@@ -112,7 +112,8 @@ const MxSummary = ({ finales, handout }) => {
 								align="right"
 							/>
 							</Typography>
-						<p />
+						<br />
+						<br />
 						<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 700 }} aria-label="customized table">
