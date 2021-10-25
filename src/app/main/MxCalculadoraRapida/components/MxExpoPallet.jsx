@@ -1,6 +1,6 @@
 /* eslint-disable radix */
 /* eslint-disable no-alert */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
@@ -103,7 +103,7 @@ const newJson1 = [
 	},
 	{
 		value: '66628',
-		label: 'NUEVA LEON C.P. 66628'
+		label: 'NUEVO LEON C.P. 66628'
 	}
 ];
 
@@ -176,6 +176,13 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 		});
 	};
 
+	useEffect(() => {
+		setfinales({
+			...finales,
+			totalseguro: valued.fob
+		});
+	}, [valued.fob]);
+
 	const calcular = () => {
 		if (valued.qty_pallet === '' || valued.fedexwarehouse === '' || valued.qty_pallet > 12) {
 			swal({
@@ -236,7 +243,7 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 										onChange={handlefobChange}
 									/>
 									<br />
-									<Button color="primary" variant="contained" onClick={calcular}>
+									<Button color="secondary" variant="contained" onClick={calcular}>
 										Search Rates
 									</Button>
 								</FormControl>
@@ -251,13 +258,15 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 							<MxExpoPalletTotal setfletetotal={setfletetotal} valued={valued} />
 							<br />
 							Insurance (optional):
-							<strong>
-								{valued.fob
-									? valued.fob * 0.003 < 40
-										? formatter.format(40)
-										: formatter.format(valued.fob * 0.003)
-									: 'Not Request'}
-							</strong>
+							<Typography style={{ color: '#FF9900' }}>
+								<strong>
+									{valued.fob
+										? valued.fob * 0.003 < 40
+											? formatter.format(40)
+											: formatter.format(valued.fob * 0.003)
+										: 'Not Request'}
+								</strong>
+							</Typography>
 						</Paper>
 					) : null}
 					<br />

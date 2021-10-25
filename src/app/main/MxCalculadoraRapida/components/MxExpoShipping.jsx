@@ -240,7 +240,7 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista }) => {
 								onChange={handleqtyChange1}
 							/>
 							<br />
-							<Button onClick={submitout} variant="contained" color="primary">
+							<Button onClick={submitout} variant="contained" color="secondary">
 								+ Add Item to List
 							</Button>
 						</FormControl>
@@ -250,14 +250,14 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista }) => {
 					{/* <MxPackOutList handout={handout} sethandout={sethandout} total={paquetes.totalout} event={lista} /> */}
 					<Paper className={classes.paper1}>
 						{' '}
-						<h4>
-							Total Handling Out:{' '}
+						Total Handling Out:{' '}
+						<Typography style={{ color: '#FF9900' }}>
 							<strong>
 								{Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
 									getTotals(lista)
 								)}
 							</strong>
-						</h4>
+						</Typography>
 					</Paper>
 					<br />
 					<DataTable columns={columns} data={lista} />

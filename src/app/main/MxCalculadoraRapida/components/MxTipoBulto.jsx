@@ -149,7 +149,12 @@ const MxTipoBulto = ({ hidden, sethidden }) => {
 										/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<FormControlLabel value="p" control={<Radio />} label="Pallets Consolidated" />
-										<Typography style={{ color: green[600] }} variant="caption" gutterBottom>
+										<p />
+										<Typography
+											style={{ color: '#FF9900', alignItems: 'center' }}
+											variant="caption"
+											gutterBottom
+										>
 											<strong>LTL Services Max 12 Pallets</strong>
 										</Typography>
 									</Grid>
@@ -166,7 +171,12 @@ const MxTipoBulto = ({ hidden, sethidden }) => {
 										/>
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<FormControlLabel value="f" control={<Radio />} label="FTL Truck" />
-										<Typography style={{ color: green[600] }} variant="caption" gutterBottom>
+										<p />
+										<Typography
+											style={{ color: '#FF9900', alignItems: 'center' }}
+											variant="caption"
+											gutterBottom
+										>
 											<strong>Full Truck Services 13 to 22 Pallets</strong>
 										</Typography>
 									</Grid>

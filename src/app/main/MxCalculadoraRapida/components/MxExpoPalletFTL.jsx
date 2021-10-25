@@ -151,12 +151,9 @@ const MxExpoPalletFTL = ({ finales, setfinales }) => {
 	};
 
 	useEffect(() => {
-		
 		setfinales({
-			
 			...finales,
 			totalseguro: value.fob
-				
 		});
 	}, [value.fob]);
 
@@ -323,9 +320,13 @@ const MxExpoPalletFTL = ({ finales, setfinales }) => {
 								<br />
 								<Grid item xs={12}>
 									<Paper className={classes.paper}>
-										El servicio <strong>"Garantizado"</strong> tiene un periodo maximo de 48 horas
-										de salida desde el momento de la confirmacion de su booking, y esta basado en el
-										reposicionamiento de camiones disponibles en otros lugares.
+										El servicio{' '}
+										<Typography style={{ color: '#FF9900' }}>
+											<strong>"Garantizado"</strong>
+										</Typography>
+										tiene un periodo maximo de 48 horas de salida desde el momento de la
+										confirmacion de su booking, y esta basado en el reposicionamiento de camiones
+										disponibles en otros lugares.
 									</Paper>
 								</Grid>
 							</>
@@ -382,11 +383,14 @@ const MxExpoPalletFTL = ({ finales, setfinales }) => {
 						<Grid item xs={12}>
 							<Paper className={classes.paper}>
 								<h4>
-									Tarifa MX-Laredo TX &nbsp;&nbsp;<strong>{formatter.format(value.flete)}</strong>
+									Tarifa MX-Laredo TX &nbsp;&nbsp;
+									<Typography style={{ color: '#FF9900' }}>
+										<strong>{formatter.format(value.flete)}</strong>
+									</Typography>
 								</h4>
 								<br />
-								<h6>
-									Insurance (optional):
+								Insurance (optional):
+								<Typography style={{ color: '#FF9900' }}>
 									<strong>
 										{value.fob
 											? value.fob * 0.003 < 40
@@ -394,7 +398,7 @@ const MxExpoPalletFTL = ({ finales, setfinales }) => {
 												: formatter.format(value.fob * 0.003)
 											: 'Not Request'}
 									</strong>
-								</h6>
+								</Typography>
 							</Paper>
 						</Grid>{' '}
 						<br />

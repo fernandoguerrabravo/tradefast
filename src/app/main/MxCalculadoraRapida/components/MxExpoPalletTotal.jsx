@@ -8,17 +8,6 @@ import swal from 'sweetalert';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue, orange } from '@material-ui/core/colors';
 import { Box, Divider, Typography } from '@material-ui/core';
-import InfoIcon from '@material-ui/icons/Info';
-import Tooltip from '@material-ui/core/Tooltip';
-import MenuItem from '@material-ui/core/MenuItem';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Icon from '@material-ui/core/Icon';
-import { composeInitialProps } from 'react-i18next';
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
 import UseGetMexico from '../hooks/UseGetMexico';
 
 const useStyles = makeStyles(theme => ({
@@ -125,9 +114,12 @@ const MxExpoPalletTotal = valued => {
 	const tarifa = UseGetMexico(valued);
 
 	return (
-		<h4>
-			Tarifa MX-Laredo TX &nbsp;&nbsp;<strong>{formatter.format(tarifa.data)}</strong>
-		</h4>
+		<>
+			Tarifa MX-Laredo TX &nbsp;&nbsp;
+			<Typography style={{ color: '#FF9900' }}>
+				<strong>{formatter.format(tarifa.data)}</strong>{' '}
+			</Typography>
+		</>
 	);
 };
 

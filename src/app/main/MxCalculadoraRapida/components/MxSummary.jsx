@@ -102,7 +102,17 @@ const MxSummary = ({ finales, handout }) => {
 							<Typography variant="h6" gutterBottom>
 								<strong>Shipping Cost Summary</strong>
 							</Typography>
-
+							<Typography style={{ textAlign: 'right' }} gutterBottom>
+								<strong >Powered by</strong>	
+								<img
+								src="https://fotos-ecl.s3.amazonaws.com/fedex.png"
+								alt="fedex"
+								width="100"
+								height="100"
+								align="right"
+							/>
+							</Typography>
+						<p />
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 700 }} aria-label="customized table">
 									<TableHead />
@@ -111,7 +121,7 @@ const MxSummary = ({ finales, handout }) => {
 											<TableCell component="th" scope="row">
 												Tarifa MX to Laredo TX
 											</TableCell>
-											<TableCell component="th" scope="row">
+											<TableCell component="th" scope="row" style={{ color: '#FF9900' }}>
 												<strong>{formatter.format(finales.total)}</strong>
 											</TableCell>
 										</TableRow>
@@ -119,7 +129,7 @@ const MxSummary = ({ finales, handout }) => {
 											<TableCell component="th" scope="row">
 												Handling Out Cost
 											</TableCell>
-											<TableCell component="th" scope="row">
+											<TableCell component="th" scope="row" style={{ color: '#FF9900' }}>
 												<strong>{formatter.format(handout.out)}</strong>
 											</TableCell>
 										</TableRow>
@@ -128,7 +138,7 @@ const MxSummary = ({ finales, handout }) => {
 												<Typography variant="h6">Total Shipping Cost:</Typography>
 											</TableCell>
 											<TableCell component="th" scope="row">
-												<Typography variant="h6">
+												<Typography variant="h6" style={{ color: '#FF9900' }}>
 													<strong>{formatter.format(handout.out + finales.total)}</strong>
 												</Typography>
 											</TableCell>
@@ -138,13 +148,15 @@ const MxSummary = ({ finales, handout }) => {
 												Insurance (* optional):
 											</TableCell>
 											<TableCell component="th" scope="row">
-												<strong>
-													{finales.totalseguro
-														? finales.totalseguro * 0.003 < 40
-															? formatter.format(40)
-															: formatter.format(finales.totalseguro * 0.003)
-														: formatter.format(0)}
-												</strong>
+												<Typography style={{ color: '#FF9900' }}>
+													<strong>
+														{finales.totalseguro
+															? finales.totalseguro * 0.003 < 40
+																? formatter.format(40)
+																: formatter.format(finales.totalseguro * 0.003)
+															: formatter.format(0)}
+													</strong>
+												</Typography>
 											</TableCell>
 										</TableRow>
 									</TableBody>
