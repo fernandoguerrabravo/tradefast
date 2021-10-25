@@ -113,6 +113,7 @@ const MxSummary = ({ finales, handout }) => {
 							/>
 							</Typography>
 						<p />
+						<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
 							<TableContainer component={Paper}>
 								<Table sx={{ minWidth: 700 }} aria-label="customized table">
 									<TableHead />
@@ -162,6 +163,7 @@ const MxSummary = ({ finales, handout }) => {
 									</TableBody>
 								</Table>
 							</TableContainer>
+						</Paper>
 						</Grid>{' '}
 					</Paper>
 					<br />

@@ -42,7 +42,7 @@ function UserMenu(props) {
 					<Avatar
 						className="md:mx-4"
 						alt="user photo"
-						src={/* user.data.photoURL */ 'https://fotos-ecl.s3.amazonaws.com/icons8-amazonas.svg'}
+						src={/* user.data.photoURL */ 'https://fotos-ecl.s3.amazonaws.com/icons8-amazonas-240.png'}
 					/>
 				) : (
 					<Avatar className="md:mx-4">{user.data.displayName[0]}</Avatar>
