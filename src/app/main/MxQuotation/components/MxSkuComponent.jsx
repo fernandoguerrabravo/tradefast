@@ -272,7 +272,7 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 				</Grid>
 				<Grid item xs={9}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
-						<MxSkuComponentList event={lista} />
+						<MxSkuComponentList event={arregloskus.arreglosdelsku} />
 					</Paper>
 				</Grid>
 			</Grid>

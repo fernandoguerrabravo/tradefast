@@ -107,25 +107,6 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 
 	const actions = [
 		{
-			tooltip: 'Request Booking',
-			onClick: (event, rowData) => alert(rowData.sku),
-			icon: () => (
-				<img
-					src="https://fotos-ecl.s3.amazonaws.com/icons8-camio%CC%81n-verificado.svg"
-					alt="edit"
-					width="20"
-					height="20"
-				/>
-			)
-		},
-		/* {
-			tooltip: 'Edit',
-			onClick: (event, rowData) => alert(rowData.sku),
-			icon: () => (
-				<img src="https://fotos-ecl.s3.amazonaws.com/icons8-editar.svg" alt="edit" width="20" height="20" />
-			)
-		}, */
-		{
 			tooltip: 'Delete',
 			onClick: (event, rowData) => alert(rowData.sku),
 			icon: () => (
@@ -136,7 +117,26 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 					height="20"
 				/>
 			)
+		},
+		{
+			tooltip: 'Request Booking',
+			onClick: (event, rowData) => alert(rowData.sku),
+			icon: () => (
+				<img
+					src="https://fotos-ecl.s3.amazonaws.com/icons8-camio%CC%81n-verificado.svg"
+					alt="edit"
+					width="20"
+					height="20"
+				/>
+			)
 		}
+		/* {
+			tooltip: 'Edit',
+			onClick: (event, rowData) => alert(rowData.sku),
+			icon: () => (
+				<img src="https://fotos-ecl.s3.amazonaws.com/icons8-editar.svg" alt="edit" width="20" height="20" />
+			)
+		}, */
 	];
 
 	return (
@@ -148,9 +148,7 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 				headerStyle: {
 					backgroundColor: '#000',
 					color: '#FFF'
-				},
-
-				actionsColumnIndex: -1
+				}
 			}}
 			actions={actions}
 			components={{
