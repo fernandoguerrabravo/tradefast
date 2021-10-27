@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable radix */
 /* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
@@ -108,17 +107,6 @@ const newJson1 = [
 	}
 ];
 
-const newJson2 = [
-	{
-		value: 'p',
-		label: 'Pallets'
-	},
-	{
-		value: 'b',
-		label: 'Boxes'
-	}
-];
-
 const MxExpoPallet = ({ finales, setfinales }) => {
 	const classes = useStyles();
 
@@ -177,13 +165,6 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 		});
 	};
 
-	useEffect(() => {
-		setfinales({
-			...finales,
-			totalseguro: valued.fob
-		});
-	}, [valued.fob]);
-
 	const calcular = () => {
 		if (valued.qty_pallet === '' || valued.fedexwarehouse === '' || valued.qty_pallet > 12) {
 			swal({
@@ -195,7 +176,14 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 			setaparecidos({
 				totalaparecido: true
 			});
-			GetMexico({ valued }).then(result => setfinales({ ...finales, total: result }));
+			GetMexico({ valued }).then(result =>
+				setfinales({
+					...finales,
+					totalflete: result,
+					bodegamx: valued.fedexwarehouse,
+					qtypallets: valued.qty_pallet
+				})
+			);
 		}
 	};
 
@@ -233,7 +221,7 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 										onChange={handleqtyChange}
 									/>
 									<br />
-									<TextField
+									{/* <TextField
 										id="qty_pallet"
 										name="qty_pallet"
 										variant="outlined"
@@ -242,9 +230,9 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 										type="number"
 										value={valued.fob || ''}
 										onChange={handlefobChange}
-									/>
+									/> */}
 									<br />
-									<Button color="secondary" variant="contained" onClick={calcular}>
+									<Button color="primary" variant="contained" onClick={calcular}>
 										Search Rates
 									</Button>
 								</FormControl>
@@ -258,7 +246,7 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 						<Paper className={classes.paper1}>
 							<MxExpoPalletTotal setfletetotal={setfletetotal} valued={valued} />
 							<br />
-							Insurance (optional):
+							{/* Insurance (optional):
 							<Typography style={{ color: '#FF9900' }}>
 								<strong>
 									{valued.fob
@@ -267,7 +255,7 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 											: formatter.format(valued.fob * 0.003)
 										: 'Not Request'}
 								</strong>
-							</Typography>
+							</Typography>*/}
 						</Paper>
 					) : null}
 					<br />

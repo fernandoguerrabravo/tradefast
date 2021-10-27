@@ -10,6 +10,7 @@ import SkuStoreConfig from 'app/main/skustore/SkuStoreConfig';
 import SkuListConfig from 'app/main/SkuList/SkuListConfig';
 import LoginConfig from 'app/main/login/LoginConfig';
 import MxCalculadoraConfig from 'app/main/MxCalculadoraRapida/MxCalculadoraConfig';
+import MxQuotationConfig from 'app/main/MxQuotation/MxQuotationConfig';
 
 const routeConfigs = [
 	DashboardConfig,
@@ -22,7 +23,8 @@ const routeConfigs = [
 	SkuListConfig,
 	ResearchConfig,
 	LoginConfig,
-	MxCalculadoraConfig
+	MxCalculadoraConfig,
+	MxQuotationConfig
 ];
 
 const routes = [

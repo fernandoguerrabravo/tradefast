@@ -77,7 +77,7 @@ const navigationConfig = [
 						translate: 'SHIPPINGQUOTATION',
 						type: 'item',
 						icon: 'whatshot',
-						url: '/door2door'
+						url: '/MxQuotation'
 					}
 				]
 			},
@@ -87,7 +87,7 @@ const navigationConfig = [
 				translate: 'BOOKING',
 				type: 'item',
 				icon: 'whatshot',
-				url: '/'
+				url: '/MxQuotation'
 			}
 		]
 	}

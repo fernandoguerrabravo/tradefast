@@ -14,9 +14,17 @@ import Button from '@material-ui/core/Button';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
+import MxQuotationList from './components/MxQuotationList';
+import UseGetAddress from './hooks/UseGetAddress';
+import SaveMexico from './helpers/SaveMexico';
+import MxSkuComponent from './components/MxSkuComponent';
+import MxCalculadoraapp from './MxRateApp/MxCalculadoraapp';
+import SkuSummary from './components/SkuSummary';
+import MxSummary from './MxRateApp/components/MxSummary';
+/*
 import MxRates from './components/MxRates';
 import SkutipobultoMx from './components/SkutipobultoMx';
-import SkuComponent from './components/SkuComponent';
+
 import Skutipobulto from './components/Skutipobulto';
 import Resumen from './components/ResumenComponent';
 import SkuDetailsMx from './components/SkuDetailsMx';
@@ -24,8 +32,7 @@ import Totalvalormexico from './components/totalvalormexico';
 import UseGetAddress from './hooks/UseGetAddress';
 import SkuSummary from './components/SkuSummary';
 import SkuDetailsMx2 from './components/SkuDetailsMx2';
-import SaveMexico from './helpers/SaveMexico';
-import MxQuotationList from './components/MxQuotationList';
+import SaveMexico from './helpers/SaveMexico';*/
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -84,25 +91,7 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 
-const steps = [
-	{
-		label: 'Select Freight Packaging',
-		description: ``
-	},
-	{
-		label: 'Create an ad group',
-		description: 'An ad group contains one or more ads which target a shared set of keywords.'
-	},
-	{
-		label: 'Create an ad',
-		description: `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`
-	}
-];
-
-export default function Door2doorApp() {
+const MxQuotationApp = () => {
 	// Arreglos para generar el resumen de SKU en SkuSummary
 
 	const [arregloskus, setarregloskus] = useState({
@@ -113,22 +102,26 @@ export default function Door2doorApp() {
 		totalotherduties: ''
 	});
 
+	console.log('skus', arregloskus);
+
 	const [mexico, setmexico] = useState({
 		codigo_fba: 'PHX5',
-		fedexwarehouse: '',
-		qty_pallet: '',
-		arreglodelpack: [],
-		
+		bodegamx: '',
+		qtypallets: '',
+		tipoflete: '',
+		packoutmexico: [],
+		totalflete: '',
+		totalhandlingout: ''
 	});
+	console.log('MEXICO', mexico);
 
-	
-    const [listoco,setlistoco] = useState({
+	const [listoco, setlistoco] = useState({
 		lista: []
 	});
 
 	const [listoco1, setlistoco1] = useState({
 		lista: []
-	})
+	});
 	const idcliente = 'abcdef';
 	const sellers = UseGetAddress(idcliente);
 	const sellersfinal = sellers.data;
@@ -139,7 +132,7 @@ export default function Door2doorApp() {
 		if (arregloskus.totalsku === '') {
 			Swal.fire({
 				title: 'Atention!',
-				text: 'Add SKU to List and Go to Next Step',
+				text: 'Add SKU and Go to Next Step',
 				icon: 'error'
 			});
 		} else {
@@ -159,10 +152,10 @@ export default function Door2doorApp() {
 	};
 
 	const handleNextIn = () => {
-		if (mexico.qty_pallet === '' || mexico.fedexwarehouse === '') {
+		if (mexico.qtypallets === '' || mexico.bodegamx === '' || mexico.totalhandlingout === 0) {
 			Swal.fire({
 				title: 'Atention!',
-				text: 'Select Warehouse and Input Pallets Quantity to Export and Continue',
+				text: 'Please Insert Information',
 				icon: 'error'
 			});
 		} else {
@@ -171,7 +164,6 @@ export default function Door2doorApp() {
 				...datosfinales,
 				mexico
 			});
-			
 		}
 	};
 
@@ -179,19 +171,18 @@ export default function Door2doorApp() {
 		if (mexico.totalout === '') {
 			Swal.fire({
 				title: 'Atention!',
-				text: 'Add Shipment Out from Laredo to FBA and Continue',
+				text: 'Please Insert Information',
 				icon: 'error'
 			});
 		} else {
 			setActiveStep(prevActiveStep => prevActiveStep + 1);
 			setmexico({
-				...mexico,
+				...mexico
 			});
 			setdatosfinales({
 				...datosfinales,
 				mexico
 			});
-			
 		}
 	};
 
@@ -254,12 +245,11 @@ export default function Door2doorApp() {
 					idcliente
 				});
 				setlistoco({
-					lista:[]
-				})
+					lista: []
+				});
 				setlistoco1({
-					lista:[]
-				})
-
+					lista: []
+				});
 			});
 
 		// history.push('/htstaxlist')
@@ -302,13 +292,13 @@ export default function Door2doorApp() {
 								<br />
 								<Grid container spacing={3}>
 									<Grid item xs={12}>
-										<SkuComponent
+										<MxSkuComponent
 											arregloskus={arregloskus}
 											setarregloskus={setarregloskus}
 											datosfinales={datosfinales}
 											setdatosfinales={setdatosfinales}
-											lista = {listoco.lista}
-											setlistoco = {setlistoco}
+											lista={listoco.lista}
+											setlistoco={setlistoco}
 										/>
 										<br />
 										<Box sx={{ mb: 2 }}>
@@ -335,48 +325,13 @@ export default function Door2doorApp() {
 								<br />
 								<Grid container spacing={3}>
 									<Grid item xs={12}>
-										<SkuDetailsMx mexico={mexico} setmexico={setmexico} />
+										<MxCalculadoraapp mexico={mexico} setmexico={setmexico} />
 										<br />
 										<Box sx={{ mb: 2 }}>
 											<Button
 												color="secondary"
 												variant="contained"
 												onClick={handleNextIn}
-												sx={{ mt: 1, mr: 1 }}
-											>
-												Continue
-											</Button>
-											&nbsp;&nbsp;
-											<Button
-												variant="outlined"
-												color="secondary"
-												onClick={handleBack}
-												sx={{ mt: 1, mr: 1 }}
-											>
-												Back
-											</Button>
-										</Box>
-									</Grid>
-								</Grid>
-								<Typography />
-							</StepContent>
-						</Step>
-						<Step>
-							<StepLabel>Add Shipping Out from Laredo TX</StepLabel>
-							<StepContent>
-								<Typography>
-									In this section you must to add Handling Out Shipments from Laredo TX to FBA
-								</Typography>{' '}
-								<br />
-								<Grid container spacing={3}>
-									<Grid item xs={12}>
-										<SkuDetailsMx2 mexico={mexico} setmexico={setmexico} lista = {listoco1.lista} setlistoco1 = {setlistoco1}/>
-										<br />
-										<Box sx={{ mb: 2 }}>
-											<Button
-												color="secondary"
-												variant="contained"
-												onClick={handleNextOut}
 												sx={{ mt: 1, mr: 1 }}
 											>
 												Continue
@@ -404,7 +359,7 @@ export default function Door2doorApp() {
 										<SkuSummary arregloskus={arregloskus} />
 									</Grid>
 									<Grid item xs={6}>
-										<Totalvalormexico setmexico={setmexico} mexico={mexico} />
+										<MxSummary setmexico={setmexico} mexico={mexico} />
 									</Grid>
 								</Grid>
 								<Typography />
@@ -482,4 +437,6 @@ export default function Door2doorApp() {
 			</Grid>
 		</div>
 	);
-}
+};
+
+export default MxQuotationApp;
