@@ -1,9 +1,12 @@
+/* eslint-disable no-alert */
 import { useState, react } from 'react';
 import MaterialTable, { MTableToolbar } from 'material-table';
 import Button from '@material-ui/core/Button';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
 import { Link, Redirect } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import DataTable from 'react-data-table-component';
+import IconButton from '@material-ui/core/IconButton';
 import UseGetMxQuotation from '../hooks/UseGetMxQuotation';
 
 const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
@@ -17,6 +20,12 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 			color: theme.palette.text.secondary
 		}
 	}));
+
+	const formatter = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+		minimumFractionDigits: 2
+	});
 
 	const classes = useStyles();
 
@@ -41,11 +50,32 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 
 	console.log('datos para tabla:', data);
 
+	const bodegas = event => {
+		switch (event) {
+			case '2300':
+				return 'Fedex, CDMX C.P. 02300 MX';
+
+			case '45679':
+				return 'Fedex, JALISCO C.P. 45679';
+
+			case '66628':
+				return 'Fedex, NUEVO LEON C.P. 66628';
+
+			default:
+				return 'N/A';
+		}
+	};
+
 	const columnas = [
 		{
-			title: '#',
+			title: 'Origin',
 			field: '',
-			render: rowData => data.indexOf(rowData) + 1
+			render: rowData => bodegas(rowData.mexico.bodegamx)
+		},
+		{
+			title: 'Destination',
+			field: '',
+			render: rowData => 'Fedex HUB, Laredo 78045 TX, USA'
 		},
 		{
 			title: 'Pallets to Export',
@@ -60,7 +90,7 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 		{
 			title: 'Total FOB',
 			field: '',
-			render: rowData => rowData.skus.totalfob
+			render: rowData => formatter.format(rowData.skus.totalfob)
 		},
 		{
 			title: 'Handling Out Pack',
@@ -73,51 +103,57 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 			render: rowData => rowData.mexico.packoutmexico[0].qtyout
 		},
 		{
+			title: 'Total Cost',
+			field: '',
+			render: rowData => formatter.format(rowData.mexico.totalflete + rowData.mexico.totalhandlingout)
+		},
+		{
 			title: 'Date Creation',
 			field: '',
 			render: rowData => rowData.fecha_creacion
-		},
-		{
-			title: 'Actions',
-			field: '',
-			render: rowData => console.log('eso', rowData)
 		}
 	];
 
-	/* const actions = [{
-          
-            tooltip: 'View Details',
-            onClick: (event, rowData) => details(rowData.sku),
-            icon: () => <RemoveRedEyeIcon style={{
-                color: '#e39d3b'
-            }}
-            fontSize="large"/>
-        }]; */
+	const actions = [
+		{
+			tooltip: 'Edit',
+			onClick: (event, rowData) => alert(rowData.sku),
+			icon: () => (
+				<IconButton aria-label="delete">
+					<img src="https://fotos-ecl.s3.amazonaws.com/icons8-editar.svg" alt="edit" width="15" height="15" />
+				</IconButton>
+			)
+		}
+	];
 
 	return (
-		<MaterialTable
-			title="Quotation List"
-			columns={columnas}
-			data={data}
-			options={{
-				headerStyle: {
-					backgroundColor: '#000',
-					color: '#FFF'
-				}
-			}}
-			components={{
-				Toolbar: props => (
-					<div style={{ backgroundColor: 'primary' }}>
-						<MTableToolbar {...props} />
-						<div style={{ padding: '20px 20px' }}>
-							<Button onClick={nuevacotizacion} variant="contained" color="secondary">
-								+ New Quotation
-							</Button>
+		<>
+			<MaterialTable
+				title="Quotation List"
+				columns={columnas}
+				data={data}
+				options={{
+					headerStyle: {
+						backgroundColor: '#000',
+						color: '#FFF'
+					},
+
+					actionsColumnIndex: -1
+				}}
+				components={{
+					Toolbar: props => (
+						<div style={{ backgroundColor: 'primary' }}>
+							<MTableToolbar {...props} />
+							<div style={{ padding: '20px 20px' }}>
+								<Button onClick={nuevacotizacion} variant="contained" color="secondary">
+									+ New Quotation
+								</Button>
+							</div>
 						</div>
-					</div>
-				)
-			}}
-		/>
+					)
+				}}
+			/>
+		</>
 	);
 };
 
