@@ -50,7 +50,7 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 		{
 			title: 'Pallets to Export',
 			field: '',
-			render: rowData => rowData.mexico.qty_pallet
+			render: rowData => rowData.mexico.qtypallets
 		},
 		{
 			title: 'Sku to Export',
@@ -65,17 +65,22 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 		{
 			title: 'Handling Out Pack',
 			field: '',
-			render: rowData => rowData.mexico.arreglodelpack[0].tipo
+			render: rowData => rowData.mexico.packoutmexico[0].tipo
 		},
 		{
 			title: 'Qty Out',
 			field: '',
-			render: rowData => rowData.mexico.arreglodelpack[0].qtyout
+			render: rowData => rowData.mexico.packoutmexico[0].qtyout
+		},
+		{
+			title: 'Date Creation',
+			field: '',
+			render: rowData => rowData.fecha_creacion
 		},
 		{
 			title: 'Actions',
 			field: '',
-			render: rowData => console.log('pico', rowData)
+			render: rowData => console.log('eso', rowData)
 		}
 	];
 

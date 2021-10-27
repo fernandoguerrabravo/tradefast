@@ -21,6 +21,7 @@ import MxSkuComponent from './components/MxSkuComponent';
 import MxCalculadoraapp from './MxRateApp/MxCalculadoraapp';
 import SkuSummary from './components/SkuSummary';
 import MxSummary from './MxRateApp/components/MxSummary';
+
 /*
 import MxRates from './components/MxRates';
 import SkutipobultoMx from './components/SkutipobultoMx';
@@ -113,7 +114,7 @@ const MxQuotationApp = () => {
 		totalflete: '',
 		totalhandlingout: ''
 	});
-	console.log('MEXICO', mexico);
+
 
 	const [listoco, setlistoco] = useState({
 		lista: []
@@ -122,10 +123,23 @@ const MxQuotationApp = () => {
 	const [listoco1, setlistoco1] = useState({
 		lista: []
 	});
+
+
+	
+
 	const idcliente = 'abcdef';
 	const sellers = UseGetAddress(idcliente);
 	const sellersfinal = sellers.data;
 
+    const [datosfinales, setdatosfinales] = useState({
+		skus: [],
+		mexico: [],
+		idcliente
+
+		
+	});
+
+	console.log('datosfinales',datosfinales );
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
@@ -141,13 +155,7 @@ const MxQuotationApp = () => {
 				...datosfinales,
 				skus: arregloskus
 			});
-			setdatosfinales({
-				arreglosdelsku: [],
-				totalsku: '',
-				totalfob: '',
-				totalduties: '',
-				totalotherduties: ''
-			});
+		
 		}
 	};
 
@@ -167,25 +175,7 @@ const MxQuotationApp = () => {
 		}
 	};
 
-	const handleNextOut = () => {
-		if (mexico.totalout === '') {
-			Swal.fire({
-				title: 'Atention!',
-				text: 'Please Insert Information',
-				icon: 'error'
-			});
-		} else {
-			setActiveStep(prevActiveStep => prevActiveStep + 1);
-			setmexico({
-				...mexico
-			});
-			setdatosfinales({
-				...datosfinales,
-				mexico
-			});
-		}
-	};
-
+	
 	const handleBack = () => {
 		setActiveStep(prevActiveStep => prevActiveStep - 1);
 	};
@@ -196,13 +186,7 @@ const MxQuotationApp = () => {
 
 	const classes = useStyles();
 
-	const [datosfinales, setdatosfinales] = useState({
-		skus: [],
-		mexico: [],
-		idcliente
-
-		// el tipo de bulto puede ser 'p' -> pallet  o 'b' -> box
-	});
+	
 
 	const [hidden, sethidden] = useState({
 		hiddenbultos: false,
