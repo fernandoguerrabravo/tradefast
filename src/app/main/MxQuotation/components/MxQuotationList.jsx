@@ -82,16 +82,7 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 			field: '',
 			render: rowData => rowData.mexico.qtypallets
 		},
-		{
-			title: 'Sku to Export',
-			field: '',
-			render: rowData => rowData.skus.totalsku
-		},
-		{
-			title: 'Total FOB',
-			field: '',
-			render: rowData => formatter.format(rowData.skus.totalfob)
-		},
+
 		{
 			title: 'Handling Out Pack',
 			field: '',
@@ -116,44 +107,65 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 
 	const actions = [
 		{
+			tooltip: 'Request Booking',
+			onClick: (event, rowData) => alert(rowData.sku),
+			icon: () => (
+				<img
+					src="https://fotos-ecl.s3.amazonaws.com/icons8-camio%CC%81n-verificado.svg"
+					alt="edit"
+					width="20"
+					height="20"
+				/>
+			)
+		},
+		/* {
 			tooltip: 'Edit',
 			onClick: (event, rowData) => alert(rowData.sku),
 			icon: () => (
-				<IconButton aria-label="delete">
-					<img src="https://fotos-ecl.s3.amazonaws.com/icons8-editar.svg" alt="edit" width="15" height="15" />
-				</IconButton>
+				<img src="https://fotos-ecl.s3.amazonaws.com/icons8-editar.svg" alt="edit" width="20" height="20" />
+			)
+		}, */
+		{
+			tooltip: 'Delete',
+			onClick: (event, rowData) => alert(rowData.sku),
+			icon: () => (
+				<img
+					src="https://fotos-ecl.s3.amazonaws.com/icons8-eliminar-64.png"
+					alt="edit"
+					width="20"
+					height="20"
+				/>
 			)
 		}
 	];
 
 	return (
-		<>
-			<MaterialTable
-				title="Quotation List"
-				columns={columnas}
-				data={data}
-				options={{
-					headerStyle: {
-						backgroundColor: '#000',
-						color: '#FFF'
-					},
+		<MaterialTable
+			title="Quotation List"
+			columns={columnas}
+			data={data}
+			options={{
+				headerStyle: {
+					backgroundColor: '#000',
+					color: '#FFF'
+				},
 
-					actionsColumnIndex: -1
-				}}
-				components={{
-					Toolbar: props => (
-						<div style={{ backgroundColor: 'primary' }}>
-							<MTableToolbar {...props} />
-							<div style={{ padding: '20px 20px' }}>
-								<Button onClick={nuevacotizacion} variant="contained" color="secondary">
-									+ New Quotation
-								</Button>
-							</div>
+				actionsColumnIndex: -1
+			}}
+			actions={actions}
+			components={{
+				Toolbar: props => (
+					<div style={{ backgroundColor: 'primary' }}>
+						<MTableToolbar {...props} />
+						<div style={{ padding: '20px 20px' }}>
+							<Button onClick={nuevacotizacion} variant="contained" color="secondary">
+								+ New Quotation
+							</Button>
 						</div>
-					)
-				}}
-			/>
-		</>
+					</div>
+				)
+			}}
+		/>
 	);
 };
 
