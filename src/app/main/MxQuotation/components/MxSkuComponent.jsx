@@ -150,10 +150,10 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 	};
 
 	useEffect(() => {
-		const nrosku = lista.length;
+		const nrosku = arregloskus.arreglosdelsku.length;
 		let sumadefob = 0;
 		let sumadeduties = 0;
-		lista.forEach(sumafob => {
+		arregloskus.arreglosdelsku.forEach(sumafob => {
 			sumadefob += sumafob.fob * sumafob.qty;
 			sumadeduties += sumafob.dutiesrate * sumafob.fob * sumafob.qty;
 		});
@@ -171,17 +171,16 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 
 		setarregloskus({
 			...arregloskus,
-			arreglosdelsku: lista,
+			arreglosdelsku: [...arregloskus.arreglosdelsku, skus],
 			totalsku: nrosku,
 			totalfob: sumadefob,
 			totalduties: sumadeduties,
 			totalotherduties: otherduties
 		});
-	}, [lista]);
+	}, []);
 
 	const submitsku = () => {
 		if (skus.qty !== '' && skus.sku !== '') {
-			setlistoco({ lista: [...lista, skus] });
 			setskus({
 				idlista: '',
 				fob: '',

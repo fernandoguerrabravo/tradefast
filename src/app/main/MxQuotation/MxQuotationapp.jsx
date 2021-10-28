@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -115,7 +114,6 @@ const MxQuotationApp = () => {
 		totalhandlingout: ''
 	});
 
-
 	const [listoco, setlistoco] = useState({
 		lista: []
 	});
@@ -124,22 +122,17 @@ const MxQuotationApp = () => {
 		lista: []
 	});
 
-
-	
-
 	const idcliente = 'abcdef';
 	const sellers = UseGetAddress(idcliente);
 	const sellersfinal = sellers.data;
 
-    const [datosfinales, setdatosfinales] = useState({
+	const [datosfinales, setdatosfinales] = useState({
 		skus: [],
 		mexico: [],
 		idcliente
-
-		
 	});
 
-	console.log('datosfinales',datosfinales );
+	console.log('datosfinales', datosfinales);
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
@@ -155,7 +148,6 @@ const MxQuotationApp = () => {
 				...datosfinales,
 				skus: arregloskus
 			});
-		
 		}
 	};
 
@@ -175,7 +167,6 @@ const MxQuotationApp = () => {
 		}
 	};
 
-	
 	const handleBack = () => {
 		setActiveStep(prevActiveStep => prevActiveStep - 1);
 	};
@@ -185,8 +176,6 @@ const MxQuotationApp = () => {
 	};
 
 	const classes = useStyles();
-
-	
 
 	const [hidden, sethidden] = useState({
 		hiddenbultos: false,

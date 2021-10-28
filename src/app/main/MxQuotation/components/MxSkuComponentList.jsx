@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -33,14 +34,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MxSkuComponentList = ({ event }) => {
-	/* const deleterow = event => {
-       
-		 if()
-	     
-
-	}; */
+	console.log('eventos', event);
 
 	const columns = [
+		{
+			name: '#',
+			selector: row => row.idlista
+		},
 		{
 			name: 'SKU Code',
 			selector: row => row.sku
