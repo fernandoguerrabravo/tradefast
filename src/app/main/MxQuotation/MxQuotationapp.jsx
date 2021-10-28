@@ -143,7 +143,7 @@ const MxQuotationApp = () => {
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
-		if (arregloskus.totalsku === '') {
+		if (arregloskus.totalsku === 0 || arregloskus.totalsku === '') {
 			Swal.fire({
 				title: 'Atention!',
 				text: 'Add SKU and Go to Next Step',
