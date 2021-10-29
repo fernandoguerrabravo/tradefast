@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-lone-blocks */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue, orange } from '@material-ui/core/colors';
 import { Box, Divider, Typography } from '@material-ui/core';
@@ -22,6 +21,7 @@ import { composeInitialProps } from 'react-i18next';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import DataTable from 'react-data-table-component';
+import MaterialTable, { MTableToolbar } from 'material-table';
 import MxPackOutList from './MxPackoutlist';
 
 const useStyles = makeStyles(theme => ({
@@ -141,9 +141,11 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista, finales, setf
 	};
 
 	const handleqtyChange1 = e => {
+		const id = lista.length;
 		setpaquetes({
 			...paquetes,
-			qtyout: parseFloat(e.target.value)
+			qtyout: parseFloat(e.target.value),
+			idpaquete: id
 		});
 	};
 
@@ -177,7 +179,7 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista, finales, setf
 				id: ''
 			});
 		} else {
-			swal({
+			Swal.fire({
 				title: 'Opss!',
 				text: 'Add Packaging and Quantities',
 				icon: 'warning'
@@ -187,16 +189,19 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista, finales, setf
 
 	const columns = [
 		{
-			name: 'Packaging',
-			selector: row => row.tipo
+			title: 'Packaging',
+			field: '',
+			render: row => row.tipo
 		},
 		{
-			name: 'Quantities',
-			selector: row => row.qtyout
+			title: 'Qtys',
+			field: '',
+			render: row => row.qtyout
 		},
 		{
-			name: 'Handling Out',
-			selector: row =>
+			title: 'Rates',
+			field: '',
+			render: row =>
 				row.tipo === 'Pallets'
 					? 7.48 * row.qtyout < 46
 						? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(46 + 34.5)
@@ -209,10 +214,32 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista, finales, setf
 		}
 	];
 
+	const actions = [
+		{
+			tooltip: 'Delete',
+			onClick: (event, rowData) => deleterow(rowData.idpaquete),
+			icon: () => (
+				<img
+					src="https://fotos-ecl.s3.amazonaws.com/icons8-eliminar-64.png"
+					alt="edit"
+					width="20"
+					height="20"
+				/>
+			)
+		}
+	];
+
+	// Funcion que actualiza la tabla
+
+	const deleterow = e => {
+		const newstate = lista.filter(item => item.idpaquete !== e);
+		setoutlista({ lista: newstate });
+	};
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
-				<Grid item xs={6}>
+				<Grid item xs={4}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper1}>
 						<FormControl variant="outlined" className={classes.formControl2}>
 							<InputLabel id="outtipo">Packaging to Out</InputLabel>
@@ -242,12 +269,12 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista, finales, setf
 							/>
 							<br />
 							<Button onClick={submitout} variant="contained" color="primary">
-								+ Add Item to List
+								+ Add Item
 							</Button>
 						</FormControl>
 					</Paper>
 				</Grid>
-				<Grid item xs={6}>
+				<Grid item xs={8}>
 					{/* <MxPackOutList handout={handout} sethandout={sethandout} total={paquetes.totalout} event={lista} /> */}
 					<Paper className={classes.paper1}>
 						{' '}
@@ -261,7 +288,20 @@ const MxExpoShipping = ({ handout, sethandout, lista, setoutlista, finales, setf
 						</Typography>
 					</Paper>
 					<br />
-					<DataTable columns={columns} data={lista} />
+					<MaterialTable
+						options={{
+							headerStyle: {
+								backgroundColor: '#F6F6F6',
+								color: '#000'
+							},
+							search: false,
+							title: false
+						}}
+						title=""
+						columns={columns}
+						data={lista}
+						actions={actions}
+					/>
 				</Grid>
 			</Grid>
 		</div>
