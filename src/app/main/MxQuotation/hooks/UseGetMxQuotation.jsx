@@ -14,7 +14,7 @@ const UseGetMxQuotation = event => {
 			});
 		});
 	}, [event]);
-
+	console.log('pico pal que lee', state);
 	return state;
 };
 

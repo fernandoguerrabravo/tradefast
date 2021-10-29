@@ -14,7 +14,7 @@ const GetQuoationMexico = async () => {
 		requestOptions
 	);
 	const sku = await resp.json();
-
+	console.log('PICHULA', sku);
 	return sku;
 };
 
