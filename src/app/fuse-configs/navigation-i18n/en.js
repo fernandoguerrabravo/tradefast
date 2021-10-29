@@ -12,11 +12,12 @@ const locale = {
 	HTSSPECIAL: 'Special Services',
 	RATE: 'Shipping Decision Tools',
 	SHIPPINGQUOTATION: 'Shipping Quotation',
-	TOOLSDECISIONS: 'Decision Tools',
-	BOOKING: 'Book Shipments Now',
+	TOOLSDECISIONS: 'Sellers Tools',
+	BOOKING: 'New Truck Shipping',
 	SETTINGS: 'Settings',
 	SKUSTORE: 'Products',
-	CALCULATOR: 'MX Quick Calculator'
+	CALCULATOR: 'MX Quick Calculator',
+	SHIPPINGS: 'International Shipping'
 };
 
 export default locale;

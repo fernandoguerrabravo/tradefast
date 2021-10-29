@@ -53,14 +53,14 @@ const navigationConfig = [
 				title: 'example',
 				translate: 'TOOLSDECISIONS',
 				type: 'collapse',
-				icon: 'whatshot',
+				icon: 'home_repair_service',
 				children: [
 					{
 						id: 'listresearch-component',
 						title: 'listresearch',
 						translate: 'RESEARCHMARKET',
 						type: 'item',
-						icon: 'timeline',
+						icon: 'storefront',
 						url: '/research'
 					},
 					{
@@ -68,26 +68,27 @@ const navigationConfig = [
 						title: 'classifications',
 						translate: 'CLASSIFICATIONS',
 						type: 'item',
-						icon: 'timeline',
+						icon: 'ballot',
 						url: '/htstaxlist'
-					},
-					{
-						id: 'shipping-component',
-						title: 'Shipping Quotation',
-						translate: 'SHIPPINGQUOTATION',
-						type: 'item',
-						icon: 'whatshot',
-						url: '/MxQuotation'
 					}
 				]
 			},
 			{
-				id: 'booking-component',
+				id: 'shipping-component',
 				title: 'example',
-				translate: 'BOOKING',
-				type: 'item',
-				icon: 'whatshot',
-				url: '/MxQuotation'
+				translate: 'SHIPPINGS',
+				type: 'collapse',
+				icon: 'public',
+				children: [
+					{
+						id: 'booking-component',
+						title: 'example',
+						translate: 'BOOKING',
+						type: 'item',
+						icon: 'local_shipping',
+						url: '/MxQuotation'
+					}
+				]
 			}
 		]
 	}
