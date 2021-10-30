@@ -52,13 +52,12 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 	const [datas, setdatas] = useState({
 		datatable: []
 	});
+
 	const { data } = UseGetMxQuotation(idcliente);
 
 	useEffect(() => {
 		setdatas({ datatable: data });
 	}, [data]);
-
-	console.log('PICO', data);
 
 	const bodegas = event => {
 		switch (event) {
@@ -156,6 +155,8 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 	];
 
 	const deleterow = e => {
+		const newstate = datas.datatable.filter(item => item._id.$oid !== e);
+		setdatas({ datatable: newstate });
 		DeleteQuotation(e);
 	};
 	return (

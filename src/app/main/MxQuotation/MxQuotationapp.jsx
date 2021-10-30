@@ -89,13 +89,13 @@ const useStyles = makeStyles(theme => ({
 	},
 	box: {
 		height: 0,
-		display: "flex",
+		display: 'flex',
 		padding: 8
-	  },
-	  centerBox: {
-		justifyContent: "flex-end",
-		alignItems: "flex-end"
-	  }
+	},
+	centerBox: {
+		justifyContent: 'flex-end',
+		alignItems: 'flex-end'
+	}
 }));
 
 const MxQuotationApp = () => {
@@ -195,18 +195,16 @@ const MxQuotationApp = () => {
 	});
 
 	const back = () => {
-
 		sethidden({
-
-		hiddenbultos: false,
-		hiddensku: true,
-		hiddenbox: false,
-		hiddenfinal: false,
-		hiddenrate: false,
-		hiddenlista: true,
-		hiddencotizacion: false
-		})
-	}
+			hiddenbultos: false,
+			hiddensku: true,
+			hiddenbox: false,
+			hiddenfinal: false,
+			hiddenrate: false,
+			hiddenlista: true,
+			hiddencotizacion: false
+		});
+	};
 
 	const Save = async () => {
 		SaveMexico(datosfinales)
@@ -265,7 +263,9 @@ const MxQuotationApp = () => {
 							</Tooltip>
 						</Typography>
 						<Box sx={{ mb: 2 }} className={`${classes.centerBox} ${classes.box}`}>
-							<Button onClick ={back} color='primary' variant="contained">Back to List</Button>
+							<Button onClick={back} color="primary" variant="contained">
+								Back to List
+							</Button>
 						</Box>
 					</Paper>
 				</Grid>
