@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
@@ -7,11 +8,14 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 import Paper from '@material-ui/core/Paper';
 import { green, red, blue, orange } from '@material-ui/core/colors';
 import { Divider, Typography } from '@material-ui/core';
 import { UseGetOtherTax } from 'app/main/hooks/useGetOtherTax';
+import IconButton from '@material-ui/core/IconButton';
+import DataTable from 'react-data-table-component';
+import MaterialTable, { MTableToolbar } from 'material-table';
 import MxSkuComponentList from './MxSkuComponentList';
 import UseGetAddress from '../hooks/UseGetAddress';
 import UseGetSku from '../hooks/UseGetSku';
@@ -161,14 +165,15 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 		// Harbour maintenance fee
 		const hmf = 0.00125 * sumadefob;
 		let mpf = 0.0034664 * sumadefob;
-		if (mpf < 27.23) {
+		if (mpf < 27.23 && mpf > 0) {
 			mpf = 27.23;
 		} else if (mpf > 528.33) {
 			mpf = 528.33;
+		} else if (mpf === 0) {
+			mpf = 0;
 		}
 
 		const otherduties = hmf + mpf;
-
 		setarregloskus({
 			...arregloskus,
 			arreglosdelsku: lista,
@@ -179,29 +184,31 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 		});
 	}, [lista]);
 
-	const submitsku = () => {
-		if (skus.qty !== '' && skus.sku !== '') {
-			setlistoco({ lista: [...lista, skus] });
-			setskus({
-				idlista: '',
-				fob: '',
-				shortdescription: '',
-				sku: '',
-				hts8: '',
-				duties: '',
-				htsdescription: '',
-				FTA: '',
-				List301: '',
-				tax301: '',
-				qty: '',
-				dutiesrate: ''
-			});
-		} else {
-			swal({
-				title: 'oops!',
-				text: 'Insert a valid Quantity and SKU Code!!',
-				icon: 'warning'
-			});
+	const submitsku = evento => {
+		if (evento.isTrusted) {
+			if (skus.qty !== '' && skus.sku !== '') {
+				setlistoco({ lista: [...lista, skus] });
+				setskus({
+					idlista: '',
+					fob: '',
+					shortdescription: '',
+					sku: '',
+					hts8: '',
+					duties: '',
+					htsdescription: '',
+					FTA: '',
+					List301: '',
+					tax301: '',
+					qty: '',
+					dutiesrate: ''
+				});
+			} else {
+				Swal.fire({
+					title: 'oops!',
+					text: 'Insert a valid Quantity and SKU Code!!',
+					icon: 'warning'
+				});
+			}
 		}
 	};
 
@@ -213,7 +220,7 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 				origen: sellersfinal
 			});
 		} else {
-			swal({
+			Swal.fire({
 				title: 'oops!',
 				text: 'Select SKU to Export!!',
 				icon: 'warning'
@@ -229,10 +236,83 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 		});
 	});
 
+	// Armado de la tabla de detalles
+
+	const columnas = [
+		{
+			title: 'SKU',
+			field: '',
+			render: rowData => rowData.sku
+		},
+		{
+			title: 'Description',
+			field: '',
+			render: rowData => rowData.shortdescription
+		},
+		{
+			title: 'Units',
+			field: '',
+			render: rowData => rowData.qty
+		},
+
+		{
+			title: 'FOB USD',
+			field: '',
+			render: rowData =>
+				new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(rowData.fob)
+		},
+		{
+			title: 'HTS',
+			field: '',
+			render: rowData => rowData.hts8
+		},
+		{
+			title: 'Duties Rate',
+			field: '',
+			render: rowData => rowData.duties
+		},
+		{
+			title: 'Total FOB',
+			field: '',
+			render: rowData =>
+				new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(rowData.fob * rowData.qty)
+		},
+		{
+			title: 'Duties',
+			field: '',
+			render: rowData =>
+				new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+					rowData.qty * rowData.dutiesrate * rowData.fob
+				)
+		}
+	];
+
+	const actions = [
+		{
+			tooltip: 'Delete',
+			onClick: (event, rowData) => deleterow(rowData.idlista),
+			icon: () => (
+				<img
+					src="https://fotos-ecl.s3.amazonaws.com/icons8-eliminar-64.png"
+					alt="edit"
+					width="20"
+					height="20"
+				/>
+			)
+		}
+	];
+
+	// Funcion que actualiza la tabla
+
+	const deleterow = e => {
+		const newstate = lista.filter(item => item.idlista !== e);
+		setlistoco({ lista: newstate });
+	};
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
-				<Grid item xs={3}>
+				<Grid item xs={2}>
 					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
 						<FormControl variant="outlined" className={classes.formControl2}>
 							<Select id="sku" name="sku" options={newJson1} onChange={handleInputChange} />
@@ -243,7 +323,7 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 								variant="caption"
 								gutterBottom
 							>
-								<strong>Search Your Saved SKU Code</strong>
+								<strong>Search SKU Code</strong>
 							</Typography>
 							<TextField
 								style={{ color: '#e47911', zIndex: 0 }}
@@ -262,7 +342,7 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 								variant="caption"
 								gutterBottom
 							>
-								<strong>Input Quantities to Export</strong>
+								<strong>Quantities to Export</strong>
 							</Typography>
 							<Button onClick={submitsku} variant="contained" color="primary">
 								+ Add Item to List
@@ -270,10 +350,19 @@ const MxSkuComponent = ({ arregloskus, setarregloskus, datosfinales, setdatosfin
 						</FormControl>
 					</Paper>
 				</Grid>
-				<Grid item xs={9}>
-					<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
-						<MxSkuComponentList event={arregloskus.arreglosdelsku} />
-					</Paper>
+				<Grid item xs={10}>
+					<MaterialTable
+						options={{
+							headerStyle: {
+								backgroundColor: '#F6F6F6',
+								color: '#000'
+							}
+						}}
+						title="Sku to Export"
+						columns={columnas}
+						data={lista}
+						actions={actions}
+					/>
 				</Grid>
 			</Grid>
 		</div>

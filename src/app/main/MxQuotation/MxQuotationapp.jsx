@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import { deepOrange, green, red, blue } from '@material-ui/core/colors';
-import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -13,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import InfoIcon from '@material-ui/icons/Info';
 import Tooltip from '@material-ui/core/Tooltip';
 import Swal from 'sweetalert2';
+import { Accordion, AccordionDetails, Grid, Typography } from '@material-ui/core';
 import MxQuotationList from './components/MxQuotationList';
 import UseGetAddress from './hooks/UseGetAddress';
 import SaveMexico from './helpers/SaveMexico';
@@ -20,7 +19,6 @@ import MxSkuComponent from './components/MxSkuComponent';
 import MxCalculadoraapp from './MxRateApp/MxCalculadoraapp';
 import SkuSummary from './components/SkuSummary';
 import MxSummary from './MxRateApp/components/MxSummary';
-
 /*
 import MxRates from './components/MxRates';
 import SkutipobultoMx from './components/SkutipobultoMx';
@@ -88,7 +86,16 @@ const useStyles = makeStyles(theme => ({
 		backgroundColor: green[500],
 		width: theme.spacing(7),
 		height: theme.spacing(7)
-	}
+	},
+	box: {
+		height: 0,
+		display: "flex",
+		padding: 8
+	  },
+	  centerBox: {
+		justifyContent: "flex-end",
+		alignItems: "flex-end"
+	  }
 }));
 
 const MxQuotationApp = () => {
@@ -136,7 +143,7 @@ const MxQuotationApp = () => {
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
-		if (arregloskus.totalsku === '') {
+		if (arregloskus.totalsku === 0 || arregloskus.totalsku === '') {
 			Swal.fire({
 				title: 'Atention!',
 				text: 'Add SKU and Go to Next Step',
@@ -186,6 +193,20 @@ const MxQuotationApp = () => {
 		hiddenlista: true,
 		hiddencotizacion: false
 	});
+
+	const back = () => {
+
+		sethidden({
+
+		hiddenbultos: false,
+		hiddensku: true,
+		hiddenbox: false,
+		hiddenfinal: false,
+		hiddenrate: false,
+		hiddenlista: true,
+		hiddencotizacion: false
+		})
+	}
 
 	const Save = async () => {
 		SaveMexico(datosfinales)
@@ -243,6 +264,9 @@ const MxQuotationApp = () => {
 								<InfoIcon style={{ color: '#e47911' }} className={classes.icon} />
 							</Tooltip>
 						</Typography>
+						<Box sx={{ mb: 2 }} className={`${classes.centerBox} ${classes.box}`}>
+							<Button onClick ={back} color='primary' variant="contained">Back to List</Button>
+						</Box>
 					</Paper>
 				</Grid>
 				<Grid item xs={12}>

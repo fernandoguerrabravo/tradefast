@@ -1,5 +1,3 @@
-/* eslint-disable radix */
-/* eslint-disable no-alert */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -146,7 +144,7 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 	const handleqtyChange = e => {
 		setvalued({
 			...valued,
-			qty_pallet: parseInt(e.target.value),
+			qty_pallet: parseInt(e.target.value, 10),
 			totalaparecido: false
 		});
 		setaparecidos({
@@ -157,7 +155,7 @@ const MxExpoPallet = ({ finales, setfinales }) => {
 	const handlefobChange = e => {
 		setvalued({
 			...valued,
-			fob: parseInt(e.target.value),
+			fob: parseInt(e.target.value, 10),
 			totalaparecido: false
 		});
 		setaparecidos({

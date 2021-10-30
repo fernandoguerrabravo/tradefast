@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-alert */
-import { useState, react } from 'react';
+import { useState, react, useEffect } from 'react';
 import MaterialTable, { MTableToolbar } from 'material-table';
 import Button from '@material-ui/core/Button';
 import RemoveRedEyeIcon from '@material-ui/icons/RemoveRedEye';
@@ -8,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import DataTable from 'react-data-table-component';
 import IconButton from '@material-ui/core/IconButton';
 import UseGetMxQuotation from '../hooks/UseGetMxQuotation';
+import DeleteQuotation from '../helpers/DeleteQuotation';
 
 const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 	const useStyles = makeStyles(theme => ({
@@ -46,9 +48,17 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 			totalotherduties: ''
 		});
 	};
+
+	const [datas, setdatas] = useState({
+		datatable: []
+	});
 	const { data } = UseGetMxQuotation(idcliente);
 
-	console.log('datos para tabla:', data);
+	useEffect(() => {
+		setdatas({ datatable: data });
+	}, [data]);
+
+	console.log('PICO', data);
 
 	const bodegas = event => {
 		switch (event) {
@@ -67,6 +77,12 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 	};
 
 	const columnas = [
+		{
+			title: '#',
+			field: '',
+			render: rowData => rowData._id.$oid
+		},
+
 		{
 			title: 'Origin',
 			field: '',
@@ -108,7 +124,7 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 	const actions = [
 		{
 			tooltip: 'Delete',
-			onClick: (event, rowData) => alert(rowData.sku),
+			onClick: (event, rowData) => deleterow(rowData._id.$oid),
 			icon: () => (
 				<img
 					src="https://fotos-ecl.s3.amazonaws.com/icons8-eliminar-64.png"
@@ -139,11 +155,14 @@ const MxQuoationList = ({ hidden, sethidden, setarregloskus }) => {
 		}, */
 	];
 
+	const deleterow = e => {
+		DeleteQuotation(e);
+	};
 	return (
 		<MaterialTable
 			title="Quotation List"
 			columns={columnas}
-			data={data}
+			data={datas.datatable}
 			options={{
 				headerStyle: {
 					backgroundColor: '#000',
