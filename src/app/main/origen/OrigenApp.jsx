@@ -57,6 +57,8 @@ export default function RateApp() {
 										<Link
 											href="http://www.sice.oas.org/trade/nafta_s/CAP04_1.asp#Cap.IV"
 											underline="none"
+											target="_blank"
+											rel="noreferrer"
 										>
 											Sice - Reglas de Origen - TLC USA
 										</Link>
@@ -65,8 +67,26 @@ export default function RateApp() {
 								<ListItem>
 									<ListItemText>
 										{' '}
-										<Link href="http://www.trade.gov/regional-value-content" underline="none">
+										<Link
+											href="http://www.trade.gov/regional-value-content"
+											underline="none"
+											target="_blank"
+											rel="noreferrer"
+										>
 											Trade.gov - Sobre Contenido Regional - TLC USA
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										{' '}
+										<Link
+											href="http://www2.aladi.org/SitioALADI/Reuniones/OMC/2019/PRESENTACIONORIGENOMC.pdf"
+											underline="none"
+											target="_blank"
+											rel="noreferrer"
+										>
+											Aladi.org - Sobre Reglas de Origen
 										</Link>
 									</ListItemText>
 								</ListItem>
