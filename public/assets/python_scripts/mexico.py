@@ -21,8 +21,7 @@ def lambda_handler(event, context):
     ## Calculo de la Primera Pierna
     
     codigo_fba = "PHX5"
-    fedex_warehouse = '2300'
-    qty_pallets = 1
+    fedex_warehouse = '2300'    qty_pallets = 1
     
     
     mycursor = mydb.cursor()

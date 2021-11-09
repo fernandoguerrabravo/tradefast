@@ -70,6 +70,14 @@ const navigationConfig = [
 						type: 'item',
 						icon: 'ballot',
 						url: '/htstaxlist'
+					},
+					{
+						id: 'origin-component',
+						title: 'Origin Rules',
+						translate: 'ORIGINRULES',
+						type: 'item',
+						icon: 'ballot',
+						url: '/origen'
 					}
 				]
 			},
