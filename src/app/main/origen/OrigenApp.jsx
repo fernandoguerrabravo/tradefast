@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import ListItemText from '@material-ui/core/ListItemText';
+import { Typography } from '@material-ui/core';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -39,6 +44,34 @@ export default function RateApp() {
 					</Grid>
 					<Grid alignItems="center" item xs={4}>
 						<img src="https://fotos-ecl.s3.amazonaws.com/Reglas+de+Origen+(3).svg" alt="origen2" />
+					</Grid>
+					<Grid alignItems="center" item xs={4}>
+						<Paper className={classes.paper}>
+							<Grid item xs={12} md={12}>
+								<Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
+									Links de Apoyo
+								</Typography>
+								<ListItem>
+									<ListItemText>
+										{' '}
+										<Link
+											href="http://www.sice.oas.org/trade/nafta_s/CAP04_1.asp#Cap.IV"
+											underline="none"
+										>
+											Sice - Reglas de Origen - TLC USA
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										{' '}
+										<Link href="http://www.trade.gov/regional-value-content" underline="none">
+											Trade.gov - Sobre Contenido Regional - TLC USA
+										</Link>
+									</ListItemText>
+								</ListItem>
+							</Grid>
+						</Paper>
 					</Grid>
 				</Grid>
 			</Paper>
