@@ -90,6 +90,32 @@ export default function RateApp() {
 										</Link>
 									</ListItemText>
 								</ListItem>
+								<ListItem>
+									<ListItemText>
+										{' '}
+										<Link
+											href="https://www.trade.gov/fta-certificates-origin"
+											underline="none"
+											target="_blank"
+											rel="noreferrer"
+										>
+											Trade.gov - Sobre Reglas de Origen y Certificación de Origen
+										</Link>
+									</ListItemText>
+								</ListItem>
+								<ListItem>
+									<ListItemText>
+										{' '}
+										<Link
+											href="https://www.cbp.gov/document/guidance/certification-origin-template"
+											underline="none"
+											target="_blank"
+											rel="noreferrer"
+										>
+											cbp.gov - Modelo de Certificado de Origen
+										</Link>
+									</ListItemText>
+								</ListItem>
 							</Grid>
 						</Paper>
 					</Grid>
