@@ -18,7 +18,8 @@ const locale = {
 	SKUSTORE: 'Products',
 	CALCULATOR: 'MX Quick Calculator',
 	SHIPPINGS: 'International Shipping',
-	ORIGINRULES: 'Origin Rules'
+	ORIGINRULES: 'Origin Rules',
+	PROFILE: 'Profile'
 };
 
 export default locale;

@@ -39,6 +39,14 @@ const navigationConfig = [
 				icon: 'settings',
 				children: [
 					{
+						id: 'profile-component',
+						title: 'profile',
+						translate: 'PROFILE',
+						type: 'item',
+						icon: 'account_box',
+						url: '/profile'
+					},
+					{
 						id: 'skustore-component',
 						title: 'skustore',
 						translate: 'SKUSTORE',

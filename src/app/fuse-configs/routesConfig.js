@@ -12,6 +12,7 @@ import LoginConfig from 'app/main/login/LoginConfig';
 import MxCalculadoraConfig from 'app/main/MxCalculadoraRapida/MxCalculadoraConfig';
 import MxQuotationConfig from 'app/main/MxQuotation/MxQuotationConfig';
 import OrigenConfig from 'app/main/origen/OrigenConfig';
+import ProfileConfig from 'app/main/profile/ProfileConfig';
 
 const routeConfigs = [
 	DashboardConfig,
@@ -26,7 +27,8 @@ const routeConfigs = [
 	LoginConfig,
 	MxCalculadoraConfig,
 	MxQuotationConfig,
-	OrigenConfig
+	OrigenConfig,
+	ProfileConfig
 ];
 
 const routes = [

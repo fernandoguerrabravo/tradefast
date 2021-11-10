@@ -93,6 +93,19 @@ const MxSummary = ({ finales, handout }) => {
 
 	const classes = useStyles();
 
+	const [lastmile, setlastmile] = useState({
+
+		valor : ''
+	})
+
+	const handlingChange = event => {
+		setlastmile({
+			
+			valor: event.target.value
+		});
+	
+	};
+
 	return (
 		<div className={classes.root}>
 			<Grid container spacing={3}>
@@ -103,68 +116,103 @@ const MxSummary = ({ finales, handout }) => {
 								<strong>Shipping Cost Summary</strong>
 							</Typography>
 							<Typography style={{ textAlign: 'right' }} gutterBottom>
-								<strong >Powered by</strong>	
+								<strong>Powered by</strong>
 								<img
-								src="https://fotos-ecl.s3.amazonaws.com/fedex.png"
-								alt="fedex"
-								width="100"
-								height="100"
-								align="right"
-							/>
+									src="https://fotos-ecl.s3.amazonaws.com/fedex.png"
+									alt="fedex"
+									width="100"
+									height="100"
+									align="right"
+								/>
 							</Typography>
-						<br />
-						<br />
-						<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
-							<TableContainer component={Paper}>
-								<Table sx={{ minWidth: 700 }} aria-label="customized table">
-									<TableHead />
-									<TableBody>
-										<TableRow>
-											<TableCell component="th" scope="row">
-												Tarifa MX to Laredo TX
-											</TableCell>
-											<TableCell component="th" scope="row" style={{ color: '#FF9900' }}>
-												<strong>{formatter.format(finales.total)}</strong>
-											</TableCell>
-										</TableRow>
-										<TableRow>
-											<TableCell component="th" scope="row">
-												Handling Out Cost
-											</TableCell>
-											<TableCell component="th" scope="row" style={{ color: '#FF9900' }}>
-												<strong>{formatter.format(handout.out)}</strong>
-											</TableCell>
-										</TableRow>
-										<TableRow>
-											<TableCell component="th" scope="row">
-												<Typography variant="h6">Total Shipping Cost:</Typography>
-											</TableCell>
-											<TableCell component="th" scope="row">
-												<Typography variant="h6" style={{ color: '#FF9900' }}>
-													<strong>{formatter.format(handout.out + finales.total)}</strong>
-												</Typography>
-											</TableCell>
-										</TableRow>
-										<TableRow>
-											<TableCell component="th" scope="row">
-												Insurance (* optional):
-											</TableCell>
-											<TableCell component="th" scope="row">
-												<Typography style={{ color: '#FF9900' }}>
-													<strong>
-														{finales.totalseguro
-															? finales.totalseguro * 0.003 < 40
-																? formatter.format(40)
-																: formatter.format(finales.totalseguro * 0.003)
-															: formatter.format(0)}
-													</strong>
-												</Typography>
-											</TableCell>
-										</TableRow>
-									</TableBody>
-								</Table>
-							</TableContainer>
-						</Paper>
+							<br />
+							<br />
+							<Paper style={{ backgroundColor: '#F6F6F6' }} className={classes.paper}>
+								<TableContainer component={Paper}>
+									<Table sx={{ minWidth: 700 }} aria-label="customized table">
+										<TableHead />
+										<TableBody>
+											<TableRow>
+												<TableCell component="th" scope="row">
+													Tarifa MX to Laredo TX
+												</TableCell>
+												<TableCell component="th" scope="row" style={{ color: '#FF9900' }}>
+													<strong>{formatter.format(finales.total)}</strong>
+												</TableCell>
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row">
+													Handling Out Cost
+												</TableCell>
+												<TableCell component="th" scope="row" style={{ color: '#FF9900' }}>
+													<strong>{formatter.format(handout.out)}</strong>
+												</TableCell>
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row">
+													<Typography variant="h6">Total Shipping Cost:</Typography>
+												</TableCell>
+												<TableCell component="th" scope="row">
+													<Typography variant="h6" style={{ color: '#FF9900' }}>
+														<strong>{formatter.format(handout.out + finales.total)}</strong>
+													</Typography>
+												</TableCell>
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row">
+													Insurance (* optional):
+												</TableCell>
+												<TableCell component="th" scope="row">
+													<Typography style={{ color: '#FF9900' }}>
+														<strong>
+															{finales.totalseguro
+																? finales.totalseguro * 0.003 < 40
+																	? formatter.format(40)
+																	: formatter.format(finales.totalseguro * 0.003)
+																: formatter.format(0)}
+														</strong>
+													</Typography>
+												</TableCell>
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row">
+													Insert Last Mile (Amazon's Suppliers)
+												</TableCell>
+												<TableCell component="th" scope="row">
+													<Typography>
+														<TextField
+															id="lastmile"
+															name="lastmile"
+															label="Lastmile Value"
+															variant="outlined"
+															color="primary"
+															type="number"
+															value={lastmile.valor}
+															onChange={handlingChange}
+														/>
+													</Typography>
+												</TableCell>
+											</TableRow>
+											<TableRow>
+												<TableCell component="th" scope="row">
+													Total Logistics Cost (MX - FBA's Amazon):
+												</TableCell>
+												<TableCell component="th" scope="row">
+													<Typography>
+														<strong>
+															{finales.totalseguro
+																? finales.totalseguro * 0.003 < 40 
+																	? formatter.format(40 + handout.out + finales.total + lastmile.valor)
+																	: formatter.format(finales.totalseguro * 0.003 + handout.out + finales.total + lastmile.valor)
+																: formatter.format(0 + handout.out + finales.total + lastmile.valor)}
+														</strong>
+													</Typography>
+												</TableCell>
+											</TableRow>
+										</TableBody>
+									</Table>
+								</TableContainer>
+							</Paper>
 						</Grid>{' '}
 					</Paper>
 					<br />
