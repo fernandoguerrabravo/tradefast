@@ -95,13 +95,22 @@ const MxSummary = ({ finales, handout }) => {
 
 	const [lastmile, setlastmile] = useState({
 
-		valor : ''
+		valor : 0
 	})
 
 	const handlingChange = event => {
+		let valores = 0;
+		if(event.target.value === 0  || event.target.value === '') {
+			valores = 0;
+
+		} else {
+
+			 valores = event.target.value;
+		}
+		
 		setlastmile({
 			
-			valor: event.target.value
+			valor: parseInt(valores)
 		});
 	
 	};
