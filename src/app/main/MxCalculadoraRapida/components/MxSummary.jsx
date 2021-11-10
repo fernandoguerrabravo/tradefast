@@ -95,7 +95,7 @@ const MxSummary = ({ finales, handout }) => {
 
 	const [lastmile, setlastmile] = useState({
 
-		valor : 0
+		valor : ''
 	})
 
 	const handlingChange = event => {
