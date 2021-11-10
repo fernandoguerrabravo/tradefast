@@ -16,12 +16,12 @@ const Profile = () => {
 			}}
 			header={
 				<div className="p-24">
-					<h1>Reglas de Origen</h1>
+					<h1>Sellers's Profile</h1>
 				</div>
 			}
 			contentToolbar={
 				<div className="p-24">
-					<h4>Reglas y Sugerencias para la determinación de Origen</h4>
+					<h4>Sellers Information</h4>
 				</div>
 			}
 			content={
